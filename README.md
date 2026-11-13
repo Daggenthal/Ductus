@@ -32,7 +32,15 @@ The word list comes from public-domain books on Project Gutenberg. See [CORPUS.m
 
 ## Building and testing
 
-Requires Xcode 16 or newer (Swift 6).
+Requires Xcode 16 or newer (Swift 6) and macOS 14 or newer.
+
+Open `Ductus.xcodeproj` and run the Ductus scheme, or from the terminal:
+
+```sh
+xcodebuild -project Ductus.xcodeproj -scheme Ductus build
+```
+
+The engine has its own tests and demo:
 
 ```sh
 cd DuctusEngine
