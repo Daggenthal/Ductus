@@ -3,7 +3,7 @@
 /// A plain EWMA seeded at zero (or at the first sample) is skewed for the
 /// first few samples. Dividing by the accumulated weight fixes that, so the
 /// value is meaningful from the first sample and recent samples matter most.
-public struct EWMA: Sendable, Equatable {
+public struct EWMA: Sendable, Equatable, Codable {
     /// Weight of each new sample, in (0, 1]. Higher reacts faster.
     public let alpha: Double
     public private(set) var count = 0

@@ -14,6 +14,8 @@ struct KeyboardView: View {
     var nextCharacter: Character?
     var unlockedLetters: Set<Character>?
     var showPhysicalLabels = true
+    /// Heatmap: 0 (fine) to 1 (weakest) per letter. Tints keys in one hue.
+    var heat: [Character: Double]?
     var unit: CGFloat = 40
 
     private let spacing: CGFloat = 4
@@ -34,7 +36,8 @@ struct KeyboardView: View {
                             isPressed: keyboard.pressed.contains(key.code),
                             isNext: key.code == nextCode,
                             isShortcut: shortcutCodes.contains(key.code),
-                            isDimmed: isLocked(key)
+                            isDimmed: isLocked(key),
+                            heat: heatValue(for: key)
                         )
                     }
                 }
@@ -59,6 +62,13 @@ struct KeyboardView: View {
         return printed == label(for: key) ? nil : printed
     }
 
+    private func heatValue(for key: KeyboardGeometry.Key) -> Double? {
+        guard let heat, key.isCharacterKey,
+              let label = keyboard.layout?.character(for: key.code), label.count == 1
+        else { return nil }
+        return heat[Character(label.lowercased())]
+    }
+
     private func isLocked(_ key: KeyboardGeometry.Key) -> Bool {
         guard let unlockedLetters, !keyboard.commandHeld, key.isCharacterKey,
               let label = keyboard.layout?.character(for: key.code), label.count == 1,
@@ -77,6 +87,7 @@ private struct KeyCap: View {
     let isNext: Bool
     let isShortcut: Bool
     let isDimmed: Bool
+    var heat: Double?
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -105,6 +116,7 @@ private struct KeyCap: View {
     private func fill(_ palette: KeyboardPalette) -> Color {
         if isPressed { return Color.accentColor.opacity(0.85) }
         if isShortcut { return palette.shortcutFill }
+        if let heat { return KeyboardPalette.heat.opacity(0.12 + 0.68 * min(1, max(0, heat))) }
         return palette.keyFill
     }
 

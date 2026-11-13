@@ -15,6 +15,7 @@ The name comes from calligraphy: the ductus is the order, direction and rhythm o
 - **License:** MIT. All code in this repo is MIT.
 - **Bundle ID:** `dev.daggenthal.ductus`
 - **Everything runs locally.** No accounts, no telemetry, no network required for training.
+- **Persistence:** SwiftData, in the app layer only (`Ductus/Progress`). Progress is saved per keyboard layout. The engine stays free of SwiftData: its state is plain `Codable` (`StatsTracker` is stored as a JSON blob), and history math (`HistoryMath`) works on plain `DrillRecord` values so it is unit-tested. Raw keystrokes are never stored.
 
 ## Architecture
 

@@ -14,7 +14,7 @@ Early development. Right now the repo has the core engine with tests:
 - Drills made of real English words, weighted toward your weakest keys.
 - Progressive unlocking: Start on your layout's home row, unlock the next letter once every current key hits the target speed and accuracy (35 WPM and 95% by default).
 
-The app itself comes next.
+The Mac app has a practice window, an on-screen keyboard that follows your active layout (docked or floating), saved progress per layout, and a history page with charts, a weak-key heatmap and an unlock timeline.
 
 ## Layout
 

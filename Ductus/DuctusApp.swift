@@ -22,6 +22,7 @@ struct DuctusApp: App {
             CommandMenu("Practice") {
                 Button("Next Drill") { app.practice.nextDrill() }
                     .keyboardShortcut("n")
+                OpenHistoryButton()
                 Divider()
                 Toggle("Show Keyboard", isOn: $showKeyboard)
                     .keyboardShortcut("k")
@@ -37,9 +38,27 @@ struct DuctusApp: App {
             }
         }
 
+        Window("History", id: "history") {
+            HistoryView()
+                .environment(app.practice)
+                .environment(app.keyboard)
+        }
+        .defaultSize(width: 900, height: 760)
+
         Settings {
             SettingsView()
+                .environment(app.practice)
         }
+    }
+}
+
+/// Menu item that opens the History window. A separate view so it can use `openWindow`.
+private struct OpenHistoryButton: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Show History") { openWindow(id: "history") }
+            .keyboardShortcut("y")
     }
 }
 
@@ -60,6 +79,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let keyboard = KeyboardState()
     let practice = PracticeModel()
     let panelFocus = PanelFocus()
+    private var store: ProgressStore?
     private var hud: KeyboardHUD?
     private var defaultsObserver: NSObjectProtocol?
 
@@ -86,9 +106,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return practice.type(character, keyCode: keyCode, at: time)
         }
 
-        practice.start(startingKeys: keyboard.layout?.homeRowLetters ?? [])
+        // Progress is saved per layout. Switching input source switches progress.
+        let store = ProgressStore()
+        self.store = store
+        practice.start(layout: keyboard.layout, store: store)
         keyboard.onLayoutChange = { [practice] layout in
-            practice.restartIfUntouched(startingKeys: layout?.homeRowLetters ?? [])
+            practice.switchLayout(to: layout)
         }
 
         hud = KeyboardHUD(
@@ -111,6 +134,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        practice.persist()
+    }
 
     /// Puts the keyboard back in the practice window and brings that window forward.
     func dockKeyboard() {

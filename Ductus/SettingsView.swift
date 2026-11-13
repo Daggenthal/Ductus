@@ -9,6 +9,8 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
     @AppStorage(SettingsKey.showDrillInFloating) private var showDrillInFloating = true
     @AppStorage(SettingsKey.showStatsInFloating) private var showStatsInFloating = true
+    @Environment(PracticeModel.self) private var practice
+    @State private var confirmingReset = false
 
     var body: some View {
         Form {
@@ -47,8 +49,31 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+            Section("Progress") {
+                LabeledContent("Layout", value: practice.layoutName)
+                LabeledContent("Drills completed", value: "\(practice.profile?.drills.count ?? 0)")
+                if !practice.isSavingProgress {
+                    Text("Progress could not be saved this session. Check the log for details.")
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                } else {
+                    Text("Progress is saved on this Mac, separately for each keyboard layout.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Button("Reset Progress…", role: .destructive) { confirmingReset = true }
+                    .disabled(practice.profile == nil)
+            }
         }
         .formStyle(.grouped)
+        .confirmationDialog(
+            "Reset all progress for \(practice.layoutName)?",
+            isPresented: $confirmingReset
+        ) {
+            Button("Reset Progress", role: .destructive) { practice.resetProgress() }
+        } message: {
+            Text("This deletes your key stats, unlocked letters and history for this layout. It cannot be undone.")
+        }
         .frame(width: 420)
         .fixedSize()
     }

@@ -24,6 +24,20 @@ public struct Trainer: Sendable {
         curriculum.unlock { wordList.words(using: $0).count >= drill.minPoolSize }
     }
 
+    /// Restores a saved trainer. No letters are added, even if the word pool is small.
+    public init(
+        wordList: WordList,
+        stats: StatsTracker,
+        curriculum: Curriculum,
+        progression: ProgressionConfig = ProgressionConfig(),
+        drill: DrillConfig = DrillConfig()
+    ) {
+        self.stats = stats
+        self.curriculum = curriculum
+        scorer = WeaknessScorer(config: progression)
+        generator = DrillGenerator(wordList: wordList, config: drill)
+    }
+
     /// Records one keystroke. Returns a newly unlocked letter, if this keystroke caused one.
     @discardableResult
     public mutating func record(_ keystroke: Keystroke) -> Character? {
@@ -35,6 +49,22 @@ public struct Trainer: Sendable {
 
     /// Weakness of `key` in [0, ...). 0 means at target. Useful for the HUD heatmap.
     public func weakness(of key: Character) -> Double { scorer.weakness(of: stats.stats(for: key)) }
+
+    /// Unlocked letters with at least one attempt, weakest first.
+    public func rankedKeys() -> [(key: Character, weakness: Double, stats: KeyStats)] {
+        curriculum.unlocked
+            .compactMap { key in stats.stats(for: key).map { (key, weakness(of: key), $0) } }
+            .sorted { $0.weakness != $1.weakness ? $0.weakness > $1.weakness : $0.key < $1.key }
+    }
+
+    /// Letter pairs among unlocked letters with enough attempts to judge, weakest first.
+    public func rankedBigrams(minAttempts: Int = 10) -> [(bigram: Bigram, weakness: Double, stats: KeyStats)] {
+        let unlocked = curriculum.unlockedSet
+        return stats.bigrams
+            .filter { unlocked.contains($0.key.first) && unlocked.contains($0.key.second) && $0.value.attempts >= minAttempts }
+            .map { ($0.key, scorer.weakness(of: $0.value, prior: 0), $0.value) }
+            .sorted { $0.weakness != $1.weakness ? $0.weakness > $1.weakness : $0.bigram.description < $1.bigram.description }
+    }
 
     public func drillRequest() -> DrillRequest {
         let unlocked = curriculum.unlockedSet

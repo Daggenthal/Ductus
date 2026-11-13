@@ -20,6 +20,9 @@ struct KeyboardPalette {
     let secondaryText: Color
     let fadedText: Color
 
+    /// Heatmap hue. A single hue whose strength shows weakness (sequential scale).
+    static let heat = Color(red: 0.93, green: 0.42, blue: 0.16)
+
     init(_ scheme: ColorScheme) {
         switch scheme {
         case .light:

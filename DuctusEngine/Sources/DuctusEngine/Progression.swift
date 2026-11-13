@@ -1,5 +1,5 @@
 /// Targets a key must hit before the next key unlocks.
-public struct ProgressionConfig: Sendable, Equatable {
+public struct ProgressionConfig: Sendable, Equatable, Codable {
     public var targetWPM: Double
     /// In [0, 1].
     public var targetAccuracy: Double
@@ -80,6 +80,12 @@ public struct Curriculum: Sendable, Equatable {
 
         let initial = start.isEmpty ? min(fallbackCount, order.count) : start.count
         self.unlockedCount = min(max(unlockedCount ?? initial, initial), order.count)
+    }
+
+    /// Restores saved progress exactly (no filtering or top-up).
+    public init(order: [Character], unlockedCount: Int) {
+        self.order = order
+        self.unlockedCount = min(max(0, unlockedCount), order.count)
     }
 
     public var unlocked: [Character] { Array(order.prefix(unlockedCount)) }

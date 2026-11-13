@@ -77,6 +77,12 @@ public struct TypingSession: Sendable {
         return Double(firstAttempts.filter(\.isCorrect).count) / Double(firstAttempts.count)
     }
 
+    /// Time actually spent typing: the gaps between keys, with each gap capped
+    /// at `pauseThreshold` so walking away does not count as practice.
+    public func activeDuration(pauseThreshold: TimeInterval = 2) -> TimeInterval {
+        keystrokes.compactMap(\.latency).reduce(0) { $0 + min($1, pauseThreshold) }
+    }
+
     public var summary: SessionSummary? {
         guard let startTime, let endTime else { return nil }
         let firstAttemptMisses = keystrokes.filter { $0.isFirstAttempt && !$0.isCorrect }.count

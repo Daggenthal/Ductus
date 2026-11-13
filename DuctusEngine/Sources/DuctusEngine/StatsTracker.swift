@@ -1,7 +1,7 @@
 import Foundation
 
 /// Tuning knobs for the stats engine.
-public struct EngineConfig: Sendable, Equatable {
+public struct EngineConfig: Sendable, Equatable, Codable {
     /// EWMA weight for each new sample. 0.1 means roughly the last ~20 samples dominate.
     public var smoothing: Double
     /// Latencies longer than this (seconds) are treated as pauses and ignored for speed.
@@ -18,7 +18,7 @@ public struct EngineConfig: Sendable, Equatable {
 }
 
 /// Speed and accuracy for one key or one bigram.
-public struct KeyStats: Sendable, Equatable {
+public struct KeyStats: Sendable, Equatable, Codable {
     public private(set) var hits = 0
     public private(set) var misses = 0
     /// Smoothed latency in seconds, from correct first attempts only.
@@ -50,7 +50,7 @@ public struct KeyStats: Sendable, Equatable {
 }
 
 /// Rolling per-key and per-bigram stats. Updated after every keystroke.
-public struct StatsTracker: Sendable {
+public struct StatsTracker: Sendable, Equatable {
     public let config: EngineConfig
     public private(set) var keys: [Character: KeyStats] = [:]
     public private(set) var bigrams: [Bigram: KeyStats] = [:]
@@ -89,5 +89,31 @@ public struct StatsTracker: Sendable {
         guard config.foldCase else { return character }
         let lower = String(character).lowercased()
         return lower.count == 1 ? Character(lower) : character
+    }
+}
+
+// Characters are not Codable, so keys and bigrams are stored as strings.
+extension StatsTracker: Codable {
+    private enum CodingKeys: String, CodingKey { case config, keys, bigrams }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        config = try container.decode(EngineConfig.self, forKey: .config)
+        let keyStrings = try container.decode([String: KeyStats].self, forKey: .keys)
+        let bigramStrings = try container.decode([String: KeyStats].self, forKey: .bigrams)
+        for (string, stats) in keyStrings where string.count == 1 {
+            keys[Character(string)] = stats
+        }
+        for (string, stats) in bigramStrings {
+            let chars = Array(string)
+            if chars.count == 2 { bigrams[Bigram(chars[0], chars[1])] = stats }
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(config, forKey: .config)
+        try container.encode(Dictionary(uniqueKeysWithValues: keys.map { (String($0.key), $0.value) }), forKey: .keys)
+        try container.encode(Dictionary(uniqueKeysWithValues: bigrams.map { ($0.key.description, $0.value) }), forKey: .bigrams)
     }
 }
