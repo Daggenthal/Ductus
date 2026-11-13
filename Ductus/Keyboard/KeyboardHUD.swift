@@ -24,10 +24,7 @@ final class KeyboardHUD {
         panel.backgroundColor = .clear
         panel.hasShadow = true
 
-        let hosting = DraggableHostingView(rootView: content
-            .background(.black.opacity(0.55), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-        )
+        let hosting = DraggableHostingView(rootView: content)
         panel.contentView = hosting
         panel.setContentSize(hosting.fittingSize)
 
@@ -43,7 +40,6 @@ final class KeyboardHUD {
 
     func show() { panel.orderFrontRegardless() }
     func hide() { panel.orderOut(nil) }
-    func toggle() { isVisible ? hide() : show() }
 
     /// 0.2 to 1.
     func setOpacity(_ value: Double) { panel.alphaValue = max(0.2, min(1, value)) }

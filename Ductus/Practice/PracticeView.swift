@@ -4,6 +4,10 @@ import SwiftUI
 struct PracticeView: View {
     @Environment(PracticeModel.self) private var practice
     @Environment(KeyboardState.self) private var keyboard
+    @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
+    @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
+
+    private var keyboardDocked: Bool { showKeyboard && !poppedOut }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 28) {
@@ -17,10 +21,16 @@ struct PracticeView: View {
             }
             Spacer(minLength: 0)
             LetterProgress()
+            if keyboardDocked {
+                PracticeKeyboard(keyboard: keyboard, practice: practice)
+                    .frame(maxWidth: .infinity)
+                    .transition(.opacity)
+            }
             footer
         }
         .padding(32)
-        .frame(minWidth: 760, minHeight: 440, alignment: .topLeading)
+        .frame(minWidth: 760, minHeight: keyboardDocked ? 700 : 440, alignment: .topLeading)
+        .animation(.easeInOut(duration: 0.2), value: keyboardDocked)
     }
 
     private var header: some View {
@@ -47,9 +57,19 @@ struct PracticeView: View {
     }
 
     private var footer: some View {
-        Text("Just start typing. Mistakes keep the cursor in place until you hit the right key. ⌘K shows or hides the keyboard.")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+        HStack(alignment: .center, spacing: 20) {
+            Text("Just start typing. Mistakes keep the cursor in place until you hit the right key.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Toggle("Keyboard", isOn: $showKeyboard)
+                .help("Show or hide the keyboard (⌘K)")
+            Toggle("Pop out", isOn: $poppedOut)
+                .help("Float the keyboard in its own window (⌘⇧K)")
+                .disabled(!showKeyboard)
+        }
+        .toggleStyle(.switch)
+        .controlSize(.small)
     }
 }
 

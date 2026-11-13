@@ -5,6 +5,8 @@ import SwiftUI
 @main
 struct DuctusApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var app
+    @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
+    @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
 
     var body: some Scene {
@@ -19,8 +21,10 @@ struct DuctusApp: App {
                 Button("Next Drill") { app.practice.nextDrill() }
                     .keyboardShortcut("n")
                 Divider()
-                Button("Show or Hide Keyboard") { app.toggleHUD() }
+                Toggle("Show Keyboard", isOn: $showKeyboard)
                     .keyboardShortcut("k")
+                Toggle("Pop Out Keyboard", isOn: $poppedOut)
+                    .keyboardShortcut("k", modifiers: [.command, .shift])
                 Toggle("Show Physical Key Labels", isOn: $showPhysicalLabels)
                     .keyboardShortcut("l", modifiers: [.command, .shift])
             }
@@ -33,7 +37,9 @@ struct DuctusApp: App {
 }
 
 enum SettingsKey {
-    static let showHUD = "showKeyboardHUD"
+    static let showKeyboard = "showKeyboard"
+    /// `false`: keyboard is docked in the practice window. `true`: floating panel.
+    static let keyboardPoppedOut = "keyboardPoppedOut"
     static let hudOpacity = "keyboardHUDOpacity"
     static let hudClickThrough = "keyboardHUDClickThrough"
     static let showPhysicalLabels = "keyboardShowPhysicalLabels"
@@ -48,7 +54,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         UserDefaults.standard.register(defaults: [
-            SettingsKey.showHUD: true,
+            SettingsKey.showKeyboard: true,
+            SettingsKey.keyboardPoppedOut: false,
             SettingsKey.hudOpacity: 0.9,
             SettingsKey.hudClickThrough: false,
             SettingsKey.showPhysicalLabels: true,
@@ -69,10 +76,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             practice.restartIfUntouched(startingKeys: layout?.homeRowLetters ?? [])
         }
 
-        hud = KeyboardHUD(content: HUDContent(keyboard: keyboard, practice: practice))
+        hud = KeyboardHUD(content: PracticeKeyboard(keyboard: keyboard, practice: practice))
         applySettings()
-        if UserDefaults.standard.bool(forKey: SettingsKey.showHUD) { hud?.show() }
 
+        // Settings, the menu and the window switch all write UserDefaults;
+        // the floating panel follows from here.
         defaultsObserver = NotificationCenter.default.addObserver(
             forName: UserDefaults.didChangeNotification, object: nil, queue: .main
         ) { [weak self] _ in
@@ -83,30 +91,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
 
-    func toggleHUD() {
-        hud?.toggle()
-        UserDefaults.standard.set(hud?.isVisible ?? false, forKey: SettingsKey.showHUD)
-    }
-
     private func applySettings() {
         let defaults = UserDefaults.standard
         hud?.setOpacity(defaults.double(forKey: SettingsKey.hudOpacity))
         hud?.setClickThrough(defaults.bool(forKey: SettingsKey.hudClickThrough))
-    }
-}
 
-/// What the HUD panel shows. Reads live state so it redraws on every key.
-private struct HUDContent: View {
-    let keyboard: KeyboardState
-    let practice: PracticeModel
-    @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
-
-    var body: some View {
-        KeyboardView(
-            keyboard: keyboard,
-            nextCharacter: practice.nextCharacter,
-            unlockedLetters: practice.unlockedLetters,
-            showPhysicalLabels: showPhysicalLabels
-        )
+        let floating = defaults.bool(forKey: SettingsKey.showKeyboard) && defaults.bool(forKey: SettingsKey.keyboardPoppedOut)
+        if floating, hud?.isVisible == false { hud?.show() }
+        if !floating, hud?.isVisible == true { hud?.hide() }
     }
 }
