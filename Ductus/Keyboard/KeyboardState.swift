@@ -21,6 +21,9 @@ final class KeyboardState {
     @ObservationIgnored private var monitor: Any?
     @ObservationIgnored private var layoutObserver: NSObjectProtocol?
     @ObservationIgnored private var resignObserver: NSObjectProtocol?
+    @ObservationIgnored private var activeObserver: NSObjectProtocol?
+    /// Runs only while a modifier is shown as held. See `syncModifiers`.
+    @ObservationIgnored private var staleModifierTimer: Timer?
 
     /// Called for each key press that types a character, before the HUD updates.
     /// Return `true` to swallow the event (so the window does not beep).
@@ -45,6 +48,11 @@ final class KeyboardState {
             forName: NSApplication.didResignActiveNotification, object: nil, queue: .main
         ) { [weak self] _ in
             MainActor.assumeIsolated { self?.releaseAll() }
+        }
+        activeObserver = NotificationCenter.default.addObserver(
+            forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated { self?.pruneReleasedModifiers() }
         }
 
         monitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .keyUp, .flagsChanged]) { [weak self] event in
@@ -80,6 +88,7 @@ final class KeyboardState {
     private func handle(_ event: NSEvent) -> Bool {
         switch event.type {
         case .keyDown:
+            syncModifiers(event.modifierFlags)
             pressed.insert(event.keyCode)
             let modifiers = event.modifierFlags.intersection([.command, .control, .option])
             guard modifiers.isEmpty, !event.isARepeat,
@@ -91,18 +100,12 @@ final class KeyboardState {
             return !swallow
 
         case .keyUp:
+            syncModifiers(event.modifierFlags)
             pressed.remove(event.keyCode)
             return true
 
         case .flagsChanged:
-            let wasCommand = commandHeld
-            commandHeld = event.modifierFlags.contains(.command)
-            if KeyboardGeometry.modifierCodes.contains(event.keyCode) {
-                if pressed.contains(event.keyCode) { pressed.remove(event.keyCode) } else { pressed.insert(event.keyCode) }
-            }
-            // Key-ups during Command chords often never arrive. Reset on release.
-            if wasCommand && !commandHeld { pressed = pressed.filter { KeyboardGeometry.modifierCodes.contains($0) } }
-            if !event.modifierFlags.contains(.command) { pressed.subtract(KeyboardGeometry.commandCodes) }
+            syncModifiers(event.modifierFlags, changedKey: event.keyCode)
             return true
 
         default:
@@ -110,8 +113,83 @@ final class KeyboardState {
         }
     }
 
+    /// Device-dependent flag bits (IOKit `NX_DEVICE*KEYMASK`) that tell left and
+    /// right modifiers apart.
+    private static let modifierBits: [(code: UInt16, bit: UInt, flag: NSEvent.ModifierFlags)] = [
+        (56, 0x0002, .shift), (60, 0x0004, .shift),
+        (59, 0x0001, .control), (62, 0x2000, .control),
+        (58, 0x0020, .option), (61, 0x0040, .option),
+        (55, 0x0008, .command), (54, 0x0010, .command),
+    ]
+
+    /// Sets which modifier keys are lit from the actual modifier state, instead
+    /// of toggling on each event. If an event goes missing (e.g. the screenshot
+    /// tool grabs the keyboard during Cmd-Shift-5), the next sync corrects it.
+    ///
+    /// - Parameter changedKey: Keycode of a flagsChanged event, used for Fn,
+    ///   which has no left/right bit.
+    private func syncModifiers(_ flags: NSEvent.ModifierFlags, changedKey: UInt16? = nil) {
+        var held = Set<UInt16>()
+        for (code, bit, _) in Self.modifierBits where flags.rawValue & bit != 0 {
+            held.insert(code)
+        }
+        // Some events carry only the generic flag; fall back to the left key.
+        for (flag, leftCode) in [(NSEvent.ModifierFlags.shift, UInt16(56)), (.control, 59), (.option, 58), (.command, 55)]
+        where flags.contains(flag) && !Self.modifierBits.contains(where: { $0.flag == flag && held.contains($0.code) }) {
+            held.insert(leftCode)
+        }
+        if flags.contains(.capsLock) { held.insert(57) }
+        if flags.contains(.function), changedKey == 63 || pressed.contains(63) { held.insert(63) }
+
+        let wasCommand = commandHeld
+        let newPressed = pressed.subtracting(KeyboardGeometry.modifierCodes).union(held)
+        if newPressed != pressed { pressed = newPressed }
+        commandHeld = flags.contains(.command)
+
+        // Key-ups during Command chords often never arrive. Reset on release.
+        if wasCommand && !commandHeld {
+            pressed = pressed.filter { KeyboardGeometry.modifierCodes.contains($0) }
+        }
+        updateStaleModifierTimer()
+    }
+
+    /// Clears lit modifiers whose flag is no longer set, using the live state
+    /// from `NSEvent.modifierFlags`. Only removes, never adds: the live state may
+    /// not say left vs right, and events handle adding.
+    private func pruneReleasedModifiers() {
+        let flags = NSEvent.modifierFlags
+        var stillHeld = pressed.intersection(KeyboardGeometry.modifierCodes)
+        for (code, _, flag) in Self.modifierBits where !flags.contains(flag) { stillHeld.remove(code) }
+        if !flags.contains(.capsLock) { stillHeld.remove(57) }
+        if !flags.contains(.function) { stillHeld.remove(63) }
+
+        let wasCommand = commandHeld
+        let newPressed = pressed.subtracting(KeyboardGeometry.modifierCodes).union(stillHeld)
+        if newPressed != pressed { pressed = newPressed }
+        if !flags.contains(.command) { commandHeld = false }
+        if wasCommand && !commandHeld {
+            pressed = pressed.filter { KeyboardGeometry.modifierCodes.contains($0) }
+        }
+        updateStaleModifierTimer()
+    }
+
+    /// While any modifier is lit, re-check the real modifier state a few times a
+    /// second, so a release that happened outside the app is noticed quickly.
+    private func updateStaleModifierTimer() {
+        let anyHeld = commandHeld || !pressed.isDisjoint(with: KeyboardGeometry.modifierCodes.subtracting([57]))
+        if anyHeld, staleModifierTimer == nil {
+            staleModifierTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
+                MainActor.assumeIsolated { self?.pruneReleasedModifiers() }
+            }
+        } else if !anyHeld {
+            staleModifierTimer?.invalidate()
+            staleModifierTimer = nil
+        }
+    }
+
     private func releaseAll() {
         pressed = []
         commandHeld = false
+        updateStaleModifierTimer()
     }
 }
