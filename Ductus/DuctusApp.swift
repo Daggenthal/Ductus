@@ -93,15 +93,20 @@ final class AppUIState {
     /// Animates the window back to the width it had before the panel opened,
     /// keeping its left edge in place.
     private func restoreWidth() {
-        guard let width = widthBeforeSettings, let window = Self.practiceWindow else { return }
+        guard let width = widthBeforeSettings else { return }
         widthBeforeSettings = nil
-        guard window.frame.width > width else { return }
-        var frame = window.frame
-        frame.size.width = max(width, window.minSize.width)
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = Self.settingsAnimation
-            context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-            window.animator().setFrame(frame, display: true)
+        // Wait one run loop pass so SwiftUI has dropped the panel from the window's
+        // minimum size. Otherwise a window the user had shrunk to its smallest
+        // size gets held wider than it was.
+        Task { @MainActor in
+            guard let window = Self.practiceWindow, window.frame.width > width else { return }
+            var frame = window.frame
+            frame.size.width = width  // the user's own width; it was valid before the panel opened
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = Self.settingsAnimation
+                context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+                window.animator().setFrame(frame, display: true)
+            }
         }
     }
 }
