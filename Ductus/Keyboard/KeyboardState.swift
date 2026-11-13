@@ -9,6 +9,8 @@ import Observation
 @Observable
 final class KeyboardState {
     private(set) var layout: KeyboardLayout?
+    /// What is printed on the physical keycaps (U.S. QWERTY), for the faint secondary labels.
+    let physicalLayout = KeyboardLayout.installed(id: KeyboardLayout.physicalKeycapsID)
     private(set) var pressed: Set<UInt16> = []
     private(set) var commandHeld = false
 

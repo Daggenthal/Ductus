@@ -26,6 +26,23 @@ struct KeyboardLayout: Equatable, Sendable {
         return KeyboardLayout(source: source)
     }
 
+    /// A specific installed layout by input source ID, e.g. `com.apple.keylayout.US`.
+    /// Works even if the layout is not enabled in System Settings.
+    @MainActor
+    static func installed(id: String) -> KeyboardLayout? {
+        let filter = [kTISPropertyInputSourceID as String: id] as CFDictionary
+        guard let sources = TISCreateInputSourceList(filter, true)?.takeRetainedValue() as? [TISInputSource],
+              let source = sources.first
+        else {
+            Log.warning("Keyboard layout \(id) not found")
+            return nil
+        }
+        return KeyboardLayout(source: source)
+    }
+
+    /// What is printed on the physical keycaps. Mac ANSI keyboards are U.S. QWERTY.
+    static let physicalKeycapsID = "com.apple.keylayout.US"
+
     @MainActor
     init?(source: TISInputSource) {
         guard let dataPointer = TISGetInputSourceProperty(source, kTISPropertyUnicodeKeyLayoutData) else {

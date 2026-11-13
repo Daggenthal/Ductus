@@ -5,6 +5,7 @@ import SwiftUI
 @main
 struct DuctusApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var app
+    @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
 
     var body: some Scene {
         Window("Ductus", id: "practice") {
@@ -20,6 +21,8 @@ struct DuctusApp: App {
                 Divider()
                 Button("Show or Hide Keyboard") { app.toggleHUD() }
                     .keyboardShortcut("k")
+                Toggle("Show Physical Key Labels", isOn: $showPhysicalLabels)
+                    .keyboardShortcut("l", modifiers: [.command, .shift])
             }
         }
 
@@ -33,6 +36,7 @@ enum SettingsKey {
     static let showHUD = "showKeyboardHUD"
     static let hudOpacity = "keyboardHUDOpacity"
     static let hudClickThrough = "keyboardHUDClickThrough"
+    static let showPhysicalLabels = "keyboardShowPhysicalLabels"
 }
 
 @MainActor
@@ -47,6 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKey.showHUD: true,
             SettingsKey.hudOpacity: 0.9,
             SettingsKey.hudClickThrough: false,
+            SettingsKey.showPhysicalLabels: true,
         ])
         if Log.isDebug { Log.info("Debug mode on") }
 
@@ -94,12 +99,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 private struct HUDContent: View {
     let keyboard: KeyboardState
     let practice: PracticeModel
+    @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
 
     var body: some View {
         KeyboardView(
             keyboard: keyboard,
             nextCharacter: practice.nextCharacter,
-            unlockedLetters: practice.unlockedLetters
+            unlockedLetters: practice.unlockedLetters,
+            showPhysicalLabels: showPhysicalLabels
         )
     }
 }
