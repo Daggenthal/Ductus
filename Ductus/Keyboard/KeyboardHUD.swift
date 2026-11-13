@@ -8,6 +8,8 @@ import SwiftUI
 @Observable
 final class PanelFocus {
     var isKey = false
+    /// The floating panel, so SwiftUI content can move it (see `windowDraggable`).
+    @ObservationIgnored weak var window: NSWindow?
 }
 
 /// Borderless floating panel that shows the keyboard.
@@ -30,6 +32,7 @@ final class KeyboardHUD {
             defer: false
         )
         panel.identifier = Self.panelID
+        focus.window = panel
         panel.isFloatingPanel = true
         panel.becomesKeyOnlyIfNeeded = false
         panel.level = .floating
@@ -80,13 +83,46 @@ private final class HUDPanel: NSPanel {
     override var canBecomeMain: Bool { false }
 }
 
-/// Lets the user drag the borderless panel by clicking anywhere on it.
-/// A click also makes it the typing target.
+/// A click anywhere makes the panel the typing target. Dragging is done in
+/// SwiftUI (`windowDraggable`) so buttons on the panel still get clicks.
 private final class DraggableHostingView<Content: View>: NSHostingView<Content> {
     override func mouseDown(with event: NSEvent) {
         window?.makeKey()
-        window?.performDrag(with: event)
+        super.mouseDown(with: event)
     }
 
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
+}
+
+extension View {
+    /// Drag the panel by this view's background. Starts only once the mouse
+    /// moves, so plain clicks still reach buttons.
+    func windowDraggable(_ focus: PanelFocus) -> some View {
+        modifier(WindowDragModifier(focus: focus))
+    }
+}
+
+private struct WindowDragModifier: ViewModifier {
+    let focus: PanelFocus
+    @State private var start: (mouse: NSPoint, origin: NSPoint)?
+
+    func body(content: Content) -> some View {
+        content
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 2, coordinateSpace: .global)
+                    .onChanged { _ in
+                        guard let window = focus.window else { return }
+                        // Screen coordinates, so moving the window does not feed back into the drag.
+                        let mouse = NSEvent.mouseLocation
+                        let begin = start ?? (mouse, window.frame.origin)
+                        start = begin
+                        window.setFrameOrigin(NSPoint(
+                            x: begin.origin.x + mouse.x - begin.mouse.x,
+                            y: begin.origin.y + mouse.y - begin.mouse.y
+                        ))
+                    }
+                    .onEnded { _ in start = nil }
+            )
+    }
 }

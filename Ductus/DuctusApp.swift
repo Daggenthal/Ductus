@@ -92,7 +92,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         hud = KeyboardHUD(
-            content: FloatingKeyboard(keyboard: keyboard, practice: practice, focus: panelFocus),
+            content: FloatingKeyboard(
+                keyboard: keyboard, practice: practice, focus: panelFocus,
+                onDock: { [weak self] in self?.dockKeyboard() },
+                onClose: { [weak self] in self?.closeFloatingKeyboard() }
+            ),
             focus: panelFocus
         )
         applySettings()
@@ -108,6 +112,26 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
+
+    /// Puts the keyboard back in the practice window and brings that window forward.
+    func dockKeyboard() {
+        UserDefaults.standard.set(false, forKey: SettingsKey.keyboardPoppedOut)
+        UserDefaults.standard.set(true, forKey: SettingsKey.showKeyboard)
+        focusPracticeWindow()
+    }
+
+    /// Hides the floating keyboard and brings the practice window forward.
+    func closeFloatingKeyboard() {
+        UserDefaults.standard.set(false, forKey: SettingsKey.showKeyboard)
+        focusPracticeWindow()
+    }
+
+    private func focusPracticeWindow() {
+        NSApp.activate()
+        guard let window = NSApp.windows.first(where: { $0.title == "Ductus" }) else { return }
+        if window.isMiniaturized { window.deminiaturize(nil) }
+        window.makeKeyAndOrderFront(nil)
+    }
 
     private func applySettings() {
         let defaults = UserDefaults.standard
@@ -135,16 +159,53 @@ private struct FloatingKeyboard: View {
     let keyboard: KeyboardState
     let practice: PracticeModel
     let focus: PanelFocus
+    let onDock: () -> Void
+    let onClose: () -> Void
     @AppStorage(SettingsKey.showDrillInFloating) private var showDrill = true
     @AppStorage(SettingsKey.showStatsInFloating) private var showStats = true
 
     var body: some View {
-        PracticeKeyboard(keyboard: keyboard, practice: practice, showsDrill: showDrill, showsStats: showStats)
+        PracticeKeyboard(
+            keyboard: keyboard, practice: practice, showsDrill: showDrill, showsStats: showStats,
+            controls: AnyView(PanelControls(onDock: onDock, onClose: onClose))
+        )
+        .windowDraggable(focus)
             // Accent outline while this panel is taking your typing.
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .strokeBorder(Color.accentColor.opacity(focus.isKey ? 0.8 : 0), lineWidth: 2)
             )
             .animation(.easeInOut(duration: 0.15), value: focus.isKey)
+    }
+}
+
+/// Small Dock and Close buttons for the floating keyboard. Faint until hovered.
+private struct PanelControls: View {
+    let onDock: () -> Void
+    let onClose: () -> Void
+    @State private var hovering = false
+    @Environment(\.colorScheme) private var colorScheme
+
+    var body: some View {
+        let palette = KeyboardPalette(colorScheme)
+        HStack(spacing: 4) {
+            button("pip.exit", help: "Dock the keyboard back in the main window", action: onDock)
+            button("xmark", help: "Hide the keyboard", action: onClose)
+        }
+        .foregroundStyle(palette.text)
+        .opacity(hovering ? 1 : 0.45)
+        .onHover { hovering = $0 }
+        .animation(.easeInOut(duration: 0.12), value: hovering)
+    }
+
+    private func button(_ symbol: String, help: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(.system(size: 10, weight: .bold))
+                .frame(width: 20, height: 20)
+                .background(.primary.opacity(0.1), in: Circle())
+        }
+        .buttonStyle(.plain)
+        .help(help)
     }
 }
