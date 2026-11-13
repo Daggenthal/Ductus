@@ -15,6 +15,8 @@ final class PracticeModel {
     private(set) var unlockMessage: String?
     private(set) var loadError: String?
     private(set) var drillsCompleted = 0
+    /// Changes with every new drill, so views can reset instead of animating across.
+    private(set) var drillID = 0
 
     @ObservationIgnored private var rng = SystemRandomNumberGenerator()
 
@@ -47,6 +49,7 @@ final class PracticeModel {
             return
         }
         session = TypingSession(text: text)
+        drillID += 1
         lastKeyWrong = false
         Log.debug("Drill (focus \(trainer.focusKey.map(String.init) ?? "-")): \(text)")
     }

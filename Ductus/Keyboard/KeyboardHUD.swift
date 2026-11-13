@@ -25,6 +25,8 @@ final class KeyboardHUD {
         panel.hasShadow = true
 
         let hosting = DraggableHostingView(rootView: content)
+        // Panel resizes itself when the content changes (e.g. drill text toggled).
+        hosting.sizingOptions = [.intrinsicContentSize, .minSize, .maxSize]
         panel.contentView = hosting
         panel.setContentSize(hosting.fittingSize)
 

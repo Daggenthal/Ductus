@@ -6,12 +6,17 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.hudOpacity) private var opacity = 0.9
     @AppStorage(SettingsKey.hudClickThrough) private var clickThrough = false
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
+    @AppStorage(SettingsKey.showDrillInFloating) private var showDrillInFloating = true
 
     var body: some View {
         Form {
             Section("Keyboard") {
                 Toggle("Show keyboard", isOn: $showKeyboard)
                 Toggle("Pop out into a floating window", isOn: $poppedOut)
+                Toggle("Show drill text above the floating keyboard", isOn: $showDrillInFloating)
+                Text("Keeps the words and the keys close together so your eyes do not have to travel.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 LabeledContent("Floating opacity") {
                     Slider(value: $opacity, in: 0.2...1)
                         .frame(width: 200)

@@ -43,6 +43,7 @@ enum SettingsKey {
     static let hudOpacity = "keyboardHUDOpacity"
     static let hudClickThrough = "keyboardHUDClickThrough"
     static let showPhysicalLabels = "keyboardShowPhysicalLabels"
+    static let showDrillInFloating = "keyboardShowDrillInFloating"
 }
 
 @MainActor
@@ -59,6 +60,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKey.hudOpacity: 0.9,
             SettingsKey.hudClickThrough: false,
             SettingsKey.showPhysicalLabels: true,
+            SettingsKey.showDrillInFloating: true,
         ])
         if Log.isDebug { Log.info("Debug mode on") }
 
@@ -76,7 +78,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             practice.restartIfUntouched(startingKeys: layout?.homeRowLetters ?? [])
         }
 
-        hud = KeyboardHUD(content: PracticeKeyboard(keyboard: keyboard, practice: practice))
+        hud = KeyboardHUD(content: FloatingKeyboard(keyboard: keyboard, practice: practice))
         applySettings()
 
         // Settings, the menu and the window switch all write UserDefaults;
@@ -99,5 +101,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let floating = defaults.bool(forKey: SettingsKey.showKeyboard) && defaults.bool(forKey: SettingsKey.keyboardPoppedOut)
         if floating, hud?.isVisible == false { hud?.show() }
         if !floating, hud?.isVisible == true { hud?.hide() }
+    }
+}
+
+/// Floating panel content: the keyboard, with the drill text above it if enabled.
+private struct FloatingKeyboard: View {
+    let keyboard: KeyboardState
+    let practice: PracticeModel
+    @AppStorage(SettingsKey.showDrillInFloating) private var showDrill = true
+
+    var body: some View {
+        PracticeKeyboard(keyboard: keyboard, practice: practice, showsDrill: showDrill)
     }
 }
