@@ -25,10 +25,15 @@ public struct TypingSession: Sendable {
     /// The character the user should type next, or `nil` when done.
     public var currentExpected: Character? { isComplete ? nil : text[position] }
 
-    /// Feed one typed character. Returns the logged keystroke, or `nil` if the session is already complete.
+    /// Feed one typed character. Returns the logged keystroke, or `nil` if the key was
+    /// ignored (session already complete, or a leading space, see below).
     @discardableResult
     public mutating func type(_ typed: Character, keyCode: UInt16? = nil, at time: TimeInterval) -> Keystroke? {
         guard let expected = currentExpected else { return nil }
+
+        // A space before the first key is the habit of finishing the previous
+        // drill's last word. Drills never start with a space, so drop it.
+        if keystrokes.isEmpty, typed == " ", expected != " " { return nil }
 
         let keystroke = Keystroke(
             expected: expected,

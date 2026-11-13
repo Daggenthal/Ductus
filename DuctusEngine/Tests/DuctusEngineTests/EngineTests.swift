@@ -66,6 +66,23 @@ import Testing
         #expect(session.keystrokes.count == 1)
     }
 
+    @Test func ignoresLeadingSpace() throws {
+        var session = TypingSession(text: "ab")
+        #expect(session.type(" ", at: 0) == nil)
+        #expect(session.keystrokes.isEmpty)
+        #expect(session.startTime == nil)  // the clock has not started
+
+        session.type("a", at: 1)
+        session.type("b", at: 1.2)
+        #expect(try #require(session.summary).accuracy == 1)
+    }
+
+    @Test func spaceAfterFirstKeyStillCounts() {
+        var session = TypingSession(text: "ab")
+        session.type("a", at: 0)
+        #expect(session.type(" ", at: 0.1)?.isCorrect == false)
+    }
+
     @Test func keepsKeyCode() {
         var session = TypingSession(text: "a")
         // Dvorak "a" sits on the QWERTY "A" key, keycode 0.
