@@ -21,9 +21,9 @@ final class RaceModel {
     /// Race lengths in seconds.
     static let timeLimitOptions = [30, 60, 180, 300]
 
-    /// "30 sec", "1 min", "3 min".
+    /// "30s", "1 min", "3 min".
     static func lengthLabel(_ seconds: Int) -> String {
-        seconds < 60 ? "\(seconds) sec" : "\(seconds / 60) min"
+        seconds < 60 ? "\(seconds)s" : "\(seconds / 60) min"
     }
 
     private(set) var session: TypingSession?
