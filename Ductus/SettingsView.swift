@@ -31,7 +31,7 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Toggle("Floating click-through", isOn: $clickThrough)
-                Text("Clicks pass through the keyboard to whatever is underneath. You cannot drag it while this is on.")
+                Text("Clicks pass through the floating keyboard to whatever is underneath. You cannot drag it or type into it while this is on.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

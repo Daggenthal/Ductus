@@ -33,7 +33,7 @@ The engine is what actually makes the user faster. It is statistical, not a neur
 - Must be fully optional. The app must work perfectly without it.
 
 ### 3. Keyboard HUD overlay
-- Borderless, non-activating floating `NSPanel` (does not steal focus), adjustable opacity, draggable by its background, optional click-through mode.
+- Can be docked in the practice window or popped out. Popped out: borderless, non-activating floating `NSPanel` (never activates the app), adjustable opacity, draggable by its background. Clicking it makes it the typing target (key window) so practice works with the main window hidden. Optional click-through mode, where it never takes focus.
 - Render the ACTIVE layout dynamically: read the current input source with `TISCopyCurrentKeyboardLayoutInputSource` and map physical keycodes to characters with `UCKeyTranslate`. No hardcoded layouts. Redraw when the input source changes. For "Dvorak - QWERTY ⌘", show QWERTY labels while Command is held.
 - Position keys by physical keycode (ANSI first; ISO/JIS later).
 - Command shortcut glow: while Command is held, softly tint (yellow-ish) the keys that act as common shortcuts (default Z X C V; configurable set). Find them by translating with the Command modifier and locating the keycode that produces `z`, `x`, `c`, `v`. Never hardcode positions, so it works for any layout with Command remapping.

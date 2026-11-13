@@ -58,6 +58,7 @@ enum SettingsKey {
 final class AppDelegate: NSObject, NSApplicationDelegate {
     let keyboard = KeyboardState()
     let practice = PracticeModel()
+    let panelFocus = PanelFocus()
     private var hud: KeyboardHUD?
     private var defaultsObserver: NSObjectProtocol?
 
@@ -73,10 +74,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ])
         if Log.isDebug { Log.info("Debug mode on") }
 
-        // Typing goes to practice only when the practice window is in front
-        // and no text field is being edited.
+        // Typing goes to practice when the practice window or the floating
+        // keyboard is the key window, and no text field is being edited.
         keyboard.onCharacter = { [practice] character, keyCode, time in
-            guard let window = NSApp.keyWindow, window.title == "Ductus",
+            guard let window = NSApp.keyWindow,
+                  window.title == "Ductus" || window.identifier == KeyboardHUD.panelID,
                   !(window.firstResponder is NSTextView)
             else { return false }
             return practice.type(character, keyCode: keyCode, at: time)
@@ -87,7 +89,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             practice.restartIfUntouched(startingKeys: layout?.homeRowLetters ?? [])
         }
 
-        hud = KeyboardHUD(content: FloatingKeyboard(keyboard: keyboard, practice: practice))
+        hud = KeyboardHUD(
+            content: FloatingKeyboard(keyboard: keyboard, practice: practice, focus: panelFocus),
+            focus: panelFocus
+        )
         applySettings()
 
         // Settings, the menu and the window switch all write UserDefaults;
@@ -117,10 +122,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 private struct FloatingKeyboard: View {
     let keyboard: KeyboardState
     let practice: PracticeModel
+    let focus: PanelFocus
     @AppStorage(SettingsKey.showDrillInFloating) private var showDrill = true
     @AppStorage(SettingsKey.showStatsInFloating) private var showStats = true
 
     var body: some View {
         PracticeKeyboard(keyboard: keyboard, practice: practice, showsDrill: showDrill, showsStats: showStats)
+            // Accent outline while this panel is taking your typing.
+            .overlay(
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .strokeBorder(Color.accentColor.opacity(focus.isKey ? 0.8 : 0), lineWidth: 2)
+            )
+            .animation(.easeInOut(duration: 0.15), value: focus.isKey)
     }
 }
