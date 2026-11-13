@@ -14,8 +14,8 @@ struct RaceView: View {
         @Bindable var race = race
         VStack(alignment: .leading, spacing: 24) {
             HStack(spacing: 16) {
-                Picker("Words", selection: $race.wordCount) {
-                    ForEach(RaceModel.wordCountOptions, id: \.self) { Text("\($0) words").tag($0) }
+                Picker("Length", selection: $race.timeLimit) {
+                    ForEach(RaceModel.timeLimitOptions, id: \.self) { Text("\($0 / 60) min").tag($0) }
                 }
                 .pickerStyle(.segmented)
                 .fixedSize()
@@ -37,8 +37,8 @@ struct RaceView: View {
                     ui.tab = .practice
                 }
             } else if let session = race.session {
-                LiveRace(session: session, startedAt: race.startedAt, bestWPM: race.bestWPM)
-                DrillText(session: session, lastKeyWrong: race.lastKeyWrong)
+                LiveRace(session: session, startedAt: race.startedAt, timeLimit: race.timeLimit, bestWPM: race.bestWPM)
+                DrillStrip(session: session, lastKeyWrong: race.lastKeyWrong, fontSize: 30, anchor: 0.3)
                     .id(race.raceID)
                 if race.startedAt == nil {
                     Text("The clock starts on your first key.")
@@ -59,7 +59,9 @@ struct RaceView: View {
                 .frame(maxWidth: .infinity)
             }
 
-            RaceRecord(races: practice.raceHistory.filter { $0.allLetters == race.allLetters })
+            RaceRecord(races: practice.raceHistory.filter {
+                $0.timeLimit == race.timeLimit && $0.allLetters == race.allLetters
+            })
         }
         .padding(32)
         .frame(minWidth: 760, minHeight: showKeyboard ? 720 : 480, alignment: .topLeading)
@@ -67,33 +69,35 @@ struct RaceView: View {
     }
 }
 
-/// Clock, live speed and accuracy, and the You vs Best track.
+/// Countdown, live speed and accuracy, and the You vs Best track.
 private struct LiveRace: View {
     let session: TypingSession
     let startedAt: Date?
+    let timeLimit: Int
     let bestWPM: Double?
 
     var body: some View {
         TimelineView(.animation(minimumInterval: 1.0 / 30, paused: startedAt == nil)) { context in
-            let elapsed = startedAt.map { context.date.timeIntervalSince($0) } ?? 0
-            let progress = Double(session.position) / Double(session.text.count)
-            // Ghost: where you would be typing at your best pace. The first key starts the clock.
-            let ghost = bestWPM.map { wpm in
-                min(1, (1 + elapsed * wpm * 5 / 60) / Double(session.text.count))
-            }
+            let elapsed = min(Double(timeLimit), startedAt.map { context.date.timeIntervalSince($0) } ?? 0)
+            let remaining = Double(timeLimit) - elapsed
+            let typed = Double(session.position)
+            let wpm = elapsed > 1 ? typed / 5 / (elapsed / 60) : nil
+            // Bars are measured against the characters your best would type in this length.
+            let bestTotal = bestWPM.map { $0 * 5 * Double(timeLimit) / 60 }
 
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 28) {
-                    Stat(title: "Time", value: String(format: "%.1fs", elapsed))
-                    Stat(title: "Speed", value: session.liveWPM.map { String(format: "%.0f WPM", $0) } ?? "-")
+                    Stat(title: "Time left", value: Self.clock(remaining))
+                    Stat(title: "Speed", value: wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
                     Stat(title: "Accuracy", value: session.liveAccuracy.map { String(format: "%.0f%%", $0 * 100) } ?? "-")
                 }
                 VStack(alignment: .leading, spacing: 8) {
-                    TrackBar(label: "You", progress: progress, color: .accentColor)
-                    if let ghost, let bestWPM {
-                        TrackBar(label: String(format: "Best %.0f", bestWPM), progress: startedAt == nil ? 0 : ghost,
+                    if let bestTotal, let bestWPM, bestTotal > 0 {
+                        TrackBar(label: "You", progress: min(1, typed / bestTotal), color: .accentColor)
+                        TrackBar(label: String(format: "Best %.0f", bestWPM), progress: elapsed / Double(timeLimit),
                                  color: .secondary.opacity(0.5))
                     } else {
+                        TrackBar(label: "Time", progress: elapsed / Double(timeLimit), color: .accentColor)
                         Text("Finish a race to set a best to race against.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
@@ -101,6 +105,11 @@ private struct LiveRace: View {
                 }
             }
         }
+    }
+
+    static func clock(_ seconds: Double) -> String {
+        let total = Int(seconds.rounded(.up))
+        return String(format: "%d:%02d", total / 60, total % 60)
     }
 }
 
@@ -150,7 +159,7 @@ private struct RaceResults: View {
             }
             HStack(spacing: 28) {
                 Stat(title: "Accuracy", value: String(format: "%.0f%%", result.accuracy * 100))
-                Stat(title: "Time", value: String(format: "%.1fs", result.duration))
+                Stat(title: "Length", value: "\(Int(result.duration) / 60) min")
                 Stat(title: "Characters", value: "\(result.characters)")
                 Stat(title: "Errors", value: "\(result.errors)")
                 if let bestWPM, !result.isNewBest {

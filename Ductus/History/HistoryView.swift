@@ -172,7 +172,11 @@ struct HistoryView: View {
             let recent = races.suffix(50)
             let offset = races.count - recent.count
             let points = recent.enumerated().map {
-                MetricPoint(index: $0.offset, label: "Race \(offset + $0.offset + 1)", value: $0.element.wpm)
+                MetricPoint(
+                    index: $0.offset,
+                    label: "Race \(offset + $0.offset + 1)" + ($0.element.timeLimit > 0 ? " (\($0.element.timeLimit / 60) min)" : ""),
+                    value: $0.element.wpm
+                )
             }
             let lastTen = races.suffix(10)
             Card {

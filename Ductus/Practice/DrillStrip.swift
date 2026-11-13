@@ -16,6 +16,7 @@ struct DrillStrip: View {
 
     var body: some View {
         let charWidth = Self.characterWidth(fontSize)
+        let window = visibleRange
         Color.clear
             .frame(maxWidth: .infinity)
             .frame(height: fontSize * 1.9)
@@ -24,7 +25,7 @@ struct DrillStrip: View {
                     Text(attributed)
                         .font(.system(size: fontSize, weight: .regular, design: .monospaced))
                         .fixedSize()
-                        .offset(x: geometry.size.width * anchor - CGFloat(session.position) * charWidth)
+                        .offset(x: geometry.size.width * anchor - CGFloat(session.position - window.lowerBound) * charWidth)
                         .frame(height: geometry.size.height)
                         .animation(.easeOut(duration: 0.09), value: session.position)
                 }
@@ -33,19 +34,27 @@ struct DrillStrip: View {
             .mask(edgeFade)
     }
 
+    /// Only the text near the cursor is drawn, so long race texts stay cheap.
+    private var visibleRange: Range<Int> {
+        let lower = max(0, session.position - 80)
+        let upper = min(session.text.count, session.position + 160)
+        return lower..<upper
+    }
+
     private var attributed: AttributedString {
         let palette = KeyboardPalette(colorScheme)
+        let window = visibleRange
         let text = session.text
         let position = session.position
 
-        var done = AttributedString(String(text[..<position]))
+        var done = AttributedString(String(text[window.lowerBound..<position]))
         done.foregroundColor = palette.fadedText
 
         var current = AttributedString(position < text.count ? String(text[position]) : "")
         current.foregroundColor = palette.text
         current.backgroundColor = lastKeyWrong ? .red.opacity(0.45) : .accentColor.opacity(0.4)
 
-        var rest = AttributedString(position + 1 < text.count ? String(text[(position + 1)...]) : "")
+        var rest = AttributedString(position + 1 < window.upperBound ? String(text[(position + 1)..<window.upperBound]) : "")
         rest.foregroundColor = palette.text
 
         return done + current + rest

@@ -84,6 +84,19 @@ import Testing
         #expect(abs(try #require(session.liveAccuracy) - 2.0 / 3.0) < 1e-9)
     }
 
+    @Test func extendKeepsGoing() {
+        var session = TypingSession(text: "ab")
+        session.type("a", at: 0)
+        session.type("b", at: 0.2)
+        #expect(session.isComplete)
+        session.extend(with: " cd")
+        #expect(!session.isComplete)
+        #expect(session.currentExpected == " ")
+        #expect(session.endTime == nil)
+        session.type(" ", at: 0.4)
+        #expect(session.position == 3)
+    }
+
     @Test func ignoresLeadingSpace() throws {
         var session = TypingSession(text: "ab")
         #expect(session.type(" ", at: 0) == nil)

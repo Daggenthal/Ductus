@@ -6,7 +6,7 @@ import Foundation
 /// The cursor only advances on a correct key. A wrong key is logged and the
 /// user must type the right one before moving on.
 public struct TypingSession: Sendable {
-    public let text: [Character]
+    public private(set) var text: [Character]
     public private(set) var position = 0
     public private(set) var keystrokes: [Keystroke] = []
     public private(set) var startTime: TimeInterval?
@@ -21,6 +21,14 @@ public struct TypingSession: Sendable {
     }
 
     public var isComplete: Bool { position >= text.count }
+
+    /// Adds more text to the end, e.g. for timed races that must not run out.
+    /// A completed session becomes incomplete again.
+    public mutating func extend(with more: String) {
+        guard !more.isEmpty else { return }
+        text.append(contentsOf: more)
+        endTime = nil
+    }
 
     /// The character the user should type next, or `nil` when done.
     public var currentExpected: Character? { isComplete ? nil : text[position] }

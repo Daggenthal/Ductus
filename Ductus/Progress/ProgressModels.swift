@@ -115,10 +115,12 @@ final class RaceEntry {
     var allLetters: Bool
     /// The keys that cost the most, worst first, e.g. "rlc".
     var worstKeys: String
+    /// Race length in seconds. 0 for older word-count races.
+    var timeLimit: Int = 0
     var profile: LayoutProfile?
 
     init(date: Date, wordCount: Int, characters: Int, duration: TimeInterval, wpm: Double,
-         accuracy: Double, allLetters: Bool, worstKeys: String) {
+         accuracy: Double, allLetters: Bool, worstKeys: String, timeLimit: Int) {
         self.date = date
         self.wordCount = wordCount
         self.characters = characters
@@ -127,5 +129,6 @@ final class RaceEntry {
         self.accuracy = accuracy
         self.allLetters = allLetters
         self.worstKeys = worstKeys
+        self.timeLimit = timeLimit
     }
 }
