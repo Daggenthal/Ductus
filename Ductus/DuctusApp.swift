@@ -68,22 +68,40 @@ final class AppUIState {
         NSApp.windows.first { $0.title == "Ductus" }
     }
 
+    /// How long the panel takes to open or close. The window resize uses the same.
+    static let settingsAnimation = 0.25
+
     func setSettings(_ show: Bool) {
-        if show, !showSettings { widthBeforeSettings = Self.practiceWindow?.frame.width }
-        showSettings = show
+        if show {
+            guard !showSettings else { return }
+            widthBeforeSettings = Self.practiceWindow?.frame.width
+            withAnimation(.easeInOut(duration: Self.settingsAnimation)) { showSettings = true }
+        } else {
+            guard showSettings else { return }
+            // Collapse the panel and shrink the window in one animation, so the
+            // practice content keeps its width the whole way (no rubber-band).
+            withAnimation(.easeInOut(duration: Self.settingsAnimation)) { showSettings = false }
+            restoreWidth()
+        }
     }
 
-    /// Called after the panel closed (by any route). Shrinks the window back to
-    /// the width it had before the panel opened, keeping its left edge in place.
+    /// Fallback for the panel being closed some other way (e.g. by the system).
     func settingsDidClose() {
-        guard let width = widthBeforeSettings else { return }
+        restoreWidth()
+    }
+
+    /// Animates the window back to the width it had before the panel opened,
+    /// keeping its left edge in place.
+    private func restoreWidth() {
+        guard let width = widthBeforeSettings, let window = Self.practiceWindow else { return }
         widthBeforeSettings = nil
-        Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(250))  // let the panel finish collapsing
-            guard let window = Self.practiceWindow, window.frame.width > width else { return }
-            var frame = window.frame
-            frame.size.width = max(width, window.minSize.width)
-            window.setFrame(frame, display: true, animate: true)
+        guard window.frame.width > width else { return }
+        var frame = window.frame
+        frame.size.width = max(width, window.minSize.width)
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = Self.settingsAnimation
+            context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            window.animator().setFrame(frame, display: true)
         }
     }
 }
