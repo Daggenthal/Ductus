@@ -12,6 +12,8 @@ struct DrillStrip: View {
     /// Where the cursor sits, as a share of the strip width.
     var anchor: CGFloat = 0.35
 
+    @Environment(\.colorScheme) private var colorScheme
+
     var body: some View {
         let charWidth = Self.characterWidth(fontSize)
         Color.clear
@@ -32,18 +34,19 @@ struct DrillStrip: View {
     }
 
     private var attributed: AttributedString {
+        let palette = KeyboardPalette(colorScheme)
         let text = session.text
         let position = session.position
 
         var done = AttributedString(String(text[..<position]))
-        done.foregroundColor = .white.opacity(0.3)
+        done.foregroundColor = palette.fadedText
 
         var current = AttributedString(position < text.count ? String(text[position]) : "")
-        current.foregroundColor = .white
-        current.backgroundColor = lastKeyWrong ? .red.opacity(0.55) : .accentColor.opacity(0.55)
+        current.foregroundColor = palette.text
+        current.backgroundColor = lastKeyWrong ? .red.opacity(0.45) : .accentColor.opacity(0.4)
 
         var rest = AttributedString(position + 1 < text.count ? String(text[(position + 1)...]) : "")
-        rest.foregroundColor = .white.opacity(0.9)
+        rest.foregroundColor = palette.text
 
         return done + current + rest
     }

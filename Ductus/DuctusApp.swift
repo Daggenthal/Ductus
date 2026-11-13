@@ -52,6 +52,7 @@ enum SettingsKey {
     static let showPhysicalLabels = "keyboardShowPhysicalLabels"
     static let showDrillInFloating = "keyboardShowDrillInFloating"
     static let showStatsInFloating = "keyboardShowStatsInFloating"
+    static let appearance = "appearance"
 }
 
 @MainActor
@@ -71,6 +72,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKey.showPhysicalLabels: true,
             SettingsKey.showDrillInFloating: true,
             SettingsKey.showStatsInFloating: true,
+            SettingsKey.appearance: AppearanceChoice.system.rawValue,
         ])
         if Log.isDebug { Log.info("Debug mode on") }
 
@@ -109,6 +111,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func applySettings() {
         let defaults = UserDefaults.standard
+
+        // Applies to every window, including the floating keyboard.
+        let appearance = AppearanceChoice(rawValue: defaults.string(forKey: SettingsKey.appearance) ?? "") ?? .system
+        let target: NSAppearance? = switch appearance {
+        case .system: nil
+        case .light: NSAppearance(named: .aqua)
+        case .dark: NSAppearance(named: .darkAqua)
+        }
+        if NSApp.appearance?.name != target?.name { NSApp.appearance = target }
+
         hud?.setOpacity(defaults.double(forKey: SettingsKey.hudOpacity))
         hud?.setClickThrough(defaults.bool(forKey: SettingsKey.hudClickThrough))
 

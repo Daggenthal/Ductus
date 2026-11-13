@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @AppStorage(SettingsKey.appearance) private var appearance = AppearanceChoice.system
     @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
     @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
     @AppStorage(SettingsKey.hudOpacity) private var opacity = 0.9
@@ -11,6 +12,17 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
+            Section("General") {
+                Picker("Appearance", selection: $appearance) {
+                    ForEach(AppearanceChoice.allCases) { choice in
+                        Text(choice.title).tag(choice)
+                    }
+                }
+                .pickerStyle(.segmented)
+                Text("System follows your macOS setting. Applies to the floating keyboard too.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             Section("Keyboard") {
                 Toggle("Show keyboard", isOn: $showKeyboard)
                 Toggle("Pop out into a floating window", isOn: $poppedOut)

@@ -10,6 +10,7 @@ struct PracticeKeyboard: View {
     /// Show the compact stats row at the top.
     var showsStats = false
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: 14, style: .continuous)
@@ -32,7 +33,7 @@ struct PracticeKeyboard: View {
                 showPhysicalLabels: showPhysicalLabels
             )
         }
-        .background(.black.opacity(0.55), in: shape)
+        .background(KeyboardPalette(colorScheme).backing, in: shape)
         .background(.ultraThinMaterial, in: shape)
     }
 }

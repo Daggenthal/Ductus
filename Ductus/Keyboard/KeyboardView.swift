@@ -78,38 +78,39 @@ private struct KeyCap: View {
     let isShortcut: Bool
     let isDimmed: Bool
 
-    static let shortcutGlow = Color(red: 1.0, green: 0.84, blue: 0.4)
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
+        let palette = KeyboardPalette(colorScheme)
         let shape = RoundedRectangle(cornerRadius: 6, style: .continuous)
         Text(label)
             .font(.system(size: label.count > 1 ? 11 : 16, weight: .medium, design: .rounded))
-            .foregroundStyle(.white.opacity(isDimmed ? 0.25 : 0.9))
+            .foregroundStyle(isPressed ? palette.pressedLabel : isDimmed ? palette.dimmedLabel : palette.label)
             .frame(width: width, height: height)
             .overlay(alignment: .bottomTrailing) {
                 if let physicalLabel {
                     Text(physicalLabel)
                         .font(.system(size: 9, weight: .medium, design: .rounded))
-                        .foregroundStyle(.white.opacity(0.35))
+                        .foregroundStyle(isPressed ? palette.pressedLabel.opacity(0.6) : palette.physicalLabel)
                         .padding(.trailing, 4)
                         .padding(.bottom, 2)
                 }
             }
-            .background(shape.fill(fill))
-            .overlay(shape.strokeBorder(stroke, lineWidth: isNext ? 2 : 1))
-            .shadow(color: isShortcut ? Self.shortcutGlow.opacity(0.7) : .clear, radius: 8)
+            .background(shape.fill(fill(palette)))
+            .overlay(shape.strokeBorder(stroke(palette), lineWidth: isNext ? 2 : 1))
+            .shadow(color: isShortcut ? palette.shortcutGlow : .clear, radius: 8)
             .scaleEffect(isPressed ? 0.94 : 1)
     }
 
-    private var fill: Color {
+    private func fill(_ palette: KeyboardPalette) -> Color {
         if isPressed { return Color.accentColor.opacity(0.85) }
-        if isShortcut { return Self.shortcutGlow.opacity(0.45) }
-        return .white.opacity(0.08)
+        if isShortcut { return palette.shortcutFill }
+        return palette.keyFill
     }
 
-    private var stroke: Color {
+    private func stroke(_ palette: KeyboardPalette) -> Color {
         if isNext { return Color.accentColor }
-        if isShortcut { return Self.shortcutGlow.opacity(0.8) }
-        return .white.opacity(0.15)
+        if isShortcut { return palette.shortcutStroke }
+        return palette.keyStroke
     }
 }

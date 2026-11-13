@@ -5,8 +5,10 @@ import SwiftUI
 /// the last drill, the focus key and unlock progress.
 struct FloatingStatsBar: View {
     let practice: PracticeModel
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
+        let palette = KeyboardPalette(colorScheme)
         HStack(alignment: .firstTextBaseline, spacing: 18) {
             Item(title: "Now", value: wpm(practice.session?.liveWPM), detail: percent(practice.session?.liveAccuracy))
             Item(title: "Last drill", value: wpm(practice.lastSummary?.wpm), detail: percent(practice.lastSummary?.accuracy))
@@ -27,7 +29,8 @@ struct FloatingStatsBar: View {
                 )
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(palette.text)
+        .environment(\.keyboardPaletteSecondary, palette.secondaryText)
     }
 
     private func wpm(_ value: Double?) -> String {
@@ -42,22 +45,34 @@ struct FloatingStatsBar: View {
         let title: String
         let value: String
         let detail: String
+        @Environment(\.keyboardPaletteSecondary) private var secondary
 
         var body: some View {
             VStack(alignment: .leading, spacing: 1) {
                 Text(title.uppercased())
                     .font(.system(size: 9, weight: .semibold))
-                    .foregroundStyle(.white.opacity(0.45))
+                    .foregroundStyle(secondary.opacity(0.85))
                 HStack(alignment: .firstTextBaseline, spacing: 5) {
                     Text(value)
                         .font(.system(size: 14, weight: .semibold, design: .rounded).monospacedDigit())
                     if !detail.isEmpty {
                         Text(detail)
                             .font(.system(size: 11, design: .rounded).monospacedDigit())
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(secondary)
                     }
                 }
             }
         }
+    }
+}
+
+private struct KeyboardPaletteSecondaryKey: EnvironmentKey {
+    static let defaultValue = Color.secondary
+}
+
+private extension EnvironmentValues {
+    var keyboardPaletteSecondary: Color {
+        get { self[KeyboardPaletteSecondaryKey.self] }
+        set { self[KeyboardPaletteSecondaryKey.self] = newValue }
     }
 }
