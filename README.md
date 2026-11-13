@@ -8,16 +8,27 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 
 ## Status
 
-Early development. Right now the repo has the core engine (keystroke logging, per-key and per-bigram speed and accuracy stats) with tests. The app itself comes next.
+Early development. Right now the repo has the core engine with tests:
+
+- Keystroke logging with per-key and per-bigram speed and accuracy stats.
+- Drills made of real English words, weighted toward your weakest keys.
+- Progressive unlocking: Start on your layout's home row, unlock the next letter once every current key hits the target speed and accuracy (35 WPM and 95% by default).
+
+The app itself comes next.
 
 ## Layout
 
 ```
 DuctusEngine/          Swift package, no UI imports
-  Sources/DuctusEngine Keystroke log, rolling stats, session tracking
+  Sources/DuctusEngine Stats, unlocking, drill generation, bundled word list
   Sources/DuctusLog    Colored terminal logger
+  Sources/ductus-demo  Simulated learner, shows drills adapting
   Tests/               Swift Testing suites
+scripts/
+  build_corpus.py      Builds the word list from public-domain books
 ```
+
+The word list comes from public-domain books on Project Gutenberg. See [CORPUS.md](CORPUS.md).
 
 ## Building and testing
 
@@ -26,6 +37,7 @@ Requires Xcode 16 or newer (Swift 6).
 ```sh
 cd DuctusEngine
 swift test
+swift run ductus-demo            # watch a simulated learner progress (add --qwerty to compare)
 ```
 
 ## Debugging

@@ -22,7 +22,7 @@ The name comes from calligraphy: the ductus is the order, direction and rhythm o
 The engine is what actually makes the user faster. It is statistical, not a neural network.
 - Log every keystroke with a timestamp: expected char, typed char, physical keycode, latency since the previous key.
 - Keep rolling stats per key and per bigram (e.g. `th`, `ue`): speed (ms) and accuracy.
-- Generate drill text weighted toward the weakest keys and bigrams, using a letter n-gram model built from real English so drills look like words, not random strings.
+- Generate drill text weighted toward the weakest keys and bigrams, using ONLY real words (and later real sentences) from the bundled library built from public-domain books (see CORPUS.md). Never generated pseudo-words or random letter strings. If the starting keys spell too few words, unlock more letters by frequency instead.
 - Progressive unlocking: start with a few keys (home row for the active layout), add new keys as current ones reach target speed and accuracy.
 - Updates after every keystroke.
 - Reference: keybr.com uses a similar approach. keybr is AGPL-3.0, so learn from the idea but do NOT copy its code into this MIT project.

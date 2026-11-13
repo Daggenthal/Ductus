@@ -11,8 +11,9 @@ let package = Package(
         .library(name: "DuctusLog", targets: ["DuctusLog"]),
     ],
     targets: [
-        .target(name: "DuctusEngine"),
+        .target(name: "DuctusEngine", resources: [.copy("Resources/english-words.tsv")]),
         .target(name: "DuctusLog"),
+        .executableTarget(name: "ductus-demo", dependencies: ["DuctusEngine", "DuctusLog"]),
         .testTarget(name: "DuctusEngineTests", dependencies: ["DuctusEngine"]),
         .testTarget(name: "DuctusLogTests", dependencies: ["DuctusLog"]),
     ]
