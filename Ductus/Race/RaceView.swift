@@ -15,7 +15,7 @@ struct RaceView: View {
         VStack(alignment: .leading, spacing: 24) {
             HStack(spacing: 16) {
                 Picker("Length", selection: $race.timeLimit) {
-                    ForEach(RaceModel.timeLimitOptions, id: \.self) { Text("\($0 / 60) min").tag($0) }
+                    ForEach(RaceModel.timeLimitOptions, id: \.self) { Text(RaceModel.lengthLabel($0)).tag($0) }
                 }
                 .pickerStyle(.segmented)
                 .fixedSize()
@@ -164,7 +164,7 @@ private struct RaceResults: View {
             }
             HStack(spacing: 28) {
                 Stat(title: "Accuracy", value: String(format: "%.0f%%", result.accuracy * 100))
-                Stat(title: "Length", value: "\(Int(result.duration) / 60) min")
+                Stat(title: "Length", value: RaceModel.lengthLabel(Int(result.duration)))
                 Stat(title: "Characters", value: "\(result.characters)")
                 Stat(title: "Errors", value: "\(result.errors)")
                 if let bestWPM, !result.isNewBest {

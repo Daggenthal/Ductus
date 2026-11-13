@@ -174,7 +174,7 @@ struct HistoryView: View {
             let points = recent.enumerated().map {
                 MetricPoint(
                     index: $0.offset,
-                    label: "Race \(offset + $0.offset + 1)" + ($0.element.timeLimit > 0 ? " (\($0.element.timeLimit / 60) min)" : ""),
+                    label: "Race \(offset + $0.offset + 1)" + ($0.element.timeLimit > 0 ? " (\(RaceModel.lengthLabel($0.element.timeLimit)))" : ""),
                     value: $0.element.wpm
                 )
             }
