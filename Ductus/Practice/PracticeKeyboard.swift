@@ -7,11 +7,18 @@ struct PracticeKeyboard: View {
     let practice: PracticeModel
     /// Show the one-line drill text right above the keys.
     var showsDrill = false
+    /// Show the compact stats row at the top.
+    var showsStats = false
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
 
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: 14, style: .continuous)
         VStack(spacing: 0) {
+            if showsStats {
+                FloatingStatsBar(practice: practice)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 12)
+            }
             if showsDrill, let session = practice.session {
                 DrillStrip(session: session, lastKeyWrong: practice.lastKeyWrong)
                     .id(practice.drillID)

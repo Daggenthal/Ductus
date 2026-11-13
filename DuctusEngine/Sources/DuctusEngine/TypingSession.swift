@@ -59,6 +59,24 @@ public struct TypingSession: Sendable {
         return keystroke
     }
 
+    /// Speed so far, measured from the first key to the latest correct key.
+    /// `nil` until at least two characters are typed.
+    public var liveWPM: Double? {
+        guard let startTime, position > 1,
+              let lastCorrect = keystrokes.last(where: \.isCorrect)?.timestamp
+        else { return nil }
+        let elapsed = lastCorrect - startTime
+        guard elapsed > 0 else { return nil }
+        return Double(position - 1) / 5 / (elapsed / 60)
+    }
+
+    /// Share of positions so far typed correctly on the first try. `nil` before the first key.
+    public var liveAccuracy: Double? {
+        let firstAttempts = keystrokes.filter(\.isFirstAttempt)
+        guard !firstAttempts.isEmpty else { return nil }
+        return Double(firstAttempts.filter(\.isCorrect).count) / Double(firstAttempts.count)
+    }
+
     public var summary: SessionSummary? {
         guard let startTime, let endTime else { return nil }
         let firstAttemptMisses = keystrokes.filter { $0.isFirstAttempt && !$0.isCorrect }.count

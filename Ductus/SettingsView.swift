@@ -7,6 +7,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.hudClickThrough) private var clickThrough = false
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
     @AppStorage(SettingsKey.showDrillInFloating) private var showDrillInFloating = true
+    @AppStorage(SettingsKey.showStatsInFloating) private var showStatsInFloating = true
 
     var body: some View {
         Form {
@@ -15,6 +16,10 @@ struct SettingsView: View {
                 Toggle("Pop out into a floating window", isOn: $poppedOut)
                 Toggle("Show drill text above the floating keyboard", isOn: $showDrillInFloating)
                 Text("Keeps the words and the keys close together so your eyes do not have to travel.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Toggle("Show stats above the floating keyboard", isOn: $showStatsInFloating)
+                Text("Live speed and accuracy, the last drill, your focus key and unlock progress.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 LabeledContent("Floating opacity") {

@@ -8,6 +8,8 @@ struct DuctusApp: App {
     @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
     @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
+    @AppStorage(SettingsKey.showDrillInFloating) private var showDrillInFloating = true
+    @AppStorage(SettingsKey.showStatsInFloating) private var showStatsInFloating = true
 
     var body: some Scene {
         Window("Ductus", id: "practice") {
@@ -27,6 +29,11 @@ struct DuctusApp: App {
                     .keyboardShortcut("k", modifiers: [.command, .shift])
                 Toggle("Show Physical Key Labels", isOn: $showPhysicalLabels)
                     .keyboardShortcut("l", modifiers: [.command, .shift])
+                Divider()
+                Toggle("Show Words on Floating Keyboard", isOn: $showDrillInFloating)
+                    .keyboardShortcut("w", modifiers: [.command, .shift])
+                Toggle("Show Stats on Floating Keyboard", isOn: $showStatsInFloating)
+                    .keyboardShortcut("s", modifiers: [.command, .shift])
             }
         }
 
@@ -44,6 +51,7 @@ enum SettingsKey {
     static let hudClickThrough = "keyboardHUDClickThrough"
     static let showPhysicalLabels = "keyboardShowPhysicalLabels"
     static let showDrillInFloating = "keyboardShowDrillInFloating"
+    static let showStatsInFloating = "keyboardShowStatsInFloating"
 }
 
 @MainActor
@@ -61,6 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKey.hudClickThrough: false,
             SettingsKey.showPhysicalLabels: true,
             SettingsKey.showDrillInFloating: true,
+            SettingsKey.showStatsInFloating: true,
         ])
         if Log.isDebug { Log.info("Debug mode on") }
 
@@ -109,8 +118,9 @@ private struct FloatingKeyboard: View {
     let keyboard: KeyboardState
     let practice: PracticeModel
     @AppStorage(SettingsKey.showDrillInFloating) private var showDrill = true
+    @AppStorage(SettingsKey.showStatsInFloating) private var showStats = true
 
     var body: some View {
-        PracticeKeyboard(keyboard: keyboard, practice: practice, showsDrill: showDrill)
+        PracticeKeyboard(keyboard: keyboard, practice: practice, showsDrill: showDrill, showsStats: showStats)
     }
 }

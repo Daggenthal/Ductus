@@ -35,6 +35,7 @@ struct PracticeView: View {
 
     private var header: some View {
         HStack(alignment: .firstTextBaseline, spacing: 28) {
+            Stat(title: "Now", value: practice.session?.liveWPM.map { String(format: "%.0f WPM", $0) } ?? "-")
             Stat(title: "Last drill", value: practice.lastSummary?.wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
             Stat(title: "Accuracy", value: practice.lastSummary.map { String(format: "%.0f%%", $0.accuracy * 100) } ?? "-")
             if let focus = practice.focusKey {

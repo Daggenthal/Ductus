@@ -66,6 +66,24 @@ import Testing
         #expect(session.keystrokes.count == 1)
     }
 
+    @Test func liveStats() throws {
+        var session = TypingSession(text: "abcd")
+        #expect(session.liveWPM == nil)
+        #expect(session.liveAccuracy == nil)
+
+        session.type("a", at: 0)
+        #expect(session.liveWPM == nil)  // need two characters for a speed
+        #expect(session.liveAccuracy == 1)
+
+        session.type("x", at: 0.1)  // miss on "b"
+        session.type("b", at: 0.2)
+        session.type("c", at: 0.4)
+        // 2 chars after the first in 0.4s = 5 chars/s = 60 WPM
+        #expect(abs(try #require(session.liveWPM) - 60) < 1e-9)
+        // First attempts: a ok, b miss, c ok
+        #expect(abs(try #require(session.liveAccuracy) - 2.0 / 3.0) < 1e-9)
+    }
+
     @Test func ignoresLeadingSpace() throws {
         var session = TypingSession(text: "ab")
         #expect(session.type(" ", at: 0) == nil)

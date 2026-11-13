@@ -1,0 +1,63 @@
+import DuctusEngine
+import SwiftUI
+
+/// Compact stats row for the floating keyboard panel: live speed and accuracy,
+/// the last drill, the focus key and unlock progress.
+struct FloatingStatsBar: View {
+    let practice: PracticeModel
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 18) {
+            Item(title: "Now", value: wpm(practice.session?.liveWPM), detail: percent(practice.session?.liveAccuracy))
+            Item(title: "Last drill", value: wpm(practice.lastSummary?.wpm), detail: percent(practice.lastSummary?.accuracy))
+            if let focus = practice.focusKey {
+                let stats = practice.stats(for: focus)
+                Item(
+                    title: "Focus",
+                    value: focus.uppercased(),
+                    detail: [wpm(stats?.wpm), percent(stats?.accuracy.value)].filter { $0 != "-" }.joined(separator: " ")
+                )
+            }
+            Spacer(minLength: 0)
+            if let curriculum = practice.trainer?.curriculum {
+                Item(
+                    title: "Unlocked",
+                    value: "\(curriculum.unlockedCount)/\(curriculum.order.count)",
+                    detail: curriculum.nextToUnlock.map { "next \($0.uppercased())" } ?? ""
+                )
+            }
+        }
+        .foregroundStyle(.white)
+    }
+
+    private func wpm(_ value: Double?) -> String {
+        value.map { String(format: "%.0f WPM", $0) } ?? "-"
+    }
+
+    private func percent(_ value: Double?) -> String {
+        value.map { String(format: "%.0f%%", $0 * 100) } ?? "-"
+    }
+
+    private struct Item: View {
+        let title: String
+        let value: String
+        let detail: String
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 1) {
+                Text(title.uppercased())
+                    .font(.system(size: 9, weight: .semibold))
+                    .foregroundStyle(.white.opacity(0.45))
+                HStack(alignment: .firstTextBaseline, spacing: 5) {
+                    Text(value)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded).monospacedDigit())
+                    if !detail.isEmpty {
+                        Text(detail)
+                            .font(.system(size: 11, design: .rounded).monospacedDigit())
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                }
+            }
+        }
+    }
+}
