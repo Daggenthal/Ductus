@@ -31,13 +31,14 @@ struct HistoryView: View {
                     heatmap
                     keyLists
                     keyTrend
+                    races
                     unlockTimeline
                 }
             }
             .padding(28)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(minWidth: 820, minHeight: 560)
+        .frame(minWidth: 760, minHeight: 440)
     }
 
     // MARK: - Speed and accuracy
@@ -101,7 +102,7 @@ struct HistoryView: View {
                 heat: heat,
                 unit: 36
             )
-            .background(KeyboardBacking())
+            .background(ThemedKeyboardBacking())
             .frame(maxWidth: .infinity)
         }
     }
@@ -160,6 +161,49 @@ struct HistoryView: View {
                 MetricChart(title: "Speed of \(selected?.uppercased() ?? "")", unit: "WPM", points: points, format: "%.0f WPM")
             }
         }
+    }
+
+    // MARK: - Races
+
+    @ViewBuilder
+    private var races: some View {
+        let races = practice.raceHistory
+        if !races.isEmpty {
+            let recent = races.suffix(50)
+            let offset = races.count - recent.count
+            let points = recent.enumerated().map {
+                MetricPoint(index: $0.offset, label: "Race \(offset + $0.offset + 1)", value: $0.element.wpm)
+            }
+            let lastTen = races.suffix(10)
+            Card {
+                Text("Races").font(.headline)
+                HStack(spacing: 28) {
+                    miniStat("Best", String(format: "%.0f WPM", races.map(\.wpm).max() ?? 0))
+                    miniStat("Last 10 average", String(format: "%.0f WPM", lastTen.map(\.wpm).reduce(0, +) / Double(lastTen.count)))
+                    miniStat("Races", "\(races.count)")
+                    if let common = mostCommonWorstKey(races) {
+                        miniStat("Most often costly", common.uppercased())
+                    }
+                }
+                if points.count >= 2 {
+                    MetricChart(title: "Race speed", unit: "WPM", points: points, format: "%.0f WPM")
+                }
+            }
+        }
+    }
+
+    private func miniStat(_ title: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title).font(.caption).foregroundStyle(.secondary)
+            Text(value).font(.title3.weight(.semibold).monospacedDigit())
+        }
+    }
+
+    /// The key that most often shows up among a race's worst keys.
+    private func mostCommonWorstKey(_ races: [RaceEntry]) -> String? {
+        var counts: [Character: Int] = [:]
+        for race in races { for key in race.worstKeys where key != " " { counts[key, default: 0] += 1 } }
+        return counts.max { $0.value != $1.value ? $0.value < $1.value : $0.key > $1.key }.map { String($0.key) }
     }
 
     // MARK: - Unlock timeline
@@ -365,16 +409,5 @@ private struct HeatLegend: View {
             .clipShape(Capsule())
             Text("Needs work").font(.caption).foregroundStyle(.secondary)
         }
-    }
-}
-
-/// The keyboard's themed backing, outside the practice views.
-private struct KeyboardBacking: View {
-    @Environment(\.colorScheme) private var colorScheme
-
-    var body: some View {
-        let shape = RoundedRectangle(cornerRadius: 14, style: .continuous)
-        shape.fill(KeyboardPalette(colorScheme).backing)
-            .background(.ultraThinMaterial, in: shape)
     }
 }

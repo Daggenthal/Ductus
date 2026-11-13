@@ -13,8 +13,9 @@ struct DuctusApp: App {
 
     var body: some Scene {
         Window("Ductus", id: "practice") {
-            PracticeView()
+            MainView()
                 .environment(app.practice)
+                .environment(app.race)
                 .environment(app.keyboard)
                 .environment(app.ui)
         }
@@ -25,10 +26,20 @@ struct DuctusApp: App {
                 Button("Settings…") { app.toggleSettings() }
                     .keyboardShortcut(",")
             }
+            CommandGroup(before: .toolbar) {
+                Button("Practice") { app.showTab(.practice) }
+                    .keyboardShortcut("1")
+                Button("Race") { app.showTab(.race) }
+                    .keyboardShortcut("2")
+                Button("History") { app.showTab(.history) }
+                    .keyboardShortcut("3")
+                Button("Show History") { app.showTab(.history) }
+                    .keyboardShortcut("y")
+                Divider()
+            }
             CommandMenu("Practice") {
-                Button("Next Drill") { app.practice.nextDrill() }
+                Button("Next Drill or Race") { app.newDrillOrRace() }
                     .keyboardShortcut("n")
-                OpenHistoryButton()
                 Divider()
                 Toggle("Show Keyboard", isOn: $showKeyboard)
                     .keyboardShortcut("k")
@@ -44,12 +55,6 @@ struct DuctusApp: App {
             }
         }
 
-        Window("History", id: "history") {
-            HistoryView()
-                .environment(app.practice)
-                .environment(app.keyboard)
-        }
-        .defaultSize(width: 900, height: 760)
     }
 }
 
@@ -57,6 +62,12 @@ struct DuctusApp: App {
 @MainActor
 @Observable
 final class AppUIState {
+    /// Which tab the main window shows.
+    var tab: MainTab = .practice {
+        didSet { if tab != oldValue { onTabChange?() } }
+    }
+    @ObservationIgnored var onTabChange: (() -> Void)?
+
     /// The settings panel on the right side of the practice window.
     /// Change it with `setSettings(_:)` so the window size is remembered.
     var showSettings = false
@@ -111,15 +122,7 @@ final class AppUIState {
     }
 }
 
-/// Menu item that opens the History window. A separate view so it can use `openWindow`.
-private struct OpenHistoryButton: View {
-    @Environment(\.openWindow) private var openWindow
 
-    var body: some View {
-        Button("Show History") { openWindow(id: "history") }
-            .keyboardShortcut("y")
-    }
-}
 
 enum SettingsKey {
     static let showKeyboard = "showKeyboard"
@@ -139,9 +142,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let practice = PracticeModel()
     let panelFocus = PanelFocus()
     let ui = AppUIState()
+    lazy var race = RaceModel(practice: practice)
     private var store: ProgressStore?
     /// Last seen pop-out state, to react only to changes (not at launch).
     private var lastPoppedOut: Bool?
+    /// Guards against `applySettings` re-entering itself through a tab change.
+    private var isApplyingSettings = false
     private var hud: KeyboardHUD?
     private var defaultsObserver: NSObjectProtocol?
 
@@ -160,13 +166,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Typing goes to practice when the practice window or the floating
         // keyboard is the key window, and no text field is being edited.
-        keyboard.onCharacter = { [practice] character, keyCode, time in
-            guard let window = NSApp.keyWindow,
-                  window.title == "Ductus" || window.identifier == KeyboardHUD.panelID,
-                  !(window.firstResponder is NSTextView)
-            else { return false }
-            return practice.type(character, keyCode: keyCode, at: time)
+        // The floating keyboard always types into practice. The main window
+        // types into whichever tab is showing (History takes no typing).
+        keyboard.onCharacter = { [weak self] character, keyCode, time in
+            guard let self, let window = NSApp.keyWindow, !(window.firstResponder is NSTextView) else { return false }
+            if window.identifier == KeyboardHUD.panelID {
+                return self.practice.type(character, keyCode: keyCode, at: time)
+            }
+            guard window.title == "Ductus" else { return false }
+            switch self.ui.tab {
+            case .practice: return self.practice.type(character, keyCode: keyCode, at: time)
+            case .race: return self.race.type(character, keyCode: keyCode, at: time)
+            case .history: return false
+            }
         }
+        ui.onTabChange = { [weak self] in self?.applySettings() }
 
         // Progress is saved per layout. Switching input source switches progress.
         let store = ProgressStore()
@@ -208,6 +222,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         focusPracticeWindow()
     }
 
+    func showTab(_ tab: MainTab) {
+        ui.tab = tab
+        focusPracticeWindow()
+    }
+
+    func newDrillOrRace() {
+        switch ui.tab {
+        case .race: race.newRace()
+        default: practice.nextDrill()
+        }
+    }
+
     /// Opens or closes the settings panel, bringing the practice window back if needed.
     func toggleSettings() {
         if !ui.showSettings { focusPracticeWindow() }
@@ -224,6 +250,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func applySettings() {
+        guard !isApplyingSettings else { return }
+        isApplyingSettings = true
+        defer { isApplyingSettings = false }
         let defaults = UserDefaults.standard
 
         // Applies to every window, including the floating keyboard.
@@ -239,7 +268,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hud?.setClickThrough(defaults.bool(forKey: SettingsKey.hudClickThrough))
 
         let poppedOut = defaults.bool(forKey: SettingsKey.keyboardPoppedOut)
-        let floating = defaults.bool(forKey: SettingsKey.showKeyboard) && poppedOut
+        // The floating keyboard belongs to practice. Popping out from another tab
+        // switches to practice; other tabs show the keyboard docked instead.
+        if poppedOut, lastPoppedOut == false, ui.tab != .practice { ui.tab = .practice }
+        let floating = defaults.bool(forKey: SettingsKey.showKeyboard) && poppedOut && ui.tab == .practice
         if floating, hud?.isVisible == false { hud?.show() }
         if !floating, hud?.isVisible == true { hud?.hide() }
 

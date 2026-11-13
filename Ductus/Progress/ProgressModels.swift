@@ -25,6 +25,8 @@ final class LayoutProfile {
     var keyDays: [KeyDayEntry] = []
     @Relationship(deleteRule: .cascade, inverse: \UnlockEntry.profile)
     var unlocks: [UnlockEntry] = []
+    @Relationship(deleteRule: .cascade, inverse: \RaceEntry.profile)
+    var races: [RaceEntry] = []
 
     init(layoutID: String, layoutName: String, statsData: Data, unlockOrder: String, unlockedCount: Int) {
         self.layoutID = layoutID
@@ -97,5 +99,33 @@ final class UnlockEntry {
     init(letter: String, date: Date) {
         self.letter = letter
         self.date = date
+    }
+}
+
+/// One finished race.
+@Model
+final class RaceEntry {
+    var date: Date
+    var wordCount: Int
+    var characters: Int
+    var duration: TimeInterval
+    var wpm: Double
+    var accuracy: Double
+    /// `false` if the race used only unlocked letters.
+    var allLetters: Bool
+    /// The keys that cost the most, worst first, e.g. "rlc".
+    var worstKeys: String
+    var profile: LayoutProfile?
+
+    init(date: Date, wordCount: Int, characters: Int, duration: TimeInterval, wpm: Double,
+         accuracy: Double, allLetters: Bool, worstKeys: String) {
+        self.date = date
+        self.wordCount = wordCount
+        self.characters = characters
+        self.duration = duration
+        self.wpm = wpm
+        self.accuracy = accuracy
+        self.allLetters = allLetters
+        self.worstKeys = worstKeys
     }
 }

@@ -6,33 +6,9 @@ struct PracticeView: View {
     @Environment(KeyboardState.self) private var keyboard
     @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
     @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
-    @Environment(AppUIState.self) private var ui
-
     private var keyboardDocked: Bool { showKeyboard && !poppedOut }
 
     var body: some View {
-        @Bindable var ui = ui
-        practiceContent
-            .inspector(isPresented: $ui.showSettings) {
-                SettingsView()
-                    .inspectorColumnWidth(min: 320, ideal: 380, max: 480)
-            }
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        ui.setSettings(!ui.showSettings)
-                    } label: {
-                        Label("Settings", systemImage: "gearshape")
-                    }
-                    .help("Settings (⌘,)")
-                }
-            }
-            .onChange(of: ui.showSettings) { _, showing in
-                if !showing { ui.settingsDidClose() }
-            }
-    }
-
-    private var practiceContent: some View {
         VStack(alignment: .leading, spacing: 28) {
             header
             if let error = practice.loadError {
@@ -97,7 +73,7 @@ struct PracticeView: View {
     }
 }
 
-private struct Stat: View {
+struct Stat: View {
     let title: String
     let value: String
 
@@ -111,7 +87,7 @@ private struct Stat: View {
 
 /// The drill text: typed part faded, current character highlighted
 /// (red after a miss), the rest normal.
-private struct DrillText: View {
+struct DrillText: View {
     let session: TypingSession
     let lastKeyWrong: Bool
 

@@ -140,6 +140,30 @@ final class PracticeModel {
         return true
     }
 
+    // MARK: - Shared with races
+
+    var words: WordList? { wordList }
+
+    /// Records a keystroke typed outside practice (in a race) into the same key
+    /// stats, so practice targets what races expose. Unlocks can happen here too.
+    func recordExternal(_ keystroke: Keystroke) {
+        guard let unlocked = trainer?.record(keystroke) else { return }
+        unlockMessage = "New key unlocked: \(unlocked.uppercased())"
+        Log.success("Unlocked \(unlocked) during a race")
+        ensureProfile()?.unlocks.append(UnlockEntry(letter: String(unlocked), date: Date()))
+    }
+
+    func saveRace(_ entry: RaceEntry) {
+        guard let profile = ensureProfile() else { return }
+        profile.races.append(entry)
+        persist()
+    }
+
+    /// Races for the current layout, oldest first.
+    var raceHistory: [RaceEntry] {
+        (profile?.races ?? []).sorted { $0.date < $1.date }
+    }
+
     // MARK: - Saving
 
     /// Writes the trainer's current state to the store. Called after each drill,

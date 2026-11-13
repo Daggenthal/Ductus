@@ -1,0 +1,57 @@
+import SwiftUI
+
+enum MainTab: String, CaseIterable, Identifiable {
+    case practice, race, history
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .practice: "Practice"
+        case .race: "Race"
+        case .history: "History"
+        }
+    }
+}
+
+/// The main window: Practice, Race and History tabs, with Settings as a
+/// panel that slides in from the right.
+struct MainView: View {
+    @Environment(AppUIState.self) private var ui
+
+    var body: some View {
+        @Bindable var ui = ui
+        Group {
+            switch ui.tab {
+            case .practice: PracticeView()
+            case .race: RaceView()
+            case .history: HistoryView()
+            }
+        }
+        .inspector(isPresented: $ui.showSettings) {
+            SettingsView()
+                .inspectorColumnWidth(min: 320, ideal: 380, max: 480)
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Picker("Section", selection: $ui.tab) {
+                    ForEach(MainTab.allCases) { Text($0.title).tag($0) }
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+                .help("Switch with ⌘1, ⌘2 and ⌘3")
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    ui.setSettings(!ui.showSettings)
+                } label: {
+                    Label("Settings", systemImage: "gearshape")
+                }
+                .help("Settings (⌘,)")
+            }
+        }
+        .onChange(of: ui.showSettings) { _, showing in
+            if !showing { ui.settingsDidClose() }
+        }
+    }
+}

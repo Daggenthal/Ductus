@@ -14,7 +14,7 @@ final class ProgressStore {
     var context: ModelContext { container.mainContext }
 
     init() {
-        let schema = Schema([LayoutProfile.self, DrillEntry.self, KeyDayEntry.self, UnlockEntry.self])
+        let schema = Schema([LayoutProfile.self, DrillEntry.self, KeyDayEntry.self, UnlockEntry.self, RaceEntry.self])
         do {
             container = try ModelContainer(for: schema)
             isPersistent = true
