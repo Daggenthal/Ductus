@@ -94,8 +94,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hud = KeyboardHUD(
             content: FloatingKeyboard(
                 keyboard: keyboard, practice: practice, focus: panelFocus,
-                onDock: { [weak self] in self?.dockKeyboard() },
-                onClose: { [weak self] in self?.closeFloatingKeyboard() }
+                onDock: { [weak self] in self?.dockKeyboard() }
             ),
             focus: panelFocus
         )
@@ -117,12 +116,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func dockKeyboard() {
         UserDefaults.standard.set(false, forKey: SettingsKey.keyboardPoppedOut)
         UserDefaults.standard.set(true, forKey: SettingsKey.showKeyboard)
-        focusPracticeWindow()
-    }
-
-    /// Hides the floating keyboard and brings the practice window forward.
-    func closeFloatingKeyboard() {
-        UserDefaults.standard.set(false, forKey: SettingsKey.showKeyboard)
         focusPracticeWindow()
     }
 
@@ -160,14 +153,13 @@ private struct FloatingKeyboard: View {
     let practice: PracticeModel
     let focus: PanelFocus
     let onDock: () -> Void
-    let onClose: () -> Void
     @AppStorage(SettingsKey.showDrillInFloating) private var showDrill = true
     @AppStorage(SettingsKey.showStatsInFloating) private var showStats = true
 
     var body: some View {
         PracticeKeyboard(
             keyboard: keyboard, practice: practice, showsDrill: showDrill, showsStats: showStats,
-            controls: AnyView(PanelControls(onDock: onDock, onClose: onClose))
+            controls: AnyView(DockButton(action: onDock))
         )
         .windowDraggable(focus)
             // Accent outline while this panel is taking your typing.
@@ -179,33 +171,24 @@ private struct FloatingKeyboard: View {
     }
 }
 
-/// Small Dock and Close buttons for the floating keyboard. Faint until hovered.
-private struct PanelControls: View {
-    let onDock: () -> Void
-    let onClose: () -> Void
+/// Puts the floating keyboard back in the main window. Faint until hovered.
+private struct DockButton: View {
+    let action: () -> Void
     @State private var hovering = false
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        let palette = KeyboardPalette(colorScheme)
-        HStack(spacing: 4) {
-            button("pip.exit", help: "Dock the keyboard back in the main window", action: onDock)
-            button("xmark", help: "Hide the keyboard", action: onClose)
-        }
-        .foregroundStyle(palette.text)
-        .opacity(hovering ? 1 : 0.45)
-        .onHover { hovering = $0 }
-        .animation(.easeInOut(duration: 0.12), value: hovering)
-    }
-
-    private func button(_ symbol: String, help: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Image(systemName: symbol)
+            Image(systemName: "pip.exit")
                 .font(.system(size: 10, weight: .bold))
                 .frame(width: 20, height: 20)
                 .background(.primary.opacity(0.1), in: Circle())
         }
         .buttonStyle(.plain)
-        .help(help)
+        .help("Dock the keyboard back in the main window")
+        .foregroundStyle(KeyboardPalette(colorScheme).text)
+        .opacity(hovering ? 1 : 0.45)
+        .onHover { hovering = $0 }
+        .animation(.easeInOut(duration: 0.12), value: hovering)
     }
 }

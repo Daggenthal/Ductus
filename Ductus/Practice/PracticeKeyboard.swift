@@ -9,7 +9,7 @@ struct PracticeKeyboard: View {
     var showsDrill = false
     /// Show the compact stats row at the top.
     var showsStats = false
-    /// Buttons for the top-right corner (the floating panel's Dock and Close).
+    /// Buttons for the top-left corner (the floating panel's Dock button).
     var controls: AnyView?
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
     @Environment(\.colorScheme) private var colorScheme
@@ -19,15 +19,15 @@ struct PracticeKeyboard: View {
         VStack(spacing: 0) {
             if showsStats || controls != nil {
                 HStack(alignment: .top, spacing: 12) {
+                    if let controls { controls }
                     if showsStats {
                         FloatingStatsBar(practice: practice)
                     } else {
                         Spacer()
                     }
-                    if let controls { controls }
                 }
-                .padding(.leading, 16)
-                .padding(.trailing, 10)
+                .padding(.leading, 10)
+                .padding(.trailing, 16)
                 .padding(.top, showsStats ? 12 : 8)
             }
             if showsDrill, let session = practice.session {
