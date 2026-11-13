@@ -38,7 +38,7 @@ struct RaceView: View {
                 }
             } else if let session = race.session {
                 LiveRace(session: session, startedAt: race.startedAt, timeLimit: race.timeLimit, bestWPM: race.bestWPM)
-                DrillStrip(session: session, lastKeyWrong: race.lastKeyWrong, fontSize: 30, anchor: 0.3)
+                RaceTextView(session: session, lastKeyWrong: race.lastKeyWrong)
                     .id(race.raceID)
                 if race.startedAt == nil {
                     Text("The clock starts on your first key.")
@@ -53,7 +53,8 @@ struct RaceView: View {
                 KeyboardView(
                     keyboard: keyboard,
                     nextCharacter: race.session?.currentExpected,
-                    unlockedLetters: race.allLetters ? nil : practice.unlockedLetters
+                    unlockedLetters: race.allLetters ? nil : practice.unlockedLetters,
+                    animatesPresses: false
                 )
                 .background(ThemedKeyboardBacking())
                 .frame(maxWidth: .infinity)
@@ -91,6 +92,8 @@ private struct LiveRace: View {
                     Stat(title: "Speed", value: wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
                     Stat(title: "Accuracy", value: session.liveAccuracy.map { String(format: "%.0f%%", $0 * 100) } ?? "-")
                 }
+                // Bars appear once the race starts.
+                if startedAt != nil {
                 VStack(alignment: .leading, spacing: 8) {
                     if let bestTotal, let bestWPM, bestTotal > 0 {
                         TrackBar(label: "You", progress: min(1, typed / bestTotal), color: .accentColor)
@@ -102,6 +105,7 @@ private struct LiveRace: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
+                }
                 }
             }
         }

@@ -16,6 +16,8 @@ struct KeyboardView: View {
     var showPhysicalLabels = true
     /// Heatmap: 0 (fine) to 1 (weakest) per letter. Tints keys in one hue.
     var heat: [Character: Double]?
+    /// Soft press animation. Off for races, where it smears at high speed.
+    var animatesPresses = true
     var unit: CGFloat = 40
 
     private let spacing: CGFloat = 4
@@ -37,14 +39,15 @@ struct KeyboardView: View {
                             isNext: key.code == nextCode,
                             isShortcut: shortcutCodes.contains(key.code),
                             isDimmed: isLocked(key),
-                            heat: heatValue(for: key)
+                            heat: heatValue(for: key),
+                            scalesOnPress: animatesPresses
                         )
                     }
                 }
             }
         }
         .padding(spacing * 3)
-        .animation(.easeOut(duration: 0.08), value: keyboard.pressed)
+        .animation(animatesPresses ? .easeOut(duration: 0.08) : nil, value: keyboard.pressed)
         .animation(.easeInOut(duration: 0.15), value: keyboard.commandHeld)
     }
 
@@ -88,6 +91,7 @@ private struct KeyCap: View {
     let isShortcut: Bool
     let isDimmed: Bool
     var heat: Double?
+    var scalesOnPress = true
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -110,7 +114,7 @@ private struct KeyCap: View {
             .background(shape.fill(fill(palette)))
             .overlay(shape.strokeBorder(stroke(palette), lineWidth: isNext ? 2 : 1))
             .shadow(color: isShortcut ? palette.shortcutGlow : .clear, radius: 8)
-            .scaleEffect(isPressed ? 0.94 : 1)
+            .scaleEffect(isPressed && scalesOnPress ? 0.94 : 1)
     }
 
     private func fill(_ palette: KeyboardPalette) -> Color {
