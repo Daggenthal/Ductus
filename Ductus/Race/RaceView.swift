@@ -25,6 +25,7 @@ struct RaceView: View {
                 }
                 .pickerStyle(.segmented)
                 .fixedSize()
+                .help("Unlocked only: your unlocked letters, with words weighted toward your weak keys like practice")
                 Spacer()
                 Button("New Race") { race.newRace() }
                     .help("⌘N")

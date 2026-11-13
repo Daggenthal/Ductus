@@ -111,9 +111,13 @@ final class RaceModel {
     }
 
     private func moreWords() -> String? {
+        if !allLetters {
+            // Same word picking as practice: unlocked letters, weighted toward
+            // weak keys. Picked fresh for each chunk, so it follows the stats live.
+            return practice.practiceStyleWords(atLeast: Self.chunkWords)
+        }
         guard let words = practice.words else { return nil }
-        let allowed = allLetters ? nil : practice.unlockedLetters
-        return Race.text(from: words, wordCount: Self.chunkWords, allowed: allowed, using: &rng)
+        return Race.text(from: words, wordCount: Self.chunkWords, using: &rng)
     }
 
     private func finish() {

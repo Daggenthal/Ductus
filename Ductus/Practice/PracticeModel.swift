@@ -144,6 +144,18 @@ final class PracticeModel {
 
     var words: WordList? { wordList }
 
+    /// Practice-style words for an "Unlocked only" race: unlocked letters,
+    /// weighted toward weak keys and the focus key, same as practice drills.
+    func practiceStyleWords(atLeast count: Int) -> String? {
+        guard let trainer else { return nil }
+        var words: [Substring] = []
+        while words.count < count {
+            guard let chunk = trainer.nextDrill(using: &rng) else { break }
+            words += chunk.split(separator: " ")
+        }
+        return words.isEmpty ? nil : words.joined(separator: " ")
+    }
+
     /// Records a keystroke typed outside practice (in a race) into the same key
     /// stats, so practice targets what races expose. Unlocks can happen here too.
     func recordExternal(_ keystroke: Keystroke) {
