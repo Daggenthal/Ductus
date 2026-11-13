@@ -6,10 +6,30 @@ struct PracticeView: View {
     @Environment(KeyboardState.self) private var keyboard
     @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
     @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
+    @Environment(AppUIState.self) private var ui
 
     private var keyboardDocked: Bool { showKeyboard && !poppedOut }
 
     var body: some View {
+        @Bindable var ui = ui
+        practiceContent
+            .inspector(isPresented: $ui.showSettings) {
+                SettingsView()
+                    .inspectorColumnWidth(min: 320, ideal: 380, max: 480)
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        ui.showSettings.toggle()
+                    } label: {
+                        Label("Settings", systemImage: "gearshape")
+                    }
+                    .help("Settings (⌘,)")
+                }
+            }
+    }
+
+    private var practiceContent: some View {
         VStack(alignment: .leading, spacing: 28) {
             header
             if let error = practice.loadError {

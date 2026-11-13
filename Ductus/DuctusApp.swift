@@ -16,9 +16,15 @@ struct DuctusApp: App {
             PracticeView()
                 .environment(app.practice)
                 .environment(app.keyboard)
+                .environment(app.ui)
         }
         .windowResizability(.contentMinSize)
         .commands {
+            // ⌘, toggles the settings panel inside the practice window.
+            CommandGroup(replacing: .appSettings) {
+                Button("Settings…") { app.toggleSettings() }
+                    .keyboardShortcut(",")
+            }
             CommandMenu("Practice") {
                 Button("Next Drill") { app.practice.nextDrill() }
                     .keyboardShortcut("n")
@@ -44,12 +50,15 @@ struct DuctusApp: App {
                 .environment(app.keyboard)
         }
         .defaultSize(width: 900, height: 760)
-
-        Settings {
-            SettingsView()
-                .environment(app.practice)
-        }
     }
+}
+
+/// UI state shared between menus and views.
+@MainActor
+@Observable
+final class AppUIState {
+    /// The settings panel on the right side of the practice window.
+    var showSettings = false
 }
 
 /// Menu item that opens the History window. A separate view so it can use `openWindow`.
@@ -79,7 +88,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let keyboard = KeyboardState()
     let practice = PracticeModel()
     let panelFocus = PanelFocus()
+    let ui = AppUIState()
     private var store: ProgressStore?
+    /// Last seen pop-out state, to react only to changes (not at launch).
+    private var lastPoppedOut: Bool?
     private var hud: KeyboardHUD?
     private var defaultsObserver: NSObjectProtocol?
 
@@ -146,6 +158,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         focusPracticeWindow()
     }
 
+    /// Opens or closes the settings panel, bringing the practice window back if needed.
+    func toggleSettings() {
+        ui.showSettings.toggle()
+        if ui.showSettings { focusPracticeWindow() }
+    }
+
+    private var practiceWindow: NSWindow? {
+        NSApp.windows.first { $0.title == "Ductus" }
+    }
+
     private func focusPracticeWindow() {
         NSApp.activate()
         guard let window = NSApp.windows.first(where: { $0.title == "Ductus" }) else { return }
@@ -168,9 +190,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hud?.setOpacity(defaults.double(forKey: SettingsKey.hudOpacity))
         hud?.setClickThrough(defaults.bool(forKey: SettingsKey.hudClickThrough))
 
-        let floating = defaults.bool(forKey: SettingsKey.showKeyboard) && defaults.bool(forKey: SettingsKey.keyboardPoppedOut)
+        let poppedOut = defaults.bool(forKey: SettingsKey.keyboardPoppedOut)
+        let floating = defaults.bool(forKey: SettingsKey.showKeyboard) && poppedOut
         if floating, hud?.isVisible == false { hud?.show() }
         if !floating, hud?.isVisible == true { hud?.hide() }
+
+        // Popping out gets the big window out of the way and hands typing to the
+        // floating keyboard. Popping back in brings the window back.
+        if let last = lastPoppedOut, last != poppedOut {
+            if floating {
+                practiceWindow?.miniaturize(nil)
+                Task { @MainActor [weak self] in
+                    try? await Task.sleep(for: .milliseconds(400))  // let the minimize animation settle
+                    self?.hud?.makeKey()
+                }
+            } else if !poppedOut {
+                focusPracticeWindow()
+            }
+        }
+        lastPoppedOut = poppedOut
     }
 }
 

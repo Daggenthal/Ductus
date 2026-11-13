@@ -74,7 +74,5 @@ struct SettingsView: View {
         } message: {
             Text("This deletes your key stats, unlocked letters and history for this layout. It cannot be undone.")
         }
-        .frame(width: 420)
-        .fixedSize()
     }
 }

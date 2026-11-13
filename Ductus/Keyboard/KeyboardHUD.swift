@@ -67,6 +67,12 @@ final class KeyboardHUD {
     func show() { panel.orderFrontRegardless() }
     func hide() { panel.orderOut(nil) }
 
+    /// Makes the panel the typing target.
+    func makeKey() {
+        guard panel.isVisible, panel.canBecomeKey else { return }
+        panel.makeKey()
+    }
+
     /// 0.2 to 1.
     func setOpacity(_ value: Double) { panel.alphaValue = max(0.2, min(1, value)) }
 
