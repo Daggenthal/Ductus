@@ -20,12 +20,15 @@ struct PracticeView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
-                        ui.showSettings.toggle()
+                        ui.setSettings(!ui.showSettings)
                     } label: {
                         Label("Settings", systemImage: "gearshape")
                     }
                     .help("Settings (⌘,)")
                 }
+            }
+            .onChange(of: ui.showSettings) { _, showing in
+                if !showing { ui.settingsDidClose() }
             }
     }
 

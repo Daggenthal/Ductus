@@ -1,0 +1,6 @@
+
+cd /Users/mars/Documents/ductus
+git add -A
+git commit -S --author="Daggenthal <112846802+Daggenthal@users.noreply.github.com>" -m "Minimize the main window on pop-out; settings as an in-window side panel
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"

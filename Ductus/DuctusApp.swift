@@ -58,7 +58,34 @@ struct DuctusApp: App {
 @Observable
 final class AppUIState {
     /// The settings panel on the right side of the practice window.
+    /// Change it with `setSettings(_:)` so the window size is remembered.
     var showSettings = false
+
+    /// Practice window width before the settings panel widened it.
+    @ObservationIgnored private var widthBeforeSettings: CGFloat?
+
+    static var practiceWindow: NSWindow? {
+        NSApp.windows.first { $0.title == "Ductus" }
+    }
+
+    func setSettings(_ show: Bool) {
+        if show, !showSettings { widthBeforeSettings = Self.practiceWindow?.frame.width }
+        showSettings = show
+    }
+
+    /// Called after the panel closed (by any route). Shrinks the window back to
+    /// the width it had before the panel opened, keeping its left edge in place.
+    func settingsDidClose() {
+        guard let width = widthBeforeSettings else { return }
+        widthBeforeSettings = nil
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(250))  // let the panel finish collapsing
+            guard let window = Self.practiceWindow, window.frame.width > width else { return }
+            var frame = window.frame
+            frame.size.width = max(width, window.minSize.width)
+            window.setFrame(frame, display: true, animate: true)
+        }
+    }
 }
 
 /// Menu item that opens the History window. A separate view so it can use `openWindow`.
@@ -160,13 +187,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// Opens or closes the settings panel, bringing the practice window back if needed.
     func toggleSettings() {
-        ui.showSettings.toggle()
-        if ui.showSettings { focusPracticeWindow() }
+        if !ui.showSettings { focusPracticeWindow() }
+        ui.setSettings(!ui.showSettings)
     }
 
-    private var practiceWindow: NSWindow? {
-        NSApp.windows.first { $0.title == "Ductus" }
-    }
+    private var practiceWindow: NSWindow? { AppUIState.practiceWindow }
 
     private func focusPracticeWindow() {
         NSApp.activate()
