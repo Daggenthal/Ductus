@@ -64,7 +64,7 @@ final class TextPracticeModel {
         // Japanese, Chinese and Korean are typed as romaji, pinyin or 2-Set keys.
         if let language = Transcriber.language(of: raw) {
             guard let result = Transcriber.transcribe(raw, as: language) else {
-                notice = String(localized: "Nothing in that text could be read for typing.")
+                notice = String(localized: "Nothing in that text could be read for typing.", bundle: .ui)
                 return false
             }
             let text = SavedText(
@@ -78,7 +78,7 @@ final class TextPracticeModel {
         }
         let cleaned = CustomText.clean(raw, keepLineBreaks: keepLineBreaks, canType: practice.canType)
         guard !cleaned.text.isEmpty else {
-            notice = String(localized: "Nothing in that text can be typed on this layout.")
+            notice = String(localized: "Nothing in that text can be typed on this layout.", bundle: .ui)
             return false
         }
         let text = SavedText(
@@ -94,7 +94,7 @@ final class TextPracticeModel {
         texts.insert(text, at: 0)
         select(text)
         notice = dropped > 0
-            ? String(localized: "Characters that cannot be typed were left out: \(dropped).")
+            ? String(localized: "Characters that cannot be typed were left out: \(dropped).", bundle: .ui)
             : nil
         Log.info("Added a text (\(text.body.count) characters, \(parts.count) parts)")
     }

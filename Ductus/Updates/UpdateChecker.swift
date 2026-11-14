@@ -77,7 +77,7 @@ final class UpdateChecker {
         guard let from = defaults.string(forKey: Keys.updatingFrom) else { return }
         defaults.removeObject(forKey: Keys.updatingFrom)
         if CommandLine.arguments.contains("--update-failed") {
-            state = .failed(String(localized: "The update could not be installed, so your current version was kept. Details are in ~/Library/Logs/DuctusUpdater.log."))
+            state = .failed(String(localized: "The update could not be installed, so your current version was kept. Details are in ~/Library/Logs/DuctusUpdater.log.", bundle: .ui))
         } else if let old = AppVersion(from), currentVersion > old {
             state = .updated(from: from)
             Log.success("Updated from \(from) to \(currentVersion)")
@@ -173,11 +173,11 @@ final class UpdateChecker {
     func downloadAndInstall() {
         guard case .available(let release) = state, let archive = release.archive else { return }
         guard !cannotUpdateInPlace else {
-            state = .failed(String(localized: "Move Ductus into your Applications folder first, then open it from there and try again. macOS does not let apps update themselves while they run from Downloads."))
+            state = .failed(String(localized: "Move Ductus into your Applications folder first, then open it from there and try again. macOS does not let apps update themselves while they run from Downloads.", bundle: .ui))
             return
         }
         guard FileManager.default.fileExists(atPath: helperURL.path) else {
-            state = .failed(String(localized: "The updater is missing from this copy of Ductus. Download the new version from GitHub instead."))
+            state = .failed(String(localized: "The updater is missing from this copy of Ductus. Download the new version from GitHub instead.", bundle: .ui))
             return
         }
         state = .downloading(release, .init(received: 0, total: archive.size, speed: 0))
@@ -303,14 +303,14 @@ final class UpdateChecker {
 
     private static func describe(_ error: Error) -> String {
         switch error {
-        case UpdateError.noRelease: String(localized: "There are no releases on GitHub yet.")
-        case UpdateError.server: String(localized: "GitHub did not answer as expected. Try again in a little while.")
-        case UpdateError.unreadable: String(localized: "The latest release could not be read.")
-        case UpdateError.noChecksums: String(localized: "The release has no checksum for the download, so it was not saved.")
-        case UpdateError.checksumMismatch: String(localized: "The download did not match its checksum, so it was deleted. Try again.")
-        case UpdateError.helperDidNotStart: String(localized: "The updater did not start, so nothing was changed. Try again, or download the new version from GitHub.")
-        case let error as URLError where error.code == .notConnectedToInternet: String(localized: "You are not connected to the internet.")
-        default: String(localized: "Could not check for updates: \(error.localizedDescription)")
+        case UpdateError.noRelease: String(localized: "There are no releases on GitHub yet.", bundle: .ui)
+        case UpdateError.server: String(localized: "GitHub did not answer as expected. Try again in a little while.", bundle: .ui)
+        case UpdateError.unreadable: String(localized: "The latest release could not be read.", bundle: .ui)
+        case UpdateError.noChecksums: String(localized: "The release has no checksum for the download, so it was not saved.", bundle: .ui)
+        case UpdateError.checksumMismatch: String(localized: "The download did not match its checksum, so it was deleted. Try again.", bundle: .ui)
+        case UpdateError.helperDidNotStart: String(localized: "The updater did not start, so nothing was changed. Try again, or download the new version from GitHub.", bundle: .ui)
+        case let error as URLError where error.code == .notConnectedToInternet: String(localized: "You are not connected to the internet.", bundle: .ui)
+        default: String(localized: "Could not check for updates: \(error.localizedDescription)", bundle: .ui)
         }
     }
 }

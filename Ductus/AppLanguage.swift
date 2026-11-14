@@ -1,9 +1,14 @@
 import AppKit
 import Foundation
+import Observation
+import SwiftUI
 
-/// The language of Ductus's own menus and settings (not the practice language).
-/// By default Ductus follows macOS; a choice here sets the app's `AppleLanguages`,
-/// which macOS reads at launch, so it takes effect after a relaunch.
+/// The language of Ductus's own windows (not the practice language).
+///
+/// It switches live: every window reads `LanguageState` through `LocalizedRoot`,
+/// and text made in code uses `Bundle.ui`. The choice is also saved as the app's
+/// `AppleLanguages`, which macOS reads at launch for the menu bar, so the menus
+/// follow on the next launch.
 enum AppLanguage: String, CaseIterable, Identifiable {
     case system = ""
     case english = "en", french = "fr", spanish = "es", german = "de", italian = "it"
@@ -14,7 +19,7 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     /// Each language's name in itself, so people can find their own.
     var nativeName: String {
         switch self {
-        case .system: String(localized: "System")
+        case .system: String(localized: "System", bundle: .ui)
         case .english: "English"
         case .french: "Français"
         case .spanish: "Español"
@@ -28,28 +33,75 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         }
     }
 
-    /// The choice saved for this app, or `.system` when Ductus follows macOS.
-    static var current: AppLanguage {
-        guard let languages = UserDefaults.standard.persistentDomain(forName: Bundle.main.bundleIdentifier ?? "")?["AppleLanguages"] as? [String],
-              let first = languages.first else { return .system }
-        return AppLanguage(rawValue: first) ?? .system
+    /// The language code actually used: the choice, or for System the best match
+    /// between macOS's preferred languages and the ones Ductus has.
+    var resolvedCode: String {
+        if self != .system { return rawValue }
+        let preferred = UserDefaults.standard.stringArray(forKey: "AppleLanguages") ?? Locale.preferredLanguages
+        return Bundle.preferredLocalizations(from: Bundle.main.localizations, forPreferences: preferred).first ?? "en"
+    }
+}
+
+@MainActor
+@Observable
+final class LanguageState {
+    static let shared = LanguageState()
+    private static let key = "appLanguage"
+
+    private(set) var language: AppLanguage
+    /// The locale every window uses for its text, dates and numbers.
+    private(set) var locale: Locale
+    /// Changed since launch: the menu bar still shows the language Ductus opened with.
+    private(set) var changedThisSession = false
+
+    private init() {
+        let saved = AppLanguage(rawValue: UserDefaults.standard.string(forKey: Self.key) ?? "") ?? .system
+        language = saved
+        locale = Locale(identifier: saved.resolvedCode)
+        Bundle.setUI(code: saved.resolvedCode)
     }
 
-    static func set(_ language: AppLanguage) {
+    func set(_ language: AppLanguage) {
+        self.language = language
+        UserDefaults.standard.set(language.rawValue, forKey: Self.key)
+        // For the menu bar, which macOS builds once at launch.
         if language == .system {
             UserDefaults.standard.removeObject(forKey: "AppleLanguages")
         } else {
             UserDefaults.standard.set([language.rawValue], forKey: "AppleLanguages")
         }
+        let code = language.resolvedCode
+        Bundle.setUI(code: code)
+        locale = Locale(identifier: code)
+        changedThisSession = true
     }
+}
 
-    /// Opens a fresh copy of Ductus and quits this one, so the new language shows.
-    @MainActor
-    static func relaunch() {
-        let configuration = NSWorkspace.OpenConfiguration()
-        configuration.createsNewApplicationInstance = true
-        NSWorkspace.shared.openApplication(at: Bundle.main.bundleURL, configuration: configuration) { _, _ in
-            DispatchQueue.main.async { NSApp.terminate(nil) }
+extension Bundle {
+    nonisolated(unsafe) private static var uiBundle: Bundle = .main
+
+    /// The strings for the chosen app language. Text made in code looks up here,
+    /// so it follows a language change without a relaunch.
+    static var ui: Bundle { uiBundle }
+
+    static func setUI(code: String) {
+        if let path = Bundle.main.path(forResource: code, ofType: "lproj"), let bundle = Bundle(path: path) {
+            uiBundle = bundle
+        } else {
+            uiBundle = .main
         }
+    }
+}
+
+/// Wraps a window's content so it redraws in the chosen language as soon as it changes.
+struct LocalizedRoot<Content: View>: View {
+    @ViewBuilder let content: Content
+    private let language = LanguageState.shared
+
+    var body: some View {
+        content
+            .environment(\.locale, language.locale)
+            // Rebuild on a change, so text worked out in code (not just Text views) follows too.
+            .id(language.locale.identifier)
     }
 }

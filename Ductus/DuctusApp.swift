@@ -13,7 +13,7 @@ struct DuctusApp: App {
 
     var body: some Scene {
         Window("Ductus", id: "practice") {
-            MainView()
+            LocalizedRoot { MainView() }
                 .environment(app.practice)
                 .environment(app.race)
                 .environment(app.textPractice)
@@ -62,13 +62,13 @@ struct DuctusApp: App {
         }
 
         Window("About Ductus", id: AboutView.windowID) {
-            AboutView()
+            LocalizedRoot { AboutView() }
         }
         .windowResizability(.contentSize)
         .defaultPosition(.center)
 
         Window("Software Update", id: UpdateView.windowID) {
-            UpdateView()
+            LocalizedRoot { UpdateView() }
                 .environment(app.updater)
         }
         .windowResizability(.contentSize)
@@ -238,10 +238,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         syncKoreanTyping()
 
         hud = KeyboardHUD(
-            content: FloatingKeyboard(
-                keyboard: keyboard, practice: practice, focus: panelFocus,
-                onDock: { [weak self] in self?.dockKeyboard() }
-            ),
+            content: LocalizedRoot {
+                FloatingKeyboard(
+                    keyboard: keyboard, practice: practice, focus: panelFocus,
+                    onDock: { [weak self] in self?.dockKeyboard() }
+                )
+            },
             focus: panelFocus
         )
         applySettings()
@@ -254,6 +256,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             MainActor.assumeIsolated { self?.applySettings() }
         }
         Log.success("Ductus ready")
+        #if DEBUG
+        // Test hook: switch the app language live after launch, the way the Settings picker does.
+        if let code = ProcessInfo.processInfo.environment["DUCTUS_DEBUG_SWITCH_LANGUAGE"],
+           let language = AppLanguage(rawValue: code) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { LanguageState.shared.set(language) }
+        }
+        #endif
         updater.reportLastUpdate()
         updater.checkAutomaticallyIfDue()
     }

@@ -68,7 +68,7 @@ struct HistoryView: View {
         case .drills:
             let recent = drills.suffix(50)
             let offset = drills.count - recent.count
-            points = recent.enumerated().map { (String(localized: "Drill \(offset + $0.offset + 1)"), $0.element.wpm, $0.element.accuracy) }
+            points = recent.enumerated().map { (String(localized: "Drill \(offset + $0.offset + 1)", bundle: .ui), $0.element.wpm, $0.element.accuracy) }
         }
         let wpmPoints = points.enumerated().compactMap { i, p in p.wpm.map { MetricPoint(index: i, label: p.label, value: $0) } }
         let accuracyPoints = points.enumerated().map { i, p in MetricPoint(index: i, label: p.label, value: p.accuracy * 100) }
@@ -183,7 +183,7 @@ struct HistoryView: View {
             let points = recent.enumerated().map {
                 MetricPoint(
                     index: $0.offset,
-                    label: String(localized: "Race \(offset + $0.offset + 1)") + ($0.element.timeLimit > 0 ? " (\(RaceModel.lengthLabel($0.element.timeLimit)))" : ""),
+                    label: String(localized: "Race \(offset + $0.offset + 1)", bundle: .ui) + ($0.element.timeLimit > 0 ? " (\(RaceModel.lengthLabel($0.element.timeLimit)))" : ""),
                     value: $0.element.wpm
                 )
             }
@@ -216,7 +216,7 @@ struct HistoryView: View {
             let recent = parts.suffix(50)
             let offset = parts.count - recent.count
             let points = recent.enumerated().compactMap { item in
-                item.element.wpm.map { MetricPoint(index: item.offset, label: String(localized: "Part \(offset + item.offset + 1)"), value: $0) }
+                item.element.wpm.map { MetricPoint(index: item.offset, label: String(localized: "Part \(offset + item.offset + 1)", bundle: .ui), value: $0) }
             }
             Card {
                 Text("Your texts").font(.headline)
@@ -308,7 +308,7 @@ private struct TotalsRow: View {
             tile("Drills", "\(totals.drills)")
             tile("Characters", totals.characters.formatted())
             tile("Days practiced", "\(totals.daysPracticed)")
-            tile("Streak", totals.currentStreak == 1 ? String(localized: "1 day") : String(localized: "\(totals.currentStreak) days"))
+            tile("Streak", totals.currentStreak == 1 ? String(localized: "1 day", bundle: .ui) : String(localized: "\(totals.currentStreak) days", bundle: .ui))
             tile("Best drill", totals.bestWPM.map { String(format: "%.0f WPM", $0) } ?? "-")
         }
     }

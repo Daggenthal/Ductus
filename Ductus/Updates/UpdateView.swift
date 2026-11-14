@@ -130,22 +130,22 @@ struct UpdateView: View {
     }
 
     static func versionLine(_ release: UpdateChecker.Release, current: AppVersion) -> String {
-        var parts = [String(localized: "You have \(current.description).")]
-        if let archive = release.archive { parts.append(String(localized: "Download size: \(megabytes(archive.size)).")) }
+        var parts = [String(localized: "You have \(current.description).", bundle: .ui)]
+        if let archive = release.archive { parts.append(String(localized: "Download size: \(megabytes(archive.size)).", bundle: .ui)) }
         if let date = release.published {
-            parts.append(String(localized: "Released \(date.formatted(date: .abbreviated, time: .omitted))."))
+            parts.append(String(localized: "Released \(date.formatted(date: .abbreviated, time: .omitted)).", bundle: .ui))
         }
         return parts.joined(separator: " ")
     }
 
     static func progressLine(_ progress: UpdateChecker.State.Progress) -> String {
         var line = "\(Int(progress.fraction * 100))% · "
-            + String(localized: "\(megabytes(progress.received)) of \(megabytes(progress.total))")
+            + String(localized: "\(megabytes(progress.received)) of \(megabytes(progress.total))", bundle: .ui)
         if progress.speed > 0 { line += " · \(megabytes(Int64(progress.speed)))/s" }
         if let left = progress.secondsLeft {
             line += " · " + (left < 60
-                ? String(localized: "about \(max(1, Int(left.rounded()))) s left")
-                : String(localized: "about \(Int((left / 60).rounded())) min left"))
+                ? String(localized: "about \(max(1, Int(left.rounded()))) s left", bundle: .ui)
+                : String(localized: "about \(Int((left / 60).rounded())) min left", bundle: .ui))
         }
         return line
     }

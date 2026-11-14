@@ -54,7 +54,7 @@ The engine is what actually makes the user faster. It is statistical, not a neur
 
 - UI text lives in `Ductus/Localizable.xcstrings` (String Catalog), translated into fr, es, de, it, pt-BR, nl, ja, zh-Hans and ko. The translations were made with AI; Settings says so next to the App language picker. Any new UI string needs all nine translations (same placeholders, no em-dashes, Apple's macOS terminology for that language).
 - Display helpers take `LocalizedStringKey`; text built in models uses `String(localized:)`. Names (Ductus, GitHub, Tatoeba, ...), key labels and units stay as they are.
-- The App language picker sets the app's `AppleLanguages` (empty = follow macOS) and offers a relaunch.
+- The App language switches live: `LanguageState` holds the choice, every window is wrapped in `LocalizedRoot` (sets `\.locale` and rebuilds on change), and text made in code uses `String(localized: ..., bundle: .ui)`. The choice is also written to `AppleLanguages` so the menu bar (built by macOS at launch) follows on the next launch. The catalog includes an `en` localization so switching back to English works live. Debug builds: `DUCTUS_DEBUG_SWITCH_LANGUAGE=ko` switches 3 s after launch, for testing.
 
 ## Project conventions
 

@@ -193,9 +193,9 @@ enum RaceTextMode: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .allLetters: String(localized: "All letters")
-        case .unlocked: String(localized: "Unlocked only")
-        case .sentences: String(localized: "Sentences")
+        case .allLetters: String(localized: "All letters", bundle: .ui)
+        case .unlocked: String(localized: "Unlocked only", bundle: .ui)
+        case .sentences: String(localized: "Sentences", bundle: .ui)
         }
     }
 }

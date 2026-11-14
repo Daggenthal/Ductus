@@ -13,7 +13,7 @@ struct FloatingStatsBar: View {
             Item(title: "Now", value: wpm(practice.session?.liveWPM), detail: percent(practice.session?.liveAccuracy))
             Item(title: "Last drill", value: wpm(practice.lastSummary?.wpm), detail: percent(practice.lastSummary?.accuracy))
             if practice.isWarmUp {
-                Item(title: "Focus", value: String(localized: "Warm-up"), detail: "")
+                Item(title: "Focus", value: String(localized: "Warm-up", bundle: .ui), detail: "")
             } else if let focus = practice.focusKey {
                 Item(title: "Focus", value: focus.uppercased(), detail: "")
             }

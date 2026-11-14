@@ -41,8 +41,7 @@ struct SettingsView: View {
     @AppStorage(UpdateChecker.Keys.automatic) private var checkAutomatically = false
     @AppStorage(SettingsKey.debugMode) private var debugMode = false
     @AppStorage(SettingsKey.fingerZones) private var fingerZones = false
-    @State private var appLanguage = AppLanguage.current
-    @State private var languageChanged = false
+
     /// The Debug section is hidden unless Option is held when Settings opens, or debug is on.
     @State private var showDebug = false
 
@@ -57,18 +56,14 @@ struct SettingsView: View {
                 .pickerStyle(.segmented)
                 note("System follows your macOS setting. Applies to the floating keyboard too.")
                 Picker("App language", selection: Binding(
-                    get: { appLanguage },
-                    set: { appLanguage = $0; AppLanguage.set($0); languageChanged = true }
+                    get: { LanguageState.shared.language },
+                    set: { LanguageState.shared.set($0) }
                 )) {
                     ForEach(AppLanguage.allCases) { Text(verbatim: $0.nativeName).tag($0) }
                 }
                 note("Translated with AI, so some wording may not be completely accurate.", color: Color.secondary.opacity(0.7))
-                if languageChanged {
-                    HStack {
-                        note("Ductus shows the new language after it reopens.")
-                        Spacer()
-                        Button("Relaunch Ductus") { AppLanguage.relaunch() }
-                    }
+                if LanguageState.shared.changedThisSession {
+                    note("The menu bar changes the next time Ductus opens.")
                 }
                 Picker("Practice language", selection: $practiceLanguage) {
                     Text("Automatic (\(PracticeSettings.detectedLanguage(for: keyboard.layout).nativeName))").tag("auto")

@@ -49,7 +49,7 @@ struct PracticeView: View {
             Stat(title: "Last drill", value: practice.lastSummary?.wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
             Stat(title: "Accuracy", value: practice.lastSummary.map { String(format: "%.0f%%", $0.accuracy * 100) } ?? "-")
             if practice.isWarmUp {
-                Stat(title: "Focus key", value: String(localized: "Warm-up"))
+                Stat(title: "Focus key", value: String(localized: "Warm-up", bundle: .ui))
                     .help("An easy drill with only the keys you have mastered, to start a session")
             } else if let focus = practice.focusKey {
                 Stat(title: "Focus key", value: focus.uppercased())
