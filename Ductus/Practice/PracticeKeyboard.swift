@@ -12,6 +12,8 @@ struct PracticeKeyboard: View {
     /// Buttons for the top-left corner (the floating panel's Dock button).
     var controls: AnyView?
     @AppStorage(SettingsKey.showPhysicalLabels) private var showPhysicalLabels = true
+    @AppStorage(SettingsKey.fadeMastered) private var fadeMastered = true
+    @AppStorage(SettingsKey.textScale) private var textScale = 1.0
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
@@ -31,7 +33,7 @@ struct PracticeKeyboard: View {
                 .padding(.top, showsStats ? 12 : 8)
             }
             if showsDrill, let session = practice.session {
-                DrillStrip(session: session, lastKeyWrong: practice.lastKeyWrong)
+                DrillStrip(session: session, lastKeyWrong: practice.lastKeyWrong, fontSize: 22 * textScale)
                     .id(practice.drillID)
                     .padding(.horizontal, 12)
                     .padding(.top, 10)
@@ -40,7 +42,8 @@ struct PracticeKeyboard: View {
                 keyboard: keyboard,
                 nextCharacter: practice.nextCharacter,
                 unlockedLetters: practice.unlockedLetters,
-                showPhysicalLabels: showPhysicalLabels
+                showPhysicalLabels: showPhysicalLabels,
+                mastered: fadeMastered ? practice.masteredLetters : []
             )
         }
         .background(KeyboardPalette(colorScheme).backing, in: shape)

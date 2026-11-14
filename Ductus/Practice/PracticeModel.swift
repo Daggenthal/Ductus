@@ -11,8 +11,9 @@ final class PracticeModel {
     private(set) var trainer: Trainer?
     private(set) var session: TypingSession?
     private(set) var lastSummary: SessionSummary?
-    /// The last key pressed was wrong (the cursor stays until it is right).
+    /// The last key pressed was wrong and the cursor is waiting (stop-on-mistake mode).
     private(set) var lastKeyWrong = false
+    /// Short banner: a new key unlocked, or the daily goal reached.
     private(set) var unlockMessage: String?
     private(set) var loadError: String?
     private(set) var drillsCompleted = 0
@@ -28,6 +29,9 @@ final class PracticeModel {
 
     @ObservationIgnored private var store: ProgressStore?
     @ObservationIgnored private var wordList: WordList?
+    @ObservationIgnored private var sentenceList: SentenceList?
+    /// Called after each keystroke with whether it was correct (for sounds).
+    @ObservationIgnored var onKeystroke: ((Bool) -> Void)?
     @ObservationIgnored private var layout: KeyboardLayout?
     @ObservationIgnored private var rng = SystemRandomNumberGenerator()
 
@@ -74,16 +78,19 @@ final class PracticeModel {
             do {
                 let stats = try JSONDecoder().decode(StatsTracker.self, from: saved.statsData)
                 let curriculum = Curriculum(order: Array(saved.unlockOrder), unlockedCount: saved.unlockedCount)
-                trainer = Trainer(wordList: words, stats: stats, curriculum: curriculum)
+                trainer = Trainer(wordList: words, stats: stats, curriculum: curriculum,
+                                  progression: PracticeSettings.progression)
                 Log.success("Restored \(layoutName): \(saved.drills.count) drills, \(curriculum.unlockedCount) letters unlocked")
             } catch {
                 // History is kept; only the live key stats start over.
                 Log.error("Saved key stats for \(layoutName) could not be read, starting them fresh: \(error)")
-                trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [])
+                trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [],
+                                  progression: PracticeSettings.progression)
             }
         } else {
             profile = nil
-            trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [])
+            trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [],
+                              progression: PracticeSettings.progression)
             Log.success("New progress for \(layoutName) (starting keys: \(String(trainer!.curriculum.unlocked)))")
         }
         nextDrill()
@@ -103,18 +110,66 @@ final class PracticeModel {
         }
     }
 
+    private func loadSentences() -> SentenceList? {
+        if let sentenceList { return sentenceList }
+        do {
+            sentenceList = try SentenceList.bundledEnglish()
+            return sentenceList
+        } catch {
+            Log.error("Could not load sentences: \(error)")
+            return nil
+        }
+    }
+
+    // MARK: - Settings
+
+    /// Applies changed settings. Targets take effect at once; text options from the next drill.
+    func applySettings() {
+        let progression = PracticeSettings.progression
+        if let trainer, trainer.scorer.config != progression {
+            self.trainer?.scorer = WeaknessScorer(config: progression)
+            Log.info("Unlock targets: \(Int(progression.targetWPM)) WPM, \(Int(progression.targetAccuracy * 100))%")
+            // A lower target can unlock letters right away.
+            if let unlocked = self.trainer?.advanceIfReady() { noteUnlock(unlocked) }
+        }
+    }
+
     // MARK: - Practice
+
+    /// Sentences made only of unlocked letters. Sentence drills need enough of these.
+    var sentencePool: [SentenceList.Entry] {
+        guard let unlocked = trainer?.curriculum.unlockedSet else { return [] }
+        return loadSentences()?.sentences(using: unlocked) ?? []
+    }
+
+    static let minSentencePool = 30
+
+    var sentenceDrillsAvailable: Bool { sentencePool.count >= Self.minSentencePool }
 
     func nextDrill() {
         guard let trainer else { return }
-        guard let text = trainer.nextDrill(using: &rng) else {
+        guard let text = makeDrillText(trainer) else {
             Log.error("No words can be typed with the unlocked letters")
             return
         }
-        session = TypingSession(text: text)
+        session = TypingSession(text: text, mistakeMode: PracticeSettings.mistakeMode)
         drillID += 1
         lastKeyWrong = false
         Log.debug("Drill (focus \(trainer.focusKey.map(String.init) ?? "-")): \(text)")
+    }
+
+    /// Sentence drill (if on and enough sentences fit), otherwise a word drill
+    /// with optional capitals and punctuation.
+    private func makeDrillText(_ trainer: Trainer) -> String? {
+        if PracticeSettings.sentenceDrills {
+            let pool = sentencePool
+            if pool.count >= Self.minSentencePool {
+                return SentenceList.pick(from: pool, minCharacters: 90,
+                                         weakness: trainer.drillRequest().keyWeakness, using: &rng)
+            }
+        }
+        guard let words = trainer.nextDrill(using: &rng) else { return nil }
+        return TextDecorator.decorate(words, style: PracticeSettings.textStyle, using: &rng)
     }
 
     /// Feeds one typed character. Returns `true` if practice consumed it.
@@ -122,12 +177,9 @@ final class PracticeModel {
         guard trainer != nil, session != nil else { return false }
         guard let keystroke = session?.type(character, keyCode: keyCode, at: time) else { return true }
 
-        lastKeyWrong = !keystroke.isCorrect
-        if let unlocked = trainer?.record(keystroke) {
-            unlockMessage = "New key unlocked: \(unlocked.uppercased())"
-            Log.success("Unlocked \(unlocked)")
-            ensureProfile()?.unlocks.append(UnlockEntry(letter: String(unlocked), date: Date()))
-        }
+        lastKeyWrong = !keystroke.isCorrect && session?.mistakeMode == .stop
+        onKeystroke?(keystroke.isCorrect)
+        if let unlocked = trainer?.record(keystroke) { noteUnlock(unlocked) }
 
         if let session, session.isComplete {
             lastSummary = session.summary
@@ -138,6 +190,19 @@ final class PracticeModel {
             nextDrill()
         }
         return true
+    }
+
+    /// Backspace (or Option-Backspace for a word) in "fix with Backspace" mode.
+    func backspace(word: Bool) -> Bool {
+        guard session?.mistakeMode == .backspace else { return false }
+        if word { session?.backspaceWord() } else { session?.backspace() }
+        return true
+    }
+
+    private func noteUnlock(_ letter: Character) {
+        unlockMessage = "New key unlocked: \(letter.uppercased())"
+        Log.success("Unlocked \(letter)")
+        ensureProfile()?.unlocks.append(UnlockEntry(letter: String(letter), date: Date()))
     }
 
     // MARK: - Shared with races
@@ -160,16 +225,18 @@ final class PracticeModel {
     /// stats, so practice targets what races expose. Unlocks can happen here too.
     func recordExternal(_ keystroke: Keystroke) {
         guard let unlocked = trainer?.record(keystroke) else { return }
-        unlockMessage = "New key unlocked: \(unlocked.uppercased())"
-        Log.success("Unlocked \(unlocked) during a race")
-        ensureProfile()?.unlocks.append(UnlockEntry(letter: String(unlocked), date: Date()))
+        noteUnlock(unlocked)
     }
 
     func saveRace(_ entry: RaceEntry) {
+        let before = todayPracticeTime
         guard let profile = ensureProfile() else { return }
         profile.races.append(entry)
         persist()
+        checkDailyGoal(before: before)
     }
+
+    var sentences: SentenceList? { loadSentences() }
 
     /// Races for the current layout, oldest first.
     var raceHistory: [RaceEntry] {
@@ -208,6 +275,8 @@ final class PracticeModel {
     }
 
     private func recordDrill(_ summary: SessionSummary, activeTime: TimeInterval) {
+        let before = todayPracticeTime
+        defer { checkDailyGoal(before: before) }
         guard let trainer, let profile = ensureProfile() else { return }
         let now = Date()
         profile.drills.append(DrillEntry(DrillRecord(
@@ -241,7 +310,55 @@ final class PracticeModel {
         Log.debug(String(format: "Drill done: %.0f WPM, %.0f%%", summary.wpm ?? 0, summary.accuracy * 100))
     }
 
+    // MARK: - Daily goal
+
+    /// Practice time today: drill typing time plus race lengths.
+    var todayPracticeTime: TimeInterval {
+        let calendar = Calendar.current
+        let drills = (profile?.drills ?? []).filter { calendar.isDateInToday($0.date) }.reduce(0) { $0 + $1.activeTime }
+        let races = (profile?.races ?? []).filter { calendar.isDateInToday($0.date) }.reduce(0) { $0 + $1.duration }
+        return drills + races
+    }
+
+    private func checkDailyGoal(before: TimeInterval) {
+        let goal = TimeInterval(PracticeSettings.dailyGoalMinutes * 60)
+        guard goal > 0, before < goal, todayPracticeTime >= goal else { return }
+        unlockMessage = "Daily goal reached 🎉"
+        Log.success("Daily goal reached")
+    }
+
+    // MARK: - Export
+
+    /// Drills and races as CSV, one row each, oldest first.
+    func historyCSV() -> String {
+        let iso = ISO8601DateFormatter()
+        var rows = ["type,date,length,characters,wpm,accuracy,focus_or_worst_keys"]
+        for drill in drillHistory {
+            rows.append([
+                "drill", iso.string(from: drill.date), String(format: "%.1f", drill.duration),
+                "\(drill.characters)", drill.wpm.map { String(format: "%.1f", $0) } ?? "",
+                String(format: "%.3f", drill.accuracy), drill.focusKey ?? "",
+            ].joined(separator: ","))
+        }
+        for race in raceHistory {
+            rows.append([
+                "race", iso.string(from: race.date), String(format: "%.0f", race.duration),
+                "\(race.characters)", String(format: "%.1f", race.wpm),
+                String(format: "%.3f", race.accuracy), race.worstKeys,
+            ].joined(separator: ","))
+        }
+        return rows.joined(separator: "\n") + "\n"
+    }
+
     // MARK: - Display helpers
+
+    /// Letters that meet the unlock targets (for fading keyboard labels).
+    var masteredLetters: Set<Character> {
+        guard let trainer else { return [] }
+        return Set(trainer.stats.keys.compactMap { key, stats in
+            key.isLetter && trainer.scorer.meetsTarget(stats) ? key : nil
+        })
+    }
 
     var nextCharacter: Character? { session?.currentExpected }
 

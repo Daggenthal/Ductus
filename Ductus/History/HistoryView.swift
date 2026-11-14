@@ -8,6 +8,7 @@ struct HistoryView: View {
     @Environment(KeyboardState.self) private var keyboard
     @State private var range: ChartRange = .days
     @State private var trendLetter: String?
+    @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 0
 
     var body: some View {
         let drills = practice.drillHistory
@@ -26,7 +27,14 @@ struct HistoryView: View {
                     )
                     .frame(maxWidth: .infinity, minHeight: 300)
                 } else {
-                    TotalsRow(totals: HistoryMath.totals(drills))
+                    HStack(spacing: 12) {
+                        TotalsRow(totals: HistoryMath.totals(drills))
+                        if dailyGoal > 0 {
+                            DailyGoalRing(practiced: practice.todayPracticeTime, goalMinutes: dailyGoal)
+                                .padding(14)
+                                .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        }
+                    }
                     speedAndAccuracy(drills)
                     heatmap
                     keyLists

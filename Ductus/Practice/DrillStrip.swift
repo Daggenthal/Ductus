@@ -47,8 +47,17 @@ struct DrillStrip: View {
         let text = session.text
         let position = session.position
 
-        var done = AttributedString(String(text[window.lowerBound..<position]))
-        done.foregroundColor = palette.fadedText
+        var done = AttributedString()
+        for i in window.lowerBound..<position {
+            var piece = AttributedString(String(text[i]))
+            if session.isError(at: i) {
+                piece.foregroundColor = .red
+                piece.backgroundColor = .red.opacity(0.15)
+            } else {
+                piece.foregroundColor = palette.fadedText
+            }
+            done += piece
+        }
 
         var current = AttributedString(position < text.count ? String(text[position]) : "")
         current.foregroundColor = palette.text

@@ -9,6 +9,8 @@ struct RaceView: View {
     @Environment(KeyboardState.self) private var keyboard
     @Environment(AppUIState.self) private var ui
     @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
+    @AppStorage(SettingsKey.textScale) private var textScale = 1.0
+    @AppStorage(SettingsKey.fadeMastered) private var fadeMastered = true
 
     var body: some View {
         @Bindable var race = race
@@ -19,13 +21,12 @@ struct RaceView: View {
                 }
                 .pickerStyle(.segmented)
                 .fixedSize()
-                Picker("Letters", selection: $race.allLetters) {
-                    Text("All letters").tag(true)
-                    Text("Unlocked only").tag(false)
+                Picker("Text", selection: $race.textMode) {
+                    ForEach(RaceTextMode.allCases) { Text($0.title).tag($0) }
                 }
                 .pickerStyle(.segmented)
                 .fixedSize()
-                .help("Unlocked only: your unlocked letters, with words weighted toward your weak keys like practice")
+                .help("Unlocked only: your unlocked letters, weighted toward your weak keys like practice. Sentences: real sentences from books.")
                 Spacer()
                 Button("New Race") { race.newRace() }
                     .help("⌘N")
@@ -39,7 +40,7 @@ struct RaceView: View {
                 }
             } else if let session = race.session {
                 LiveRace(session: session, startedAt: race.startedAt, timeLimit: race.timeLimit, bestWPM: race.bestWPM)
-                RaceTextView(session: session, lastKeyWrong: race.lastKeyWrong)
+                RaceTextView(session: session, lastKeyWrong: race.lastKeyWrong, fontSize: 28 * textScale)
                     .id(race.raceID)
                 if race.startedAt == nil {
                     Text("The clock starts on your first key.")
@@ -54,7 +55,8 @@ struct RaceView: View {
                 KeyboardView(
                     keyboard: keyboard,
                     nextCharacter: race.session?.currentExpected,
-                    unlockedLetters: race.allLetters ? nil : practice.unlockedLetters,
+                    unlockedLetters: race.textMode == .unlocked ? practice.unlockedLetters : nil,
+                    mastered: fadeMastered ? practice.masteredLetters : [],
                     animatesPresses: false
                 )
                 .background(ThemedKeyboardBacking())
@@ -62,7 +64,7 @@ struct RaceView: View {
             }
 
             RaceRecord(races: practice.raceHistory.filter {
-                $0.timeLimit == race.timeLimit && $0.allLetters == race.allLetters
+                $0.timeLimit == race.timeLimit && $0.mode == race.textMode
             })
         }
         .padding(32)
@@ -82,7 +84,7 @@ private struct LiveRace: View {
         TimelineView(.animation(minimumInterval: 1.0 / 30, paused: startedAt == nil)) { context in
             let elapsed = min(Double(timeLimit), startedAt.map { context.date.timeIntervalSince($0) } ?? 0)
             let remaining = Double(timeLimit) - elapsed
-            let typed = Double(session.position)
+            let typed = Double(session.correctCount)
             let wpm = elapsed > 1 ? typed / 5 / (elapsed / 60) : nil
             // Bars are measured against the characters your best would type in this length.
             let bestTotal = bestWPM.map { $0 * 5 * Double(timeLimit) / 60 }

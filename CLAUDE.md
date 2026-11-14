@@ -41,7 +41,7 @@ The engine is what actually makes the user faster. It is statistical, not a neur
 - Highlight keys on press. Inside the app this uses normal key events.
 - Optional heatmap mode: tint each key by weakness using engine data.
 
-### 4. System-wide highlighting (opt-in)
+### 4. System-wide highlighting (opt-in, implemented in `Ductus/Keyboard/GlobalKeyMonitor.swift`)
 - Highlighting keys while typing in OTHER apps needs a global listener (`CGEventTap` or `NSEvent` global monitor) and the Input Monitoring permission.
 - This is keylogger territory, so: opt-in only, clearly explained in the UI, keep events in memory only, never write raw keystrokes to disk outside practice sessions. macOS secure input (password fields) blocks taps, which is correct behavior.
 

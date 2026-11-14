@@ -29,6 +29,10 @@ final class KeyboardState {
     /// Return `true` to swallow the event (so the window does not beep).
     @ObservationIgnored var onCharacter: ((Character, UInt16, TimeInterval) -> Bool)?
 
+    /// Called for Backspace (`true` = Option-Backspace, delete a word).
+    /// Return `true` to swallow the event.
+    @ObservationIgnored var onBackspace: ((Bool) -> Bool)?
+
     /// Called when the active input source changes to a different layout.
     @ObservationIgnored var onLayoutChange: ((KeyboardLayout?) -> Void)?
 
@@ -82,7 +86,31 @@ final class KeyboardState {
         character == " " ? 49 : layout?.keyCode(for: character)
     }
 
+    /// `true` if typing `character` needs Shift on the active layout.
+    func needsShift(for character: Character) -> Bool {
+        guard character != " ", let layout else { return false }
+        let string = String(character)
+        return !layout.plain.values.contains(string) && layout.shifted.values.contains(string)
+    }
+
     // MARK: - Events
+
+    /// Key events from other apps (system-wide highlighting). Only lights keys
+    /// up; never types into practice.
+    func handleExternal(_ event: NSEvent) {
+        switch event.type {
+        case .keyDown:
+            syncModifiers(event.modifierFlags)
+            pressed.insert(event.keyCode)
+        case .keyUp:
+            syncModifiers(event.modifierFlags)
+            pressed.remove(event.keyCode)
+        case .flagsChanged:
+            syncModifiers(event.modifierFlags, changedKey: event.keyCode)
+        default:
+            break
+        }
+    }
 
     /// Returns `false` to swallow the event.
     private func handle(_ event: NSEvent) -> Bool {
@@ -91,6 +119,11 @@ final class KeyboardState {
             syncModifiers(event.modifierFlags)
             pressed.insert(event.keyCode)
             let modifiers = event.modifierFlags.intersection([.command, .control, .option])
+            // Backspace (51), plain or with Option. Repeats are fine here.
+            if event.keyCode == 51, modifiers.subtracting(.option).isEmpty,
+               onBackspace?(modifiers.contains(.option)) == true {
+                return false
+            }
             guard modifiers.isEmpty, !event.isARepeat,
                   let character = event.characters?.first,
                   character == " " || !(character.isWhitespace || character.isNewline),

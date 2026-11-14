@@ -14,7 +14,12 @@ Early development. Right now the repo has the core engine with tests:
 - Drills made of real English words, weighted toward your weakest keys.
 - Progressive unlocking: Start on your layout's home row, unlock the next letter once every current key hits the target speed and accuracy (35 WPM and 95% by default).
 
-The Mac app has a practice window, an on-screen keyboard that follows your active layout (docked or floating), saved progress per layout, and a history page with charts, a weak-key heatmap and an unlock timeline.
+The Mac app has:
+
+- Practice, Race and History tabs. Races are timed (30s to 5 min) against your own best, with all letters, unlocked letters only, or real sentences.
+- An on-screen keyboard that follows your active layout, docked or floating. It fades keys you have mastered, and can light up while you type in other apps (opt-in, needs Input Monitoring).
+- Options for unlock targets, stop-on-mistake or fix-with-Backspace, capitals, punctuation, sentence drills, text size, a daily goal and key sounds.
+- Saved progress per layout, history with charts, a weak-key heatmap, and CSV export.
 
 ## Layout
 

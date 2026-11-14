@@ -4,7 +4,8 @@
 Downloads plain-text books from Project Gutenberg, strips the Gutenberg
 header and footer (the license text is not part of the public-domain work),
 counts lowercase words, drops proper nouns, and writes `word<TAB>count`
-lines sorted by count.
+lines sorted by count. Also writes a sample of clean sentences, one per line,
+for sentence drills and races.
 
 Usage:
     python3 scripts/build_corpus.py --cache <download dir> [--out <path>]
@@ -16,6 +17,7 @@ book list or filters change. See CORPUS.md for the source list.
 import argparse
 import collections
 import pathlib
+import random
 import re
 import sys
 import time
@@ -60,6 +62,33 @@ SINGLE_LETTER_WORDS = {"a"}
 # Drops fragments like "ll" (from "we'll" split by odd quoting) and "hm".
 VOWEL = re.compile(r"[aeiouy]")
 
+# Sentences: plain letters and simple punctuation, sensible length.
+MAX_SENTENCES = 4000
+SENTENCE_OK = re.compile(r"^[A-Z][A-Za-z ,.;:!?'-]+[.!?]$")
+SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z])")
+ABBREVIATION_END = re.compile(r"\b(Mr|Mrs|Dr|St|Mme|Messrs|Jr|Sr)\.$")
+
+
+def extract_sentences(body: str) -> list[str]:
+    """Clean sentences from a book body. Dialogue (double quotes), numbers,
+    italics markers and shouting are dropped rather than repaired."""
+    found = []
+    for paragraph in re.split(r"\n\s*\n", body):
+        text = " ".join(paragraph.split())
+        text = text.replace("\u2014", " -- ").replace("\u201c", '"').replace("\u201d", '"')
+        for sentence in SENTENCE_SPLIT.split(text):
+            sentence = sentence.strip()
+            if not 40 <= len(sentence) <= 140:
+                continue
+            if not SENTENCE_OK.match(sentence) or "--" in sentence or "  " in sentence:
+                continue
+            if ABBREVIATION_END.search(sentence):
+                continue
+            if any(word.isupper() and len(word) > 1 for word in sentence.split()):
+                continue
+            found.append(sentence)
+    return found
+
 
 def fetch(book_id: int, cache: pathlib.Path) -> str:
     path = cache / f"pg{book_id}.txt"
@@ -84,15 +113,19 @@ def main() -> int:
     parser.add_argument("--cache", required=True, type=pathlib.Path, help="folder for downloaded books")
     parser.add_argument("--out", type=pathlib.Path,
                         default=pathlib.Path("DuctusEngine/Sources/DuctusEngine/Resources/english-words.tsv"))
+    parser.add_argument("--sentences-out", type=pathlib.Path,
+                        default=pathlib.Path("DuctusEngine/Sources/DuctusEngine/Resources/english-sentences.txt"))
     args = parser.parse_args()
     args.cache.mkdir(parents=True, exist_ok=True)
 
     total = collections.Counter()
     lowercase = collections.Counter()
+    sentences: list[str] = []
 
     for book_id, title in BOOKS.items():
         body = strip_gutenberg(fetch(book_id, args.cache), book_id)
         body = body.replace("’", "'").replace("‘", "'")
+        sentences.extend(extract_sentences(body))
         for token in TOKEN.findall(body):
             if "'" in token:
                 continue  # contractions and possessives are skipped for now
@@ -118,6 +151,13 @@ def main() -> int:
         for word, count in kept:
             f.write(f"{word}\t{count}\n")
     print(f"wrote {len(kept)} words to {args.out}", file=sys.stderr)
+
+    unique = sorted(set(sentences))
+    sample = random.Random(42).sample(unique, min(MAX_SENTENCES, len(unique)))
+    with args.sentences_out.open("w", encoding="utf-8") as f:
+        for sentence in sample:
+            f.write(sentence + "\n")
+    print(f"wrote {len(sample)} of {len(unique)} sentences to {args.sentences_out}", file=sys.stderr)
     return 0
 
 

@@ -40,10 +40,9 @@ final class RaceModel {
             newRace()
         }
     }
-    /// `false`: only letters unlocked in practice.
-    var allLetters: Bool {
+    var textMode: RaceTextMode {
         didSet {
-            UserDefaults.standard.set(allLetters, forKey: "raceAllLetters")
+            UserDefaults.standard.set(textMode.rawValue, forKey: "raceTextMode")
             newRace()
         }
     }
@@ -61,15 +60,17 @@ final class RaceModel {
         defaults.register(defaults: ["raceTimeLimit": 60, "raceAllLetters": true])
         let saved = defaults.integer(forKey: "raceTimeLimit")
         timeLimit = Self.timeLimitOptions.contains(saved) ? saved : 60
-        allLetters = defaults.bool(forKey: "raceAllLetters")
+        // Older versions stored a true/false "all letters" choice.
+        textMode = RaceTextMode(rawValue: defaults.string(forKey: "raceTextMode") ?? "")
+            ?? (defaults.bool(forKey: "raceAllLetters") ? .allLetters : .unlocked)
     }
 
     var isRunning: Bool { startedAt != nil && result == nil }
 
-    /// Best WPM for this length and letter setting.
+    /// Best WPM for this length and text mode.
     var bestWPM: Double? {
         practice.raceHistory
-            .filter { $0.timeLimit == timeLimit && $0.allLetters == allLetters }
+            .filter { $0.timeLimit == timeLimit && $0.mode == textMode }
             .map(\.wpm).max()
     }
 
@@ -80,7 +81,7 @@ final class RaceModel {
             Log.error("No words available for a race")
             return
         }
-        session = TypingSession(text: text)
+        session = TypingSession(text: text, mistakeMode: PracticeSettings.mistakeMode)
         lastKeyWrong = false
         result = nil
         startedAt = nil
@@ -94,13 +95,21 @@ final class RaceModel {
         guard let keystroke = session?.type(character, keyCode: keyCode, at: time) else { return true }
 
         if startedAt == nil { start() }
-        lastKeyWrong = !keystroke.isCorrect
+        lastKeyWrong = !keystroke.isCorrect && session?.mistakeMode == .stop
+        practice.onKeystroke?(keystroke.isCorrect)
         practice.recordExternal(keystroke)
 
         // Keep a comfortable amount of text ahead of the cursor.
         if let session, session.text.count - session.position < 120, let more = moreWords() {
             self.session?.extend(with: " " + more)
         }
+        return true
+    }
+
+    /// Backspace (or Option-Backspace for a word) in "fix with Backspace" mode.
+    func backspace(word: Bool) -> Bool {
+        guard result == nil, session?.mistakeMode == .backspace else { return false }
+        if word { session?.backspaceWord() } else { session?.backspace() }
         return true
     }
 
@@ -116,20 +125,28 @@ final class RaceModel {
     }
 
     private func moreWords() -> String? {
-        if !allLetters {
+        let words: String?
+        switch textMode {
+        case .sentences:
+            // Real sentences already have their own capitals and punctuation.
+            guard let sentences = practice.sentences else { return nil }
+            return SentenceList.pick(from: sentences.entries, minCharacters: 250, using: &rng)
+        case .unlocked:
             // Same word picking as practice: unlocked letters, weighted toward
             // weak keys. Picked fresh for each chunk, so it follows the stats live.
-            return practice.practiceStyleWords(atLeast: Self.chunkWords)
+            words = practice.practiceStyleWords(atLeast: Self.chunkWords)
+        case .allLetters:
+            guard let list = practice.words else { return nil }
+            words = Race.text(from: list, wordCount: Self.chunkWords, using: &rng)
         }
-        guard let words = practice.words else { return nil }
-        return Race.text(from: words, wordCount: Self.chunkWords, using: &rng)
+        return words.map { TextDecorator.decorate($0, style: PracticeSettings.textStyle, using: &rng) }
     }
 
     private func finish() {
         guard let session, result == nil else { return }
         let previousBest = bestWPM
         let minutes = Double(timeLimit) / 60
-        let characters = session.position
+        let characters = session.correctCount
         let wpm = Double(characters) / 5 / minutes
         let accuracy = session.liveAccuracy ?? 0
         let worst = Race.worstKeys(Race.keyResults(session.keystrokes))
@@ -142,9 +159,26 @@ final class RaceModel {
         )
         practice.saveRace(RaceEntry(
             date: Date(), wordCount: 0, characters: characters, duration: TimeInterval(timeLimit),
-            wpm: wpm, accuracy: accuracy, allLetters: allLetters,
-            worstKeys: String(worst.map(\.key)), timeLimit: timeLimit
+            wpm: wpm, accuracy: accuracy, allLetters: textMode != .unlocked,
+            worstKeys: String(worst.map(\.key)), timeLimit: timeLimit, textMode: textMode.rawValue
         ))
         Log.success(String(format: "Race done: %.0f WPM, %.0f%% over %ds", wpm, accuracy * 100, timeLimit))
+    }
+}
+
+/// What a race is made of.
+enum RaceTextMode: String, CaseIterable, Identifiable {
+    case allLetters = "all"
+    case unlocked
+    case sentences
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .allLetters: "All letters"
+        case .unlocked: "Unlocked only"
+        case .sentences: "Sentences"
+        }
     }
 }

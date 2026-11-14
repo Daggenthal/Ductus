@@ -117,10 +117,16 @@ final class RaceEntry {
     var worstKeys: String
     /// Race length in seconds. 0 for older word-count races.
     var timeLimit: Int = 0
+    /// `RaceTextMode` raw value. Empty for older races (use `allLetters`).
+    var textMode: String = ""
     var profile: LayoutProfile?
 
+    var mode: RaceTextMode {
+        RaceTextMode(rawValue: textMode) ?? (allLetters ? .allLetters : .unlocked)
+    }
+
     init(date: Date, wordCount: Int, characters: Int, duration: TimeInterval, wpm: Double,
-         accuracy: Double, allLetters: Bool, worstKeys: String, timeLimit: Int) {
+         accuracy: Double, allLetters: Bool, worstKeys: String, timeLimit: Int, textMode: String) {
         self.date = date
         self.wordCount = wordCount
         self.characters = characters
@@ -130,5 +136,6 @@ final class RaceEntry {
         self.allLetters = allLetters
         self.worstKeys = worstKeys
         self.timeLimit = timeLimit
+        self.textMode = textMode
     }
 }

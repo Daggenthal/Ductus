@@ -23,7 +23,9 @@
 | 16 | Peter Pan, J. M. Barrie |
 | 215 | The Call of the Wild, Jack London |
 
-The works are public domain in the United States. The Project Gutenberg header and footer (license and trademark text) are stripped before counting, and only word counts are shipped, not the texts.
+`english-sentences.txt` is a sample of 4,000 sentences from the same books, for sentence drills and races. Only plain sentences are kept: letters, spaces and simple punctuation, 40 to 140 characters, no dialogue quotes, numbers or all-caps words.
+
+The works are public domain in the United States. The Project Gutenberg header and footer (license and trademark text) are stripped before counting, and only word counts and the sentence sample are shipped, not the full texts.
 
 To rebuild:
 

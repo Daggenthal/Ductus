@@ -143,6 +143,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let panelFocus = PanelFocus()
     let ui = AppUIState()
     lazy var race = RaceModel(practice: practice)
+    private let sounds = KeySounds()
+    private lazy var globalMonitor = GlobalKeyMonitor { [weak self] event in
+        self?.keyboard.handleExternal(event)
+    }
     private var store: ProgressStore?
     /// Last seen pop-out state, to react only to changes (not at launch).
     private var lastPoppedOut: Bool?
@@ -152,6 +156,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var defaultsObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        SettingsKey.registerPracticeDefaults()
         UserDefaults.standard.register(defaults: [
             SettingsKey.showKeyboard: true,
             SettingsKey.keyboardPoppedOut: false,
@@ -180,9 +185,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             case .history: return false
             }
         }
+        keyboard.onBackspace = { [weak self] word in
+            guard let self, let window = NSApp.keyWindow, !(window.firstResponder is NSTextView) else { return false }
+            if window.identifier == KeyboardHUD.panelID { return self.practice.backspace(word: word) }
+            guard window.title == "Ductus" else { return false }
+            switch self.ui.tab {
+            case .practice: return self.practice.backspace(word: word)
+            case .race: return self.race.backspace(word: word)
+            case .history: return false
+            }
+        }
         ui.onTabChange = { [weak self] in self?.applySettings() }
 
         // Progress is saved per layout. Switching input source switches progress.
+        practice.onKeystroke = { [sounds] correct in sounds.keystroke(correct: correct) }
         let store = ProgressStore()
         self.store = store
         practice.start(layout: keyboard.layout, store: store)
@@ -254,6 +270,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         isApplyingSettings = true
         defer { isApplyingSettings = false }
         let defaults = UserDefaults.standard
+
+        practice.applySettings()
+        sounds.configure(
+            clicks: defaults.bool(forKey: SettingsKey.keySounds),
+            mistakes: defaults.bool(forKey: SettingsKey.mistakeSound),
+            volume: Float(defaults.double(forKey: SettingsKey.soundVolume))
+        )
+        if defaults.bool(forKey: SettingsKey.systemWideHighlighting) {
+            if !globalMonitor.isRunning { globalMonitor.start() }
+        } else if globalMonitor.isRunning {
+            globalMonitor.stop()
+        }
 
         // Applies to every window, including the floating keyboard.
         let appearance = AppearanceChoice(rawValue: defaults.string(forKey: SettingsKey.appearance) ?? "") ?? .system

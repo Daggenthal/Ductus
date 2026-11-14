@@ -6,6 +6,8 @@ struct PracticeView: View {
     @Environment(KeyboardState.self) private var keyboard
     @AppStorage(SettingsKey.showKeyboard) private var showKeyboard = true
     @AppStorage(SettingsKey.keyboardPoppedOut) private var poppedOut = false
+    @AppStorage(SettingsKey.textScale) private var textScale = 1.0
+    @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 0
     private var keyboardDocked: Bool { showKeyboard && !poppedOut }
 
     var body: some View {
@@ -14,7 +16,7 @@ struct PracticeView: View {
             if let error = practice.loadError {
                 Text(error).foregroundStyle(.red)
             } else if let session = practice.session {
-                DrillText(session: session, lastKeyWrong: practice.lastKeyWrong)
+                DrillText(session: session, lastKeyWrong: practice.lastKeyWrong, fontSize: 28 * textScale)
             } else {
                 ProgressView()
             }
@@ -45,6 +47,9 @@ struct PracticeView: View {
                         + (stats?.wpm.map { String(format: "  %.0f WPM", $0) } ?? "")
                         + (stats?.accuracy.value.map { String(format: "  %.0f%%", $0 * 100) } ?? "")
                 )
+            }
+            if dailyGoal > 0 {
+                DailyGoalRing(practiced: practice.todayPracticeTime, goalMinutes: dailyGoal)
             }
             Spacer()
             if let message = practice.unlockMessage {
@@ -90,10 +95,11 @@ struct Stat: View {
 struct DrillText: View {
     let session: TypingSession
     let lastKeyWrong: Bool
+    var fontSize: CGFloat = 28
 
     var body: some View {
         Text(attributed)
-            .font(.system(size: 28, weight: .regular, design: .monospaced))
+            .font(.system(size: fontSize, weight: .regular, design: .monospaced))
             .lineSpacing(10)
             .frame(maxWidth: .infinity, alignment: .leading)
             .textSelection(.disabled)
@@ -103,8 +109,23 @@ struct DrillText: View {
         let text = session.text
         let position = session.position
 
-        var done = AttributedString(String(text[..<position]))
-        done.foregroundColor = .secondary.opacity(0.6)
+        // Typed part, with mistakes left behind (Backspace mode) in red.
+        var done = AttributedString()
+        var runStart = 0
+        func flush(_ end: Int, error: Bool) {
+            guard end > runStart else { return }
+            var run = AttributedString(String(text[runStart..<end]))
+            run.foregroundColor = error ? .red : .secondary.opacity(0.6)
+            if error { run.backgroundColor = .red.opacity(0.15) }
+            done += run
+            runStart = end
+        }
+        var inError = false
+        for i in 0..<position where session.isError(at: i) != inError {
+            flush(i, error: inError)
+            inError.toggle()
+        }
+        flush(position, error: inError)
 
         var current = AttributedString(position < text.count ? String(text[position]) : "")
         current.backgroundColor = lastKeyWrong ? .red.opacity(0.35) : .accentColor.opacity(0.3)

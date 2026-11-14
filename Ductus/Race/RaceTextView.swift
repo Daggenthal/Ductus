@@ -43,7 +43,10 @@ struct RaceTextView: View {
         var result = AttributedString()
         for index in range {
             var piece = AttributedString(String(text[index]))
-            if index < position {
+            if index < position, session.isError(at: index) {
+                piece.foregroundColor = .red
+                piece.backgroundColor = .red.opacity(0.15)
+            } else if index < position {
                 piece.foregroundColor = .secondary.opacity(0.55)
             } else if index == position {
                 piece.foregroundColor = .primary

@@ -14,6 +14,9 @@ struct KeyboardView: View {
     var nextCharacter: Character?
     var unlockedLetters: Set<Character>?
     var showPhysicalLabels = true
+    /// Letters whose labels fade because they meet the targets. The next-key
+    /// outline still shows, so help is there when needed.
+    var mastered: Set<Character> = []
     /// Heatmap: 0 (fine) to 1 (weakest) per letter. Tints keys in one hue.
     var heat: [Character: Double]?
     /// Soft press animation. Off for races, where it smears at high speed.
@@ -24,7 +27,8 @@ struct KeyboardView: View {
 
     var body: some View {
         let shortcutCodes = keyboard.commandHeld ? keyboard.shortcutKeyCodes : []
-        let nextCode = nextCharacter.flatMap { keyboard.keyCode(for: Character($0.lowercased())) }
+        let nextCode = nextCharacter.flatMap { keyboard.keyCode(for: $0) }
+        let nextNeedsShift = nextCharacter.map { keyboard.needsShift(for: $0) } ?? false
 
         VStack(alignment: .leading, spacing: spacing) {
             ForEach(Array(KeyboardGeometry.ansi.enumerated()), id: \.offset) { _, row in
@@ -36,9 +40,10 @@ struct KeyboardView: View {
                             width: unit * key.width + spacing * (key.width - 1),
                             height: unit,
                             isPressed: keyboard.pressed.contains(key.code),
-                            isNext: key.code == nextCode,
+                            isNext: key.code == nextCode || (nextNeedsShift && (key.code == 56 || key.code == 60)),
                             isShortcut: shortcutCodes.contains(key.code),
                             isDimmed: isLocked(key),
+                            isFaded: isMastered(key),
                             heat: heatValue(for: key),
                             scalesOnPress: animatesPresses
                         )
@@ -72,6 +77,13 @@ struct KeyboardView: View {
         return heat[Character(label.lowercased())]
     }
 
+    private func isMastered(_ key: KeyboardGeometry.Key) -> Bool {
+        guard !mastered.isEmpty, !keyboard.commandHeld, key.isCharacterKey,
+              let label = keyboard.layout?.character(for: key.code), label.count == 1
+        else { return false }
+        return mastered.contains(Character(label.lowercased()))
+    }
+
     private func isLocked(_ key: KeyboardGeometry.Key) -> Bool {
         guard let unlockedLetters, !keyboard.commandHeld, key.isCharacterKey,
               let label = keyboard.layout?.character(for: key.code), label.count == 1,
@@ -90,6 +102,7 @@ private struct KeyCap: View {
     let isNext: Bool
     let isShortcut: Bool
     let isDimmed: Bool
+    var isFaded = false
     var heat: Double?
     var scalesOnPress = true
 
@@ -101,6 +114,7 @@ private struct KeyCap: View {
         Text(label)
             .font(.system(size: label.count > 1 ? 11 : 16, weight: .medium, design: .rounded))
             .foregroundStyle(isPressed ? palette.pressedLabel : isDimmed ? palette.dimmedLabel : palette.label)
+            .opacity(isFaded && !isPressed && !isNext ? 0.18 : 1)
             .frame(width: width, height: height)
             .overlay(alignment: .bottomTrailing) {
                 if let physicalLabel {

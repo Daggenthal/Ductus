@@ -4,7 +4,8 @@
 public struct Trainer: Sendable {
     public private(set) var stats: StatsTracker
     public private(set) var curriculum: Curriculum
-    public let scorer: WeaknessScorer
+    /// Targets for unlocking. Can be changed any time (Settings); stats are kept.
+    public var scorer: WeaknessScorer
     public var generator: DrillGenerator
 
     public init(
@@ -43,6 +44,13 @@ public struct Trainer: Sendable {
     public mutating func record(_ keystroke: Keystroke) -> Character? {
         stats.record(keystroke)
         return curriculum.advance(stats: stats, scorer: scorer)
+    }
+
+    /// Unlocks the next letter if all unlocked letters already meet the targets
+    /// (e.g. right after the targets were lowered). Returns it.
+    @discardableResult
+    public mutating func advanceIfReady() -> Character? {
+        curriculum.advance(stats: stats, scorer: scorer)
     }
 
     public var focusKey: Character? { curriculum.focusKey(stats: stats, scorer: scorer) }
