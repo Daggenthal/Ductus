@@ -62,6 +62,7 @@ struct KeyboardView: View {
         .padding(spacing * 3)
         .animation(animatesPresses ? .easeOut(duration: 0.08) : nil, value: keyboard.pressed)
         .animation(.easeInOut(duration: 0.15), value: keyboard.commandHeld)
+        .textDirection(rightToLeft: false)  // the keys sit where they are on the real keyboard
     }
 
     /// The next key, plus Shift or Option when it needs them (both sides outlined).

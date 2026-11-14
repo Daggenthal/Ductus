@@ -22,6 +22,9 @@ URL = "https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-a
 CODES = {
     "english": "en", "french": "fr", "spanish": "es", "german": "de", "italian": "it",
     "portuguese": "pt", "dutch": "nl", "japanese": "ja", "chinese": "zh", "korean": "ko",
+    "arabic": "ar", "russian": "ru",
+    # LDNOOBW has no Ukrainian list; the Russian one covers most of the same words.
+    "ukrainian": "ru",
 }
 UNSPACED = {"japanese", "chinese", "korean"}
 # Words LDNOOBW lists that are ordinary in everyday use (and common in the
@@ -45,6 +48,7 @@ ALLOW = {
 EXTRA = {
     # Base64 so the words do not show up when reading the repo. Kana folding
     # covers the katakana spellings too.
+    "ukrainian": {base64.b64decode(w).decode() for w in ("0LrRg9GA0LLQsA==", "0YHRgNCw0LrQsA==", "0YXRg9C50L3Rjw==",)},
     "japanese": {base64.b64decode(w).decode() for w in ("44GP44Gd", "44Gn44G2", "44Gh44KT44GT", "44G+44KT44GT",)},
 }
 
@@ -52,6 +56,10 @@ EXTRA = {
 def hiragana(text: str) -> str:
     """Katakana to hiragana, so クソ and くそ are the same word."""
     return "".join(chr(ord(c) - 0x60) if "\u30A1" <= c <= "\u30F6" else c for c in text)
+
+ARABIC_MARKS = re.compile("[\u064B-\u0652\u0670\u0640]")
+# Arabic joins small words to the front: و (and), ف, ب (with), ل (for), ال (the).
+ARABIC_PREFIXES = ("", "و", "ف", "ب", "ل", "ال", "وال", "بال", "فال", "لل", "ول", "وب")
 
 WORD = re.compile(r"[^\W\d_]+(?:'[^\W\d_]+)*")
 
@@ -68,6 +76,9 @@ class Blocklist:
             time.sleep(0.5)
         terms = {line.strip().lower() for line in path.read_text(encoding="utf-8").splitlines() if line.strip()}
         terms |= EXTRA.get(language, set())
+        self.arabic = language == "arabic"
+        if self.arabic:
+            terms = {ARABIC_MARKS.sub("", t) for t in terms}
         self.kana_fold = language == "japanese"
         if self.kana_fold:
             terms = {hiragana(t) for t in terms}
@@ -83,6 +94,9 @@ class Blocklist:
             word = hiragana(word)
         if word in self.allow:
             return False
+        if self.arabic:
+            word = ARABIC_MARKS.sub("", word)
+            return any(word.startswith(p) and word[len(p):] in self.words for p in ARABIC_PREFIXES)
         if self.unspaced:
             return word in self.words or any(word.startswith(term) for term in self.long_terms)
         return word in self.words
@@ -94,6 +108,8 @@ class Blocklist:
         lower = text.lower()
         # "l'imbecille" counts as "imbecille" (French and Italian elide with an apostrophe).
         tokens = [part for token in WORD.findall(lower) for part in token.split("'")]
+        if self.arabic:
+            return any(self.blocks_word(token) for token in tokens)
         if any(token in self.words and token not in self.allow for token in tokens):
             return True
         return any(re.search(r"\b" + re.escape(phrase) + r"\b", lower) for phrase in self.phrases)

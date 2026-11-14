@@ -106,7 +106,7 @@ struct KeyboardLayout: Equatable, Sendable {
 
     /// Lowercase letters this layout can type, directly or with a dead key.
     var typeableLetters: Set<Character> {
-        Set(strokes.keys.filter { $0.isLetter && $0.isLowercase })
+        Set(strokes.keys.filter { $0.isLetter && ($0.isLowercase || !$0.isCased) })
     }
 
     /// Translates one key press, carrying dead-key state between presses.

@@ -193,10 +193,18 @@ Non-English books are prose fiction by authors born in 1830 or later, so spellin
 
 These are typed the way you would type into a macOS input method, with the native text shown above: Japanese as kana-faithful romaji ("toukyou", "watashiha"), Chinese as toneless pinyin with v for ü ("zhongwen", "lv"), Korean as the 2-Set (Dubeolsik) jamo keys you press ("ㅇㅏㄴㄴㅕㅇ" for 안녕; compound vowels and final consonant pairs are two keys, so 와 is ㅇㅗㅏ).
 
-- **Source:** sentences from [Tatoeba](https://tatoeba.org), licensed [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Word counts use all Japanese (jpn), Mandarin (cmn) and Korean (kor) sentences. The 4,000 sentences shipped per language are only ones with a named author, and each one's Tatoeba ID and author are listed in `japanese-credits.tsv`, `chinese-credits.tsv` and `korean-credits.tsv` (also shown in Settings under Text Sources).
+- **Source:** sentences from [Tatoeba](https://tatoeba.org), licensed [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Word counts use all Japanese (jpn), Mandarin (cmn) and Korean (kor) sentences. Up to 20,000 sentences are shipped per language, only ones with a named author, and each one's Tatoeba ID and author are listed in `japanese-credits.tsv`, `chinese-credits.tsv` and `korean-credits.tsv` (also shown in Settings under Text Sources).
 - **Changes made:** Japanese and Chinese sentences are romanized and split into typing chunks (a word with its particles), full-width punctuation becomes the key you type for it, and Chinese is converted to Simplified. Korean sentences are paired with the 2-Set keys for each word. Korean words built on Tatoeba's stock example names (톰, 메리) are left out of the word list.
 - **Tools, used only when building the lists (not shipped):** [fugashi](https://github.com/polm/fugashi) (MIT) with [unidic-lite](https://github.com/polm/unidic-lite) (MIT, UniDic BSD) for Japanese words and readings, [jieba](https://github.com/fxsjy/jieba) (MIT) for Chinese words, [pypinyin](https://github.com/mozillazg/python-pinyin) (MIT) for pinyin, and [opencc-python-reimplemented](https://github.com/yichen0831/opencc-python) (Apache 2.0) for Simplified Chinese.
 - **Filters:** names, numbers and symbols are left out of the word lists. Japanese verbs and adjectives appear in dictionary form ("okiru", not the stem "oki"). Sentences have 20 to 120 typed characters and only Japanese or Chinese script and punctuation.
+
+## Russian, Ukrainian and Arabic
+
+These are typed as written, so the words and sentences are used as they are.
+
+- **Source:** sentences from [Tatoeba](https://tatoeba.org), licensed [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/): Russian (rus), Ukrainian (ukr), and for Arabic both Modern Standard Arabic (ara) and Egyptian Arabic (arz). Up to 20,000 sentences with a named author are shipped per language, credited in `russian-credits.tsv`, `ukrainian-credits.tsv` and `arabic-credits.tsv`.
+- **Changes made:** Arabic short vowel marks (harakat), shadda, sukun and tatweel are removed, since everyday Arabic is written and typed without them.
+- **Filters:** Russian and Ukrainian words written mostly with a capital are names and are left out. Arabic has no capitals, so Tatoeba's stock example names (Sami, Layla, Tom, Mary and a few more) are left out of the Arabic word list by hand. Ukrainian words with an apostrophe (м'ясо) appear in sentences only. Swear words use the LDNOOBW Russian list for both Russian and Ukrainian, plus a few Ukrainian additions; for Arabic, words are also checked with the prefixes و ف ب ل ال removed.
 
 Japanese public-domain books from [Aozora Bunko](https://www.aozora.gr.jp) could be added later; their out-of-copyright texts may be freely copied and redistributed.
 
@@ -204,7 +212,7 @@ Japanese public-domain books from [Aozora Bunko](https://www.aozora.gr.jp) could
 
 ```sh
 python3 scripts/build_corpus.py --cache /path/to/download/folder
-# Japanese and Chinese (see the script header for the Tatoeba downloads):
+# Russian, Ukrainian, Arabic, Japanese, Chinese and Korean (see the script header for the Tatoeba downloads):
 pip install fugashi unidic-lite jieba pypinyin opencc-python-reimplemented
 python3 scripts/build_cjk_corpus.py --tatoeba /path/to/tatoeba/exports
 # or only some languages:

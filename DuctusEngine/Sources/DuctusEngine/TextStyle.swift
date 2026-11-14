@@ -38,7 +38,8 @@ public enum TextDecorator {
         var index = 0
         while index < words.count {
             let length = min(Int.random(in: 4...10, using: &rng), words.count - index)
-            let ending = style.punctuation ? [".", ".", ".", ".", "?", "!"].randomElement(using: &rng)! : ""
+            let ending = style.punctuation
+                ? [".", ".", ".", ".", language.questionMark, "!"].randomElement(using: &rng)! : ""
             for offset in 0..<length {
                 var word = words[index + offset]
                 let isFirst = offset == 0
@@ -50,14 +51,14 @@ public enum TextDecorator {
                 }
                 if style.punctuation {
                     if isFirst, language.usesInvertedMarks {
-                        if ending == "?" { word = "¿" + word } else if ending == "!" { word = "¡" + word }
+                        if ending == language.questionMark { word = "¿" + word } else if ending == "!" { word = "¡" + word }
                     }
                     if isLast {
                         word += spaced(ending)
                     } else {
                         let roll = Double.random(in: 0..<1, using: &rng)
-                        if roll < 0.12 { word += "," }
-                        else if roll < 0.14 { word += spaced(";") }
+                        if roll < 0.12 { word += language.comma }
+                        else if roll < 0.14 { word += spaced(language.semicolon) }
                         else if roll < 0.15 { word += spaced(":") }
                     }
                 }

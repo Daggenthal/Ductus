@@ -33,8 +33,10 @@ struct RaceTextView: View {
                         .fixedSize()
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .transaction { $0.animation = nil }
         }
+        .textDirection(rightToLeft: TextMeasure.isRightToLeft(session.text))
         .frame(height: lineHeight * CGFloat(visibleLines))
     }
 

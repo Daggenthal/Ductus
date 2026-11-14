@@ -15,7 +15,7 @@ struct DrillStrip: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        let window = visibleRange
+        let rightToLeft = TextMeasure.isRightToLeft(session.text)
         Color.clear
             .frame(maxWidth: .infinity)
             .frame(height: fontSize * 1.9)
@@ -23,16 +23,27 @@ struct DrillStrip: View {
                 GeometryReader { geometry in
                     Text(attributed)
                         .font(.system(size: fontSize, weight: .regular, design: .monospaced))
+                        .textDirection(rightToLeft: rightToLeft)
                         .fixedSize()
-                        .offset(x: geometry.size.width * anchor - TextMeasure.width(
-                            of: session.text[window.lowerBound..<min(session.position, window.upperBound)],
-                            size: fontSize))
+                        .offset(x: offset(width: geometry.size.width, rightToLeft: rightToLeft))
                         .frame(height: geometry.size.height)
                         .animation(.easeOut(duration: 0.09), value: session.position)
                 }
             }
             .clipped()
             .mask(edgeFade)
+            .textDirection(rightToLeft: false)  // placement below is in screen coordinates
+    }
+
+    /// Where the text starts, so the cursor stays put. Right-to-left text is
+    /// anchored the same distance from the right edge and slides the other way.
+    private func offset(width: CGFloat, rightToLeft: Bool) -> CGFloat {
+        let window = visibleRange
+        let typed = session.text[window.lowerBound..<min(session.position, window.upperBound)]
+        guard rightToLeft else { return width * anchor - TextMeasure.width(of: typed, size: fontSize) }
+        let all = session.text[window]
+        return width * (1 - anchor) + TextMeasure.shapedWidth(of: typed, size: fontSize)
+            - TextMeasure.shapedWidth(of: all, size: fontSize)
     }
 
     /// Only the text near the cursor is drawn, so long race texts stay cheap.

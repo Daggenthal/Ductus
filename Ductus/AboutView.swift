@@ -77,8 +77,8 @@ struct AboutView: View {
             )
             VStack(alignment: .leading, spacing: 6) {
                 credit(
-                    "Japanese, Chinese and Korean sentences",
-                    "By the contributors of Tatoeba, used under CC BY 2.0 FR. Changed for typing: romanized and split into chunks for Japanese and Chinese (Chinese converted to Simplified), and paired with the 2-Set keys for Korean.",
+                    "Russian, Ukrainian, Arabic, Japanese, Chinese and Korean sentences",
+                    "By the contributors of Tatoeba, used under CC BY 2.0 FR. Arabic includes Modern Standard and Egyptian Arabic, with short vowel marks removed. Changed for typing: romanized and split into chunks for Japanese and Chinese (Chinese converted to Simplified), and paired with the 2-Set keys for Korean.",
                     link: ("tatoeba.org", "https://tatoeba.org")
                 )
                 Button("Sentence Authors…") { showingAuthors = true }
@@ -86,6 +86,11 @@ struct AboutView: View {
             credit(
                 "Tools used to build the word lists",
                 "fugashi and unidic-lite (MIT, UniDic under BSD) for Japanese readings, jieba (MIT) for Chinese words, pypinyin (MIT) for pinyin, and OpenCC (Apache 2.0) for Simplified Chinese. None of them ship with the app. The full list of books and tools is in CORPUS.md in the source code."
+            )
+            credit(
+                "Swear-word filter",
+                "Swear words and slurs are left out of the word lists using the List of Dirty, Naughty, Obscene, and Otherwise Bad Words (CC BY 4.0). It is used only when building the lists and does not ship with the app.",
+                link: ("LDNOOBW on GitHub", "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words")
             )
             credit(
                 "Pasted text",

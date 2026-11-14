@@ -1,12 +1,12 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.3.1
+## What's new in 0.4.0
 
-- **Cleaner word lists:** Swear words and slurs are filtered out of the practice words and sentences in every language.
-- **Finger legend on the floating keyboard:** With "Color keys by finger" on, the floating keyboard shows which color is which finger.
-- **More of the app translated:** The finger names, durations, the unlocked-letters grid in History, race labels and more.
+- **Russian, Ukrainian and Arabic:** Practice words and sentences in all three, picked automatically from your keyboard layout. Arabic covers Modern Standard and Egyptian Arabic, works on the Arabic, Arabic PC and Arabic QWERTY layouts, and runs right to left.
+- **The app in Russian, Ukrainian and Arabic:** In Arabic the whole window is mirrored, as in other Mac apps.
+- **Credits:** The About window now credits the swear-word filter list.
 
-**Updating:** From 0.3.0, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
+**Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 
 ## Download
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Build Ductus's Japanese, Chinese and Korean word lists and sentences from Tatoeba.
+"""Build Ductus's Tatoeba word lists and sentences: Japanese, Chinese, Korean,
+Russian, Ukrainian and Arabic (Modern Standard plus Egyptian). The last three are
+typed as written.
 
 You type what you would press with a macOS input method: Japanese as
 kana-faithful romaji ("toukyou", "watashiha"), Chinese as toneless pinyin with
@@ -11,6 +13,10 @@ per-language "detailed" exports (they include each sentence's author):
     https://downloads.tatoeba.org/exports/per_language/jpn/jpn_sentences_detailed.tsv.bz2
     https://downloads.tatoeba.org/exports/per_language/cmn/cmn_sentences_detailed.tsv.bz2
     https://downloads.tatoeba.org/exports/per_language/kor/kor_sentences_detailed.tsv.bz2
+    https://downloads.tatoeba.org/exports/per_language/rus/rus_sentences_detailed.tsv.bz2
+    https://downloads.tatoeba.org/exports/per_language/ukr/ukr_sentences_detailed.tsv.bz2
+    https://downloads.tatoeba.org/exports/per_language/ara/ara_sentences_detailed.tsv.bz2
+    https://downloads.tatoeba.org/exports/per_language/arz/arz_sentences_detailed.tsv.bz2
 and unpack them into one folder.
 
 Build-time tools (not shipped with Ductus):
@@ -298,9 +304,70 @@ def build_korean(rows, rng):
     return counts, {k: collections.Counter({v: 1}) for k, v in natives.items()}, sentences
 
 
+# ---------------------------------------------------------------- Arabic, Russian, Ukrainian
+
+# Typed exactly as written, so words and sentences need no reading.
+ARABIC_LETTERS = "\u0621-\u063A\u0641-\u064A"
+ARABIC_MARKS = re.compile("[\u064B-\u0652\u0670\u0640]")  # short vowels, shadda, sukun, tatweel
+SPACED = {
+    "arabic": dict(letters=ARABIC_LETTERS, punctuation="،؟؛.!:", cased=False,
+                   # Tatoeba's stock example names; Arabic has no capitals to spot names by.
+                   names=("توم", "ماري", "ميري", "سامي", "ليلى", "زيري", "ياني", "سكورا", "ريما", "ريمة", "فاضل", "مناد", "بايا", "دانية", "تاتوبا", "الجزائر")),
+    "russian": dict(letters="а-яё", punctuation=".,?!:;-", cased=True, names=()),
+    "ukrainian": dict(letters="а-щьюяєіїґ'", punctuation=".,?!:;-", cased=True, names=()),
+}
+MIN_LOWERCASE_SHARE = 0.3
+
+
+def build_spaced(language):
+    rules = SPACED[language]
+    letters = rules["letters"]
+    word_re = re.compile(f"[{letters}]+", re.I)
+    sentence_ok = re.compile(f"^[{letters} {re.escape(rules['punctuation'])}]+[.?!؟]$", re.I)
+
+    def build(rows, rng):
+        counts = collections.Counter()
+        lowercase = collections.Counter()
+        sentences = []
+        for sentence_id, text, author in rows:
+            text = " ".join(text.split())
+            if language == "arabic":
+                text = ARABIC_MARKS.sub("", text)
+            else:
+                text = text.replace("\u2019", "'").replace("\u02bc", "'")
+            for token in word_re.findall(text):
+                if "'" in token:
+                    continue  # Ukrainian words with an apostrophe stay in sentences only
+                word = token.lower()
+                if any(name in word for name in rules["names"]):
+                    continue
+                counts[word] += 1
+                if token == word:
+                    lowercase[word] += 1
+            # Names stay in sentences (that is natural); only the word drills leave them out.
+            if author and sentence_ok.match(text) and 20 <= len(text) <= 140:
+                if rules["cased"] and not text[0].isupper():
+                    continue
+                sentences.append((sentence_id, author, text, text))
+        if rules["cased"]:
+            # Mostly capitalized words are names.
+            for word in list(counts):
+                if lowercase[word] / counts[word] < MIN_LOWERCASE_SHARE:
+                    del counts[word]
+        natives = {word: collections.Counter({word: 1}) for word in counts}
+        return counts, natives, sentences
+    return build
+
+
 # ---------------------------------------------------------------- Output
 
-SOURCES = {"japanese": ("jpn", build_japanese), "chinese": ("cmn", build_chinese), "korean": ("kor", build_korean)}
+SOURCES = {
+    "japanese": (["jpn"], build_japanese), "chinese": (["cmn"], build_chinese), "korean": (["kor"], build_korean),
+    # Modern Standard Arabic plus Egyptian Arabic.
+    "arabic": (["ara", "arz"], build_spaced("arabic")),
+    "russian": (["rus"], build_spaced("russian")),
+    "ukrainian": (["ukr"], build_spaced("ukrainian")),
+}
 
 
 def read_tatoeba(path: pathlib.Path):
@@ -314,9 +381,9 @@ def read_tatoeba(path: pathlib.Path):
 
 
 def build(language: str, tatoeba: pathlib.Path) -> None:
-    code, builder = SOURCES[language]
+    codes, builder = SOURCES[language]
     rng = random.Random(42)
-    rows = list(read_tatoeba(tatoeba / f"{code}_sentences_detailed.tsv"))
+    rows = [row for code in codes for row in read_tatoeba(tatoeba / f"{code}_sentences_detailed.tsv")]
     counts, natives, sentences = builder(rows, rng)
 
     # No swear words or slurs: check the native text of words and sentences.
@@ -329,10 +396,12 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
             del natives[typed][native]
         if not natives[typed]:
             del counts[typed]
-    sentences = [s for s in sentences if not blocklist.blocks_text(s[3], chunks=s[3].split("|"))]
+    sentences = [s for s in sentences
+                 if not blocklist.blocks_text(s[3], chunks=None if language in SPACED else s[3].split("|"))]
     print(f"{language}: blocklist removed {before_words - len(counts)} words and {before_sentences - len(sentences)} sentences",
           file=sys.stderr)
 
+    spaced = language in SPACED
     kept = [(typed, n) for typed, n in counts.items() if n >= MIN_COUNT and typed.isalpha()]
     # Korean has fewer sentences on Tatoeba, so single uses are kept too.
     if language == "korean":
@@ -341,8 +410,11 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
     kept = kept[:MAX_WORDS]
     with (RESOURCES / f"{language}-words.tsv").open("w", encoding="utf-8") as f:
         for typed, n in kept:
-            native = natives[typed].most_common(1)[0][0]
-            f.write(f"{typed}\t{n}\t{native}\n")
+            if spaced:
+                f.write(f"{typed}\t{n}\n")  # typed as shown, like the Gutenberg lists
+            else:
+                native = natives[typed].most_common(1)[0][0]
+                f.write(f"{typed}\t{n}\t{native}\n")
     print(f"{language}: {len(kept)} words from {len(rows)} sentences", file=sys.stderr)
 
     unique = list({s[2]: s for s in sentences}.values())  # one per typed text
@@ -351,12 +423,15 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
     sample.sort(key=lambda s: int(s[0]))
     with (RESOURCES / f"{language}-sentences.txt").open("w", encoding="utf-8") as f:
         for _, _, typed, native in sample:
-            f.write(f"{typed}\t{native}\n")
+            f.write(f"{typed}\n" if spaced else f"{typed}\t{native}\n")
     with (RESOURCES / f"{language}-credits.tsv").open("w", encoding="utf-8") as f:
         f.write("# Sentences from Tatoeba (https://tatoeba.org), CC BY 2.0 FR.\n")
         change = {"japanese": "Romanized and split into chunks for typing.",
                   "chinese": "Romanized and split into chunks for typing, converted to Simplified Chinese.",
-                  "korean": "Shown with the 2-Set keys used to type each word."}[language]
+                  "korean": "Shown with the 2-Set keys used to type each word.",
+                  "arabic": "Modern Standard Arabic and Egyptian Arabic, short vowel marks removed.",
+                  "russian": "Used as written.",
+                  "ukrainian": "Used as written."}[language]
         f.write(f"# {change}\n")
         f.write("# tatoeba_sentence_id\tauthor\n")
         for sentence_id, author, _, _ in sample:
@@ -367,7 +442,7 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--tatoeba", required=True, type=pathlib.Path, help="folder with the unpacked exports")
-    parser.add_argument("--languages", default="japanese,chinese,korean")
+    parser.add_argument("--languages", default=",".join(SOURCES))
     args = parser.parse_args()
     for language in args.languages.split(","):
         if language not in SOURCES:

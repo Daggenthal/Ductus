@@ -2,7 +2,7 @@ import Foundation
 
 /// Languages with a bundled word list and sentence sample (see CORPUS.md).
 public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifiable {
-    case english, french, spanish, german, italian, portuguese, dutch, japanese, chinese, korean
+    case english, french, spanish, german, italian, portuguese, dutch, russian, ukrainian, arabic, japanese, chinese, korean
 
     public var id: String { rawValue }
 
@@ -16,6 +16,9 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .italian: "it"
         case .portuguese: "pt"
         case .dutch: "nl"
+        case .russian: "ru"
+        case .ukrainian: "uk"
+        case .arabic: "ar"
         case .japanese: "ja"
         case .chinese: "zh"
         case .korean: "ko"
@@ -32,6 +35,9 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .italian: "Italiano"
         case .portuguese: "Português"
         case .dutch: "Nederlands"
+        case .russian: "Русский"
+        case .ukrainian: "Українська"
+        case .arabic: "العربية"
         case .japanese: "日本語"
         case .chinese: "中文"
         case .korean: "한국어"
@@ -62,6 +68,14 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
 
     /// German capitalizes nouns, so word lists keep their case.
     public var keepsCase: Bool { self == .german }
+
+    /// Written and typed right to left.
+    public var isRightToLeft: Bool { self == .arabic }
+
+    /// Punctuation drills add: Arabic has its own comma, semicolon and question mark.
+    public var comma: String { self == .arabic ? "،" : "," }
+    public var semicolon: String { self == .arabic ? "؛" : ";" }
+    public var questionMark: String { self == .arabic ? "؟" : "?" }
 
     /// Spanish opens questions and exclamations with ¿ and ¡.
     public var usesInvertedMarks: Bool { self == .spanish }

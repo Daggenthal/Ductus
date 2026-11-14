@@ -108,8 +108,10 @@ struct DrillText: View {
         Text(attributed)
             .font(.system(size: fontSize, weight: .regular, design: .monospaced))
             .lineSpacing(10)
+            .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             .textSelection(.disabled)
+            .textDirection(rightToLeft: TextMeasure.isRightToLeft(session.text))
     }
 
     private var attributed: AttributedString {

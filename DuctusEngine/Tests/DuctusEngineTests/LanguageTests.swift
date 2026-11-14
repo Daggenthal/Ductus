@@ -16,6 +16,9 @@ import Testing
         let letters = Set(words.letterFrequencyOrder())
         let core = switch language {
         case .korean: "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅏㅓㅗㅜㅡㅣ"
+        case .arabic: "ابتثجحخدذرزسشصضطظعغفقكلمنهوي"
+        case .russian: "абвгдежзийклмнопрстуфхцчшщыьэюя"
+        case .ukrainian: "абвгдежзийклмнопрстуфхцчшщьюяєії"
         case .japanese, .chinese: "abdeghikmnorstuyz"
         default: "abcdefghilmnopqrstuvz"
         }
@@ -156,6 +159,9 @@ import Testing
             .japanese: ["1a37b2827f8762c9485b7c6cd4ebe86067071fbfd1bbfe51fd849ffcc9e9a907", "c58a847f94dcf2d93b5c88072186977a003741cc9bcc25fe97bb09d788da6a18"],
             .chinese: ["f8ae539c6618a29cfb0a8fa662fafbc0dd48b9d2ef08c275b5c2936b488e2d99", "f6d6732bd09282844560984ced01c010e7f2e262c71d80d78f690dad83ed9e99"],
             .korean: ["32dadec2f52cc531138b43652f817e8bb3b188673042f26af15581d93ac5878a"],
+            .russian: ["c0cf250c87fec590111ee1c0f40f2e622350dbce032c280bf3f187eb0fe09d2d", "d05661c81df53f54e9973d8ccdbb0666cd91925d89b24abfad58a1073d3f0a2e", "e48cb456627e5f612b3ca655ad768546b71fc873292659d126a1d9856ce2e1a9"],
+            .ukrainian: ["d05661c81df53f54e9973d8ccdbb0666cd91925d89b24abfad58a1073d3f0a2e", "33352eb03353376e9bdb10eebc1716d902ab189e2a83c056ae9db42e83d2922b", "5102c3df83bba2d2599091db9bf4b9eda3fffbc83f170c055c594b03ee5cb02f"],
+            .arabic: ["c6e505c49d0e27a0ef286edd35fa69ac734320c821df54dd84b8e9d8294a952c", "dd4cf67af18cb093fcf2b094ac5f9ad28d7decd234af1f3dd21f6a6479e3920f", "250b82818401325fd51ea0685961f28e88aa83092c52164167937af434fc9949"],
         ]
         for (language, fingerprints) in banned {
             let list = try WordList.bundled(language)
@@ -168,5 +174,20 @@ import Testing
 
     private static func fingerprint(_ text: String) -> String {
         SHA256.hash(data: Data(text.utf8)).map { String(format: "%02x", $0) }.joined()
+    }
+
+    @Test func arabicUsesItsOwnPunctuation() {
+        var rng = SeededGenerator(seed: 3)
+        let words = Array(repeating: "في من أن كان هذا", count: 40).joined(separator: " ")
+        let text = TextDecorator.decorate(words, style: TextStyle(punctuation: true), language: .arabic, using: &rng)
+        #expect(text.contains("؟") || text.contains("،"))
+        #expect(!text.contains("?") && !text.contains(","))
+        #expect(PracticeLanguage.arabic.isRightToLeft && !PracticeLanguage.russian.isRightToLeft)
+    }
+
+    @Test func newLanguageCodes() {
+        #expect(PracticeLanguage(code: "ar") == .arabic)
+        #expect(PracticeLanguage(code: "ru") == .russian)
+        #expect(PracticeLanguage(code: "uk") == .ukrainian)
     }
 }

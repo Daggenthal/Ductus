@@ -85,7 +85,13 @@ final class KeyboardState {
     }
 
     func reloadLayout() {
-        let new = KeyboardLayout.current()
+        var new = KeyboardLayout.current()
+        #if DEBUG
+        // Test hook: show and type with another layout without switching input sources.
+        if let id = ProcessInfo.processInfo.environment["DUCTUS_DEBUG_LAYOUT"] {
+            new = KeyboardLayout.installed(id: id) ?? new
+        }
+        #endif
         // Switching to a Japanese or Chinese input method keeps the same layout
         // but changes the language, so that counts as a change too.
         let changed = new?.id != layout?.id || new?.inputMethodID != layout?.inputMethodID

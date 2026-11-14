@@ -12,7 +12,8 @@ import SwiftUI
 enum AppLanguage: String, CaseIterable, Identifiable {
     case system = ""
     case english = "en", french = "fr", spanish = "es", german = "de", italian = "it"
-    case portuguese = "pt-BR", dutch = "nl", japanese = "ja", chinese = "zh-Hans", korean = "ko"
+    case portuguese = "pt-BR", dutch = "nl", russian = "ru", ukrainian = "uk", arabic = "ar"
+    case japanese = "ja", chinese = "zh-Hans", korean = "ko"
 
     var id: String { rawValue }
 
@@ -27,6 +28,9 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         case .italian: "Italiano"
         case .portuguese: "Português (Brasil)"
         case .dutch: "Nederlands"
+        case .russian: "Русский"
+        case .ukrainian: "Українська"
+        case .arabic: "العربية"
         case .japanese: "日本語"
         case .chinese: "简体中文"
         case .korean: "한국어"
@@ -103,5 +107,8 @@ struct LocalizedRoot<Content: View>: View {
     var body: some View {
         content
             .environment(\.locale, language.locale)
+            // Arabic mirrors the whole window, as macOS apps do.
+            .environment(\.layoutDirection, Locale.Language(identifier: language.locale.identifier).characterDirection == .rightToLeft
+                ? .rightToLeft : .leftToRight)
     }
 }
