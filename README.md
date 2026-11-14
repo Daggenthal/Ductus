@@ -72,7 +72,7 @@ Every language comes with up to 20,000 real sentences and 10,000 common words. O
 
 ## Getting Ductus
 
-Download the latest version from [Releases](https://github.com/daggenthal/ductus/releases). It runs on Apple Silicon and Intel Macs with macOS 14 or newer.
+Download the latest version from [Releases](https://github.com/Daggenthal/Ductus/releases). It runs on Apple Silicon and Intel Macs with macOS 14 or newer.
 
 - **Ductus-x.y.z.dmg:** Open it and drag Ductus into Applications.
 - **Ductus-x.y.z.zip:** Unzip it and move Ductus into Applications.

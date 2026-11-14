@@ -7,8 +7,8 @@ import SwiftUI
 struct AboutView: View {
     @State private var showingAuthors = false
 
-    private static let sourceURL = URL(string: "https://github.com/daggenthal/ductus")!
-    private static let licenseURL = URL(string: "https://github.com/daggenthal/ductus/blob/main/LICENSE")!
+    private static let sourceURL = URL(string: "https://github.com/Daggenthal/Ductus")!
+    private static let licenseURL = URL(string: "https://github.com/Daggenthal/Ductus/blob/main/LICENSE")!
 
     private var version: String {
         let info = Bundle.main.infoDictionary
