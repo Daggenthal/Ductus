@@ -1,9 +1,10 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.6.1
+## What's new in 0.7.0
 
-- **Practice any language without switching your Mac's layout:** Pick a practice language your layout can't type (Hindi on U.S., say) and Ductus uses a matching layout inside its own windows, like Devanagari QWERTY for Hindi or Arabic PC for Arabic. Your Mac keeps its own layout in every other app, and nothing needs to be installed.
-- **Keyboard in Ductus:** A new setting to type and see any macOS layout inside Ductus, such as Dvorak or Colemak, without enabling it in System Settings.
+- **Study tab:** Learn Chinese vocabulary from the revised HSK 3.0 word lists (2025), HSK 1 to 7-9, with spaced repetition. Each card shows the characters, pinyin and meaning, and you type the pinyin. How you type it is the grade: a clean, quick answer pushes the word further out, a miss brings it back sooner. Choose how many new words a day, keep going whenever you like, and practice the words you already know.
+- **Your choice of hints:** Show or hide the characters, pinyin and meaning when recalling. Press Return to see the answer if you are stuck.
+- History moves to ⌘5; Study is ⌘4.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

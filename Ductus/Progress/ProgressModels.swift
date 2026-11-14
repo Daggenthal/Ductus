@@ -176,3 +176,17 @@ final class SavedText {
         lastOpened = Date()
     }
 }
+
+/// Study progress for one word set (HSK 1, ...): the engine's `StudyProgress` as JSON.
+@Model
+final class StudyRecord {
+    @Attribute(.unique) var setID: String
+    var progressData: Data
+    var updated: Date
+
+    init(setID: String, progressData: Data) {
+        self.setID = setID
+        self.progressData = progressData
+        updated = .now
+    }
+}

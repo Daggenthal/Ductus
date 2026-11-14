@@ -88,6 +88,11 @@ struct AboutView: View {
                 "fugashi and unidic-lite (MIT, UniDic under BSD) for Japanese readings, jieba (MIT) for Chinese words, pypinyin (MIT) for pinyin, and OpenCC (Apache 2.0) for Simplified Chinese. None of them ship with the app. The full list of books and tools is in CORPUS.md in the source code."
             )
             credit(
+                "HSK word lists",
+                "Study uses the revised HSK 3.0 word lists (2025) from complete-hsk-vocabulary by Yanis Zafirópulos (MIT), with English meanings from CC-CEDICT (CC BY-SA 4.0).",
+                link: ("CC-CEDICT", "https://cc-cedict.org/wiki/")
+            )
+            credit(
                 "Swear-word filter",
                 "Swear words and slurs are left out of the word lists using the List of Dirty, Naughty, Obscene, and Otherwise Bad Words (CC BY 4.0). It is used only when building the lists and does not ship with the app.",
                 link: ("LDNOOBW on GitHub", "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words")

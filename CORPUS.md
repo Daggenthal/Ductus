@@ -208,6 +208,12 @@ These are typed as written, so the words and sentences are used as they are.
 
 Japanese public-domain books from [Aozora Bunko](https://www.aozora.gr.jp) could be added later; their out-of-copyright texts may be freely copied and redistributed.
 
+## Study word sets (HSK)
+
+- **Source:** [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) by Yanis Zafirópulos (MIT), levels from the revised HSK 3.0 syllabus (November 2025; HSK 1 is about 300 words). Its English meanings come from [CC-CEDICT](https://cc-cedict.org/wiki/) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), so the meanings in `study-hsk1.tsv` to `study-hsk7.tsv` stay under that license (the rest of Ductus is MIT).
+- **Changes made:** One reading per word. Words with several readings get the everyday one: surnames, old variants and "used in" entries are skipped, and a few are set by hand (吗 ma, 喝 hē, 雨 yǔ). At most three meanings are kept. The typed form is toneless pinyin with v for ü.
+- **Rebuilding:** `python3 scripts/build_study.py --source /path/to/complete.json`
+
 ## Rebuilding
 
 ```sh

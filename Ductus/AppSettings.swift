@@ -36,6 +36,12 @@ extension SettingsKey {
     /// True when Ductus chose `practiceLayout` itself, because the Mac's layout
     /// cannot type the practice language. Such a choice is undone when it is no longer needed.
     static let practiceLayoutAuto = "practiceLayoutAuto"
+    /// Study: the word set ("hsk1"), new words per day, and what a card shows when recalling.
+    static let studySet = "studySet"
+    static let studyNewPerDay = "studyNewPerDay"
+    static let studyShowCharacters = "studyShowCharacters"
+    static let studyShowPinyin = "studyShowPinyin"
+    static let studyShowMeaning = "studyShowMeaning"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -60,6 +66,11 @@ extension SettingsKey {
             fingerZones: false,
             practiceLayout: "",
             practiceLayoutAuto: false,
+            studySet: "hsk1",
+            studyNewPerDay: 10,
+            studyShowCharacters: true,
+            studyShowPinyin: false,
+            studyShowMeaning: true,
         ])
     }
 }

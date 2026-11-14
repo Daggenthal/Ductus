@@ -18,6 +18,7 @@ struct DuctusApp: App {
                 .environment(app.practice)
                 .environment(app.race)
                 .environment(app.textPractice)
+                .environment(app.study)
                 .environment(app.keyboard)
                 .environment(app.ui)
                 .environment(app.updater)
@@ -38,8 +39,10 @@ struct DuctusApp: App {
                     .keyboardShortcut("2")
                 Button("Text") { app.showTab(.text) }
                     .keyboardShortcut("3")
-                Button("History") { app.showTab(.history) }
+                Button("Study") { app.showTab(.study) }
                     .keyboardShortcut("4")
+                Button("History") { app.showTab(.history) }
+                    .keyboardShortcut("5")
                 Button("Show History") { app.showTab(.history) }
                     .keyboardShortcut("y")
                 Divider()
@@ -163,6 +166,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let ui = AppUIState()
     lazy var race = RaceModel(practice: practice)
     lazy var textPractice = TextPracticeModel(practice: practice, store: store)
+    lazy var study = StudyModel(store: store, practice: practice)
     let updater = UpdateChecker()
     private let sounds = KeySounds()
     private lazy var globalMonitor = GlobalKeyMonitor { [weak self] event in
@@ -206,6 +210,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             case .practice: return self.practice.type(character, keyCode: keyCode, at: time)
             case .race: return self.race.type(character, keyCode: keyCode, at: time)
             case .text: return self.textPractice.type(character, keyCode: keyCode, at: time)
+            case .study: return self.study.type(character, keyCode: keyCode, at: time)
             case .history: return false
             }
         }
@@ -217,6 +222,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             case .practice: return self.practice.backspace(word: word)
             case .race: return self.race.backspace(word: word)
             case .text: return self.textPractice.backspace(word: word)
+            case .study: return self.study.backspace(word: word)
             case .history: return false
             }
         }
@@ -262,6 +268,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if let code = ProcessInfo.processInfo.environment["DUCTUS_DEBUG_SWITCH_LANGUAGE"],
            let language = AppLanguage(rawValue: code) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) { LanguageState.shared.set(language) }
+        }
+        // Test hooks: open a tab at launch (DUCTUS_DEBUG_TAB=study), and start a Study session.
+        if let name = ProcessInfo.processInfo.environment["DUCTUS_DEBUG_TAB"], let tab = MainTab(rawValue: name) {
+            ui.tab = tab
+            if tab == .study, ProcessInfo.processInfo.environment["DUCTUS_DEBUG_STUDY_START"] != nil { study.start() }
         }
         #endif
         updater.reportLastUpdate()

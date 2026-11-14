@@ -31,6 +31,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.keyboardShape) private var keyboardShape = "auto"
     @AppStorage(SettingsKey.practiceLayout) private var practiceLayout = ""
     @AppStorage(SettingsKey.practiceLayoutAuto) private var practiceLayoutAuto = false
+    @AppStorage(SettingsKey.studyNewPerDay) private var studyNewPerDay = 10
     @AppStorage(SettingsKey.practiceLanguage) private var practiceLanguage = "auto"
     @Environment(KeyboardState.self) private var keyboard
 
@@ -76,6 +77,13 @@ struct SettingsView: View {
                 }
                 note("The words and sentences you practice. Automatic follows your keyboard layout or input method, so a French layout practices French and the Japanese input method practices Japanese. Japanese is typed in romaji, Chinese in pinyin (no tones, v for ü) and Korean on the 2-Set layout, with the text shown above. Progress is kept separately for each layout and language.")
                 layoutPicker
+            }
+
+            Section("Study") {
+                LabeledContent("New words per day") {
+                    Stepper("\(studyNewPerDay)", value: $studyNewPerDay, in: 1...50)
+                }
+                note("Study shows this many new words a day, plus every word due for review. Keep Going adds more whenever you like.")
             }
 
             Section("Unlocking") {

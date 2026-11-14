@@ -14,7 +14,7 @@ final class ProgressStore {
     var context: ModelContext { container.mainContext }
 
     init() {
-        let schema = Schema([LayoutProfile.self, DrillEntry.self, KeyDayEntry.self, UnlockEntry.self, RaceEntry.self, SavedText.self])
+        let schema = Schema([LayoutProfile.self, DrillEntry.self, KeyDayEntry.self, UnlockEntry.self, RaceEntry.self, SavedText.self, StudyRecord.self])
         do {
             container = try ModelContainer(for: schema)
             isPersistent = true
@@ -37,6 +37,22 @@ final class ProgressStore {
             Log.error("Could not load progress for \(layoutID): \(error)")
             return nil
         }
+    }
+
+    func studyRecord(for setID: String) -> StudyRecord? {
+        let id = setID
+        var descriptor = FetchDescriptor<StudyRecord>(predicate: #Predicate { $0.setID == id })
+        descriptor.fetchLimit = 1
+        do {
+            return try context.fetch(descriptor).first
+        } catch {
+            Log.error("Could not load study progress for \(setID): \(error)")
+            return nil
+        }
+    }
+
+    func insert(_ record: StudyRecord) {
+        context.insert(record)
     }
 
     func insert(_ profile: LayoutProfile) {
