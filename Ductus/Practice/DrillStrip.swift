@@ -15,7 +15,6 @@ struct DrillStrip: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        let charWidth = Self.characterWidth(fontSize)
         let window = visibleRange
         Color.clear
             .frame(maxWidth: .infinity)
@@ -25,7 +24,9 @@ struct DrillStrip: View {
                     Text(attributed)
                         .font(.system(size: fontSize, weight: .regular, design: .monospaced))
                         .fixedSize()
-                        .offset(x: geometry.size.width * anchor - CGFloat(session.position - window.lowerBound) * charWidth)
+                        .offset(x: geometry.size.width * anchor - TextMeasure.width(
+                            of: session.text[window.lowerBound..<min(session.position, window.upperBound)],
+                            size: fontSize))
                         .frame(height: geometry.size.height)
                         .animation(.easeOut(duration: 0.09), value: session.position)
                 }
@@ -80,11 +81,5 @@ struct DrillStrip: View {
             ],
             startPoint: .leading, endPoint: .trailing
         )
-    }
-
-    /// Advance of one character in the system monospaced font (same font SwiftUI uses).
-    private static func characterWidth(_ size: CGFloat) -> CGFloat {
-        let font = NSFont.monospacedSystemFont(ofSize: size, weight: .regular)
-        return ("M" as NSString).size(withAttributes: [.font: font]).width
     }
 }

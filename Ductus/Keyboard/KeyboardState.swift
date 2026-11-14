@@ -18,6 +18,11 @@ final class KeyboardState {
     /// key types each of these with Command, so positions are never hardcoded.
     var shortcutLetters: [Character] = ["z", "x", "c", "v"]
 
+    /// Korean practice: keys type 2-Set jamo (ㅂㅈㄷㄱ…) and show them as labels.
+    var hangulMode = false {
+        didSet { if hangulMode != oldValue { clearDeadKey() } }
+    }
+
     /// A dead key (accent) that was pressed and is waiting for its letter.
     private(set) var pendingDeadKey: KeyboardLayout.Stroke?
     @ObservationIgnored private var deadKeyState: UInt32 = 0
@@ -93,6 +98,13 @@ final class KeyboardState {
 
     // MARK: - Derived
 
+    /// What a key types, for its label: 2-Set jamo in Korean mode (not while
+    /// Command is held), otherwise the active layout.
+    func character(for code: UInt16, commandHeld: Bool = false) -> String? {
+        if hangulMode, !commandHeld, let jamo = Dubeolsik.jamo(code: code, shift: false) { return String(jamo) }
+        return layout?.character(for: code, commandHeld: commandHeld)
+    }
+
     var shortcutKeyCodes: Set<UInt16> {
         guard let layout else { return [] }
         return Set(shortcutLetters.compactMap { layout.commandKeyCode(for: $0, on: shape) })
@@ -102,6 +114,7 @@ final class KeyboardState {
     /// accented letter like "é", then the letter once the dead key is down.
     func nextStroke(for character: Character) -> KeyboardLayout.Stroke? {
         if character == " " { return KeyboardLayout.Stroke(code: 49) }
+        if hangulMode, let stroke = Dubeolsik.strokes[character] { return stroke }
         if character == "\n" { return KeyboardLayout.Stroke(code: 36) }
         guard let sequence = layout?.strokes[character], let first = sequence.first else { return nil }
         if sequence.count > 1, pendingDeadKey == first { return sequence[1] }
@@ -262,6 +275,13 @@ final class KeyboardState {
         if event.keyCode == 36 || event.keyCode == 76, !flags.contains(.option) {
             clearDeadKey()
             return !(onCharacter?("\n", event.keyCode, event.timestamp) ?? false)
+        }
+        // Korean: letter keys type 2-Set jamo by position; others (space, punctuation)
+        // go through the layout as usual.
+        if hangulMode, !flags.contains(.option),
+           let jamo = Dubeolsik.jamo(code: event.keyCode, shift: flags.contains(.shift)) {
+            clearDeadKey()
+            return !(onCharacter?(jamo, event.keyCode, event.timestamp) ?? false)
         }
         let stroke = KeyboardLayout.Stroke(code: event.keyCode, shift: flags.contains(.shift),
                                            option: flags.contains(.option))

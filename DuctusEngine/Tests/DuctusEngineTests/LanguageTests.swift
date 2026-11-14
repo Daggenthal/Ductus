@@ -12,7 +12,11 @@ import Testing
         // (Italian has none of them natively), so those may be missing.
         // Romaji has no l, q, v or x in normal words; pinyin has no v except for ü.
         let letters = Set(words.letterFrequencyOrder())
-        let core = language.isRomanized ? "abdeghikmnorstuyz" : "abcdefghilmnopqrstuvz"
+        let core = switch language {
+        case .korean: "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅏㅓㅗㅜㅡㅣ"
+        case .japanese, .chinese: "abdeghikmnorstuyz"
+        default: "abcdefghilmnopqrstuvz"
+        }
         #expect(Set(core).isSubset(of: letters))
     }
 
@@ -22,7 +26,8 @@ import Testing
         #expect(PracticeLanguage(code: "de_CH") == .german)
         #expect(PracticeLanguage(code: "ja") == .japanese)
         #expect(PracticeLanguage(code: "zh-Hans") == .chinese)
-        #expect(PracticeLanguage(code: "ko") == nil)
+        #expect(PracticeLanguage(code: "ko") == .korean)
+        #expect(PracticeLanguage(code: "sv") == nil)
     }
 
     @Test func accentedWordsKept() {
@@ -77,10 +82,15 @@ import Testing
         let chinese = try WordList.bundled(.chinese)
         #expect(chinese.nativeForms["women"] == "我们")
         #expect(chinese.entries.allSatisfy { $0.word.allSatisfy { $0.isASCII && $0.isLetter } })
+        // Korean is typed as 2-Set jamo: 안녕 is ㅇㅏㄴㄴㅕㅇ, compound vowels are two keys.
+        let korean = try WordList.bundled(.korean)
+        #expect(korean.nativeForms["ㅇㅏㄴㄴㅕㅇ"] == "안녕")
+        #expect(korean.entries.allSatisfy { $0.word.unicodeScalars.allSatisfy { (0x3131...0x3163).contains($0.value) } })
+        #expect(!korean.entries.contains { $0.word.contains("ㅘ") || $0.word.contains("ㄺ") })
     }
 
     @Test func romanizedSentencesLineUpWithNative() throws {
-        for language in [PracticeLanguage.japanese, .chinese] {
+        for language in [PracticeLanguage.japanese, .chinese, .korean] {
             let list = try SentenceList.bundled(language)
             let aligned = list.entries.filter { $0.native != nil }
             #expect(aligned.count > list.entries.count * 9 / 10)

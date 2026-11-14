@@ -2,7 +2,7 @@ import Foundation
 
 /// Languages with a bundled word list and sentence sample (see CORPUS.md).
 public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifiable {
-    case english, french, spanish, german, italian, portuguese, dutch, japanese, chinese
+    case english, french, spanish, german, italian, portuguese, dutch, japanese, chinese, korean
 
     public var id: String { rawValue }
 
@@ -18,6 +18,7 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .dutch: "nl"
         case .japanese: "ja"
         case .chinese: "zh"
+        case .korean: "ko"
         }
     }
 
@@ -33,18 +34,21 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .dutch: "Nederlands"
         case .japanese: "日本語"
         case .chinese: "中文"
+        case .korean: "한국어"
         }
     }
 
-    /// Typed in Latin letters with the native text shown alongside:
-    /// Japanese as romaji ("nihongo"), Chinese as toneless pinyin ("zhongwen").
-    public var isRomanized: Bool { self == .japanese || self == .chinese }
+    /// Typed in a different form than it is shown, with the native text shown
+    /// alongside: Japanese as romaji ("nihongo"), Chinese as toneless pinyin
+    /// ("zhongwen"), Korean as the 2-Set jamo keys pressed ("ㅇㅏㄴㄴㅕㅇ" for 안녕).
+    public var hasTypedForm: Bool { self == .japanese || self == .chinese || self == .korean }
 
-    /// What you type, for the UI: "romaji", "pinyin" or nil.
-    public var romanizationName: String? {
+    /// What you type, for the UI: "romaji", "pinyin", "jamo" or nil.
+    public var typedFormName: String? {
         switch self {
         case .japanese: "romaji"
         case .chinese: "pinyin"
+        case .korean: "jamo"
         default: nil
         }
     }

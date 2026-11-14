@@ -64,12 +64,21 @@ final class PracticeModel {
         return language == .english ? id : "\(id)|\(language.rawValue)"
     }
 
-    /// Letters the active layout can type, or `nil` if unknown.
-    var typeableLetters: Set<Character>? { layout?.typeableLetters }
+    /// Letters the active layout can type, or `nil` if unknown. Korean is
+    /// typed as 2-Set jamo whatever the layout.
+    var typeableLetters: Set<Character>? {
+        language == .korean ? Dubeolsik.allJamo : layout?.typeableLetters
+    }
+
+    /// Where unlocking starts: the home row of the layout, or of 2-Set for Korean.
+    private var startingKeys: [Character] {
+        language == .korean ? Dubeolsik.homeRow : layout?.homeRowLetters ?? []
+    }
 
     /// Whether the active layout can type `character` (directly or with a dead key).
     /// `true` when the layout is unknown, so nothing is thrown away by mistake.
     func canType(_ character: Character) -> Bool {
+        if language == .korean, Dubeolsik.allJamo.contains(character) { return true }
         guard let layout else { return true }
         return character == " " || character == "\n" || layout.strokes[character] != nil
     }
@@ -110,13 +119,13 @@ final class PracticeModel {
             } catch {
                 // History is kept; only the live key stats start over.
                 Log.error("Saved key stats for \(layoutName) could not be read, starting them fresh: \(error)")
-                trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [],
-                                  progression: PracticeSettings.progression, typeable: layout?.typeableLetters)
+                trainer = Trainer(wordList: words, startingKeys: startingKeys,
+                                  progression: PracticeSettings.progression, typeable: typeableLetters)
             }
         } else {
             profile = nil
-            trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [],
-                              progression: PracticeSettings.progression, typeable: layout?.typeableLetters)
+            trainer = Trainer(wordList: words, startingKeys: startingKeys,
+                              progression: PracticeSettings.progression, typeable: typeableLetters)
             Log.success("New \(language.nativeName) progress for \(layoutName) (starting keys: \(String(trainer!.curriculum.unlocked)))")
         }
         nextDrill()
@@ -207,7 +216,7 @@ final class PracticeModel {
 
     /// Native forms of the current language's romanized words ("nihongo" → "日本語").
     var nativeForms: [String: String] {
-        guard language.isRomanized else { return [:] }
+        guard language.hasTypedForm else { return [:] }
         if let cached = nativeFormsCache[language] { return cached }
         let forms = wordList?.nativeForms ?? [:]
         nativeFormsCache[language] = forms
@@ -217,7 +226,7 @@ final class PracticeModel {
 
     /// A gloss for word text in a romanized language, `nil` otherwise.
     func wordGloss(_ text: String) -> Gloss? {
-        language.isRomanized ? Gloss(text: text, native: nativeForms) : nil
+        language.hasTypedForm ? Gloss(text: text, native: nativeForms) : nil
     }
 
     func nextDrill() {
@@ -251,7 +260,7 @@ final class PracticeModel {
             if pool.count >= Self.minSentencePool,
                let picked = SentenceList.pickEntries(from: pool, minCharacters: 90,
                                                      weakness: trainer.drillRequest().keyWeakness, using: &rng) {
-                gloss = language.isRomanized ? Gloss(sentences: picked) : nil
+                gloss = language.hasTypedForm ? Gloss(sentences: picked) : nil
                 return picked.map(\.text).joined(separator: " ")
             }
         }

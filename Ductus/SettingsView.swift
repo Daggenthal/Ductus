@@ -54,7 +54,7 @@ struct SettingsView: View {
                         Text(language.nativeName).tag(language.rawValue)
                     }
                 }
-                note("The words and sentences you practice. Automatic follows your keyboard layout or input method, so a French layout practices French and the Japanese input method practices Japanese. Japanese is typed in romaji and Chinese in pinyin (no tones, v for ü), with the text shown above. Progress is kept separately for each layout and language.")
+                note("The words and sentences you practice. Automatic follows your keyboard layout or input method, so a French layout practices French and the Japanese input method practices Japanese. Japanese is typed in romaji, Chinese in pinyin (no tones, v for ü) and Korean on the 2-Set layout, with the text shown above. Progress is kept separately for each layout and language.")
             }
 
             Section("Unlocking") {
@@ -157,7 +157,7 @@ struct SettingsView: View {
             }
 
             Section("Text Sources") {
-                note("Words and sentences come from public-domain books on Project Gutenberg. Japanese and Chinese sentences come from Tatoeba (CC BY 2.0 FR), romanized and split into chunks for typing; Chinese is converted to Simplified.")
+                note("Words and sentences come from public-domain books on Project Gutenberg. Japanese, Chinese and Korean sentences come from Tatoeba (CC BY 2.0 FR), changed for typing: romanized and split into chunks for Japanese and Chinese (Chinese converted to Simplified), and paired with the 2-Set keys for Korean.")
                 HStack {
                     Link("Project Gutenberg", destination: URL(string: "https://www.gutenberg.org")!)
                     Link("Tatoeba", destination: URL(string: "https://tatoeba.org")!)

@@ -213,8 +213,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Progress is saved per layout. Switching input source switches progress.
         practice.onKeystroke = { [sounds] correct in sounds.keystroke(correct: correct) }
         practice.start(layout: keyboard.layout, store: store)
-        keyboard.onLayoutChange = { [practice] layout in
-            practice.switchLayout(to: layout)
+        keyboard.hangulMode = practice.language == .korean
+        keyboard.onLayoutChange = { [weak self] layout in
+            guard let self else { return }
+            self.practice.switchLayout(to: layout)
+            self.keyboard.hangulMode = self.practice.language == .korean
         }
 
         hud = KeyboardHUD(
@@ -288,6 +291,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let defaults = UserDefaults.standard
 
         practice.applySettings()
+        // Korean typing follows the practice language, which a setting can change.
+        if keyboard.hangulMode != (practice.language == .korean) {
+            keyboard.hangulMode = practice.language == .korean
+        }
         let glow = Array(defaults.string(forKey: SettingsKey.shortcutKeys) ?? SettingsKey.defaultShortcutKeys)
         if keyboard.shortcutLetters != glow { keyboard.shortcutLetters = glow }
         let shape = KeyboardGeometry.Shape(rawValue: defaults.string(forKey: SettingsKey.keyboardShape) ?? "")

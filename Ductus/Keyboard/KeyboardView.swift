@@ -81,7 +81,7 @@ struct KeyboardView: View {
 
     private func label(for key: KeyboardGeometry.Key) -> String {
         if let fixed = key.fixedLabel { return fixed }
-        let character = keyboard.layout?.character(for: key.code, commandHeld: keyboard.commandHeld) ?? ""
+        let character = keyboard.character(for: key.code, commandHeld: keyboard.commandHeld) ?? ""
         return character.uppercased()
     }
 
@@ -95,21 +95,21 @@ struct KeyboardView: View {
 
     private func heatValue(for key: KeyboardGeometry.Key) -> Double? {
         guard let heat, key.isCharacterKey,
-              let label = keyboard.layout?.character(for: key.code), label.count == 1
+              let label = keyboard.character(for: key.code), label.count == 1
         else { return nil }
         return heat[Character(label.lowercased())]
     }
 
     private func isMastered(_ key: KeyboardGeometry.Key) -> Bool {
         guard !mastered.isEmpty, !keyboard.commandHeld, key.isCharacterKey,
-              let label = keyboard.layout?.character(for: key.code), label.count == 1
+              let label = keyboard.character(for: key.code), label.count == 1
         else { return false }
         return mastered.contains(Character(label.lowercased()))
     }
 
     private func isLocked(_ key: KeyboardGeometry.Key) -> Bool {
         guard let unlockedLetters, !keyboard.commandHeld, key.isCharacterKey,
-              let label = keyboard.layout?.character(for: key.code), label.count == 1,
+              let label = keyboard.character(for: key.code), label.count == 1,
               let letter = label.first, letter.isLetter
         else { return false }
         return !unlockedLetters.contains(Character(label.lowercased()))

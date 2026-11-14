@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Build Ductus's Japanese and Chinese word lists and sentences from Tatoeba.
+"""Build Ductus's Japanese, Chinese and Korean word lists and sentences from Tatoeba.
 
-You type the romanized form, the way you would into a macOS input method:
-Japanese as kana-faithful romaji ("toukyou", "watashiha"), Chinese as toneless
-pinyin with v for ü ("zhongwen", "lv"). The Japanese or Chinese text is shown
-alongside.
+You type what you would press with a macOS input method: Japanese as
+kana-faithful romaji ("toukyou", "watashiha"), Chinese as toneless pinyin with
+v for ü ("zhongwen", "lv"), Korean as the 2-Set (Dubeolsik) jamo keys
+("ㅇㅏㄴㄴㅕㅇ" for 안녕). The native text is shown alongside.
 
 Source: Tatoeba sentences (https://tatoeba.org), CC BY 2.0 FR. Download the
 per-language "detailed" exports (they include each sentence's author):
     https://downloads.tatoeba.org/exports/per_language/jpn/jpn_sentences_detailed.tsv.bz2
     https://downloads.tatoeba.org/exports/per_language/cmn/cmn_sentences_detailed.tsv.bz2
+    https://downloads.tatoeba.org/exports/per_language/kor/kor_sentences_detailed.tsv.bz2
 and unpack them into one folder.
 
 Build-time tools (not shipped with Ductus):
@@ -232,9 +233,71 @@ def build_chinese(rows, rng):
     return counts, natives, sentences
 
 
+# ---------------------------------------------------------------- Korean
+
+# Hangul syllables are built from these, by Unicode position (U+AC00 + ...).
+INITIALS = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"
+VOWELS = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ"
+FINALS = ["", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ",
+          "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
+# Compound vowels and finals are typed as two keys on 2-Set.
+TWO_KEYS = {
+    "ㅘ": "ㅗㅏ", "ㅙ": "ㅗㅐ", "ㅚ": "ㅗㅣ", "ㅝ": "ㅜㅓ", "ㅞ": "ㅜㅔ", "ㅟ": "ㅜㅣ", "ㅢ": "ㅡㅣ",
+    "ㄳ": "ㄱㅅ", "ㄵ": "ㄴㅈ", "ㄶ": "ㄴㅎ", "ㄺ": "ㄹㄱ", "ㄻ": "ㄹㅁ", "ㄼ": "ㄹㅂ", "ㄽ": "ㄹㅅ",
+    "ㄾ": "ㄹㅌ", "ㄿ": "ㄹㅍ", "ㅀ": "ㄹㅎ", "ㅄ": "ㅂㅅ",
+}
+KOREAN_TEXT = re.compile(r"^[\uAC00-\uD7A3 .,?!]+$")
+HANGUL_WORD = re.compile(r"^[\uAC00-\uD7A3]+$")
+
+
+def to_jamo_keys(word: str) -> str:
+    """The 2-Set keys pressed to type a Hangul word, as compatibility jamo."""
+    out = []
+    for ch in word:
+        index = ord(ch) - 0xAC00
+        if not 0 <= index < 11172:
+            out.append(ch)
+            continue
+        initial, rest = divmod(index, 21 * 28)
+        vowel, final = divmod(rest, 28)
+        for jamo in (INITIALS[initial], VOWELS[vowel], FINALS[final]):
+            out.append(TWO_KEYS.get(jamo, jamo))
+    return "".join(out)
+
+
+def build_korean(rows, rng):
+    import unicodedata
+    counts = collections.Counter()
+    natives = {}
+    sentences = []
+    for sentence_id, text, author in rows:
+        text = " ".join(unicodedata.normalize("NFC", text).split())
+        ok_sentence = bool(KOREAN_TEXT.match(text))
+        typed_words = []
+        native_words = []
+        for word in text.split(" "):
+            core = word.rstrip(".,?!")
+            if not HANGUL_WORD.match(core):
+                ok_sentence = False
+                continue
+            keys = to_jamo_keys(core)
+            # Tatoeba's stock names ("Tom", "Mary") would top the word list.
+            if len(keys) <= MAX_TYPED_LENGTH + 4 and not core.startswith(("톰", "메리")):  # jamo strings run longer than romaji
+                counts[keys] += 1
+                natives[keys] = core
+            typed_words.append(keys + word[len(core):])
+            native_words.append(word)
+        if ok_sentence and author and typed_words:
+            typed = " ".join(typed_words)
+            if 15 <= len(typed) <= 140 and typed[-1] in ".?!":
+                sentences.append((sentence_id, author, typed, "|".join(native_words)))
+    # One Hangul spelling per key sequence.
+    return counts, {k: collections.Counter({v: 1}) for k, v in natives.items()}, sentences
+
+
 # ---------------------------------------------------------------- Output
 
-SOURCES = {"japanese": ("jpn", build_japanese), "chinese": ("cmn", build_chinese)}
+SOURCES = {"japanese": ("jpn", build_japanese), "chinese": ("cmn", build_chinese), "korean": ("kor", build_korean)}
 
 
 def read_tatoeba(path: pathlib.Path):
@@ -254,6 +317,9 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
     counts, natives, sentences = builder(rows, rng)
 
     kept = [(typed, n) for typed, n in counts.items() if n >= MIN_COUNT and typed.isalpha()]
+    # Korean has fewer sentences on Tatoeba, so single uses are kept too.
+    if language == "korean":
+        kept = [(typed, n) for typed, n in counts.items() if typed.isalpha()]
     kept.sort(key=lambda item: (-item[1], item[0]))
     kept = kept[:MAX_WORDS]
     with (RESOURCES / f"{language}-words.tsv").open("w", encoding="utf-8") as f:
@@ -271,7 +337,10 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
             f.write(f"{typed}\t{native}\n")
     with (RESOURCES / f"{language}-credits.tsv").open("w", encoding="utf-8") as f:
         f.write("# Sentences from Tatoeba (https://tatoeba.org), CC BY 2.0 FR.\n")
-        f.write("# Romanized and split into chunks for typing" + (", converted to Simplified Chinese" if language == "chinese" else "") + ".\n")
+        change = {"japanese": "Romanized and split into chunks for typing.",
+                  "chinese": "Romanized and split into chunks for typing, converted to Simplified Chinese.",
+                  "korean": "Shown with the 2-Set keys used to type each word."}[language]
+        f.write(f"# {change}\n")
         f.write("# tatoeba_sentence_id\tauthor\n")
         for sentence_id, author, _, _ in sample:
             f.write(f"{sentence_id}\t{author}\n")
@@ -281,7 +350,7 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--tatoeba", required=True, type=pathlib.Path, help="folder with the unpacked exports")
-    parser.add_argument("--languages", default="japanese,chinese")
+    parser.add_argument("--languages", default="japanese,chinese,korean")
     args = parser.parse_args()
     for language in args.languages.split(","):
         if language not in SOURCES:

@@ -79,7 +79,7 @@ final class RaceModel {
     func newRace() {
         timer?.cancel()
         timer = nil
-        gloss = practice.language.isRomanized ? Gloss() : nil
+        gloss = practice.language.hasTypedForm ? Gloss() : nil
         guard let text = moreWords(offset: 0) else {
             Log.error("No words available for a race")
             return

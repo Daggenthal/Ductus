@@ -25,7 +25,7 @@ public enum TextDecorator {
     ) -> String {
         // Romanized Japanese and Chinese have no capitals, and their punctuation
         // comes with real sentences.
-        guard !style.isPlain, !language.isRomanized else { return text }
+        guard !style.isPlain, !language.hasTypedForm else { return text }
         let words = text.split(separator: " ").map(String.init)
         guard !words.isEmpty else { return text }
         let randomCapitals = !language.keepsCase
