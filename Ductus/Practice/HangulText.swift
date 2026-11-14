@@ -3,9 +3,10 @@ import DuctusEngine
 import SwiftUI
 
 /// Korean drill text as real syllable blocks (안녕), while typing still goes
-/// key by key (ㅇ ㅏ ㄴ ...). The block you are on builds up as you type, like
-/// an input method (ㅎ → 하 → 한), over a faint copy of the target. Finished
-/// blocks stay colored, or red if a key in them was missed.
+/// key by key (ㅇ ㅏ ㄴ ...). The block you are on fills in left to right, one
+/// step per key: half after the first key of a two-key block, a third per key
+/// of a three-key block. Finished blocks stay filled, or red if a key in them
+/// was missed.
 struct HangulText: View {
     enum Style {
         /// Every line, wrapped (practice).
@@ -142,16 +143,17 @@ struct HangulText: View {
             && (block.range.lowerBound..<min(position, block.range.upperBound)).contains { session.isError(at: $0) }
         if index < current { return hasError ? .missed : .done }
         if index > current { return .pending }
-        if hasError { return .current(partial: "", missed: true) }
-        return .current(partial: Hangul.composed(block.character, afterKeys: position - block.range.lowerBound),
-                        missed: false)
+        if hasError { return .current(filled: 0, missed: true) }
+        let typed = position - block.range.lowerBound
+        return .current(filled: Double(typed) / Double(max(1, block.range.count)), missed: false)
     }
 }
 
 private struct BlockView: View {
     enum State: Equatable {
         case done, missed, pending
-        case current(partial: String, missed: Bool)
+        /// `filled`: share of the block's keys typed, 0 to 1.
+        case current(filled: Double, missed: Bool)
     }
 
     let block: Hangul.Block
@@ -164,9 +166,15 @@ private struct BlockView: View {
         ZStack {
             Text(text)
                 .foregroundStyle(targetStyle)
-            if case .current(let partial, _) = state, !partial.isEmpty {
-                Text(partial)
-                    .foregroundStyle(Color.accentColor)
+            if case .current(let filled, false) = state, filled > 0 {
+                // The same block in the finished color, shown up to `filled`.
+                Text(text)
+                    .foregroundStyle(Self.doneColor)
+                    .mask(alignment: .leading) {
+                        GeometryReader { geometry in
+                            Rectangle().frame(width: geometry.size.width * filled)
+                        }
+                    }
             }
         }
         .font(.system(size: fontSize))
@@ -175,13 +183,16 @@ private struct BlockView: View {
         .background(background, in: RoundedRectangle(cornerRadius: fontSize * 0.15))
     }
 
+    /// Finished blocks and the filled part of the current one.
+    static let doneColor = Color.accentColor.opacity(0.75)
+
     private var targetStyle: AnyShapeStyle {
         switch state {
-        case .done: AnyShapeStyle(Color.accentColor.opacity(0.75))
+        case .done: AnyShapeStyle(Self.doneColor)
         case .missed: AnyShapeStyle(Color.red)
         case .pending: AnyShapeStyle(.primary)
-        case .current(let partial, let missed):
-            missed ? AnyShapeStyle(Color.red) : partial.isEmpty ? AnyShapeStyle(.primary) : AnyShapeStyle(.tertiary)
+        case .current(_, let missed):
+            missed ? AnyShapeStyle(Color.red) : AnyShapeStyle(.primary)
         }
     }
 
