@@ -110,7 +110,7 @@ private struct LiveRace: View {
                 VStack(alignment: .leading, spacing: 8) {
                     if let bestTotal, let bestWPM, bestTotal > 0 {
                         TrackBar(label: "You", progress: min(1, typed / bestTotal), color: .accentColor)
-                        TrackBar(label: String(format: "Best %.0f", bestWPM), progress: elapsed / Double(timeLimit),
+                        TrackBar(label: "Best \(Int(bestWPM.rounded()))", progress: elapsed / Double(timeLimit),
                                  color: .secondary.opacity(0.5))
                     } else {
                         TrackBar(label: "Time", progress: elapsed / Double(timeLimit), color: .accentColor)
@@ -131,7 +131,7 @@ private struct LiveRace: View {
 }
 
 private struct TrackBar: View {
-    let label: String
+    let label: LocalizedStringKey
     let progress: Double
     let color: Color
 
@@ -198,7 +198,7 @@ private struct RaceResults: View {
                         .foregroundStyle(.secondary)
                         ForEach(result.worstKeys, id: \.key) { key in
                             GridRow {
-                                Text(key.key == " " ? "Space" : key.key.uppercased())
+                                Text(key.key == " " ? String(localized: "Space", bundle: .ui, comment: "The space bar") : key.key.uppercased())
                                     .font(.system(.body, design: .monospaced).weight(.semibold))
                                 Text("\(key.misses) of \(key.attempts)")
                                 Text(key.averageLatency.map { String(format: "%.0f ms", $0 * 1000) } ?? "-")

@@ -23,7 +23,8 @@ final class RaceModel {
 
     /// "30s", "1 min", "3 min".
     static func lengthLabel(_ seconds: Int) -> String {
-        seconds < 60 ? "\(seconds)s" : "\(seconds / 60) min"
+        seconds < 60 ? String(localized: "\(seconds)s", bundle: .ui, comment: "Race length in seconds, short: 30s")
+            : String(localized: "\(seconds / 60) min", bundle: .ui)
     }
 
     private(set) var session: TypingSession?

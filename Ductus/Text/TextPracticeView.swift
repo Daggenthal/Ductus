@@ -140,7 +140,7 @@ struct TextPracticeView: View {
             }
             .labelStyle(.iconOnly)
             HStack(spacing: 28) {
-                Stat(title: "Part", value: "\(min(text.part + 1, model.parts.count)) of \(model.parts.count)")
+                Stat(title: "Part", value: String(localized: "\(min(text.part + 1, model.parts.count)) of \(model.parts.count)", bundle: .ui))
                 Stat(title: "Now", value: model.session?.liveWPM.map { String(format: "%.0f WPM", $0) } ?? "-")
                 Stat(title: "Last part",
                      value: model.lastSummary?.wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
@@ -158,9 +158,11 @@ struct TextPracticeView: View {
         case .chinese: "Type the pinyin for the words shown above, without tones (v for ü)."
         case .korean: "Type on the 2-Set Korean layout. Each block fills in as you type its keys."
         default:
-            text.keepLineBreaks
-                ? "Press Return at each ↵. Indentation is skipped."
-                : "Just start typing. Your keys count toward practice, like races do."
+            if text.keepLineBreaks {
+                "Press Return at each ↵. Indentation is skipped."
+            } else {
+                "Just start typing. Your keys count toward practice, like races do."
+            }
         }
     }
 
@@ -197,10 +199,13 @@ private struct TextRow: View {
     let partCount: Int?
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         VStack(alignment: .leading, spacing: 2) {
             Text(text.title).lineLimit(1)
             if let partCount, partCount > 0 {
-                Text(text.part >= partCount ? "Done" : "Part \(text.part + 1) of \(partCount)")
+                Text(text.part >= partCount
+                     ? String(localized: "Finished", bundle: .ui, comment: "A saved text typed to the end")
+                     : String(localized: "Part \(text.part + 1) of \(partCount)", bundle: .ui))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else if text.part > 0 {

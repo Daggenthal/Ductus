@@ -60,7 +60,7 @@ final class PracticeModel {
     /// Progress is saved per layout and language. English keeps the plain
     /// layout ID, so progress saved before languages existed still loads.
     static func profileID(layout: KeyboardLayout?, language: PracticeLanguage) -> String {
-        let id = layout?.id ?? "unknown"
+        let id = layout?.id ?? "unknown"  // not UI
         return language == .english ? id : "\(id)|\(language.rawValue)"
     }
 
@@ -101,7 +101,7 @@ final class PracticeModel {
         lastPracticeKeystroke = nil
         language = PracticeSettings.language(for: layout)
         layoutID = Self.profileID(layout: layout, language: language)
-        layoutName = layout?.name ?? "Unknown layout"
+        layoutName = layout?.name ?? String(localized: "Unknown layout", bundle: .ui)
         lastSummary = nil
         unlockMessage = nil
         drillsCompleted = 0

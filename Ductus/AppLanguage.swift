@@ -38,7 +38,7 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     var resolvedCode: String {
         if self != .system { return rawValue }
         let preferred = UserDefaults.standard.stringArray(forKey: "AppleLanguages") ?? Locale.preferredLanguages
-        return Bundle.preferredLocalizations(from: Bundle.main.localizations, forPreferences: preferred).first ?? "en"
+        return Bundle.preferredLocalizations(from: Bundle.main.localizations, forPreferences: preferred).first ?? "en"  // not UI
     }
 }
 

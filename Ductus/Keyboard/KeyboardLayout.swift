@@ -89,7 +89,7 @@ struct KeyboardLayout: Equatable, Sendable {
             return nil
         }
         let data = Unmanaged<CFData>.fromOpaque(dataPointer).takeUnretainedValue() as Data
-        id = Self.stringProperty(source, kTISPropertyInputSourceID) ?? "unknown"
+        id = Self.stringProperty(source, kTISPropertyInputSourceID) ?? "unknown"  // not UI
         name = Self.stringProperty(source, kTISPropertyLocalizedName) ?? id
         languages = Self.arrayProperty(source, kTISPropertyInputSourceLanguages)
         keyData = data

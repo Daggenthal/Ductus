@@ -23,7 +23,7 @@ struct FloatingStatsBar: View {
                 Item(
                     title: "Unlocked",
                     value: "\(curriculum.unlockedCount)/\(curriculum.order.count)",
-                    detail: curriculum.nextToUnlock.map { "next \($0.uppercased())" } ?? ""
+                    detail: curriculum.nextToUnlock.map { String(localized: "next \($0.uppercased())", bundle: .ui, comment: "The next letter to unlock") } ?? ""
                 )
             }
         }

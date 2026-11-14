@@ -203,9 +203,11 @@ struct SettingsView: View {
                 Section("Debug") {
                     Toggle("Debug mode", isOn: $debugMode)
                         .disabled(Log.debugFromEnvironment)
-                    note(Log.debugFromEnvironment
-                         ? "On because DUCTUS_DEBUG=1 is set."
-                         : "Logs everything Ductus does (drill text, unlocks, saves, errors) to a file on this Mac. Typed keys are never logged. This section shows when you hold Option while opening Settings.")
+                    if Log.debugFromEnvironment {
+                        note("On because DUCTUS_DEBUG=1 is set.")
+                    } else {
+                        note("Logs everything Ductus does (drill text, unlocks, saves, errors) to a file on this Mac. Typed keys are never logged. This section shows when you hold Option while opening Settings.")
+                    }
                     HStack {
                         Button("Show Log File") {
                             NSWorkspace.shared.activateFileViewerSelecting([DebugMode.logFileURL])
@@ -250,7 +252,7 @@ struct SettingsView: View {
             isPresented: $exporting,
             document: CSVDocument(text: practice.historyCSV()),
             contentType: .commaSeparatedText,
-            defaultFilename: "Ductus history"
+            defaultFilename: String(localized: "Ductus history", bundle: .ui, comment: "File name for the exported history")
         ) { result in
             if case .failure(let error) = result {
                 Log.error("Could not export history: \(error)")

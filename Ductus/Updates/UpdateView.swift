@@ -134,7 +134,7 @@ struct UpdateView: View {
         var parts = [String(localized: "You have \(current.description).", bundle: .ui)]
         if let archive = release.archive { parts.append(String(localized: "Download size: \(megabytes(archive.size)).", bundle: .ui)) }
         if let date = release.published {
-            parts.append(String(localized: "Released \(date.formatted(date: .abbreviated, time: .omitted)).", bundle: .ui))
+            parts.append(String(localized: "Released \(date.formatted(Date.FormatStyle(date: .abbreviated, time: .omitted).locale(LanguageState.shared.locale))).", bundle: .ui))
         }
         return parts.joined(separator: " ")
     }

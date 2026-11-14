@@ -54,9 +54,15 @@ struct HistoryView: View {
     // MARK: - Speed and accuracy
 
     private enum ChartRange: String, CaseIterable, Identifiable {
-        case days = "By day"
-        case drills = "Last 50 drills"
-        var id: String { rawValue }
+        case days, drills
+        var id: Self { self }
+
+        var title: LocalizedStringKey {
+            switch self {
+            case .days: "By day"
+            case .drills: "Last 50 drills"
+            }
+        }
     }
 
     private func speedAndAccuracy(_ drills: [DrillRecord]) -> some View {
@@ -64,7 +70,7 @@ struct HistoryView: View {
         switch range {
         case .days:
             points = HistoryMath.daily(drills).map {
-                ($0.day.formatted(.dateTime.month(.abbreviated).day()), $0.wpm, $0.accuracy)
+                ($0.day.formatted(.dateTime.month(.abbreviated).day().locale(LanguageState.shared.locale)), $0.wpm, $0.accuracy)
             }
         case .drills:
             let recent = drills.suffix(50)
@@ -79,7 +85,7 @@ struct HistoryView: View {
                 Text("Speed and accuracy").font(.headline)
                 Spacer()
                 Picker("Range", selection: $range) {
-                    ForEach(ChartRange.allCases) { Text($0.rawValue).tag($0) }
+                    ForEach(ChartRange.allCases) { Text($0.title).tag($0) }
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
@@ -150,7 +156,7 @@ struct HistoryView: View {
             .filter { $0.letter == selected && $0.wpm != nil }
             .sorted { $0.day < $1.day }
             .enumerated()
-            .map { MetricPoint(index: $0.offset, label: $0.element.day.formatted(.dateTime.month(.abbreviated).day()), value: $0.element.wpm!) }
+            .map { MetricPoint(index: $0.offset, label: $0.element.day.formatted(.dateTime.month(.abbreviated).day().locale(LanguageState.shared.locale)), value: $0.element.wpm!) }
 
         return Card {
             HStack {
@@ -238,7 +244,9 @@ struct HistoryView: View {
 
     private static func minutes(_ seconds: TimeInterval) -> String {
         let minutes = Int(seconds / 60)
-        return minutes < 60 ? "\(minutes) min" : "\(minutes / 60) h \(minutes % 60) min"
+        return minutes < 60
+            ? String(localized: "\(minutes) min", bundle: .ui)
+            : String(localized: "\(minutes / 60) h \(minutes % 60) min", bundle: .ui)
     }
 
     private func miniStat(_ title: LocalizedStringKey, _ value: String) -> some View {
@@ -273,8 +281,9 @@ struct HistoryView: View {
                             .font(.system(.title3, design: .monospaced).weight(.semibold))
                             .foregroundStyle(unlocked ? .primary : .tertiary)
                         Text(unlocked
-                             ? unlockDates[String(letter)].map { $0.formatted(.dateTime.month(.abbreviated).day()) } ?? "Start"
-                             : "Locked")
+                             ? unlockDates[String(letter)].map { $0.formatted(.dateTime.month(.abbreviated).day().locale(LanguageState.shared.locale)) }
+                                ?? String(localized: "Start", bundle: .ui, comment: "A letter unlocked from the start (no unlock date)")
+                             : String(localized: "Locked", bundle: .ui, comment: "A letter not unlocked yet"))
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                     }
@@ -328,9 +337,9 @@ private struct TotalsRow: View {
     static func duration(_ seconds: TimeInterval) -> String {
         let total = Int(seconds.rounded())
         let hours = total / 3600, minutes = (total % 3600) / 60
-        if hours > 0 { return "\(hours)h \(String(format: "%02d", minutes))m" }
-        if minutes > 0 { return "\(minutes)m" }
-        return "\(total)s"
+        if hours > 0 { return String(localized: "\(hours) h \(minutes) min", bundle: .ui) }
+        if minutes > 0 { return String(localized: "\(minutes) min", bundle: .ui) }
+        return String(localized: "\(total) s", bundle: .ui)
     }
 }
 
