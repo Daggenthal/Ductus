@@ -12,6 +12,7 @@ struct UpdateView: View {
     @AppStorage(SettingsKey.systemWideHighlighting) private var systemWide = false
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         VStack(alignment: .leading, spacing: 16) {
             HStack(alignment: .top, spacing: 16) {
                 Image(nsImage: NSApp.applicationIconImage)

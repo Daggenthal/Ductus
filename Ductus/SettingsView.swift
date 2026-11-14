@@ -46,6 +46,7 @@ struct SettingsView: View {
     @State private var showDebug = false
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         Form {
             Section("General") {
                 Picker("Appearance", selection: $appearance) {
@@ -267,6 +268,7 @@ struct SettingsView: View {
 /// Every Tatoeba author whose sentences are bundled, as the license asks.
 struct SentenceAuthorsSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var expanded: Set<PracticeLanguage> = []
     private let languages = PracticeLanguage.allCases
         .map { ($0, $0.sentenceAuthors()) }
         .filter { !$0.1.isEmpty }
@@ -279,10 +281,24 @@ struct SentenceAuthorsSheet: View {
                 .foregroundStyle(.secondary)
             List {
                 ForEach(languages, id: \.0) { language, authors in
-                    Section("\(language.nativeName): \(authors.count) authors") {
+                    // Collapsed by default, so each language is one line until you open it.
+                    DisclosureGroup(isExpanded: Binding(
+                        get: { expanded.contains(language) },
+                        set: { open in if open { expanded.insert(language) } else { expanded.remove(language) } }
+                    )) {
                         ForEach(authors, id: \.author) { entry in
                             LabeledContent(entry.author, value: "\(entry.sentences)")
                         }
+                    } label: {
+                        Button {
+                            if expanded.contains(language) { expanded.remove(language) } else { expanded.insert(language) }
+                        } label: {
+                            Text("\(language.nativeName): \(authors.count) authors")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }

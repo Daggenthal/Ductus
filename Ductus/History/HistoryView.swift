@@ -11,6 +11,7 @@ struct HistoryView: View {
     @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 0
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         let drills = practice.drillHistory
         ScrollView {
             VStack(alignment: .leading, spacing: 28) {
@@ -303,6 +304,7 @@ private struct TotalsRow: View {
     let totals: HistoryTotals
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         HStack(spacing: 12) {
             tile("Practice time", Self.duration(totals.practiceTime))
             tile("Drills", "\(totals.drills)")

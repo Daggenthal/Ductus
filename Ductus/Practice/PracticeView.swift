@@ -11,6 +11,7 @@ struct PracticeView: View {
     private var keyboardDocked: Bool { showKeyboard && !poppedOut }
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         VStack(alignment: .leading, spacing: 28) {
             header
             if let error = practice.loadError {

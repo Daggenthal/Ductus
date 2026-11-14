@@ -8,6 +8,7 @@ struct FloatingStatsBar: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         let palette = KeyboardPalette(colorScheme)
         HStack(alignment: .firstTextBaseline, spacing: 18) {
             Item(title: "Now", value: wpm(practice.session?.liveWPM), detail: percent(practice.session?.liveAccuracy))

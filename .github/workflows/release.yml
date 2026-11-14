@@ -29,6 +29,9 @@ jobs:
       - name: Engine tests
         run: swift test --package-path DuctusEngine
 
+      - name: Every interface string is translated
+        run: python3 scripts/check_translations.py
+
       - name: Build and package
         run: scripts/package.sh build
 

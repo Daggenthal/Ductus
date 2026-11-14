@@ -94,6 +94,8 @@ extension Bundle {
 }
 
 /// Wraps a window's content so it redraws in the chosen language as soon as it changes.
+/// Views that build text in code (`String(localized:bundle: .ui)`) also read
+/// `LanguageState.shared.locale` in their body, so they redraw too.
 struct LocalizedRoot<Content: View>: View {
     @ViewBuilder let content: Content
     private let language = LanguageState.shared
@@ -101,7 +103,5 @@ struct LocalizedRoot<Content: View>: View {
     var body: some View {
         content
             .environment(\.locale, language.locale)
-            // Rebuild on a change, so text worked out in code (not just Text views) follows too.
-            .id(language.locale.identifier)
     }
 }

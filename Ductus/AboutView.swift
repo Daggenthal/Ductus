@@ -18,6 +18,7 @@ struct AboutView: View {
     }
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         VStack(spacing: 0) {
             header
                 .padding(.top, 28)
@@ -36,6 +37,10 @@ struct AboutView: View {
         }
         .frame(width: 480, height: 600)
         .sheet(isPresented: $showingAuthors) { SentenceAuthorsSheet() }
+        #if DEBUG
+        // Test hook: open the author list right away.
+        .onAppear { if ProcessInfo.processInfo.environment["DUCTUS_DEBUG_SHOW_AUTHORS"] != nil { showingAuthors = true } }
+        #endif
     }
 
     private var header: some View {

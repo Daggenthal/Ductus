@@ -13,6 +13,7 @@ struct RaceView: View {
     @AppStorage(SettingsKey.fadeMastered) private var fadeMastered = true
 
     var body: some View {
+        let _ = LanguageState.shared.locale  // redraw when the app language changes
         @Bindable var race = race
         VStack(alignment: .leading, spacing: 24) {
             HStack(spacing: 16) {
