@@ -352,7 +352,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         if id != defaults.string(forKey: SettingsKey.practiceLayout) { defaults.set(id, forKey: SettingsKey.practiceLayout) }
         if auto != defaults.bool(forKey: SettingsKey.practiceLayoutAuto) { defaults.set(auto, forKey: SettingsKey.practiceLayoutAuto) }
-        let override = id.isEmpty ? nil : id
+        var override = id.isEmpty ? nil : id
+        // Study types pinyin. If the practice layout cannot (Hindi on Devanagari),
+        // the Study tab uses the Mac's own layout and practice gets its layout back after.
+        if ui.tab == .study, let chosen = override.flatMap(LayoutCatalog.layout(id:)),
+           !LayoutCatalog.canType(.chinese, on: chosen), LayoutCatalog.canType(.chinese, on: keyboard.systemLayout) {
+            override = nil
+        }
         if keyboard.layoutOverrideID != override { keyboard.layoutOverrideID = override }
     }
 

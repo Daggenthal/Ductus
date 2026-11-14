@@ -110,4 +110,55 @@ import Testing
         let data = try JSONEncoder().encode(progress)
         #expect(try JSONDecoder().decode(StudyProgress.self, from: data) == progress)
     }
+
+    @Test func iKnowThisWordAndUndo() throws {
+        let set = words(5)
+        var progress = StudyProgress()
+        progress.markKnown(set.words[0], now: start)
+        #expect(progress.isKnown(set.words[0]))
+        #expect(progress.cards["w0"]?.markedKnown == true)
+        #expect(progress.startedToday(now: start, calendar: utc) == 0)  // does not use a new-word slot
+        var plan = progress.plan(for: set, now: start, newPerDay: 2, calendar: utc)
+        #expect(plan.new.map(\.native) == ["w1", "w2"])
+        plan = progress.plan(for: set, now: start.addingTimeInterval(100 * 86_400), newPerDay: 0, calendar: utc)
+        #expect(plan.reviews.isEmpty)  // far in the back
+        progress.reset(set.words[0])
+        plan = progress.plan(for: set, now: start, newPerDay: 1, calendar: utc)
+        #expect(plan.new.first?.native == "w0")  // back as new
+
+        var session = StudySession(plan: StudyPlan(reviews: [], new: Array(set.words.prefix(3))), gap: 3)
+        session.skipCurrentWord()
+        #expect(!session.queue.contains { $0.word == set.words[0] })
+    }
+
+    @Test func historyNumbers() throws {
+        let set = words(3)
+        var progress = StudyProgress()
+        progress.record(set.words[0], .good, now: start, calendar: utc)
+        progress.record(set.words[1], .good, now: start.addingTimeInterval(60), calendar: utc)
+        #expect(progress.recent(in: set).map(\.word.native) == ["w1", "w0"])
+        #expect(progress.answersPerDay.values.reduce(0, +) == 2)
+        let forecast = progress.dueForecast(in: set, days: 7, now: start, calendar: utc)
+        #expect(forecast.reduce(0, +) == 2)
+        // Progress saved before answersPerDay existed still loads.
+        let old = #"{"cards":{},"startedPerDay":{"2026-11-14":3}}"#
+        let decoded = try JSONDecoder().decode(StudyProgress.self, from: Data(old.utf8))
+        #expect(decoded.startedPerDay["2026-11-14"] == 3 && decoded.answersPerDay.isEmpty)
+    }
+
+    @Test func grammarLoads() throws {
+        let grammar = try #require(GrammarSet.bundled("hsk1"))
+        #expect(grammar.points.count > 50)
+        let modal = try #require(grammar.points.first { $0.items == "会、能" })
+        #expect(!modal.english.isEmpty && !modal.examples.isEmpty)
+        for example in modal.examples {
+            #expect(example.chunks.count == example.tones.count)
+            #expect(example.chunks.count == example.typed.split(separator: " ").count)
+        }
+        // 只 as a measure word reads zhī, as "only" zhǐ.
+        let measure = grammar.points.flatMap(\.examples).first { $0.text == "我喜欢这只狗。" }
+        #expect(measure?.pinyin.contains("zhī") == true)
+        #expect(!GrammarSet.authors().isEmpty)
+        for (id, _) in StudySet.catalog { #expect(GrammarSet.bundled(id) != nil) }
+    }
 }

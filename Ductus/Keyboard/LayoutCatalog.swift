@@ -56,6 +56,16 @@ enum LayoutCatalog {
         return layouts(for: language).first
     }
 
+    private static var loaded: [String: KeyboardLayout] = [:]
+
+    /// An installed layout by ID, cached.
+    static func layout(id: String) -> KeyboardLayout? {
+        if let layout = loaded[id] { return layout }
+        let layout = KeyboardLayout.installed(id: id)
+        loaded[id] = layout
+        return layout
+    }
+
     private static var commonLetters: [PracticeLanguage: [Character]] = [:]
 
     /// Whether `layout` can type the language's 20 most common letters (accents

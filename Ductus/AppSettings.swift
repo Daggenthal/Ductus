@@ -42,6 +42,8 @@ extension SettingsKey {
     static let studyShowCharacters = "studyShowCharacters"
     static let studyShowPinyin = "studyShowPinyin"
     static let studyShowMeaning = "studyShowMeaning"
+    /// Study: "words" or "grammar".
+    static let studyMode = "studyMode"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -71,6 +73,7 @@ extension SettingsKey {
             studyShowCharacters: true,
             studyShowPinyin: false,
             studyShowMeaning: true,
+            studyMode: "words",
         ])
     }
 }

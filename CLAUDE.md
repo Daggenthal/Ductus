@@ -54,7 +54,9 @@ The engine is what actually makes the user faster. It is statistical, not a neur
 ## Study
 
 - The Study tab (`Ductus/Study`) teaches word sets (HSK 1 to 7-9, revised HSK 3.0 syllabus) with spaced repetition. The engine (`Study.swift`) has FSRS-5 with default weights, the typing-based grader (hint or many misses = Again, any miss or slow = Hard, clean = Good, clean at your usual key speed = Easy), the daily plan (N new per day plus due reviews, Keep Going adds more) and the session order (learn shown, recall a few cards later, missed recalls repeat but are graded once). Progress per set is `StudyProgress` JSON in a `StudyRecord`. Return shows the answer. Known = stability of 21 days or more.
-- Grammar is planned as a second Study section: the official HSK grammar point list with example sentences from Tatoeba (human translations), not AI-written explanations.
+- Study › Grammar (`GrammarStudyView`, engine `StudyGrammar.swift`) lists the HSK grammar points per level with hand-checked Tatoeba example sentences (human translations) to read and type, and a link to the Chinese Grammar Wiki. Never AI-written sentences or explanations. Examples ship only from `scripts/grammar_reviewed.json`; review a level by searching the cached pool, reading every candidate (sense, naturalness, pinyin), and listing approved IDs. HSK 1 is reviewed.
+- "I Know This Word" sets a word known with its next review in about 180 days; History's Study card lists recently studied words with Study Again (reset to new).
+- The Study tab types pinyin on the Mac's layout when the practice layout cannot type Latin letters (`applyLayoutChoice`).
 
 ## Interface languages
 

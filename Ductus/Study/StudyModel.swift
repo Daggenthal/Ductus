@@ -33,6 +33,17 @@ final class StudyModel {
     private(set) var practicingKnown = false
     private(set) var loadError: String?
 
+    // MARK: Grammar
+
+    private(set) var grammar: GrammarSet?
+    /// Points practiced, with when (by point ID), for the current level.
+    private(set) var practicedPoints: [String: Date] = [:]
+    private var grammarRecord: StudyRecord?
+    /// The point being practiced and which of its examples is up.
+    private(set) var grammarPoint: GrammarSet.Point?
+    private(set) var exampleIndex = 0
+    private(set) var grammarDone = false
+
     private var cardStart: TimeInterval = 0
     private var misses = 0
 
@@ -67,6 +78,10 @@ final class StudyModel {
             progress = StudyProgress()
         }
         Log.success("Study \(setID): \(progress.cards.count) words learned")
+        grammar = GrammarSet.bundled(setID)
+        grammarRecord = store.studyRecord(for: "grammar-\(setID)")
+        practicedPoints = grammarRecord.flatMap { try? JSONDecoder().decode([String: Date].self, from: $0.progressData) } ?? [:]
+        endGrammar()
     }
 
     func select(setID: String) {
@@ -121,6 +136,7 @@ final class StudyModel {
 
     private func begin(_ plan: StudyPlan, knownOnly: Bool) {
         guard !plan.isEmpty else { return }
+        endGrammar()
         session = StudySession(plan: plan)
         practicingKnown = knownOnly
         isFinished = false
@@ -146,14 +162,96 @@ final class StudyModel {
         cardID += 1
     }
 
+    /// "I Know This Word": the word goes to the back (next review in about six
+    /// months) and leaves this session. Undo it from History with Study Again.
+    func markKnown() {
+        guard let step = session?.current else { return }
+        progress.markKnown(step.word, now: .now)
+        session?.skipCurrentWord()
+        lastResult = (step.word, nil)
+        persist()
+        nextCard()
+    }
+
+    /// Study Again (History): forgets a word, so it comes back as a new word.
+    func reset(_ word: StudyWord) {
+        progress.reset(word)
+        persist()
+    }
+
     /// Return on an unfinished card shows the answer; the card is then graded Again.
     func reveal() {
         guard typing != nil, !revealed else { return }
         revealed = true
     }
 
+    // MARK: - Grammar practice
+
+    /// Types through a point's example sentences, one after another.
+    func practice(_ point: GrammarSet.Point) {
+        guard !point.examples.isEmpty else { return }
+        grammarPoint = point
+        exampleIndex = 0
+        grammarDone = false
+        startExample()
+    }
+
+    func endGrammar() {
+        grammarPoint = nil
+        grammarDone = false
+        if session == nil { typing = nil }
+    }
+
+    var currentExample: GrammarSet.Example? {
+        guard let point = grammarPoint, !grammarDone, exampleIndex < point.examples.count else { return nil }
+        return point.examples[exampleIndex]
+    }
+
+    private func startExample() {
+        guard let example = currentExample else { return }
+        typing = TypingSession(text: example.typed, mistakeMode: .stop)
+        lastKeyWrong = false
+        revealed = false
+        cardID += 1
+    }
+
+    private func finishExample() {
+        guard let point = grammarPoint else { return }
+        exampleIndex += 1
+        if exampleIndex >= point.examples.count {
+            grammarDone = true
+            typing = nil
+            practicedPoints[point.id] = .now
+            saveGrammar()
+        } else {
+            startExample()
+        }
+    }
+
+    private func saveGrammar() {
+        guard let data = try? JSONEncoder().encode(practicedPoints) else { return }
+        if let grammarRecord {
+            grammarRecord.progressData = data
+            grammarRecord.updated = .now
+        } else {
+            let new = StudyRecord(setID: "grammar-\(setID)", progressData: data)
+            store.insert(new)
+            grammarRecord = new
+        }
+        store.save()
+    }
+
     func type(_ character: Character, keyCode: UInt16, at time: TimeInterval) -> Bool {
         guard let typing else { return false }
+        if grammarPoint != nil, session == nil {
+            if character == "\n" { return true }
+            guard let keystroke = self.typing?.type(character, keyCode: keyCode, at: time) else { return true }
+            lastKeyWrong = !keystroke.isCorrect
+            practice.onKeystroke?(keystroke.isCorrect)
+            if practice.language == wordSet?.language { practice.recordExternal(keystroke) }
+            if self.typing?.isComplete == true { finishExample() }
+            return true
+        }
         if character == "\n" {
             reveal()
             return true

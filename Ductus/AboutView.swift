@@ -93,6 +93,11 @@ struct AboutView: View {
                 link: ("CC-CEDICT", "https://cc-cedict.org/wiki/")
             )
             credit(
+                "HSK grammar points",
+                "The grammar points of the revised HSK 3.0 syllabus, from the list by krmanik (HSK-3.0 on GitHub, CC BY-SA 4.0). Their example sentences and English translations are from Tatoeba contributors (CC BY 2.0 FR), and each one was checked by hand for Ductus.",
+                link: ("krmanik/HSK-3.0", "https://github.com/krmanik/HSK-3.0")
+            )
+            credit(
                 "Swear-word filter",
                 "Swear words and slurs are left out of the word lists using the List of Dirty, Naughty, Obscene, and Otherwise Bad Words (CC BY 4.0). It is used only when building the lists and does not ship with the app.",
                 link: ("LDNOOBW on GitHub", "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words")

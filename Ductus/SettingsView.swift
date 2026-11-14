@@ -311,9 +311,11 @@ extension SettingsView {
 struct SentenceAuthorsSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var expanded: Set<PracticeLanguage> = []
+    @State private var grammarExpanded = false
     private let languages = PracticeLanguage.allCases
         .map { ($0, $0.sentenceAuthors()) }
         .filter { !$0.1.isEmpty }
+    private let grammarAuthors = GrammarSet.authors()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -336,6 +338,21 @@ struct SentenceAuthorsSheet: View {
                             if expanded.contains(language) { expanded.remove(language) } else { expanded.insert(language) }
                         } label: {
                             Text("\(language.nativeName): \(authors.count) authors")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                if !grammarAuthors.isEmpty {
+                    DisclosureGroup(isExpanded: $grammarExpanded) {
+                        ForEach(grammarAuthors, id: \.author) { entry in
+                            LabeledContent(entry.author, value: "\(entry.sentences)")
+                        }
+                    } label: {
+                        Button { grammarExpanded.toggle() } label: {
+                            Text("Study grammar examples: \(grammarAuthors.count) authors")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .contentShape(Rectangle())

@@ -66,6 +66,8 @@ public struct CardState: Codable, Sendable, Equatable {
     public var reviews: Int
     /// Times the word was forgotten after being learned.
     public var lapses: Int
+    /// Set with "I Know This Word" rather than learned through reviews.
+    public var markedKnown: Bool? = nil
 }
 
 /// The FSRS scheduler (version 5, default parameters), the algorithm Anki uses
@@ -193,11 +195,26 @@ public struct StudyProgress: Codable, Sendable, Equatable {
     public var cards: [String: CardState] = [:]
     /// New words started per day ("2026-11-14": 10), for the daily limit.
     public var startedPerDay: [String: Int] = [:]
+    /// Graded answers per day, new words and reviews, for History.
+    public var answersPerDay: [String: Int] = [:]
 
     /// Stable for three weeks or more: the word is known.
     public static let knownStability = 21.0
 
+    /// "I Know This Word" puts the next review this far away.
+    public static let markedKnownDays = 180.0
+
     public init() {}
+
+    enum CodingKeys: String, CodingKey { case cards, startedPerDay, answersPerDay }
+
+    // Fields added later are optional, so progress saved by older versions still loads.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        cards = try container.decodeIfPresent([String: CardState].self, forKey: .cards) ?? [:]
+        startedPerDay = try container.decodeIfPresent([String: Int].self, forKey: .startedPerDay) ?? [:]
+        answersPerDay = try container.decodeIfPresent([String: Int].self, forKey: .answersPerDay) ?? [:]
+    }
 
     public func isKnown(_ word: StudyWord) -> Bool {
         (cards[word.id]?.stability ?? 0) >= Self.knownStability
@@ -224,6 +241,40 @@ public struct StudyProgress: Codable, Sendable, Equatable {
 
     public func known(in set: StudySet) -> [StudyWord] { set.words.filter(isKnown) }
 
+    /// "I Know This Word": known right away, next review in about six months.
+    /// Does not use up one of today's new words.
+    public mutating func markKnown(_ word: StudyWord, now: Date) {
+        let old = cards[word.id]
+        cards[word.id] = CardState(
+            stability: Self.markedKnownDays, difficulty: 1,
+            due: now.addingTimeInterval(Self.markedKnownDays * 86_400), lastReview: now,
+            reviews: old?.reviews ?? 0, lapses: old?.lapses ?? 0, markedKnown: true)
+    }
+
+    /// Forgets a word, so it comes back as a new word (to undo "I Know This Word").
+    public mutating func reset(_ word: StudyWord) {
+        cards.removeValue(forKey: word.id)
+    }
+
+    /// The most recently studied words, newest first.
+    public func recent(in set: StudySet, limit: Int = 30) -> [(word: StudyWord, card: CardState)] {
+        set.words.compactMap { word in cards[word.id].map { (word: word, card: $0) } }
+            .sorted { $0.card.lastReview > $1.card.lastReview }
+            .prefix(limit).map { $0 }
+    }
+
+    /// Reviews due on each of the next `days` days (today first, overdue included in today).
+    public func dueForecast(in set: StudySet, days: Int, now: Date, calendar: Calendar = .current) -> [Int] {
+        var counts = Array(repeating: 0, count: days)
+        let today = calendar.startOfDay(for: now)
+        for word in set.words {
+            guard let due = cards[word.id]?.due else { continue }
+            let offset = max(0, calendar.dateComponents([.day], from: today, to: calendar.startOfDay(for: due)).day ?? 0)
+            if offset < days { counts[offset] += 1 }
+        }
+        return counts
+    }
+
     /// Saves a grade. The first grade of a word starts it and counts toward today's new words.
     public mutating func record(_ word: StudyWord, _ grade: StudyGrade, scheduler: FSRS = FSRS(), now: Date,
                                 calendar: Calendar = .current) {
@@ -233,9 +284,10 @@ public struct StudyProgress: Codable, Sendable, Equatable {
             cards[word.id] = scheduler.first(grade, now: now)
             startedPerDay[Self.day(now, calendar), default: 0] += 1
         }
+        answersPerDay[Self.day(now, calendar), default: 0] += 1
     }
 
-    static func day(_ date: Date, _ calendar: Calendar) -> String {
+    public static func day(_ date: Date, _ calendar: Calendar = .current) -> String {
         let parts = calendar.dateComponents([.year, .month, .day], from: date)
         return String(format: "%04d-%02d-%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0)
     }
@@ -304,6 +356,13 @@ public struct StudySession: Sendable {
             queue.insert(.recall(word), at: min(gap, queue.count))
         }
         return graded.insert(word.id).inserted ? grade : nil
+    }
+
+    /// Drops every remaining card for the current word ("I Know This Word").
+    public mutating func skipCurrentWord() {
+        guard let word = queue.first?.word else { return }
+        queue.removeAll { $0.word == word }
+        completed += 1
     }
 
     /// Adds more cards (Keep Going) after the current queue.

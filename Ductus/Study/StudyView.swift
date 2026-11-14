@@ -1,3 +1,4 @@
+import Charts
 import DuctusEngine
 import SwiftUI
 
@@ -13,6 +14,7 @@ struct StudyView: View {
     @AppStorage(SettingsKey.studyShowPinyin) private var showPinyin = false
     @AppStorage(SettingsKey.studyShowMeaning) private var showMeaning = true
     @AppStorage(SettingsKey.studyNewPerDay) private var newPerDay = 10
+    @AppStorage(SettingsKey.studyMode) private var mode = "words"
 
     var body: some View {
         let _ = LanguageState.shared.locale  // redraw when the app language changes
@@ -23,6 +25,8 @@ struct StudyView: View {
             } else if !LayoutCatalog.canType(.chinese, on: keyboard.layout) {
                 Text("Pinyin is typed with Latin letters, which the keyboard Ductus uses now cannot type. Set Keyboard in Ductus to Same as macOS in Settings.")
                     .foregroundStyle(.orange)
+            } else if mode == "grammar" {
+                GrammarStudyView()
             } else if study.session == nil {
                 overview
             } else if study.isFinished {
@@ -31,7 +35,7 @@ struct StudyView: View {
                 card(step)
             }
             Spacer(minLength: 0)
-            if study.session != nil, !study.isFinished {
+            if mode != "grammar", study.session != nil, !study.isFinished {
                 toggles
             }
             if showKeyboard, let typing = study.typing {
@@ -61,10 +65,23 @@ struct StudyView: View {
             .labelsHidden()
             .fixedSize()
             .disabled(study.session != nil && !study.isFinished)
-            Stat(title: "New today", value: "\(min(study.startedToday, newPerDay)) / \(newPerDay)")
-            Stat(title: "To review", value: "\(study.plan.reviews.count)")
-            Stat(title: "Learned", value: "\(study.learnedCount) / \(study.totalCount)")
-            Stat(title: "Known", value: "\(study.knownCount)")
+            Picker("Study", selection: Binding(get: { mode }, set: { new in
+                study.endSession()
+                study.endGrammar()
+                mode = new
+            })) {
+                Text("Words").tag("words")
+                Text("Grammar").tag("grammar")
+            }
+            .pickerStyle(.segmented)
+            .labelsHidden()
+            .fixedSize()
+            if mode != "grammar" {
+                Stat(title: "New today", value: "\(min(study.startedToday, newPerDay)) / \(newPerDay)")
+                Stat(title: "To review", value: "\(study.plan.reviews.count)")
+                Stat(title: "Learned", value: "\(study.learnedCount) / \(study.totalCount)")
+                Stat(title: "Known", value: "\(study.knownCount)")
+            }
             Spacer()
             if study.session != nil, !study.isFinished {
                 Button("End") { study.endSession() }
@@ -165,6 +182,9 @@ struct StudyView: View {
                     .padding(.top, 8)
                     .id(study.cardID)
             }
+            Button("I Know This Word") { study.markKnown() }
+                .help("Skip this word. It comes back for review in about six months. Undo it in History with Study Again.")
+                .focusable(false)
             if let session = study.session {
                 ProgressView(value: Double(session.completed), total: Double(session.completed + session.remaining))
                     .frame(maxWidth: 360)
@@ -225,5 +245,82 @@ extension StudyGrade {
         case .good: .green
         case .easy: .blue
         }
+    }
+}
+
+/// History's Study card: answers per day, what is due this week, and the
+/// words studied most recently, where a word marked as known can be put back.
+struct StudyHistoryCard: View {
+    @Environment(StudyModel.self) private var study
+
+    var body: some View {
+        if let set = study.wordSet, !study.progress.cards.isEmpty {
+            let progress = study.progress
+            let days = Self.lastDays(30)
+            let forecast = progress.dueForecast(in: set, days: 7, now: .now)
+            VStack(alignment: .leading, spacing: 14) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Study").font(.headline)
+                    Text(verbatim: StudySet.title(for: set.id)).foregroundStyle(.secondary)
+                }
+                HStack(spacing: 28) {
+                    stat("Learned", "\(study.learnedCount) / \(study.totalCount)")
+                    stat("Known", "\(study.knownCount)")
+                    stat("Due this week", "\(forecast.reduce(0, +))")
+                }
+                Chart {
+                    ForEach(days, id: \.self) { day in
+                        BarMark(
+                            x: .value("Day", day, unit: .day),
+                            y: .value("Answers", progress.answersPerDay[StudyProgress.day(day)] ?? 0)
+                        )
+                        .foregroundStyle(Color.accentColor.gradient)
+                    }
+                }
+                .chartYAxisLabel("Answers per day")
+                .frame(height: 120)
+                Text("Recently studied").font(.subheadline.weight(.semibold))
+                VStack(spacing: 0) {
+                    ForEach(progress.recent(in: set, limit: 25), id: \.word.id) { item in
+                        row(item.word, item.card)
+                        Divider()
+                    }
+                }
+            }
+            .padding(18)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }
+    }
+
+    private func row(_ word: StudyWord, _ card: CardState) -> some View {
+        HStack(spacing: 12) {
+            Text(verbatim: word.native).font(.title3).frame(minWidth: 60, alignment: .leading)
+            Text(verbatim: word.reading).foregroundStyle(.secondary).frame(minWidth: 90, alignment: .leading)
+            Text(verbatim: word.meaning).foregroundStyle(.secondary).lineLimit(1)
+            Spacer()
+            if card.markedKnown == true {
+                Text("Marked as known").font(.caption).foregroundStyle(.green)
+            } else {
+                Text("Next \(card.due.formatted(.dateTime.month(.abbreviated).day().locale(LanguageState.shared.locale)))")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            Button("Study Again") { study.reset(word) }
+                .controlSize(.small)
+                .help("Forget this word, so it comes back as a new word.")
+        }
+        .padding(.vertical, 6)
+    }
+
+    private func stat(_ title: LocalizedStringKey, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title).font(.caption).foregroundStyle(.secondary)
+            Text(value).font(.title3.weight(.semibold).monospacedDigit())
+        }
+    }
+
+    private static func lastDays(_ count: Int) -> [Date] {
+        let today = Calendar.current.startOfDay(for: .now)
+        return (0..<count).reversed().compactMap { Calendar.current.date(byAdding: .day, value: -$0, to: today) }
     }
 }

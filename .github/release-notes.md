@@ -1,10 +1,11 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.7.0
+## What's new in 0.8.0
 
-- **Study tab:** Learn Chinese vocabulary from the revised HSK 3.0 word lists (2025), HSK 1 to 7-9, with spaced repetition. Each card shows the characters, pinyin and meaning, and you type the pinyin. How you type it is the grade: a clean, quick answer pushes the word further out, a miss brings it back sooner. Choose how many new words a day, keep going whenever you like, and practice the words you already know.
-- **Your choice of hints:** Show or hide the characters, pinyin and meaning when recalling. Press Return to see the answer if you are stuck.
-- History moves to ⌘5; Study is ⌘4.
+- **Grammar in Study:** Every grammar point of the revised HSK 3.0 syllabus, from HSK 1 to 7-9, with its English name and a link to look it up. HSK 1 points come with example sentences written by people (from Tatoeba) and their English translations, each checked by hand, to read with or without pinyin and to type. Examples for higher levels follow as they are checked.
+- **I Know This Word:** Skip a word you already know. It comes back for review in about six months.
+- **Study in History:** Answers per day, reviews due this week, and your recently studied words. Study Again puts a word back as new, for example if you pressed I Know This Word by mistake.
+- **Study types pinyin on your Mac's layout:** If your practice layout cannot type Latin letters (Russian, Hindi, Arabic...), the Study tab uses your Mac's own layout and switches back when you leave.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

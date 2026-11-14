@@ -214,6 +214,14 @@ Japanese public-domain books from [Aozora Bunko](https://www.aozora.gr.jp) could
 - **Changes made:** One reading per word. Words with several readings get the everyday one: surnames, old variants and "used in" entries are skipped, and a few are set by hand (吗 ma, 喝 hē, 雨 yǔ). At most three meanings are kept. The typed form is toneless pinyin with v for ü.
 - **Rebuilding:** `python3 scripts/build_study.py --source /path/to/complete.json`
 
+## Study grammar (HSK)
+
+- **Grammar points:** the revised HSK 3.0 syllabus (CLEC, 2025), as text from [krmanik/HSK-3.0](https://github.com/krmanik/HSK-3.0) (CC BY-SA 4.0). English names in `scripts/grammar_labels.json`, written for Ductus.
+- **Example sentences:** Tatoeba Mandarin sentences with their English translations (CC BY 2.0 FR); both authors of every sentence are in `study-grammar-credits.tsv` and in the app (Sentence Authors).
+- **Checked by hand:** a sentence only ships when it was read and approved for its point (`scripts/grammar_reviewed.json`, by Tatoeba ID): natural standard Mandarin, the point used in that exact sense (想 as "want to", not "miss"; 只 as a measure word, not "only"), within the level's vocabulary where possible. Points without a good sentence get none. HSK 1 is reviewed; higher levels list their points without examples until they are.
+- **Pinyin:** each word's reading comes from the HSK lists (CC-CEDICT, with neutral tones like péng you), else pypinyin; dictionary tones for 一 and 不; erhua joined (zhèr). The typed form is the same pinyin without marks.
+- **Rebuilding:** `python3 scripts/build_grammar.py --grammar /path/to/grammar/txt --tatoeba /path/to/tatoeba` (set `GRAMMAR_SEARCH=1` to list search results for levels not yet reviewed).
+
 ## Rebuilding
 
 ```sh
