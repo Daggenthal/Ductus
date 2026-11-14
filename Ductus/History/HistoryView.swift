@@ -40,6 +40,7 @@ struct HistoryView: View {
                     keyLists
                     keyTrend
                     races
+                    textParts
                     unlockTimeline
                 }
             }
@@ -202,6 +203,41 @@ struct HistoryView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Text tab
+
+    @ViewBuilder
+    private var textParts: some View {
+        let parts = practice.textHistory
+        if !parts.isEmpty {
+            let speeds = parts.compactMap(\.wpm)
+            let lastTen = speeds.suffix(10)
+            let recent = parts.suffix(50)
+            let offset = parts.count - recent.count
+            let points = recent.enumerated().compactMap { item in
+                item.element.wpm.map { MetricPoint(index: item.offset, label: "Part \(offset + item.offset + 1)", value: $0) }
+            }
+            Card {
+                Text("Your texts").font(.headline)
+                HStack(spacing: 28) {
+                    miniStat("Parts typed", "\(parts.count)")
+                    if !lastTen.isEmpty {
+                        miniStat("Last 10 average", String(format: "%.0f WPM", lastTen.reduce(0, +) / Double(lastTen.count)))
+                    }
+                    miniStat("Time", Self.minutes(parts.reduce(0) { $0 + $1.activeTime }))
+                    miniStat("Characters", parts.reduce(0) { $0 + $1.characters }.formatted())
+                }
+                if points.count >= 2 {
+                    MetricChart(title: "Speed on your texts", unit: "WPM", points: points, format: "%.0f WPM")
+                }
+            }
+        }
+    }
+
+    private static func minutes(_ seconds: TimeInterval) -> String {
+        let minutes = Int(seconds / 60)
+        return minutes < 60 ? "\(minutes) min" : "\(minutes / 60) h \(minutes % 60) min"
     }
 
     private func miniStat(_ title: String, _ value: String) -> some View {

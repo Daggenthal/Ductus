@@ -384,12 +384,14 @@ final class PracticeModel {
         defer { checkDailyGoal(before: before) }
         guard let trainer, let profile = ensureProfile() else { return }
         let now = Date()
-        profile.drills.append(DrillEntry(DrillRecord(
+        let entry = DrillEntry(DrillRecord(
             date: now, characters: summary.characters, duration: summary.duration, activeTime: activeTime,
             wpm: summary.wpm, accuracy: summary.accuracy,
             focusKey: custom ? nil : trainer.focusKey.map(String.init),
             unlockedCount: trainer.curriculum.unlockedCount
-        )))
+        ))
+        if custom { entry.source = DrillEntry.textSource }
+        profile.drills.append(entry)
 
         // Update today's snapshot of every practiced key (one row per key per day).
         let today = Calendar.current.startOfDay(for: now)
@@ -435,7 +437,7 @@ final class PracticeModel {
 
     // MARK: - Export
 
-    /// Drills and races as CSV, one row each, oldest first.
+    /// Drills, Text-tab parts and races as CSV, one row each, oldest first.
     func historyCSV() -> String {
         let iso = ISO8601DateFormatter()
         var rows = ["type,date,length,characters,wpm,accuracy,focus_or_worst_keys"]
@@ -444,6 +446,13 @@ final class PracticeModel {
                 "drill", iso.string(from: drill.date), String(format: "%.1f", drill.duration),
                 "\(drill.characters)", drill.wpm.map { String(format: "%.1f", $0) } ?? "",
                 String(format: "%.3f", drill.accuracy), drill.focusKey ?? "",
+            ].joined(separator: ","))
+        }
+        for part in textHistory {
+            rows.append([
+                "text", iso.string(from: part.date), String(format: "%.1f", part.duration),
+                "\(part.characters)", part.wpm.map { String(format: "%.1f", $0) } ?? "",
+                String(format: "%.3f", part.accuracy), "",
             ].joined(separator: ","))
         }
         for race in raceHistory {
@@ -475,7 +484,15 @@ final class PracticeModel {
     func stats(for key: Character) -> KeyStats? { trainer?.stats.stats(for: key) }
 
     /// Finished drills for the current layout, oldest first.
+    /// Practice drills, oldest first. Text-tab parts are kept apart (`textHistory`).
     var drillHistory: [DrillRecord] {
-        (profile?.drills ?? []).map(\.record).sorted { $0.date < $1.date }
+        (profile?.drills ?? []).filter { $0.source != DrillEntry.textSource }
+            .map(\.record).sorted { $0.date < $1.date }
+    }
+
+    /// Finished parts of Text-tab texts, oldest first.
+    var textHistory: [DrillRecord] {
+        (profile?.drills ?? []).filter { $0.source == DrillEntry.textSource }
+            .map(\.record).sorted { $0.date < $1.date }
     }
 }

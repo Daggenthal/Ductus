@@ -13,6 +13,19 @@ final class TextPracticeModel {
     private(set) var selected: SavedText?
     /// The selected text split into parts of about 300 characters.
     private(set) var parts: [String] = []
+    /// For Japanese, Chinese and Korean texts: the original words of each part.
+    private(set) var partGlosses: [Gloss] = []
+    /// Called when the selected text changes (the keyboard switches to 2-Set for Korean).
+    @ObservationIgnored var onSelectionChange: (() -> Void)?
+
+    /// The language a Japanese, Chinese or Korean text is typed in, `nil` for Latin text.
+    var language: PracticeLanguage? { selected?.practiceLanguage }
+
+    /// Original text for the part being typed.
+    var gloss: Gloss? {
+        guard let selected, selected.part < partGlosses.count else { return nil }
+        return partGlosses[selected.part]
+    }
     private(set) var session: TypingSession?
     private(set) var lastKeyWrong = false
     private(set) var lastSummary: SessionSummary?
@@ -47,24 +60,43 @@ final class TextPracticeModel {
     /// nothing typeable is left.
     @discardableResult
     func add(_ raw: String, title: String, keepLineBreaks: Bool) -> Bool {
+        let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Japanese, Chinese and Korean are typed as romaji, pinyin or 2-Set keys.
+        if let language = Transcriber.language(of: raw) {
+            guard let result = Transcriber.transcribe(raw, as: language) else {
+                notice = "Nothing in that text could be read for typing."
+                return false
+            }
+            let text = SavedText(
+                title: name.isEmpty ? CustomText.title(for: result.chunks.joined(separator: " ")) : name,
+                body: result.typed, keepLineBreaks: false
+            )
+            text.language = language.rawValue
+            text.native = result.chunks.joined(separator: SavedText.separator)
+            save(text, dropped: result.dropped)
+            return true
+        }
         let cleaned = CustomText.clean(raw, keepLineBreaks: keepLineBreaks, canType: practice.canType)
         guard !cleaned.text.isEmpty else {
             notice = "Nothing in that text can be typed on this layout."
             return false
         }
-        let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
         let text = SavedText(
             title: name.isEmpty ? CustomText.title(for: cleaned.text) : name,
             body: cleaned.text, keepLineBreaks: keepLineBreaks
         )
+        save(text, dropped: cleaned.dropped)
+        return true
+    }
+
+    private func save(_ text: SavedText, dropped: Int) {
         store.insert(text)
         texts.insert(text, at: 0)
         select(text)
-        notice = cleaned.dropped > 0
-            ? "\(cleaned.dropped) character\(cleaned.dropped == 1 ? "" : "s") your layout cannot type \(cleaned.dropped == 1 ? "was" : "were") left out."
+        notice = dropped > 0
+            ? "\(dropped) character\(dropped == 1 ? "" : "s") that cannot be typed \(dropped == 1 ? "was" : "were") left out."
             : nil
-        Log.info("Added text \"\(text.title)\" (\(cleaned.text.count) characters, \(parts.count) parts)")
-        return true
+        Log.info("Added a text (\(text.body.count) characters, \(parts.count) parts)")
     }
 
     func select(_ text: SavedText?) {
@@ -72,11 +104,22 @@ final class TextPracticeModel {
         notice = nil
         lastSummary = nil
         parts = text.map { CustomText.parts(of: $0.body) } ?? []
+        partGlosses = []
+        if let text, text.practiceLanguage != nil {
+            // Parts break between words, so the original words follow along in order.
+            var chunks = text.nativeChunks[...]
+            for part in parts {
+                let count = part.split(separator: " ").count
+                partGlosses.append(Gloss(text: part, chunks: Array(chunks.prefix(count))))
+                chunks = chunks.dropFirst(count)
+            }
+        }
         if let text {
             text.lastOpened = Date()
             store.save()
         }
         startPart()
+        onSelectionChange?()
     }
 
     func rename(_ text: SavedText, to title: String) {
@@ -135,7 +178,10 @@ final class TextPracticeModel {
         guard let keystroke = session?.type(character, keyCode: keyCode, at: time) else { return true }
         lastKeyWrong = !keystroke.isCorrect && session?.mistakeMode == .stop
         practice.onKeystroke?(keystroke.isCorrect)
-        practice.recordExternal(keystroke)
+        // Korean keys only count toward Korean practice; romaji and pinyin are plain letters.
+        if language != .korean || practice.language == .korean {
+            practice.recordExternal(keystroke)
+        }
 
         if let session, session.isComplete {
             finishPart(session)

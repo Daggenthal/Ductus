@@ -29,6 +29,10 @@ public enum TextDecorator {
         let words = text.split(separator: " ").map(String.init)
         guard !words.isEmpty else { return text }
         let randomCapitals = !language.keepsCase
+        // French puts a space before ? ! : and ;.
+        let spaced = { (mark: String) in
+            language == .french && "?!:;".contains(mark) ? " " + mark : mark
+        }
 
         var output: [String] = []
         var index = 0
@@ -49,12 +53,12 @@ public enum TextDecorator {
                         if ending == "?" { word = "¿" + word } else if ending == "!" { word = "¡" + word }
                     }
                     if isLast {
-                        word += ending
+                        word += spaced(ending)
                     } else {
                         let roll = Double.random(in: 0..<1, using: &rng)
                         if roll < 0.12 { word += "," }
-                        else if roll < 0.14 { word += ";" }
-                        else if roll < 0.15 { word += ":" }
+                        else if roll < 0.14 { word += spaced(";") }
+                        else if roll < 0.15 { word += spaced(":") }
                     }
                 }
                 output.append(word)

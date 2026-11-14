@@ -79,13 +79,20 @@ struct TextPracticeView: View {
                     Text(notice).font(.callout).foregroundStyle(.orange)
                 }
                 if let session = model.session {
-                    RaceTextView(session: session, lastKeyWrong: model.lastKeyWrong,
-                                 fontSize: 28 * textScale, visibleLines: 4)
-                        .id(model.sessionID)
+                    if model.language == .korean, let gloss = model.gloss {
+                        HangulText(session: session, gloss: gloss, lastKeyWrong: model.lastKeyWrong,
+                                   fontSize: 34 * textScale, style: .window(lines: 4))
+                            .id(model.sessionID)
+                    } else {
+                        if let gloss = model.gloss {
+                            GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                        }
+                        RaceTextView(session: session, lastKeyWrong: model.lastKeyWrong,
+                                     fontSize: 28 * textScale, visibleLines: 4)
+                            .id(model.sessionID)
+                    }
                     if session.position == 0 {
-                        Text(text.keepLineBreaks
-                             ? "Press Return at each ↵. Indentation is skipped."
-                             : "Just start typing. Your keys count toward practice, like races do.")
+                        Text(hint(for: text))
                             .font(.callout)
                             .foregroundStyle(.secondary)
                     }
@@ -142,6 +149,18 @@ struct TextPracticeView: View {
             }
             ProgressView(value: model.progress)
                 .tint(.accentColor)
+        }
+    }
+
+    private func hint(for text: SavedText) -> String {
+        switch text.practiceLanguage {
+        case .japanese: "Type the romaji for the words shown above, the way you would with the Japanese input method."
+        case .chinese: "Type the pinyin for the words shown above, without tones (v for ü)."
+        case .korean: "Type on the 2-Set Korean layout. Each block fills in as you type its keys."
+        default:
+            text.keepLineBreaks
+                ? "Press Return at each ↵. Indentation is skipped."
+                : "Just start typing. Your keys count toward practice, like races do."
         }
     }
 
@@ -221,7 +240,7 @@ private struct NewTextSheet: View {
                     .foregroundStyle(.secondary)
             }
             Toggle("Keep line breaks (for code and poems)", isOn: $keepLineBreaks)
-            Text("Curly quotes, long dashes and similar are changed to keys you can type. Characters your layout cannot type are left out. The text is saved on this Mac only.")
+            Text("Curly quotes, long dashes and similar are changed to keys you can type. Characters your layout cannot type are left out. Japanese, Chinese and Korean are typed as romaji, pinyin or on 2-Set, with the original shown. The text is saved on this Mac only.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
             if failed {

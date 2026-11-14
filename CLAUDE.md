@@ -54,7 +54,7 @@ The engine is what actually makes the user faster. It is statistical, not a neur
   - cyan = stack frames
   - yellow = warnings, missing files, known/expected issues
   - green = success (done / ready / loaded / pass)
-- **Debug mode** that can be toggled (env var like `DUCTUS_DEBUG=1` plus a hidden settings toggle): full logging, and keep running through errors where possible so one pass shows every problem.
+- **Debug mode** that can be toggled (env var like `DUCTUS_DEBUG=1` plus a hidden settings toggle): full logging, and keep running through errors where possible so one pass shows every problem. Implemented: hold Option while opening Settings to show the Debug section; debug mode also writes a plain-text log to the sandbox `Library/Logs/Ductus.log` (5 MB cap). Never log typed keys or pasted text.
 - **Commits:** Author is Daggenthal (`112846802+Daggenthal@users.noreply.github.com`). Never use a real name anywhere public. Do NOT commit; leave changes uncommitted and suggest the commit command with `-S` (commits are SSH-signed). Add a `Co-Authored-By: Claude` trailer.
 - **Writing (README, docs, UI text):** Direct and plain, no hype or AI-sounding flair. No em-dashes. Emojis are fine. Capitalize the first letter after a colon.
 - **Long or complicated work:** Lay out the possible approaches, the reasoning and trade-offs for each, and why one was picked, before building. Give a progress update roughly every 10 minutes during long tasks.

@@ -51,6 +51,10 @@ final class DrillEntry {
     var focusKey: String?
     var unlockedCount: Int
     var profile: LayoutProfile?
+    /// Empty for a practice drill, "text" for a finished part of a Text-tab text.
+    var source: String = ""
+
+    static let textSource = "text"
 
     init(_ record: DrillRecord) {
         date = record.date
@@ -153,6 +157,16 @@ final class SavedText {
     var part: Int = 0
     var created: Date
     var lastOpened: Date
+    /// "japanese", "chinese" or "korean" for text typed as romaji, pinyin or
+    /// 2-Set jamo; empty for Latin text.
+    var language: String = ""
+    /// For those: the original text of each typed word, joined by `SavedText.separator`.
+    var native: String = ""
+
+    static let separator = "\u{1F}"
+
+    var practiceLanguage: PracticeLanguage? { PracticeLanguage(rawValue: language) }
+    var nativeChunks: [String] { native.isEmpty ? [] : native.components(separatedBy: Self.separator) }
 
     init(title: String, body: String, keepLineBreaks: Bool) {
         self.title = title

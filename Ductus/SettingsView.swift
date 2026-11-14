@@ -37,6 +37,9 @@ struct SettingsView: View {
     @State private var exporting = false
     @State private var hasInputMonitoring = GlobalKeyMonitor.hasPermission
     @State private var showingCredits = false
+    @AppStorage(SettingsKey.debugMode) private var debugMode = false
+    /// The Debug section is hidden unless Option is held when Settings opens, or debug is on.
+    @State private var showDebug = false
 
     var body: some View {
         Form {
@@ -167,9 +170,29 @@ struct SettingsView: View {
                 note("Readings were made with UniDic, pypinyin and OpenCC when building the lists. See CORPUS.md in the source code for every book and tool.")
             }
 
+            if showDebug {
+                Section("Debug") {
+                    Toggle("Debug mode", isOn: $debugMode)
+                        .disabled(Log.debugFromEnvironment)
+                    note(Log.debugFromEnvironment
+                         ? "On because DUCTUS_DEBUG=1 is set."
+                         : "Logs everything Ductus does (drill text, unlocks, saves, errors) to a file on this Mac. Typed keys are never logged. This section shows when you hold Option while opening Settings.")
+                    HStack {
+                        Button("Show Log File") {
+                            NSWorkspace.shared.activateFileViewerSelecting([DebugMode.logFileURL])
+                        }
+                        .disabled(!FileManager.default.fileExists(atPath: DebugMode.logFileURL.path))
+                        Button("Clear Log") {
+                            try? FileManager.default.removeItem(at: DebugMode.logFileURL)
+                            if Log.logFile != nil { Log.logFile = DebugMode.logFileURL }
+                        }
+                    }
+                }
+            }
+
             Section("Progress") {
                 LabeledContent("Layout", value: practice.layoutName)
-                LabeledContent("Drills completed", value: "\(practice.profile?.drills.count ?? 0)")
+                LabeledContent("Drills completed", value: "\(practice.drillHistory.count)")
                 if !practice.isSavingProgress {
                     note("Progress could not be saved this session. Check the log for details.", color: .orange)
                 } else {
@@ -182,6 +205,9 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
+        .onAppear {
+            if NSEvent.modifierFlags.contains(.option) || debugMode || Log.debugFromEnvironment { showDebug = true }
+        }
         .sheet(isPresented: $showingCredits) { SentenceAuthorsSheet() }
         .onAppear { hasInputMonitoring = GlobalKeyMonitor.hasPermission }
         .confirmationDialog(

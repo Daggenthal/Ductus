@@ -53,3 +53,22 @@ import Testing
         }
     }
 }
+
+@Suite struct RomajiTests {
+    @Test func kanaFaithfulRomaji() {
+        #expect(Romaji.from(kana: "とうきょう") == "toukyou")
+        #expect(Romaji.from(kana: "きって") == "kitte")
+        #expect(Romaji.from(kana: "まっち") == "macchi")
+        #expect(Romaji.from(kana: "こんいん") == "konnin")
+        #expect(Romaji.from(kana: "しんぶん") == "shinbun")
+        #expect(Romaji.from(kana: "コーヒー") == "ko-hi-")
+        #expect(Romaji.from(kana: "ぎゅうにゅう") == "gyuunyuu")
+        #expect(Romaji.from(kana: "東京") == nil)
+    }
+
+    @Test func glossFromOrderedChunks() {
+        let gloss = Gloss(text: "watashiha gakusei desu.", chunks: ["私は", "学生", "です。"])
+        #expect(gloss.segments.map(\.native) == ["私は", "学生", "です。"])
+        #expect(gloss.segments[1].range == 10..<17)
+    }
+}

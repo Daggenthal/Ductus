@@ -173,7 +173,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKey.showStatsInFloating: true,
             SettingsKey.appearance: AppearanceChoice.system.rawValue,
         ])
-        if Log.isDebug { Log.info("Debug mode on") }
+        DebugMode.apply()
 
         // Typing goes to practice when the practice window or the floating
         // keyboard is the key window, and no text field is being edited.
@@ -213,12 +213,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Progress is saved per layout. Switching input source switches progress.
         practice.onKeystroke = { [sounds] correct in sounds.keystroke(correct: correct) }
         practice.start(layout: keyboard.layout, store: store)
-        keyboard.hangulMode = practice.language == .korean
         keyboard.onLayoutChange = { [weak self] layout in
             guard let self else { return }
             self.practice.switchLayout(to: layout)
-            self.keyboard.hangulMode = self.practice.language == .korean
+            self.syncKoreanTyping()
         }
+        textPractice.onSelectionChange = { [weak self] in self?.syncKoreanTyping() }
+        syncKoreanTyping()
 
         hud = KeyboardHUD(
             content: FloatingKeyboard(
@@ -237,6 +238,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             MainActor.assumeIsolated { self?.applySettings() }
         }
         Log.success("Ductus ready")
+    }
+
+    /// Keys type 2-Set jamo when practicing Korean, or on the Text tab with a Korean text open.
+    private func syncKoreanTyping() {
+        let korean = ui.tab == .text ? textPractice.language == .korean : practice.language == .korean
+        if keyboard.hangulMode != korean { keyboard.hangulMode = korean }
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -290,11 +297,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         defer { isApplyingSettings = false }
         let defaults = UserDefaults.standard
 
+        DebugMode.apply()
         practice.applySettings()
-        // Korean typing follows the practice language, which a setting can change.
-        if keyboard.hangulMode != (practice.language == .korean) {
-            keyboard.hangulMode = practice.language == .korean
-        }
+        // Korean typing follows the practice language (a setting can change it)
+        // or, on the Text tab, the open text.
+        syncKoreanTyping()
         let glow = Array(defaults.string(forKey: SettingsKey.shortcutKeys) ?? SettingsKey.defaultShortcutKeys)
         if keyboard.shortcutLetters != glow { keyboard.shortcutLetters = glow }
         let shape = KeyboardGeometry.Shape(rawValue: defaults.string(forKey: SettingsKey.keyboardShape) ?? "")

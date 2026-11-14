@@ -40,6 +40,18 @@ public enum Log {
         set { state.isDebug = newValue }
     }
 
+    /// `true` when `DUCTUS_DEBUG=1` was set at launch (the settings toggle cannot turn it off).
+    public static let debugFromEnvironment = ProcessInfo.processInfo.environment["DUCTUS_DEBUG"] == "1"
+
+    /// When set, every line is also appended to this file as plain text (no color).
+    /// The file is started over when it grows past `maxLogFileSize`.
+    public static var logFile: URL? {
+        get { state.logFile }
+        set { state.setLogFile(newValue) }
+    }
+
+    public static let maxLogFileSize = 5_000_000
+
     public static func debug(_ message: @autoclosure () -> String) {
         guard isDebug else { return }
         write(message(), level: .debug)
@@ -56,6 +68,7 @@ public enum Log {
     public static func write(_ message: String, level: LogLevel) {
         let line = format(message, level: level, colored: state.useColor) + "\n"
         FileHandle.standardError.write(Data(line.utf8))
+        state.appendToFile(format(message, level: level, colored: false))
     }
 
     /// Pure formatting, exposed for tests.
@@ -85,5 +98,41 @@ private final class LogState: @unchecked Sendable {
     var isDebug: Bool {
         get { lock.withLock { _isDebug } }
         set { lock.withLock { _isDebug = newValue } }
+    }
+
+    private var _logFile: URL?
+    private var handle: FileHandle?
+    private let timestamp: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        return formatter
+    }()
+
+    var logFile: URL? { lock.withLock { _logFile } }
+
+    func setLogFile(_ url: URL?) {
+        lock.withLock {
+            try? handle?.close()
+            handle = nil
+            _logFile = url
+            guard let url else { return }
+            let manager = FileManager.default
+            try? manager.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+            let size = (try? manager.attributesOfItem(atPath: url.path)[.size] as? Int) ?? 0
+            if !manager.fileExists(atPath: url.path) || size > Log.maxLogFileSize {
+                manager.createFile(atPath: url.path, contents: nil)
+            }
+            handle = try? FileHandle(forWritingTo: url)
+            _ = try? handle?.seekToEnd()
+        }
+    }
+
+    func appendToFile(_ line: String) {
+        lock.withLock {
+            guard let handle else { return }
+            let stamped = "\(timestamp.string(from: Date()))  \(line)\n"
+            try? handle.write(contentsOf: Data(stamped.utf8))
+        }
     }
 }

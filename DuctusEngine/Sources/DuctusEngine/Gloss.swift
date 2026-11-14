@@ -22,6 +22,16 @@ public struct Gloss: Sendable, Equatable {
         })
     }
 
+    /// Glosses each space-separated word of `text` with the next of `chunks`, in order.
+    public init(text: String, chunks: [String]) {
+        segments = []
+        var index = 0
+        append(text: text, offset: 0, lookup: { _ in
+            defer { index += 1 }
+            return index < chunks.count ? chunks[index] : nil
+        })
+    }
+
     /// Glosses sentences chunk by chunk, for text made by joining them with spaces.
     public init(sentences: [SentenceList.Entry]) {
         segments = []

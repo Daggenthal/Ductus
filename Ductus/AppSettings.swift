@@ -1,4 +1,5 @@
 import DuctusEngine
+import DuctusLog
 import Foundation
 
 extension SettingsKey {
@@ -25,6 +26,8 @@ extension SettingsKey {
     static let keyboardShape = "keyboardShape"
     /// "auto" (from the layout), or a `PracticeLanguage` raw value.
     static let practiceLanguage = "practiceLanguage"
+    /// Hidden debug mode (Settings, hold Option): full logging plus a log file.
+    static let debugMode = "debugMode"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -45,6 +48,7 @@ extension SettingsKey {
             shortcutKeys: defaultShortcutKeys,
             keyboardShape: "auto",
             practiceLanguage: "auto",
+            debugMode: false,
         ])
     }
 }
@@ -94,4 +98,22 @@ enum PracticeSettings {
     static var sentenceDrills: Bool { defaults.bool(forKey: SettingsKey.sentenceDrills) }
 
     static var dailyGoalMinutes: Int { defaults.integer(forKey: SettingsKey.dailyGoalMinutes) }
+}
+
+/// Debug mode: `DUCTUS_DEBUG=1` or the hidden Settings toggle. Logs everything
+/// (never keystrokes) to the terminal and to a plain-text file in the app's
+/// Library/Logs folder.
+enum DebugMode {
+    static var logFileURL: URL {
+        FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("Logs/Ductus.log")
+    }
+
+    static func apply() {
+        let on = Log.debugFromEnvironment || UserDefaults.standard.bool(forKey: SettingsKey.debugMode)
+        guard on != Log.isDebug || (on && Log.logFile == nil) || (!on && Log.logFile != nil) else { return }
+        Log.isDebug = on
+        Log.logFile = on ? logFileURL : nil
+        Log.info(on ? "Debug mode on, logging to \(logFileURL.path)" : "Debug mode off")
+    }
 }

@@ -127,4 +127,16 @@ import Testing
         #expect(TextDecorator.decorate(text, style: TextStyle(capitals: true, punctuation: true),
                                        language: .japanese, using: &rng) == text)
     }
+
+    @Test func frenchSpacesBeforeTallPunctuation() {
+        var rng = SeededGenerator(seed: 8)
+        let words = Array(repeating: "le chat dort ici", count: 40).joined(separator: " ")
+        let text = TextDecorator.decorate(words, style: TextStyle(punctuation: true), language: .french, using: &rng)
+        #expect(text.contains(" ?") || text.contains(" !"))
+        for mark in ["?", "!", ":", ";"] {
+            for range in text.ranges(of: mark) {
+                #expect(text[text.index(before: range.lowerBound)] == " ")
+            }
+        }
+    }
 }
