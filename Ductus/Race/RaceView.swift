@@ -40,11 +40,17 @@ struct RaceView: View {
                 }
             } else if let session = race.session {
                 LiveRace(session: session, startedAt: race.startedAt, timeLimit: race.timeLimit, bestWPM: race.bestWPM)
-                if let gloss = race.gloss {
-                    GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                if practice.language == .korean, let gloss = race.gloss {
+                    HangulText(session: session, gloss: gloss, lastKeyWrong: race.lastKeyWrong,
+                               fontSize: 34 * textScale, style: .window(lines: 3))
+                        .id(race.raceID)
+                } else {
+                    if let gloss = race.gloss {
+                        GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                    }
+                    RaceTextView(session: session, lastKeyWrong: race.lastKeyWrong, fontSize: 28 * textScale)
+                        .id(race.raceID)
                 }
-                RaceTextView(session: session, lastKeyWrong: race.lastKeyWrong, fontSize: 28 * textScale)
-                    .id(race.raceID)
                 if race.startedAt == nil {
                     Text("The clock starts on your first key.")
                         .font(.callout)

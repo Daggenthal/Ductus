@@ -16,10 +16,16 @@ struct PracticeView: View {
             if let error = practice.loadError {
                 Text(error).foregroundStyle(.red)
             } else if let session = practice.session {
-                if let gloss = practice.gloss {
-                    GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                if practice.language == .korean, let gloss = practice.gloss {
+                    // Korean shows real syllable blocks that build up as you type.
+                    HangulText(session: session, gloss: gloss, lastKeyWrong: practice.lastKeyWrong,
+                               fontSize: 34 * textScale)
+                } else {
+                    if let gloss = practice.gloss {
+                        GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                    }
+                    DrillText(session: session, lastKeyWrong: practice.lastKeyWrong, fontSize: 28 * textScale)
                 }
-                DrillText(session: session, lastKeyWrong: practice.lastKeyWrong, fontSize: 28 * textScale)
             } else {
                 ProgressView()
             }
@@ -129,7 +135,6 @@ struct DrillText: View {
 
         var current = AttributedString(position < text.count ? String(text[position]) : "")
         current.backgroundColor = lastKeyWrong ? .red.opacity(0.35) : .accentColor.opacity(0.3)
-        current.underlineStyle = .single
 
         var rest = AttributedString(position + 1 < text.count ? String(text[(position + 1)...]) : "")
         rest.foregroundColor = .primary

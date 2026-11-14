@@ -32,12 +32,19 @@ struct PracticeKeyboard: View {
                 .padding(.trailing, 16)
                 .padding(.top, showsStats ? 12 : 8)
             }
-            if showsDrill, let session = practice.session, let gloss = practice.gloss {
-                GlossBar(gloss: gloss, position: session.position, fontSize: 28 * textScale, before: 1, after: 2)
-                    .padding(.horizontal, 16)
+            if showsDrill, let session = practice.session, let gloss = practice.gloss,
+               practice.language == .korean {
+                HangulText(session: session, gloss: gloss, lastKeyWrong: practice.lastKeyWrong,
+                           fontSize: 26 * textScale, style: .strip(anchor: 0.35))
+                    .id(practice.drillID)
+                    .padding(.horizontal, 12)
                     .padding(.top, 10)
-            }
-            if showsDrill, let session = practice.session {
+            } else if showsDrill, let session = practice.session {
+                if let gloss = practice.gloss {
+                    GlossBar(gloss: gloss, position: session.position, fontSize: 28 * textScale, before: 1, after: 2)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 10)
+                }
                 DrillStrip(session: session, lastKeyWrong: practice.lastKeyWrong, fontSize: 22 * textScale)
                     .id(practice.drillID)
                     .padding(.horizontal, 12)

@@ -53,7 +53,6 @@ struct RaceTextView: View {
             } else if index == position {
                 piece.foregroundColor = .primary
                 piece.backgroundColor = lastKeyWrong ? .red.opacity(0.35) : .accentColor.opacity(0.3)
-                piece.underlineStyle = .single
             } else {
                 piece.foregroundColor = text[index] == "\n" ? .secondary : .primary
             }
