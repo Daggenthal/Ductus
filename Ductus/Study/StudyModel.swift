@@ -12,6 +12,8 @@ final class StudyModel {
     private let store: ProgressStore
     private let practice: PracticeModel
     private let scheduler = FSRS()
+    /// Reads words and sentences aloud.
+    let speaker = StudySpeaker()
 
     private(set) var wordSet: StudySet?
     private(set) var progress = StudyProgress()
@@ -159,6 +161,7 @@ final class StudyModel {
     var step: StudySession.Step? { session?.current }
 
     private func nextCard() {
+        speaker.stop()
         guard let step = session?.current else {
             typing = nil
             isFinished = true

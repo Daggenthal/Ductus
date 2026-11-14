@@ -203,12 +203,17 @@ def main() -> int:
                 english[parts[0]] = (parts[2], parts[3])
 
     rows = list(cjk.read_tatoeba(args.tatoeba / "cmn_sentences_detailed.tsv"))
+    # Word breaks set by hand where the word splitter gets a sentence wrong.
+    chunk_fixes = json.loads((pathlib.Path(__file__).resolve().parent / "grammar_reviewed.json").read_text(encoding="utf-8")).get("_chunks", {})
     authors = {sid: author for sid, _, author in rows}
     _, _, sentences = cjk.build_chinese(rows, random.Random(42))
     blocklist = Blocklist("chinese", args.tatoeba)
     pool = []
     for sid, author, typed, native in sentences:
         chunks = native.split("|")
+        if sid in chunk_fixes:
+            chunks = chunk_fixes[sid].split("|")
+            typed = " ".join(cjk.PUNCTUATION.get(c[-1], "") for c in chunks)
         eng = next((english[e] for e in links.get(sid, []) if e in english), None)
         if not eng or blocklist.blocks_text(native, chunks=chunks):
             continue
@@ -227,24 +232,129 @@ def main() -> int:
                 parts = line.split("\t")
                 readings[parts[0]] = parts[1].lower()
 
-    def tone_pinyin(word, previous=""):
-        if word == "只" and previous and previous[-1] in "这那哪每几一两三四五六七八九十":
-            return "zhī"  # the measure word (这只狗), not zhǐ "only"
-        # Particles standing alone: 站着 is zhàn zhe, 高兴地 gāoxìng de, 跑得快 pǎo de kuài.
-        if word in ("着", "地", "得") and previous:
-            return {"着": "zhe", "地": "de", "得": "de"}[word]
-        # Verb + 着 is zhe (穿着 "wearing", not the noun chuānzhuó); 睡着 and 着急 keep their readings.
-        if len(word) == 2 and word.endswith("着") and word not in ("睡着", "着急", "找着", "着火"):
-            first = tone_pinyin(word[0], previous)
-            return f"{first} zhe"
-        if word in readings:
-            text = readings[word]
-        else:
-            # Dictionary tones, as in the HSK lists: 一 is yī and 不 is bù, without tone changes.
-            syllables = lazy_pinyin(word, style=Style.TONE)
-            text = " ".join("yī" if c == "一" else "bù" if c == "不" else y for c, y in zip(word, syllables))
-        # Erhua joins its syllable: 这儿 is zhèr, not zhè ér or zhè r.
-        return re.sub(r" (?:ér|r)\b", "r", text) if "儿" in word else text
+    PRONOUNS = "我你他她它谁们"
+    NUMBERS = "一二两三四五六七八九十几每某各这那哪"
+
+    def char_reading(char, guess, before, after, in_word, sentence="", first_in_chunk=True, chunk_text=""):
+        before, after = before or "\0", after or "\0"  # "" is "in" every string
+        """One character's reading from its neighbors, for characters with several
+        readings that pypinyin often gets wrong. `guess` is pypinyin's reading in
+        the sentence's context; `before`/`after` are the neighboring characters."""
+        if char == "一":
+            return "yī"  # dictionary tone, as in the HSK lists
+        if char == "不":
+            return "bù"
+        if char == "着":
+            if before in "不得":
+                return "zháo"  # 用不着, 睡不着, 犯得着
+            if before in "睡找猜" and after == "了":
+                return "zháo"  # 睡着了 "fell asleep"
+            return guess if in_word else "zhe"
+        if char == "得":
+            # 也得去, 我得去, 现在得走: must (děi), before a verb and after a person, time or adverb.
+            if before in "也就还总都我你他她们在天候" and after not in "到出了很\0" and not in_word:
+                return "děi"
+            return guess if in_word else "de"
+        if char == "地" and not in_word:
+            # The adverb particle (高兴地, 断然地, a split like 地笑) is de; 地上, 地球, 外地人 are dì.
+            if chunk_text == "地" or (chunk_text.endswith("地") and len(chunk_text) >= 3) or (
+                    chunk_text.startswith("地") and len(chunk_text) == 2 and after in "笑走说看跑吃做学写想哭叫喊点问"):
+                return "de"
+            return "dì"
+        if char == "只":
+            return "zhī" if before and before in NUMBERS + "像" else "zhǐ"
+        if char == "长" and not in_word:
+            return "zhǎng" if after in "大得高出成" or (before and before in "生成增队校家部班") else "cháng"
+        if char == "倒" and not in_word:
+            if before in "病摔跌滑打推放累晕":
+                return "dǎo"  # 病倒了 "fell ill"
+            return "dào" if after in "是也不挺很还还好像" else guess
+        if char == "教" and not in_word:
+            return "jiāo"
+        if char == "为" and not in_word:
+            return "wéi" if before in "成作称认改分以选之大较更极最" or after == "止" or ("选" in sentence and "为" in sentence) else "wèi"
+        if char == "种" and not in_word:
+            if before and before in NUMBERS:
+                return "zhǒng"
+            if (before and before in PRONOUNS) or after in "了的树花菜地过":
+                return "zhòng"
+        if char == "中" and not in_word:
+            return "zhòng" if after in "了过奖" else "zhōng"
+        if char == "重" and not in_word:
+            return "chóng" if after in "新复" or before in "一两双多层" else "zhòng"
+        if char == "和" and not in_word:
+            return "hé"  # "and / with"; huó and huò only appear inside words
+        if char == "还" and not in_word:
+            return "huán" if after in "给书钱上清" else "hái"
+        if char == "谁":
+            return "shéi"  # as in the HSK lists
+        if char == "了" and not in_word:
+            return "liǎo" if before == "不" else "le"  # 做不了 "can't do"
+        if char == "处" and not in_word:
+            return "chǔ" if after in "理于在分境罚" else "chù"  # 处理 chǔ; 无处 / 此处 chù
+        if char == "觉" and not in_word:
+            return "jiào" if before in "好午睡个场" else "jué"  # 睡个觉, 睡午觉
+        if char == "趟":
+            return "tàng"
+        if char == "吓" and after != "唬":
+            return "xià"  # 吓得 xià de; hè only in 恐吓 (a dictionary word)
+        if char == "转" and not in_word:
+            return "zhuàn" if after == "圈" else "zhuǎn"
+        return guess
+
+    def sentence_tones(chunks, override=None):
+        """Pinyin with tones for each chunk of a sentence: the HSK reading for words in
+        the lists (CC-CEDICT, with neutral tones like péng you), else pypinyin read in
+        the whole sentence's context, corrected by `char_reading`."""
+        words = [c.strip(PUNCT) for c in chunks]
+        text = "".join(words)
+        han = [c for c in text if "\u4e00" <= c <= "\u9fff"]
+        guesses = lazy_pinyin("".join(han), style=Style.TONE)
+        guess_of = iter(guesses)
+        out = []
+        position = 0
+        for index, word in enumerate(words):
+            if override and index in override:
+                out.append(override[index])
+                position += len(word)
+                for _ in word:
+                    next(guess_of, None)
+                continue
+            # Verb + 着 is zhe (穿着 "wearing", not the noun chuānzhuó).
+            verb_zhe = len(word) == 2 and word.endswith("着") and word not in ("睡着", "着急", "找着", "着火")
+            if word == "得到" and index > 0 and len(words[index - 1]) == 1 and words[index - 1] in "做看听找买办说想见拿吃学":
+                text_reading = "de dào"  # 做得到 "can do", not dé dào "obtain"
+                for _ in word:
+                    next(guess_of, None)
+            elif word in readings and len(word) > 1 and not verb_zhe:
+                text_reading = readings[word]
+                for c in word:
+                    if "\u4e00" <= c <= "\u9fff":
+                        next(guess_of, None)
+            else:
+                syllables = []
+                for i, char in enumerate(word):
+                    if not ("\u4e00" <= char <= "\u9fff"):
+                        continue
+                    guess = next(guess_of, "")
+                    before = text[position + i - 1] if position + i > 0 else ""
+                    after = text[position + i + 1] if position + i + 1 < len(text) else ""
+                    single = readings.get(char) if len(word) == 1 else None
+                    if verb_zhe and char == "着":
+                        syllables.append("zhe")
+                    elif single and char not in "一不着得地只长倒教为种中重转还了和趟吓处觉谁":
+                        syllables.append(single)
+                    else:
+                        syllables.append(char_reading(char, guess, before, after,
+                                                      in_word=len(word) > 1 and word in readings, sentence=text,
+                                                      first_in_chunk=i == 0, chunk_text=word))
+                text_reading = " ".join(syllables)
+            position += len(word)
+            # Erhua joins its syllable: 这儿 is zhèr, not zhè ér.
+            text_reading = text_reading.replace("u:", "ü")  # CC-CEDICT writes ü as u: (lu:è is lüè)
+            # Erhua joins its syllable: 这儿 is zhèr, 看头儿 kàn tour.
+            out.append(re.sub(r" (?:ér|er|r)\b", "r", text_reading) if "儿" in word else text_reading)
+        return out
 
     def plain(tones):
         """Typed form of tone pinyin: no marks, v for ü, no spaces ("zhèr" -> "zher")."""
@@ -262,6 +372,8 @@ def main() -> int:
         chunks = []
         # "|" marks word breaks by hand where the word splitter gets them wrong.
         words_in = entry["ai"].split("|") if "|" in entry["ai"] else jieba.cut(entry["ai"])
+        # A chunk never spans punctuation: "去，不" becomes "去，" and "不".
+        words_in = [piece for w in words_in for piece in re.findall(r"[^，。？！、：；]+[，。？！、：；]*|[，。？！、：；]+", w)]
         for word in [w for part in words_in for w in ([part] if "|" in entry["ai"] else [part])]:
             if word in cjk.PUNCTUATION and chunks:
                 chunks[-1] += word
@@ -310,8 +422,7 @@ def main() -> int:
             if chosen:
                 with_examples += 1
             for s in chosen:
-                words = [c.strip(PUNCT) for c in s["chunks"]]
-                tone_chunks = [tone_pinyin(w, words[i - 1] if i else "") for i, w in enumerate(words)]
+                tone_chunks = sentence_tones(s["chunks"])
                 tones = "|".join(tone_chunks)
                 # Typed form from the same readings, keeping each chunk's punctuation keys.
                 typed = " ".join(plain(t) + re.sub(r"[a-z]", "", piece)

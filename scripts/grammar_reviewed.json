@@ -359,6 +359,124 @@
    "他虽然很累，但是也继续工作: 也 after 但是 is awkward",
    "书看完了: bare on its own; replaced with 那本书我看完了",
    "translations put into the past tense or overtranslated (每个人都高兴, 他工作很努力, 别再跟我说了 ...) were corrected for learners"
+  ],
+  "HSK 3 picking": [
+   "874384 我可以向你借一些钱？: question without 吗; replaced with 890484",
+   "我非常想你 / 想 as miss: not used for modals",
+   "他特别的喜欢历史 (8934298): 特别的 is 别的 look-alike, rejected for 别的",
+   "学校在上午八点三十分开始上课 (798350): 分开 look-alike",
+   "请相信我的话 / 他说的话 etc.: 话 'words', not conditional 的话",
+   "德语学起来容易吗 / 这蛋糕吃起来不同一般: evaluative 起来, not inception",
+   "笑什么 questions (4879268 你在笑什么呢): real question, not rhetorical X什么",
+   "5581820 除了他们，每个人都留下了: English says 'left' but 留下 means stayed",
+   "5957643 他和她结婚十年了: English says 'She and I'",
+   "10340642 根据警察，没有人死亡: unidiomatic (据警方说)",
+   "335006 你可以选择红茶，咖啡或牛奶: comma where 、 is standard",
+   "380678 我或者去看电影，或者去看歌剧: 歌剧 L7, replaced with AI",
+   "862332 学生们站着等巴士: 巴士 regional; 2200413 他们在一边吃喝: 在一边 odd",
+   "420742 十元买五斤: English says kilos for 斤",
+   "5091636 只要雨一停我们就走: mixes 只要 with 一……就",
+   "9545087 看来我明天会来: odd use of 看来",
+   "585680 英文是要一步一步的学的: 的 for 地, and 是……的 frame",
+   "616659 他虽然很累，但是也继续工作: 也 after 但是 is awkward (from HSK 2 review)",
+   "学起来, 学习上: 3521456 我们在学习中文 is progressive 在, not 在……中"
+  ],
+  "HSK 4 picking": [
+   "806211 光看表面是不足够的: English is a proverb (All that glitters...), misleading",
+   "5689303 我们的爱是相互的: 相互 as an adjective, not the adverb",
+   "686648/4773192 我才不...: English is crude/profane; used an AI sentence instead",
+   "334378 这里的夏天很潮湿，另外，冬天很干燥: English says 'on the other hand', misleading for 另外",
+   "387110 她不怎么会开车 = 'She is a very poor driver': overtranslated",
+   "5117819 他够开车的年纪了: 够 = 'enough' (verb), not the 够……的 pattern",
+   "13552263 星期五还早著呢: 还+adj+呢 'still early', not the sarcastic 还X呢 pattern",
+   "875060 这位老人饿死了 / 347131 他们被冻死了: literal 'died of', not the degree complement 死了",
+   "836131 我得了什么病 / 834863 我得了重感冒: 得了 = 'caught (an illness)', not the potential complement",
+   "793909 你不如跟我一起来 / 1944086 不如我们走着去: 不如 = 'might as well', not the comparison A不如B",
+   "861597 不是我对的，就是你: English 'I am not correct, but you are' is wrong",
+   "13837444 我只认识一百来个国字: 国字 is a Taiwan-only term",
+   "14036071 我的姪子比我大了二十来岁: traditional 姪 and odd content",
+   "8756388 他左右看了看: 左右 = 'left and right', not an approximation"
+  ],
+  "HSK 5 picking": [
+   "10194208 阿拉伯语和希伯来语是相似的: 相似的 is an adjective + 的, not the particle 似的",
+   "333510 我也听过一个类似的故事: 类似的, not 似的",
+   "2410990 自从他不知道该说什么的时候，便一直沉默着: 自从 misused, unnatural",
+   "2757059 自从得到他爸爸去了以来: ungrammatical",
+   "830327 自从她在厨房里摔倒后...: English mistranslated",
+   "1208520 网络的作用有着无数的多种多样的: ungrammatical",
+   "1208497 过于上网...: 过于 misused before a verb",
+   "874290 我们彼此认识没有很久: awkward word order",
+   "6799648 你们不爱彼此吗: Europeanized object 彼此",
+   "826539 她始终没致电给我: 致电 is stiff written register",
+   "2915561 总之，下一步是要决定我们下一步应该做什么: redundant, awkward",
+   "7774804 这是玛丽、他兄弟以及他们父母的房子: 他 should be 她 for Mary",
+   "1759602 他家后面有小溪，清可见底: 可见 here is 'can be seen', not the conjunction",
+   "5550171 这根本不是确定的: 根本 adverb, not measure word 根",
+   "8939107 我希望有朝一日去日本: 有朝一日 idiom, not the preposition 朝",
+   "918775 / 780252 代替: 代替 is the verb 'replace', not the preposition 替",
+   "2321621 / 408817 认同: 认同 is a verb, not the preposition 同",
+   "775667 你可以拿大的盒子或是小的盒子: only one 或是, not the paired pattern",
+   "2102713 他不但没帮我，还骂了我: uses 还, not 反而",
+   "1946774 / 387615 哭笑不得: fixed idiom, not V+不得 potential complement",
+   "2217159 怪不得: lexical word, not V+不得",
+   "784058 那幅画有多少年了 / 358177 他的画有点奇怪: 画 + 有 look-alikes, not V+有",
+   "13166961 etc. 这颗苹果: 颗 for apples is regional (mainland says 个); chose 颗 + 牙",
+   "9848313 我哭不得，笑不得: lacks 也 and the repeated verb of X也X不得",
+   "10350402 地震时时刻刻都有可能发生: reduplicated 时时刻刻, not plain 时刻",
+   "3630238 他有着奇妙的想法: English 'queer ideas' misleading"
+  ],
+  "HSK 6 picking": [
+   "664548 我不知道该怎么回答，便干脆甚么也不说: 甚么 is a nonstandard variant of 什么",
+   "482402 你相信也好，不相信也好…甚么分别: 甚么 variant",
+   "干嘛 sentences (471273 etc.): 干嘛 is the word 'why/what for', not the modal particle 嘛",
+   "14023297 那倒是个不错的主意: adverb 倒是 + 是-sentence, not the reply formula 那倒是; also weak for 倒是",
+   "13887455 我明明没招惹任何人: English 'I didn't ask to be abused' is misleading",
+   "10320177 过马路前往左往右都看看: 往左往右, not the 左A右B pattern",
+   "13786722 为什么要怪到我们头上: close to X到Y头上 but means 'blame on us', not the '来了' encroachment pattern",
+   "3537620 他们俩一个往东，一个往西: 一个…一个 'one…the other', not A一量，B一量 alternation",
+   "380555 他也不想洗碗，她也不想洗碗: 他也不/她也不, not 这也不…那也不",
+   "503048 一时间我还以为他疯了: 一时间 rather than 一时",
+   "超市 sentences: 超市 is lexicalized, not the productive prefix 超-",
+   "392195 我们打的去算了: English 'so we took a taxi' is wrong",
+   "13151233 以便未来参考: 资讯 is Taiwan usage",
+   "1577382 声音大声一点，以便…: awkward 声音大声",
+   "838556 汤姆给了我一枝笔: pens now usually take 支; used 枝 with roses instead",
+   "2217159 态度特好，怪不得顾客也好多: long, 好多 colloquial; AI sentences used for 特",
+   "358444 他就算多忙也会来的: 就算多忙 slightly awkward (usually 再忙)"
+  ],
+  "HSK 7-9 picking": [
+   "4262136 这可不是我做的: 可不是 = 'is really not', not the discourse marker 可不（是嘛）",
+   "9419106 我不能相信你是说真的: 说真的 here = 'mean it seriously', not the discourse marker",
+   "6149259 不是，这不是我的车: plain 'no' answer, not the discourse marker 不是",
+   "4265077 我爸爸能做一手好菜: 一手 is a measure here ('a hand of'), not the adverb 一手 'single-handedly'",
+   "796057 她打了一通电话给我: 一通电话 is a noun measure (and regional); the point is the verbal measure 通",
+   "13527828 我们无需这样做: 无需, not 无须 (kept AI 无须 sentence instead)",
+   "8853717 汤姆好像颇为忙: 颇为 + monosyllabic adjective is awkward",
+   "9969116/1269939 反过来: used as 'in turn / turn around' verb phrase, not the discourse marker 反过来说",
+   "2342830 反而 sentences: 反而, not 反倒",
+   "380678 或者……或者……: 或者, not the written 或……或……",
+   "602896 宝宝连走都不会，更何况是跑: 连 pattern, not 尚且……何况",
+   "8719234 连我都不知道怎么说，更别说你了: 更别说 with 你 is odd (means 'let alone you')",
+   "2394890 虽说是高学历，也未必就有教养: 虽说……也, not 虽说……但/可; English loose",
+   "6146334 如此一来: not 这样一来; long",
+   "834579/806227 胜过: verb 胜过, not adjective + 过 comparison",
+   "1577382 以便: separate word 以便, not purpose 以",
+   "806234 人皆有错，唯圣者能恕: classical, English is a proverb rather than a translation",
+   "13847491 她是她的亲生母亲: ambiguous pronouns",
+   "1855068 颇为荒唐: fine but 颇 already covered",
+   "623217 与其向命运妥协，我宁可自杀: suicide content"
+  ],
+  "second review (DeepSeek), HSK 3-9": [
+   "穿马路: regional; standard is 过马路",
+   "我们一块儿吃的: really the 是……的 pattern, not 一块儿",
+   "想把字写得漂亮一些 / 我仅仅吃了口面包: incomplete (no subject / no 一)",
+   "她往往会上学迟到: awkward word order",
+   "我将车停在建筑物后面: 将 as 把 is too literary here, and the English tense was wrong",
+   "他在一周前离开去往欧洲: 离开 and 去往 clash",
+   "他安静地读著书: uses the old character 著",
+   "你说得你好像…似的: extra 你",
+   "这件衣服样式倒是挺好: awkward 倒是…挺",
+   "赛跑完后我累透了: awkward"
   ]
  },
  "_translations": {
@@ -378,7 +496,187 @@
    "336920": "He works very hard.",
    "5715137": "Stop talking to me!",
    "813508": "She sings better than he does.",
-   "349263": "She is wearing a red skirt."
+   "349263": "She is wearing a red skirt.",
+   "1585855": "The station is right near here.",
+   "819694": "I'll be right back.",
+   "1865136": "She probably won't come.",
+   "487597": "There is a truck in the middle of the road.",
+   "9932495": "I've been busy all day today.",
+   "426436": "There aren't many customers today.",
+   "3805043": "I want to write characters a bit more nicely.",
+   "383385": "Have you finished the work?",
+   "843554": "You only have to ask.",
+   "676555": "Your plan is good, but mine is better.",
+   "4764632": "As long as you're happy, that's fine.",
+   "1827002": "As long as you finish your food, you can play with your friends.",
+   "358971": "As long as you work hard, that's enough.",
+   "13127798": "You look tired.",
+   "483915": "He looks rich.",
+   "1019977": "That meal was simply wonderful.",
+   "718387": "This is important to me.",
+   "1424412": "Apart from fruit, he didn't eat anything.",
+   "11031495": "Drink up. It's time for us to go.",
+   "5613666": "If you need help, just tell me.",
+   "7767584": "If you don't want to, you don't have to answer.",
+   "395883": "The performers sang and danced at the same time. They performed extremely well.",
+   "380557": "While waiting for the train, he listened to music one moment and sent text messages the next.",
+   "8936387": "I'll be home at seven or eight o'clock.",
+   "748739": "He said goodbye and left.",
+   "8496246": "How can we find it?",
+   "10368479": "My friend's father is a famous writer.",
+   "2": "I should go to bed now.",
+   "846035": "He is willing to help others.",
+   "512473": "You should do it right away.",
+   "403434": "Do as I tell you.",
+   "8511411": "I'd like to eat something else.",
+   "796058": "He had another bowl of soup.",
+   "417324": "We are both students.",
+   "2141833": "It's lively everywhere in the market.",
+   "708569": "He didn't come back until nine o'clock.",
+   "1454456": "He sings while he works.",
+   "1404407": "He likes to sing while taking a bath.",
+   "844516": "She must be sick.",
+   "801451": "There is hardly anyone in the room.",
+   "1575958": "This is mine; that one is yours.",
+   "13943511": "I still don't quite understand.",
+   "9982235": "I prefer the black one.",
+   "1397339": "I'll get dressed and then have breakfast.",
+   "1878090": "First take a hot bath, then go to bed.",
+   "333469": "She is not only pretty but also smart.",
+   "393370": "As long as you smile, I'll be happy.",
+   "835844": "It seems he's happy.",
+   "372211": "It looks like you've already decided.",
+   "2052540": "He is getting more and more famous.",
+   "334870": "She looks sad.",
+   "13573421": "It's time for him to go to school.",
+   "343229": "It's time you got a haircut.",
+   "3205570": "This year he has made great progress in his studies.",
+   "772151": "Swimming is easy.",
+   "5794148": "This book of his isn't interesting at all.",
+   "792853": "It's getting warmer day by day.",
+   "1754355": "He can read Chinese.",
+   "760717": "I can't understand it at all.",
+   "9415181": "Don't you have school today?",
+   "338972": "He wants to get these shirts clean.",
+   "5500559": "You're even taller than me.",
+   "784502": "Your problem is the same as mine.",
+   "1173004": "You're the same age as me.",
+   "1399636": "She is no smarter than you.",
+   "900257": "Tom is no older than you.",
+   "871217": "Bill is no taller than Bob.",
+   "3700714": "My teacher writes Chinese characters quite well!",
+   "334638": "His house is small and old.",
+   "874156": "We'll go when the rain stops.",
+   "617122": "I'll get here at about five o'clock.",
+   "804893": "The flowers will bloom in two or three days.",
+   "1205895": "The old man was tricked by the shop assistant.",
+   "805890": "Please wait here a moment.",
+   "1020111": "I have already told her what to do.",
+   "834673": "My father occasionally goes abroad.",
+   "420490": "Just stop the car right here.",
+   "410646": "You must never tell your parents about this.",
+   "1423380": "It was so cold yesterday that I had to stay home.",
+   "2045902": "I'm surprised that you didn't know they got married.",
+   "10510874": "Tom speaks French reasonably well.",
+   "1284202": "As he grew older, he became wiser.",
+   "926808": "I am satisfied with his work.",
+   "2078413": "I think I did it the way you said.",
+   "919851": "All our teachers are young and love teaching.",
+   "380718": "It's not just you; I'm to blame too.",
+   "2031462": "Our teacher speaks not only English but also French.",
+   "415936": "He asked my age, name, address and so on.",
+   "475388": "Tom still hasn't come; maybe he missed the train.",
+   "787379": "If I'm lucky enough, I might win.",
+   "2263268": "He doesn't speak much French.",
+   "13495618": "It's getting colder day by day.",
+   "335402": "I discovered his talent for chemistry.",
+   "916660": "My cold just won't get better.",
+   "348182": "She came to Tokyo to find a new job.",
+   "13887457": "What more is there to say?",
+   "3709336": "Just decide this yourself.",
+   "9961264": "I'm dead tired; I want to sleep.",
+   "4467881": "Why can't you come on Saturday?",
+   "795451": "I'm too tired to do my homework.",
+   "1202219": "How would I know this?",
+   "454525": "I read this book once from beginning to end.",
+   "11698272": "I sold all of my houses.",
+   "1516239": "They chose him as chairman of the club.",
+   "6452002": "Her story moved me deeply.",
+   "333657": "The news made her very happy.",
+   "2336801": "Compared with his younger brother, he isn't as smart.",
+   "6098471": "We have to consider it.",
+   "684838": "When you travel abroad, you must take your passport.",
+   "6623195": "There is no one who doesn't long for peace.",
+   "380549": "He is both tall and handsome.",
+   "11751147": "I am both nervous and scared.",
+   "338634": "He didn't know what to do, so he asked me for help.",
+   "611284": "She speaks not only German and French, but also English.",
+   "602896": "The baby can't even walk, let alone run.",
+   "2004705": "He can't even read the characters, let alone write them.",
+   "887660": "He is either in Rome or in Paris.",
+   "755483": "Although Chinese isn't easy to learn, it's simpler than you think.",
+   "7069035": "The original is great, but the Portuguese translation has errors.",
+   "10192239": "We are poor, but we live happily.",
+   "919852": "Go right now, otherwise you will be late.",
+   "480964": "No matter what you do, the result will be the same.",
+   "358149": "No matter what you say, I won't listen to you.",
+   "1694976": "Since my mother was sick, I stayed at home and didn't go to school.",
+   "803860": "Even if she loves me, I don't love her.",
+   "9007395": "Call me when you have time.",
+   "346066": "Is it OK even without registering?",
+   "834645": "I spent about fifty dollars.",
+   "5815587": "I get up at about six.",
+   "9797457": "Sami is about sixteen.",
+   "4262062": "Three quarters of the earth's surface is covered by water.",
+   "4743930": "My income has dropped by ten percent.",
+   "13749728": "They don't trust each other.",
+   "672302": "She really wants to know who sent that bouquet of flowers.",
+   "827570": "How much are these glasses?",
+   "9955895": "I often take a look at the newspaper before breakfast.",
+   "9953332": "This method has long been out of date.",
+   "2422280": "I actually forgot I had class today!",
+   "2342830": "Instead of blaming him, she praised him.",
+   "3713533": "Once she starts talking, it's hard to stop her.",
+   "4270718": "He speaks German with me.",
+   "334808": "What right do you have to tell me to leave?",
+   "13958137": "Daniel started spending more time with Amanda, and so helped her recover.",
+   "375440": "They searched all over but just couldn't find a suitable place.",
+   "5650410": "Trouble comes without warning.",
+   "4264670": "I was so bored that I fell asleep.",
+   "420276": "4.5 yuan a jin, incredibly cheap!",
+   "334876": "He told her secret to his friend.",
+   "12253231": "I was overjoyed!",
+   "1409034": "We still have an old-style television.",
+   "344832": "He is a typical Japanese man.",
+   "5925242": "The girl gave me a red rose and a white rose.",
+   "2367540": "He has always cared only about concrete issues.",
+   "10498055": "He ignored our repeated advice.",
+   "349756": "Thank you for coming especially to help me.",
+   "344841": "You don't need to make a special trip to my home.",
+   "1888811": "I got up especially early to catch that train.",
+   "385577": "This data is not necessarily reliable.",
+   "717276": "This piece of clothing does look nice, but it's a bit expensive.",
+   "895132": "We finally managed to get there on time.",
+   "348487": "As for what should be done, he and I have different views.",
+   "1015627": "As for whether you believe it, that's up to you; I believe it anyway.",
+   "5595144": "She couldn't attend the meeting because she was ill.",
+   "778488": "We failed because of a lack of preparation.",
+   "3709259": "Apart from this, there is no other way.",
+   "686653": "You're going to be late for class!",
+   "417774": "It's so hot, I can't stand it anymore!",
+   "334323": "They finally managed, with great difficulty, to answer their teacher's question.",
+   "617696": "The weather was terrible yesterday.",
+   "364849": "I was completely exhausted after the race.",
+   "13807621": "How did you make Tom cry?",
+   "778730": "She studied abroad in order to improve her English.",
+   "337280": "Your English has improved somewhat.",
+   "10265783": "I felt extremely anxious.",
+   "864311": "Please dance to your heart's content.",
+   "2394350": "I couldn't help thinking of my hometown.",
+   "5624922": "Luckily you reminded me, otherwise I would never have remembered it.",
+   "11": "I don't know what to say.",
+   "4813405": "This newspaper is quite well known locally.",
+   "9400785": "Sami is a waiter."
   }
  },
  "2": {
@@ -959,6 +1257,4537 @@
    {
     "ai": "他等了一个多小时。",
     "en": "He waited for more than an hour."
+   }
+  ]
+ },
+ "3": {
+  "1.1|老—": [
+   "1216093",
+   "7774824",
+   {
+    "ai": "老王|是|我们|的|老师。",
+    "en": "Lao Wang is our teacher."
+   }
+  ],
+  "1.2|—家、—子、—员": [
+   "765943",
+   "10368479",
+   "2345989",
+   "876737",
+   "9400785"
+  ],
+  "2.1.1|东、南、西、北、北方、东方、南方、西方、中间": [
+   "895825",
+   "12255847",
+   "798086",
+   "792886",
+   "487597",
+   {
+    "ai": "往|东|走|十|分钟|就|到|了。",
+    "en": "Walk east for ten minutes and you're there."
+   }
+  ],
+  "2.2.1|需要、该、应该、愿意、得": [
+   "714800",
+   "5611677",
+   "2",
+   "778877",
+   "512473",
+   "3699941",
+   "8630997",
+   "846035",
+   "835746",
+   "6105178"
+  ],
+  "2.2.2|动宾式离合词：放假、见面、结婚、洗澡": [
+   "432956",
+   "343741",
+   "869892",
+   "3148946",
+   "4267373",
+   "678006",
+   "1776636"
+  ],
+  "2.2.2|动补式离合词：离开、完成、分开": [
+   "819457",
+   "346158",
+   "793512",
+   "334685",
+   {
+    "ai": "这么|多|工作，我|今天|完不成。",
+    "en": "With this much work, I can't finish it today."
+   }
+  ],
+  "2.3.1|怎样": [
+   "2031383",
+   "1691742",
+   "846308",
+   "339436"
+  ],
+  "2.3.1|疑问代词的非疑问用法：（1）任指用法：①疑问代词+都……②疑问代词+疑问代词": [
+   "392311",
+   "4673810",
+   "9962353",
+   "4267276",
+   "334146",
+   "403434",
+   {
+    "ai": "你|想|吃|什么|就|吃|什么。",
+    "en": "Eat whatever you want."
+   }
+  ],
+  "2.3.1|（2）不定指用法": [
+   "835627",
+   "7773212",
+   "891164",
+   "835770",
+   "13839314"
+  ],
+  "2.3.2|别人、咱们": [
+   "864327",
+   "875078",
+   "917940",
+   "417324",
+   "400317"
+  ],
+  "2.3.3|别的、其他": [
+   "8511411",
+   "6624640",
+   "2770007",
+   "6142576",
+   "9453452",
+   "10192345"
+  ],
+  "2.4.1|（1）专用名量词：把、双、张、种、层、封、页、辆、节、所、班、段、头、句公斤、斤、角、毛、刻、米": [
+   "360560",
+   "707681",
+   "688280",
+   "400992",
+   {
+    "ai": "这个|楼|有|二十|层。",
+    "en": "This building has twenty floors."
+   },
+   "343634",
+   "13943576",
+   "861007",
+   "1216100",
+   "795807",
+   "848236",
+   "9569029",
+   "2737460",
+   "634057",
+   "344254",
+   {
+    "ai": "苹果|五|块|钱|一|斤。",
+    "en": "Apples are five yuan a jin (half a kilo)."
+   },
+   {
+    "ai": "这个|本子|三|元|五|角。",
+    "en": "This notebook costs 3.50 yuan."
+   },
+   {
+    "ai": "这|瓶|水|两|块|五|毛。",
+    "en": "This bottle of water is 2.50 yuan."
+   },
+   "410466",
+   "493929"
+  ],
+  "2.4.1|（2）借用名量词：碗、盘": [
+   "796058",
+   "1176034",
+   {
+    "ai": "桌子|上|有|两|盘|水果。",
+    "en": "There are two plates of fruit on the table."
+   },
+   {
+    "ai": "我|饿|了，想|吃|一|碗|面条。",
+    "en": "I'm hungry. I'd like a bowl of noodles."
+   }
+  ],
+  "2.4.2|口、回、遍、声": [
+   "833794",
+   "844600",
+   "2977822",
+   "772169",
+   "13832462",
+   {
+    "ai": "这个|电影|我|看|过|两|回。",
+    "en": "I've seen this movie twice."
+   }
+  ],
+  "2.4.3|个个、张张": [
+   {
+    "ai": "我们|班|的|学生|个个|都|很|努力。",
+    "en": "Every student in our class works hard."
+   },
+   {
+    "ai": "这些|照片|张张|都|很|漂亮。",
+    "en": "Every one of these photos is beautiful."
+   },
+   {
+    "ai": "他们|个个|都|喜欢|唱歌。",
+    "en": "Every one of them likes singing."
+   }
+  ],
+  "2.5.1|比较、还3、更、特别、挺、有些、越、极": [
+   "9982235",
+   "426436",
+   {
+    "ai": "这个|饭馆|的|菜|还|不错。",
+    "en": "The food at this restaurant is pretty good."
+   },
+   "11837774",
+   "8865106",
+   "501225",
+   "358977",
+   "10277917",
+   "13943511",
+   "6579329",
+   {
+    "ai": "这|件|事|极|重要。",
+    "en": "This matter is extremely important."
+   }
+  ],
+  "2.5.2|就3、一块儿、一共、只、到处、只是": [
+   {
+    "ai": "我|就|有|一|个|妹妹。",
+    "en": "I have only one younger sister."
+   },
+   {
+    "ai": "教室|里|就|他|一个|人。",
+    "en": "He's the only one in the classroom."
+   },
+   {
+    "ai": "我们|一块儿|去|吧。",
+    "en": "Let's go together."
+   },
+   "6903855",
+   "1454462",
+   "5863312",
+   "10260793",
+   "771411",
+   "2141833",
+   "1869764"
+  ],
+  "2.5.3|才1、马上、先、一会儿、刚、刚刚、一直": [
+   "3538053",
+   "708569",
+   "397172",
+   "819694",
+   "887796",
+   "784412",
+   "835777",
+   "3667685",
+   "834987",
+   "9932495"
+  ],
+  "2.5.4|总、总是、又、常常": [
+   {
+    "ai": "他|总|说|自己|很|忙。",
+    "en": "He always says he is busy."
+   },
+   "334059",
+   "834370",
+   "11837804",
+   "844588",
+   "846376",
+   "832997"
+  ],
+  "2.5.5|一边": [
+   "1454456",
+   "891738",
+   "1404407"
+  ],
+  "2.5.6|大概、必须、差不多、一定、好像、几乎": [
+   "336637",
+   "1865136",
+   "715832",
+   "333787",
+   "819403",
+   "844516",
+   "845112",
+   "2390042",
+   "13544342",
+   "801451"
+  ],
+  "2.5.7|当然、其实、终于、才2、才3、就4": [
+   "5585211",
+   "6309823",
+   "8856211",
+   "5715202",
+   "431501",
+   "1575958",
+   "397743",
+   "505695",
+   {
+    "ai": "现在|才|七|点，再|睡|一会儿|吧。",
+    "en": "It's only seven o'clock. Sleep a little longer."
+   },
+   "2367521",
+   "1585855"
+  ],
+  "2.5.8|不必、不用": [
+   "866179",
+   "3158523",
+   "455302",
+   "5663590",
+   "8463700"
+  ],
+  "2.6.1|为1、向1、关于": [
+   "332840",
+   "12169649",
+   "6621225",
+   "890484",
+   "14023315",
+   "2440716",
+   "5405458",
+   "7772079",
+   "3774667"
+  ],
+  "2.6.2|向2": [
+   "353631",
+   "419996",
+   "392203",
+   "2370640"
+  ],
+  "2.6.3|为了、为2": [
+   "1363333",
+   "805047",
+   "902802",
+   {
+    "ai": "他|为|这|件|事|很|生气。",
+    "en": "He is very angry about this."
+   },
+   {
+    "ai": "别|为|我|担心。",
+    "en": "Don't worry about me."
+   }
+  ],
+  "2.6.4|把、被": [
+   "2675088",
+   "10744010",
+   "2682836",
+   {
+    "ai": "我|的|自行车|被|朋友|借走|了。",
+    "en": "My bike was borrowed by a friend."
+   },
+   "1205895"
+  ],
+  "2.6.5|根据": [
+   {
+    "ai": "老师|根据|考试|成绩|分|班。",
+    "en": "The teacher puts students into classes based on their test scores."
+   },
+   {
+    "ai": "请|根据|这|张|图|回答|问题。",
+    "en": "Answer the questions based on this picture."
+   }
+  ],
+  "2.7.1|或、或者": [
+   "5780611",
+   "13539405",
+   "8878029",
+   "791438",
+   "13901003"
+  ],
+  "2.7.2|只有、只要、不但、而且、如果、可1、可是、然后": [
+   "343162",
+   "843554",
+   "393273",
+   "843553",
+   {
+    "ai": "他|很|想|去，可|没有|时间。",
+    "en": "He really wants to go, but he has no time."
+   },
+   "676555",
+   "1397339"
+  ],
+  "2.8.1|的话": [
+   "910533",
+   "891316",
+   "13556488",
+   "4705815"
+  ],
+  "3.1.1|同位短语": [
+   {
+    "ai": "我们|大家|都|很|高兴。",
+    "en": "We're all very happy."
+   },
+   {
+    "ai": "我|的|朋友|小王|明天|来。",
+    "en": "My friend Xiao Wang is coming tomorrow."
+   },
+   "6671776"
+  ],
+  "3.1.1|动补短语2": [
+   "490039",
+   "5663534",
+   "9968742",
+   {
+    "ai": "衣服|洗|干净|了。",
+    "en": "The clothes have been washed clean."
+   }
+  ],
+  "3.1.1|数量重叠：数词+量词+数词+量词": [
+   {
+    "ai": "请|大家|一个|一个|地|进来。",
+    "en": "Please come in one by one, everyone."
+   },
+   {
+    "ai": "我们|要|一步|一步|地|学。",
+    "en": "We have to learn step by step."
+   },
+   {
+    "ai": "他|一口|一口|地|喝|完|了|那|杯|茶。",
+    "en": "He drank the tea sip by sip."
+   }
+  ],
+  "3.2.1|不A 不 B": [
+   {
+    "ai": "这|件|衣服|不|大|不|小，正好。",
+    "en": "This piece of clothing is neither too big nor too small. It's just right."
+   },
+   {
+    "ai": "今天|不|冷|不|热。",
+    "en": "Today it's neither cold nor hot."
+   },
+   {
+    "ai": "不|多|不|少，正好|十|个。",
+    "en": "Not one more, not one less: exactly ten."
+   }
+  ],
+  "3.2.2|不一会儿": [
+   {
+    "ai": "不一会儿，他|就|回来|了。",
+    "en": "Before long, he came back."
+   },
+   {
+    "ai": "不一会儿，雨|就|停|了。",
+    "en": "Soon the rain stopped."
+   }
+  ],
+  "3.2.2|看来": [
+   "835844",
+   "10040464",
+   "372211"
+  ],
+  "3.2.2|在……看来": [
+   "7771922",
+   "850412",
+   "397132"
+  ],
+  "3.2.2|越来越": [
+   "1582757",
+   "819448",
+   "10206414",
+   "2052540"
+  ],
+  "3.2.2|看起来": [
+   "13127798",
+   "483915",
+   "761259",
+   "10640480"
+  ],
+  "3.2.2|看上去": [
+   "5091401",
+   "471319",
+   "334870",
+   "334185"
+  ],
+  "3.2.2|一般来说": [
+   "1178168",
+   "1020152",
+   "1879973"
+  ],
+  "3.2.2|不怎么样": [
+   "1068782",
+   {
+    "ai": "这|家|饭馆|的|菜|不怎么样。",
+    "en": "The food at this restaurant isn't very good."
+   }
+  ],
+  "4.1|除了 ……（以外），……还/也/都……": [
+   "336626",
+   "684827",
+   "899118",
+   "1424412"
+  ],
+  "4.1|从……起": [
+   "848621",
+   "850127",
+   {
+    "ai": "从|明天|起，我|每天|早上|跑步。",
+    "en": "Starting tomorrow, I'll run every morning."
+   }
+  ],
+  "4.1|对……来说": [
+   "718387",
+   "834881",
+   "836391",
+   "1704318"
+  ],
+  "4.1|一……也/都+不/没……": [
+   "11236323",
+   "1889352",
+   "10652429",
+   "351232"
+  ],
+  "4.1|一点儿也不": [
+   "889637",
+   "890457",
+   "345844",
+   "2337135"
+  ],
+  "4.1|越……越……": [
+   "2305059",
+   {
+    "ai": "雨|越|下|越|大|了。",
+    "en": "The rain is getting heavier and heavier."
+   },
+   {
+    "ai": "汉语|越|学|越|有意思。",
+    "en": "The more you study Chinese, the more interesting it gets."
+   }
+  ],
+  "4.1|（在）……以前/以后/前/后": [
+   "893502",
+   {
+    "ai": "吃饭|以前|要|洗手。",
+    "en": "Wash your hands before eating."
+   },
+   {
+    "ai": "下课|以后，我们|一起|去|打球|吧。",
+    "en": "After class, let's go play ball together."
+   },
+   {
+    "ai": "我|在|来|中国|以前|没|学过|汉语。",
+    "en": "Before coming to China, I had never studied Chinese."
+   }
+  ],
+  "4.1|X什么（啊）": [
+   {
+    "ai": "急|什么|啊，时间|还|早|呢。",
+    "en": "What's the rush? It's still early."
+   },
+   {
+    "ai": "客气|什么|啊，我们|是|朋友。",
+    "en": "No need to be polite. We're friends."
+   },
+   {
+    "ai": "哭|什么，没|事|的。",
+    "en": "What are you crying for? It's fine."
+   }
+  ],
+  "4.1|该……了": [
+   "13573421",
+   "343229",
+   "11031495",
+   {
+    "ai": "八|点|了，该|起床|了。",
+    "en": "It's eight o'clock. Time to get up."
+   }
+  ],
+  "4.1|在……上/下/中": [
+   "3537642",
+   "13833968",
+   "3205570",
+   "8591287",
+   {
+    "ai": "在|老师|的|帮助|下，我|的|汉语|进步|了|很|多。",
+    "en": "With the teacher's help, my Chinese has improved a lot."
+   }
+  ],
+  "5.1|动词或动词性短语、形容词或形容词性短语作主语": [
+   "772151",
+   "585044",
+   "858024",
+   "797074"
+  ],
+  "5.1|主谓短语作主语": [
+   {
+    "ai": "他|不|来|也|没|关系。",
+    "en": "It doesn't matter if he doesn't come."
+   },
+   {
+    "ai": "你|能|来|太|好|了。",
+    "en": "It's great that you can come."
+   },
+   {
+    "ai": "大家|一起|学习|很|有意思。",
+    "en": "Studying together with everyone is interesting."
+   }
+  ],
+  "5.2|多项定语": [
+   "5794148",
+   "333362",
+   {
+    "ai": "我|的|那|两|本|新|书|在|桌子|上。",
+    "en": "Those two new books of mine are on the table."
+   },
+   {
+    "ai": "她|是|一|位|很|有名|的|中国|作家。",
+    "en": "She is a very famous Chinese writer."
+   }
+  ],
+  "5.3.1|动词+到/住/走/上": [
+   "835445",
+   "846091",
+   "842446",
+   "8698975",
+   "13175437",
+   "833255"
+  ],
+  "5.3.2|趋向补语的引申用法：（1）表示结果意义：动词+出/起/下": [
+   "472898",
+   "4413856",
+   "845442",
+   "14057674",
+   "787287",
+   {
+    "ai": "我|想出|了|一个|好|办法。",
+    "en": "I've thought of a good idea."
+   }
+  ],
+  "5.3.2|（2）表示动作行为的开始：动词+上/起来": [
+   "2283480",
+   "13532030",
+   "335934",
+   "792853"
+  ],
+  "5.3.2|（3）表示动作行为的持续：动词+下去/下来": [
+   "5613628",
+   "429425",
+   "803739",
+   "6535844"
+  ],
+  "5.3.3|动词+得/不+动词/形容词": [
+   "13573489",
+   "1754355",
+   "401010",
+   "760717",
+   "400595"
+  ],
+  "5.3.4|（1）形容词+得很": [
+   "396602",
+   {
+    "ai": "今天|冷|得|很。",
+    "en": "It's very cold today."
+   },
+   {
+    "ai": "这|件|衣服|贵|得|很。",
+    "en": "This piece of clothing is very expensive."
+   }
+  ],
+  "5.3.4|（2）形容词/动词+极了/坏了": [
+   "399884",
+   "1019977",
+   {
+    "ai": "我|饿|坏|了。",
+    "en": "I'm starving."
+   },
+   {
+    "ai": "他|高兴|坏|了。",
+    "en": "He is overjoyed."
+   }
+  ],
+  "5.3.5|表示动作结束到某个时间点的间隔时间": [
+   "869854",
+   {
+    "ai": "他|来|中国|三|年|了。",
+    "en": "He has been in China for three years."
+   },
+   {
+    "ai": "我|大学|毕业|两|年|了。",
+    "en": "It's been two years since I graduated from university."
+   },
+   {
+    "ai": "他|走|了|半|个|小时|了。",
+    "en": "He left half an hour ago."
+   }
+  ],
+  "6.1.1|“怎样+动词”的特指问句": [
+   "883478",
+   "669088",
+   "5091752",
+   "8496246"
+  ],
+  "6.1.2|用反问句表示强调：不是……吗？": [
+   "834441",
+   "12278147",
+   "9415181",
+   "801885"
+  ],
+  "6.2.1|（1）主语+把+宾语+动词+在/到+处所": [
+   "759616",
+   "335085",
+   "891130",
+   "408499",
+   {
+    "ai": "我|把|车|开|到|学校|门口|了。",
+    "en": "I drove the car to the school gate."
+   }
+  ],
+  "6.2.1|（2）主语+把+宾语1+动词（+给）+宾语2": [
+   "6956897",
+   "9981225",
+   "5542975",
+   "838594"
+  ],
+  "6.2.1|（3）主语+把+宾语+动词+结果补语/趋向补语/状态补语": [
+   "383385",
+   "338972",
+   "431507",
+   "10481698"
+  ],
+  "6.2.2|（1）主语+被+宾语+动词+其他成分": [
+   "777601",
+   "373174",
+   "1902848",
+   {
+    "ai": "我|的|蛋糕|被|弟弟|吃|了。",
+    "en": "My cake was eaten by my little brother."
+   }
+  ],
+  "6.2.2|（2）主语+被+动词+其他成分": [
+   "14023304",
+   "8932594",
+   "679504",
+   {
+    "ai": "门|被|打开|了。",
+    "en": "The door has been opened."
+   }
+  ],
+  "6.2.3|“着”表示动作的伴随：动词1+着+动词2": [
+   "334074",
+   "334636",
+   "12049326",
+   "1944086",
+   {
+    "ai": "他|笑着|说：“没|关系。”",
+    "en": "He said with a smile, \"It's okay.\""
+   }
+  ],
+  "6.2.4|（1）A比B+更/还+形容词": [
+   "5500559",
+   "2442043",
+   "5983581",
+   "806793"
+  ],
+  "6.2.4|（2）A跟B一样": [
+   "13999957",
+   "784502",
+   "497597",
+   {
+    "ai": "我|的|手机|跟|你|的|一样。",
+    "en": "My phone is the same as yours."
+   }
+  ],
+  "6.2.4|（3）A跟B一样+形容词": [
+   "864269",
+   "1173004",
+   "848697",
+   "343694"
+  ],
+  "6.2.4|（4）A不比B+形容词": [
+   "1399636",
+   "900257",
+   "871217",
+   {
+    "ai": "我|的|房间|不比|你|的|小。",
+    "en": "My room is no smaller than yours."
+   }
+  ],
+  "6.2.4|（5）A比B+多/少/早/晚+动词+数量短语": [
+   {
+    "ai": "我|比|他|早|来|了|十|分钟。",
+    "en": "I came ten minutes earlier than him."
+   },
+   {
+    "ai": "今天|我|比|平时|多|睡|了|一个|小时。",
+    "en": "Today I slept an hour longer than usual."
+   },
+   {
+    "ai": "这个|月|我|比|上个月|少|花|了|五百|块。",
+    "en": "This month I spent 500 yuan less than last month."
+   },
+   {
+    "ai": "他|比|我们|晚|到|了|半|个|小时。",
+    "en": "He arrived half an hour later than us."
+   }
+  ],
+  "6.2.5|（1）表示出现：处所词+动词+趋向补语/结果补语+动态助词（了）+数量短语+人/物": [
+   "9179900",
+   {
+    "ai": "前面|走|过来|了|一个|人。",
+    "en": "Someone came walking over from up ahead."
+   },
+   {
+    "ai": "我们|班|来|了|一个|新|同学。",
+    "en": "A new classmate has joined our class."
+   },
+   {
+    "ai": "对面|搬|来|了|一位|新|邻居。",
+    "en": "A new neighbor has moved in across the way."
+   }
+  ],
+  "6.2.5|（2）表示消失：处所词+动词+结果补语+动态助词（了）+数量短语+人/物": [
+   {
+    "ai": "我们|班|走|了|两|个|同学。",
+    "en": "Two classmates have left our class."
+   },
+   {
+    "ai": "桌子|上|少|了|一|本|书。",
+    "en": "There's a book missing from the table."
+   },
+   {
+    "ai": "树|上|飞|走|了|一|只|鸟。",
+    "en": "A bird flew away from the tree."
+   }
+  ],
+  "6.2.6|强调说话人的看法或态度": [
+   "824702",
+   "842328",
+   "797028",
+   {
+    "ai": "他|是|不会|同意|的。",
+    "en": "He won't agree, I'm sure."
+   }
+  ],
+  "6.2.7|主语+动词+宾语+动词+补语": [
+   "835774",
+   "335091",
+   "1753036",
+   "3700714"
+  ],
+  "6.3.1|先……，再/然后……": [
+   "400336",
+   "947384",
+   "6461961",
+   "1878090"
+  ],
+  "6.3.2|或者……，或者……": [
+   {
+    "ai": "周末|我|或者|在|家|看书，或者|去|公园|走走。",
+    "en": "On weekends I either read at home or go for a walk in the park."
+   },
+   {
+    "ai": "或者|你|去，或者|我|去。",
+    "en": "Either you go or I go."
+   },
+   {
+    "ai": "或者|今天|做，或者|明天|做，都|可以。",
+    "en": "Either today or tomorrow is fine."
+   }
+  ],
+  "6.3.3|一会儿……，一会儿……": [
+   "380557",
+   {
+    "ai": "天气|一会儿|冷，一会儿|热。",
+    "en": "The weather is cold one moment and hot the next."
+   },
+   {
+    "ai": "孩子|一会儿|哭，一会儿|笑。",
+    "en": "The child cries one moment and laughs the next."
+   }
+  ],
+  "6.3.3|又……，又……": [
+   "334638",
+   "6678446",
+   "845141",
+   "333972"
+  ],
+  "6.3.3|一边……，一边……": [
+   "2367490",
+   "395883",
+   "598135"
+  ],
+  "6.3.4|不但……，而且……": [
+   "333469",
+   "380969",
+   "899106"
+  ],
+  "6.3.5|虽然……，可是……": [
+   "859302",
+   {
+    "ai": "虽然|汉语|很|难，可是|我|很|喜欢|学。",
+    "en": "Although Chinese is hard, I really like learning it."
+   },
+   "1946021",
+   "8976063"
+  ],
+  "6.3.6|如果……，就……": [
+   "6200061",
+   "894851",
+   "3890966",
+   "5613666"
+  ],
+  "6.3.6|……的话，就……": [
+   "14013517",
+   "3478431",
+   "7767584",
+   "9476909"
+  ],
+  "6.3.7|只有……，才……": [
+   "810107",
+   "1477291",
+   "12290923",
+   {
+    "ai": "只有|多|练习，才|能|说|好|汉语。",
+    "en": "Only by practicing a lot can you speak Chinese well."
+   }
+  ],
+  "6.3.7|只要……，就……": [
+   "358971",
+   "1827002",
+   "4764632",
+   "393370"
+  ],
+  "6.3.8|为了……，……": [
+   "809039",
+   "1239324",
+   "2029422",
+   "408486"
+  ],
+  "6.3.9|……了……（就）……": [
+   "6130934",
+   "874156",
+   "748739",
+   {
+    "ai": "我|下|了|课|就|回家。",
+    "en": "I go home right after class."
+   }
+  ],
+  "7.1|概数表达法2：（1）用“大概”表示概数": [
+   "617122",
+   {
+    "ai": "我们|班|大概|有|二十|个|学生。",
+    "en": "There are about twenty students in our class."
+   },
+   {
+    "ai": "从|这儿|到|学校|大概|要|十|分钟。",
+    "en": "It takes about ten minutes to get from here to school."
+   }
+  ],
+  "7.1|（2）相邻数词连用表示概数": [
+   "6109325",
+   "8936387",
+   "4757243",
+   "804893"
+  ]
+ },
+ "4": {
+  "1.1.1|敢": [
+   "901990",
+   "9962925",
+   "1021017",
+   "12526249"
+  ],
+  "1.2.1|各、各位、各种、任何、此": [
+   "11706396",
+   "1019951",
+   "798141",
+   "1450505",
+   "4635741",
+   "834288",
+   "2027989"
+  ],
+  "1.3.1|（1）专用名量词：打、袋、棵、台、幅": [
+   "10064214",
+   "941118",
+   "8463583",
+   "2915889",
+   "907539"
+  ],
+  "1.3.1|（2）借用名量词：脸、手、盒、屋子、桌子": [
+   {
+    "ai": "他|一脸|不高兴|地|走|了。",
+    "en": "He left with an unhappy look on his face."
+   },
+   {
+    "ai": "做饭|的时候|我|弄了|一手|油。",
+    "en": "While cooking I got oil all over my hands."
+   },
+   "6900950",
+   {
+    "ai": "家里|来了|一屋子|客人。",
+    "en": "The house was full of guests."
+   },
+   {
+    "ai": "妈妈|做了|一桌子|菜。",
+    "en": "Mom cooked a whole table of dishes."
+   }
+  ],
+  "1.3.2|场、顿、趟": [
+   "796071",
+   "1383553",
+   "488485",
+   "10580071",
+   "2432794"
+  ],
+  "1.4.1|十分、更加、稍、稍微、尤其、多么": [
+   "795904",
+   "834680",
+   "805890",
+   "420172",
+   "567351",
+   "825920"
+  ],
+  "1.4.2|共、全、光、仅、仅仅、至少": [
+   {
+    "ai": "我们班|共有|三十个|学生。",
+    "en": "Our class has thirty students in all."
+   },
+   "5091726",
+   "9489497",
+   {
+    "ai": "他|光|吃|菜，不|吃|米饭。",
+    "en": "He only eats the dishes, not the rice."
+   },
+   "791415",
+   "8881232",
+   "813625"
+  ],
+  "1.4.3|按时、从来、赶紧、赶快、已、忽然、将、将要、从、本来": [
+   "1446764",
+   "770322",
+   "8936382",
+   {
+    "ai": "要|下雨|了，我们|赶快|回家|吧。",
+    "en": "It's going to rain, let's hurry home."
+   },
+   "1020111",
+   {
+    "ai": "他|忽然|笑|了|起来。",
+    "en": "He suddenly started laughing."
+   },
+   "652588",
+   "860999",
+   "1872320",
+   "1325324"
+  ],
+  "1.4.4|重新、往往、偶尔、再次、老": [
+   "1170421",
+   "13909961",
+   "895159",
+   "834673",
+   "358133",
+   "10266785",
+   "4997121"
+  ],
+  "1.4.5|故意、互相、相互": [
+   "840584",
+   "836168",
+   "4962230",
+   "9409456",
+   {
+    "ai": "同学|之间|应该|相互|帮助。",
+    "en": "Classmates should help one another."
+   }
+  ],
+  "1.4.6|却": [
+   "2390162",
+   "793996",
+   "372388",
+   "1328210"
+  ],
+  "1.4.7|也许、恐怕": [
+   "801444",
+   "881219",
+   "1446914",
+   "5414486"
+  ],
+  "1.4.8|才4、就5、并1、还4、竟然、究竟、正好、到底、难道、千万、确实、只好、差（一）点儿": [
+   {
+    "ai": "我|才|不|去|呢！",
+    "en": "I'm certainly not going!"
+   },
+   "420490",
+   "10459890",
+   "10510874",
+   "2045902",
+   "818164",
+   "3081254",
+   "6828221",
+   "4885908",
+   "410646",
+   "3032019",
+   "1423380",
+   "1945953",
+   "10680371",
+   "364004"
+  ],
+  "1.5.1|自、当、由1、随着、等1": [
+   "3365872",
+   {
+    "ai": "学校|自|下|周一|起|放假。",
+    "en": "School is on holiday from next Monday."
+   },
+   "604947",
+   "3158537",
+   {
+    "ai": "由|这儿|往|东|走|十分钟|就|到|了。",
+    "en": "From here, walk east for ten minutes and you'll be there."
+   },
+   "1284202",
+   "7773130"
+  ],
+  "1.5.2|将、由2、叫、让": [
+   "8591293",
+   "2028037",
+   "1735616",
+   {
+    "ai": "我的|自行车|叫|人|偷|走|了。",
+    "en": "My bike was stolen."
+   },
+   {
+    "ai": "我的|蛋糕|让|弟弟|吃|了。",
+    "en": "My cake was eaten by my little brother."
+   }
+  ],
+  "1.5.3|由于1": [
+   "381119",
+   "830440",
+   "6082277"
+  ],
+  "1.5.4|对于、与1": [
+   "926808",
+   "6624726",
+   "9401595",
+   "2045065"
+  ],
+  "1.5.5|作为、按、按照": [
+   {
+    "ai": "作为|学生，你|应该|努力|学习。",
+    "en": "As a student, you should study hard."
+   },
+   "891328",
+   "834506",
+   "13513758",
+   "1424137",
+   "2078413"
+  ],
+  "1.6.1|并2、而1、与2": [
+   "804589",
+   {
+    "ai": "我们|讨论|并|决定|了|这个|计划。",
+    "en": "We discussed and decided on this plan."
+   },
+   "846067",
+   {
+    "ai": "这个|房间|小|而|干净。",
+    "en": "This room is small but clean."
+   },
+   "613445",
+   {
+    "ai": "老师|与|学生|都|来|了。",
+    "en": "Both the teachers and the students came."
+   }
+  ],
+  "1.6.2|此外、而2、既然、甚至、不过、并且": [
+   "858953",
+   "2779401",
+   "3538037",
+   "893018",
+   "1477270",
+   "2195318",
+   "919851"
+  ],
+  "1.6.2|不光、不仅、另外、要是、因此、由于2、加": [
+   "380718",
+   "9963134",
+   "2031462",
+   {
+    "ai": "我|想|买|一些|水果，另外|还|要|买|牛奶。",
+    "en": "I want to buy some fruit, and I also need to buy milk."
+   },
+   "2737413",
+   "2411920",
+   "7768322",
+   "10324252"
+  ],
+  "1.7.1|等2、者、之、就是": [
+   "415936",
+   {
+    "ai": "我|喜欢|苹果、香蕉|等|水果。",
+    "en": "I like apples, bananas and other fruit."
+   },
+   "2370677",
+   "336261",
+   "9478788",
+   "3666900",
+   {
+    "ai": "你|放心|就是，我|一定|会|去|的。",
+    "en": "Don't worry, I will definitely go."
+   }
+  ],
+  "1.8|啊、嗯": [
+   "502884",
+   "12520688",
+   "6451967",
+   {
+    "ai": "嗯，我|知道|了。",
+    "en": "Mm, I see."
+   }
+  ],
+  "2.1|数词+形容词+量词": [
+   "2000396",
+   "881102",
+   {
+    "ai": "我|吃了|一|大|碗|米饭。",
+    "en": "I ate a big bowl of rice."
+   },
+   {
+    "ai": "请|给|我|一|小|块|蛋糕。",
+    "en": "Please give me a small piece of cake."
+   }
+  ],
+  "2.2.1|一A一B": [
+   "8850438",
+   "749094",
+   "433481"
+  ],
+  "2.2.1|无A无B": [
+   "1884716",
+   "1471141"
+  ],
+  "2.2.1|有A有B": [
+   {
+    "ai": "他们|有说有笑|地|走|了|进来。",
+    "en": "They came in, talking and laughing."
+   },
+   {
+    "ai": "大家|在|一起|有说有笑，非常|开心。",
+    "en": "Everyone was together, chatting and laughing, very happy."
+   },
+   {
+    "ai": "这个|故事|有头有尾，很|完整。",
+    "en": "This story has a beginning and an end; it is complete."
+   }
+  ],
+  "2.2.2|来得及/来不及": [
+   {
+    "ai": "现在|走|还|来得及。",
+    "en": "If we leave now, we can still make it."
+   },
+   "9958252",
+   {
+    "ai": "我|起晚|了，来不及|吃|早饭。",
+    "en": "I got up late and didn't have time for breakfast."
+   }
+  ],
+  "2.2.2|有的是": [
+   {
+    "ai": "别|着急，我们|有的是|时间。",
+    "en": "Don't worry, we have plenty of time."
+   },
+   {
+    "ai": "他|家|有的是|钱。",
+    "en": "His family has loads of money."
+   }
+  ],
+  "2.2.2|说不定": [
+   "787379",
+   "717284",
+   "475388"
+  ],
+  "2.2.2|不怎么": [
+   "1927349",
+   "2263268",
+   "1068782"
+  ],
+  "2.2.2|就是说/这就是说": [
+   "353219",
+   {
+    "ai": "他|没|来，|这|就是说，|他|不|同意。",
+    "en": "He didn't come, which means he doesn't agree."
+   }
+  ],
+  "3.1|一+量词+比+一+量词": [
+   "13495618",
+   "3537968",
+   "332723"
+  ],
+  "3.1|在……方面": [
+   "1325224",
+   "335402",
+   {
+    "ai": "他|在|学习|方面|很|努力。",
+    "en": "He works hard at his studies."
+   }
+  ],
+  "3.1|够……的": [
+   {
+    "ai": "今天|真|够|冷|的。",
+    "en": "It's really quite cold today."
+   },
+   {
+    "ai": "这|件|事|够|麻烦|的。",
+    "en": "This matter is quite a hassle."
+   }
+  ],
+  "3.1|拿……来说": [
+   {
+    "ai": "拿|我|来说，我|每天|都|跑步。",
+    "en": "Take me, for example: I run every day."
+   },
+   {
+    "ai": "拿|北京|来说，冬天|特别|冷。",
+    "en": "Take Beijing, for example: the winters are very cold."
+   }
+  ],
+  "3.1|再也不/没……": [
+   "835371",
+   "6080830",
+   "9972423"
+  ],
+  "3.1|怎么都/也+不/没……": [
+   "916660",
+   {
+    "ai": "我|怎么|也|想|不|起来|他|的|名字。",
+    "en": "No matter how hard I try, I can't remember his name."
+   },
+   {
+    "ai": "这个|门|怎么|都|打|不|开。",
+    "en": "This door won't open no matter what I do."
+   }
+  ],
+  "3.1|为了……而……": [
+   "10463262",
+   "348182",
+   "358184"
+  ],
+  "3.1|动词+一X是一X": [
+   {
+    "ai": "能|省|一点|是|一点。",
+    "en": "Save whatever you can; every bit counts."
+   },
+   {
+    "ai": "能|帮|一个|是|一个。",
+    "en": "Help whoever you can; every one counts."
+   }
+  ],
+  "3.1|（没）有什么（好）X的": [
+   "13887457",
+   {
+    "ai": "这|有|什么|好|哭|的？",
+    "en": "What is there to cry about?"
+   },
+   {
+    "ai": "没|什么|好|担心|的。",
+    "en": "There's nothing to worry about."
+   }
+  ],
+  "3.1|X是X，Y是Y": [
+   "1314323",
+   {
+    "ai": "工作|是|工作，生活|是|生活。",
+    "en": "Work is work, and life is life."
+   }
+  ],
+  "3.1|X也得X，不X也得X": [
+   {
+    "ai": "你|去|也得|去，不|去|也得|去。",
+    "en": "You have to go, whether you want to or not."
+   },
+   {
+    "ai": "这|药|你|吃|也得|吃，不|吃|也得|吃。",
+    "en": "You have to take this medicine whether you like it or not."
+   }
+  ],
+  "3.1|X就是了": [
+   "3709334",
+   "7781704",
+   "3709336"
+  ],
+  "3.1|还X呢": [
+   {
+    "ai": "还|老师|呢，这个|字|都|不|会|写。",
+    "en": "And you call yourself a teacher? You can't even write this character."
+   },
+   {
+    "ai": "你|还|大学生|呢，这么|简单|的|题|都|不|会。",
+    "en": "And you're a university student? You can't even do such an easy question."
+   }
+  ],
+  "3.1|你X你的吧": [
+   {
+    "ai": "你|忙|你的|吧，我|自己|来。",
+    "en": "You get on with your work; I'll do it myself."
+   },
+   {
+    "ai": "你|看|你的|书|吧，别|管|我。",
+    "en": "You go on reading your book; don't mind me."
+   }
+  ],
+  "3.1|让/叫你X你就X": [
+   {
+    "ai": "让|你|去|你|就|去，别|问|为什么。",
+    "en": "If you're told to go, just go; don't ask why."
+   },
+   {
+    "ai": "叫|你|吃|你|就|吃，别|客气。",
+    "en": "When I tell you to eat, just eat; don't be polite."
+   }
+  ],
+  "3.1|说什么/怎么（着）也得X": [
+   {
+    "ai": "这次|比赛，我们|说什么|也得|赢。",
+    "en": "We have to win this match, no matter what."
+   },
+   {
+    "ai": "今天|怎么|也得|把|作业|写完。",
+    "en": "I have to finish my homework today, no matter what."
+   }
+  ],
+  "3.1|X就X（点儿）吧": [
+   {
+    "ai": "贵|就|贵|点儿|吧，好用|就|行。",
+    "en": "So it's a bit expensive, never mind, as long as it works well."
+   },
+   {
+    "ai": "晚|就|晚|点儿|吧，安全|第一。",
+    "en": "So we'll be a bit late, fine; safety comes first."
+   }
+  ],
+  "3.1|X是X": [
+   {
+    "ai": "便宜|是|便宜，可是|质量|不|太|好。",
+    "en": "It's cheap all right, but the quality isn't very good."
+   },
+   {
+    "ai": "去|是|去|了，可|没|见到|他。",
+    "en": "I did go, but I didn't see him."
+   }
+  ],
+  "4.1.1|形容词/心理动词+死了/厉害": [
+   "9961264",
+   "2116863",
+   "760140",
+   "834753",
+   {
+    "ai": "考试|前|她|紧张|得|厉害。",
+    "en": "She gets terribly nervous before exams."
+   }
+  ],
+  "4.1.2|动词+得/不+了": [
+   "9962873",
+   "334780",
+   "4467881",
+   "795451",
+   {
+    "ai": "这么|多|菜，你|吃|得|了|吗？",
+    "en": "Can you eat this many dishes?"
+   }
+  ],
+  "5.1.1|难道……吗？": [
+   "8550957",
+   {
+    "ai": "难道|你|不|知道|吗？",
+    "en": "Don't you know?"
+   },
+   {
+    "ai": "这么|简单|的|事，难道|你|不|会|做|吗？",
+    "en": "Surely you can do something this simple?"
+   }
+  ],
+  "5.1.1|由疑问代词构成的反问句": [
+   "1202219",
+   "833189",
+   {
+    "ai": "谁|不|想|去|中国|旅游|呢？",
+    "en": "Who wouldn't want to travel to China?"
+   }
+  ],
+  "5.2.1|（1）主语+把+宾语+动词（+一/了）+动词": [
+   {
+    "ai": "你|把|桌子|擦|一|擦。",
+    "en": "Give the table a wipe."
+   },
+   {
+    "ai": "他|把|信|看|了|看。",
+    "en": "He took a look at the letter."
+   },
+   {
+    "ai": "我们|把|房间|打扫|打扫|吧。",
+    "en": "Let's give the room a clean."
+   }
+  ],
+  "5.2.1|（2）主语+把+宾语+动词+了": [
+   "2675088",
+   "7771926",
+   "9423595"
+  ],
+  "5.2.1|（3）主语+把+宾语+动词+动量补语/时量补语": [
+   "6149908",
+   "454525",
+   "784370"
+  ],
+  "5.2.1|（4）主语+把+宾语+状语+动词": [
+   "10744010",
+   "11698272",
+   "386019"
+  ],
+  "5.2.2|主语+叫/让+宾语+动词+其他成分": [
+   {
+    "ai": "杯子|叫|孩子|打|破|了。",
+    "en": "The cup was broken by the child."
+   },
+   {
+    "ai": "他|让|老师|批评|了|一顿。",
+    "en": "He got a scolding from the teacher."
+   },
+   {
+    "ai": "我的|钱包|让|小偷|偷|走|了。",
+    "en": "My wallet was stolen by a thief."
+   }
+  ],
+  "5.2.3|（1）表爱憎义：主语+表扬/批评+宾语1+动词+宾语2": [
+   {
+    "ai": "老师|表扬|小明|帮助|同学。",
+    "en": "The teacher praised Xiaoming for helping his classmates."
+   },
+   {
+    "ai": "妈妈|批评|我|不|做|作业。",
+    "en": "Mom scolded me for not doing my homework."
+   },
+   "10484392"
+  ],
+  "5.2.3|（2）表称谓或认定义：主语+收/选+宾语1+做/当/为+宾语2": [
+   "333818",
+   "825985",
+   "1516239",
+   {
+    "ai": "老师|收|他|做|学生。",
+    "en": "The teacher took him on as a student."
+   }
+  ],
+  "5.2.3|（3）表致使：主语+使/让+人称代词+动词短语": [
+   "6452002",
+   "335542",
+   "10926514",
+   "836329",
+   "333657"
+  ],
+  "5.3.1|（1）A不如B（+形容词）": [
+   "893529",
+   "8918147",
+   "907261",
+   "8571933"
+  ],
+  "5.3.1|（2）跟……相比": [
+   {
+    "ai": "跟|去年|相比，今年|热|多|了。",
+    "en": "Compared with last year, this year is much hotter."
+   },
+   "2336801",
+   "5728391",
+   "373379"
+  ],
+  "5.3.2|用双重否定表示强调": [
+   "6623195",
+   "6098471",
+   "684838",
+   "1179621"
+  ],
+  "5.4.1|不是……，而是……": [
+   "6107696",
+   "1783780",
+   "10365095"
+  ],
+  "5.4.1|既……，又/也……": [
+   "380549",
+   "11751147",
+   "4765407"
+  ],
+  "5.4.1|一方面……，另一方面……": [
+   "380561",
+   {
+    "ai": "我|学|汉语，一方面|是|为了|工作，另一方面|是|因为|喜欢。",
+    "en": "I learn Chinese partly for work and partly because I like it."
+   }
+  ],
+  "5.4.2|首先……，其次……": [
+   {
+    "ai": "学|语言，首先|要|多|听，其次|要|多|说。",
+    "en": "To learn a language, first listen a lot, and second, speak a lot."
+   },
+   "10367127"
+  ],
+  "5.4.2|首先……，然后……": [
+   {
+    "ai": "首先|洗|手，然后|吃|饭。",
+    "en": "First wash your hands, then eat."
+   },
+   {
+    "ai": "我们|首先|去|北京，然后|去|上海。",
+    "en": "We're going to Beijing first, then Shanghai."
+   }
+  ],
+  "5.4.2|……，于是……": [
+   "382410",
+   "1428146",
+   "338634"
+  ],
+  "5.4.3|……,甚至……": [
+   {
+    "ai": "他|最近|很|忙，甚至|没|时间|吃饭。",
+    "en": "He has been very busy lately; he doesn't even have time to eat."
+   },
+   {
+    "ai": "这个|问题|很|难，甚至|老师|也|不|会。",
+    "en": "This question is hard; even the teacher can't answer it."
+   }
+  ],
+  "5.4.3|不仅/不光……，还/而且……": [
+   "336976",
+   "1565711",
+   "611284",
+   {
+    "ai": "他|不光|会|唱歌，还|会|跳舞。",
+    "en": "He can not only sing but also dance."
+   }
+  ],
+  "5.4.3|……，并且……": [
+   "784384",
+   {
+    "ai": "他|会|说|汉语，并且|说|得|很|好。",
+    "en": "He can speak Chinese, and he speaks it very well."
+   }
+  ],
+  "5.4.3|连……也/都……，……更……": [
+   "616340",
+   "2004705",
+   "602896"
+  ],
+  "5.4.4|不是……，就是……": [
+   "887660",
+   "380681",
+   {
+    "ai": "周末|他|不是|看书，就是|看|电视。",
+    "en": "On weekends he either reads or watches TV."
+   }
+  ],
+  "5.4.5|尽管……，但是/可是……": [
+   "755483",
+   {
+    "ai": "尽管|下|雨，但是|我们|还是|去|了。",
+    "en": "Although it was raining, we still went."
+   },
+   {
+    "ai": "尽管|他|很|累，可是|没有|休息。",
+    "en": "Although he was very tired, he didn't rest."
+   }
+  ],
+  "5.4.5|……，然而……": [
+   "7069035",
+   {
+    "ai": "他|很|努力，然而|还是|没|考|好。",
+    "en": "He worked very hard, but he still didn't do well on the exam."
+   }
+  ],
+  "5.4.5|……，不过……": [
+   "843834",
+   "10192239",
+   "337245"
+  ],
+  "5.4.5|……X是X，就是/不过……": [
+   {
+    "ai": "这|件|衣服|好看|是|好看，就是|太|贵|了。",
+    "en": "This jacket looks nice all right, it's just too expensive."
+   },
+   {
+    "ai": "菜|好吃|是|好吃，不过|太|少|了。",
+    "en": "The food is tasty all right, but there's too little of it."
+   }
+  ],
+  "5.4.6|……，否则……": [
+   "2887833",
+   "846256",
+   "919852"
+  ],
+  "5.4.6|要是……，就……": [
+   "2737409",
+   "2737412",
+   "1477282"
+  ],
+  "5.4.6|要是……，（就）……，否则……": [
+   {
+    "ai": "要是|你|有|时间|就|来，否则|就|算|了。",
+    "en": "If you have time, come; otherwise, never mind."
+   },
+   {
+    "ai": "要是|明天|不|下雨，我们|去|爬山，否则|在|家|休息。",
+    "en": "If it doesn't rain tomorrow, we'll go hiking; otherwise we'll rest at home."
+   }
+  ],
+  "5.4.7|不管……，都/也……": [
+   "480964",
+   "801360",
+   "12348618",
+   "347729"
+  ],
+  "5.4.7|无论……，都/也……": [
+   "5613700",
+   "478858",
+   "358149"
+  ],
+  "5.4.8|既然……，就……": [
+   "406186",
+   {
+    "ai": "既然|你|不|舒服，就|早点儿|休息|吧。",
+    "en": "Since you don't feel well, get some rest early."
+   },
+   "1694976"
+  ],
+  "5.4.8|（由于）……，因此……": [
+   "382381",
+   "10085622"
+  ],
+  "5.4.9|……，好……": [
+   "10270506",
+   "10504073",
+   {
+    "ai": "你|把|电话|号码|给|我，好|联系|你。",
+    "en": "Give me your phone number so I can contact you."
+   }
+  ],
+  "5.4.10|即使……，也……": [
+   "803860",
+   "8574696",
+   "1291333"
+  ],
+  "5.4.10|就是……，也……": [
+   "381906",
+   {
+    "ai": "就是|下|雨，我|也|要|去。",
+    "en": "Even if it rains, I'll still go."
+   }
+  ],
+  "5.4.11|无标记": [
+   "9007395",
+   {
+    "ai": "你|不|去|我|去。",
+    "en": "If you won't go, I will."
+   },
+   {
+    "ai": "有|问题|随时|问|我。",
+    "en": "If you have a question, ask me any time."
+   }
+  ],
+  "5.4.11|不……也……": [
+   {
+    "ai": "你|不|说|我|也|知道。",
+    "en": "Even if you don't tell me, I know."
+   },
+   {
+    "ai": "他|不|吃|饭|也|要|把|作业|写完。",
+    "en": "He'll finish his homework even if he has to skip a meal."
+   },
+   "346066"
+  ],
+  "6.1|概数表示法3：数词+来+量词": [
+   {
+    "ai": "他|买|了|十来|本|书。",
+    "en": "He bought ten or so books."
+   },
+   {
+    "ai": "教室|里|有|二十来|个|学生。",
+    "en": "There are about twenty students in the classroom."
+   },
+   {
+    "ai": "这个|孩子|才|十来|岁。",
+    "en": "This child is only about ten."
+   }
+  ],
+  "6.1|用“大约、左右、前后”表示概数": [
+   "834645",
+   "5815587",
+   "9797457",
+   {
+    "ai": "春节|前后|很多|人|回家。",
+    "en": "Around the Spring Festival, a lot of people go home."
+   }
+  ],
+  "6.1|小数、分数、百分数、倍数的表示法": [
+   {
+    "ai": "他|身高|一点八|米。",
+    "en": "He is 1.8 meters tall."
+   },
+   "4262062",
+   "4743930",
+   "349680"
+  ]
+ },
+ "5": {
+  "1.1|—头": [
+   "5613672",
+   "763911",
+   "10368743",
+   "1395097",
+   "10362524"
+  ],
+  "2.1.1|彼此、如此、本": [
+   "13749728",
+   "2490074",
+   "771497",
+   "790290",
+   "3537669",
+   "13556492",
+   "13513791"
+  ],
+  "2.2.1|册、朵、届、颗、匹、行、架、群、支、根、批、束、副、集、周": [
+   "1450443",
+   "9992039",
+   {
+    "ai": "下|一届|奥运会|在|哪儿|举行？",
+    "en": "Where will the next Olympic Games be held?"
+   },
+   "2091843",
+   "3140469",
+   "13143962",
+   "405224",
+   "14067872",
+   "1328157",
+   "801326",
+   "1238385",
+   "672302",
+   "827570",
+   "13233565",
+   "10537127"
+  ],
+  "2.2.2|眼": [
+   "335111",
+   "334833",
+   "9955895",
+   "1260507"
+  ],
+  "2.3.1|过于、相当、较1、可2、格外、极其": [
+   "845970",
+   "8703974",
+   "825990",
+   "13890331",
+   "801349",
+   "7909713",
+   "10276249",
+   {
+    "ai": "今天|可|热|了！",
+    "en": "It's really hot today!"
+   },
+   {
+    "ai": "雨|后|的|空气|格外|新鲜。",
+    "en": "The air is especially fresh after the rain."
+   },
+   "2454755",
+   {
+    "ai": "这|件|事|极其|重要。",
+    "en": "This matter is extremely important."
+   }
+  ],
+  "2.3.2|时刻、曾经、立刻、连忙、始终、早已、即将、急忙、渐渐、尽快、早晚": [
+   {
+    "ai": "我们|要|时刻|注意|安全。",
+    "en": "We must pay attention to safety at all times."
+   },
+   "1529540",
+   "1878268",
+   {
+    "ai": "他|看到|老师|进来，|连忙|站了|起来。",
+    "en": "When he saw the teacher come in, he quickly stood up."
+   },
+   "377540",
+   "9953332",
+   "868440",
+   "816478",
+   "891064",
+   "784036",
+   "348926"
+  ],
+  "2.3.3|老是、通常、时常": [
+   "10266785",
+   "719764",
+   "345930",
+   "818093",
+   "9489468",
+   "4504515"
+  ],
+  "2.3.4|尽量、亲自": [
+   "9694386",
+   "5812675",
+   "8697576",
+   "844511",
+   "832780"
+  ],
+  "2.3.5|便、一旦": [
+   "492433",
+   {
+    "ai": "他|吃完|饭|便|出去|了。",
+    "en": "After he finished eating, he went out."
+   },
+   "2029413",
+   "2938670"
+  ],
+  "2.3.6|似乎、仿佛": [
+   "10516069",
+   "850367",
+   "872124",
+   "10269023"
+  ],
+  "2.3.7|毕竟、居然、反正、根本、果然、简直、绝对、的确、反而、白、刚好、可3": [
+   "334251",
+   "2422280",
+   "1180718",
+   "408843",
+   "395923",
+   "1019977",
+   "846039",
+   "472994",
+   "2342830",
+   {
+    "ai": "他|不在|家，|我|白|去|了。",
+    "en": "He wasn't home, so I went for nothing."
+   },
+   "8463544",
+   "9958353",
+   "9992115"
+  ],
+  "2.4.1|自从": [
+   "4764653",
+   "336650",
+   "334234"
+  ],
+  "2.4.2|朝、沿（着）": [
+   "811026",
+   "1450406",
+   "476610",
+   "380738"
+  ],
+  "2.4.3|替、同1、较2": [
+   "12002557",
+   "2031275",
+   "4270718",
+   {
+    "ai": "我|想|同|你|谈谈。",
+    "en": "I'd like to have a talk with you."
+   },
+   {
+    "ai": "今天|的|气温|较|昨天|低。",
+    "en": "Today's temperature is lower than yesterday's."
+   }
+  ],
+  "2.4.4|凭": [
+   "9955893",
+   "8789285",
+   "334808"
+  ],
+  "2.4.4|据": [
+   "895606",
+   "6064693",
+   "1214448"
+  ],
+  "2.4.4|依据": [
+   {
+    "ai": "依据|规定，|这里|不能|停车。",
+    "en": "According to the rules, you can't park here."
+   },
+   {
+    "ai": "我们|要|依据|事实|说话。",
+    "en": "We should speak based on the facts."
+   }
+  ],
+  "2.5.1|以及、同2": [
+   "1178847",
+   {
+    "ai": "老师、|学生|以及|家长|都|来了。",
+    "en": "The teachers, the students and the parents all came."
+   },
+   {
+    "ai": "我|同|他|是|老同学。",
+    "en": "He and I are old classmates."
+   },
+   {
+    "ai": "小王|同|小李|都|是|北京人。",
+    "en": "Xiao Wang and Xiao Li are both from Beijing."
+   }
+  ],
+  "2.5.2|从而、可见、假如、总之": [
+   "13958137",
+   {
+    "ai": "她|改变了|学习|方法，|从而|提高了|成绩。",
+    "en": "She changed how she studies and so improved her grades."
+   },
+   {
+    "ai": "他|又|迟到了，|可见|他|不|重视|这|件|事。",
+    "en": "He's late again, which shows he doesn't take this seriously."
+   },
+   "4267375",
+   "765746",
+   {
+    "ai": "总之，|我|不|同意|你|的|看法。",
+    "en": "In short, I don't agree with your view."
+   }
+  ],
+  "2.6.1|似的": [
+   "334069",
+   "10280108",
+   "13642654"
+  ],
+  "3.1.1|A来A去": [
+   "1327456",
+   "347413",
+   "598135"
+  ],
+  "3.1.1|A着A着": [
+   "2309924",
+   {
+    "ai": "她|说着|说着|就|哭了。",
+    "en": "She was talking, and then she started to cry."
+   },
+   {
+    "ai": "我|走着|走着|就|迷路|了。",
+    "en": "I kept walking and ended up getting lost."
+   }
+  ],
+  "3.1.1|没A没B": [
+   "1409428",
+   {
+    "ai": "这个|孩子|说话|没大没小。",
+    "en": "This child talks to adults with no respect."
+   },
+   {
+    "ai": "他|每天|没日没夜|地|工作。",
+    "en": "He works day and night."
+   }
+  ],
+  "3.1.1|说A就A": [
+   "5650410",
+   {
+    "ai": "他|说|走|就|走了。",
+    "en": "He said he would leave, and he left right away."
+   },
+   {
+    "ai": "这里|的|天气|说|变|就|变。",
+    "en": "The weather here can change in an instant."
+   }
+  ],
+  "3.1.2|不得了": [
+   "12253231",
+   {
+    "ai": "不得了，|着火|了！",
+    "en": "Oh no, there's a fire!"
+   }
+  ],
+  "3.1.2|用不着": [
+   "839305",
+   "901922",
+   "1529524"
+  ],
+  "3.1.2|从……来看": [
+   "346736",
+   "344707",
+   "492948"
+  ],
+  "3.1.2|A的A，B的B": [
+   "899608",
+   {
+    "ai": "孩子们|哭|的|哭，|笑|的|笑。",
+    "en": "Some of the children were crying and some were laughing."
+   },
+   {
+    "ai": "大家|唱|的|唱，|跳|的|跳，|非常|热闹。",
+    "en": "Some sang and some danced; it was very lively."
+   }
+  ],
+  "3.1.2|（自）……以来": [
+   {
+    "ai": "自|去年|以来，|他|一直|住在|北京。",
+    "en": "He has lived in Beijing since last year."
+   },
+   "10339532",
+   "1567829"
+  ],
+  "3.1.2|由……组成": [
+   "377728",
+   "1881095",
+   "533744"
+  ],
+  "3.1.2|X也不是，Y也不是": [
+   {
+    "ai": "我|站|也|不是，|坐|也|不是。",
+    "en": "I didn't know whether to stand or sit."
+   },
+   {
+    "ai": "我|走|也|不是，|留|也|不是。",
+    "en": "I couldn't decide whether to leave or stay."
+   }
+  ],
+  "3.1.2|X也X不得，Y也Y不得": [
+   {
+    "ai": "这|件|事|让|我|哭|也|哭不得，|笑|也|笑不得。",
+    "en": "This left me not knowing whether to laugh or cry."
+   },
+   {
+    "ai": "孩子|还|小，|打|也|打不得，|骂|也|骂不得。",
+    "en": "The child is still small; you can't hit him, and you can't scold him."
+   }
+  ],
+  "4.1|X是它，Y也是它": [
+   {
+    "ai": "成功|是|它，|失败|也|是|它。",
+    "en": "It brought us success, and it also brought us failure."
+   }
+  ],
+  "4.1|X着也是X着": [
+   {
+    "ai": "反正|闲着|也是|闲着，|我|来|帮|你|吧。",
+    "en": "I've got nothing to do anyway, so let me help you."
+   },
+   {
+    "ai": "坐着|也是|坐着，|不如|看|会儿|书。",
+    "en": "I'm just sitting here anyway, so I might as well read for a bit."
+   }
+  ],
+  "4.1|不管怎样说": [
+   "4262141",
+   {
+    "ai": "不管|怎样|说，|他|也|是|你|的|朋友。",
+    "en": "Whatever you say, he is still your friend."
+   }
+  ],
+  "4.1|真有你/他/她的": [
+   {
+    "ai": "这么|难|的|题|你|都|做|出来|了，|真|有|你|的！",
+    "en": "You solved such a hard problem. You're really something!"
+   },
+   {
+    "ai": "他|一个人|做完了|所有|的|工作，|真|有|他|的。",
+    "en": "He finished all the work by himself. He's really something."
+   }
+  ],
+  "4.1|X什么X": [
+   {
+    "ai": "笑|什么|笑！",
+    "en": "What are you laughing at?!"
+   },
+   {
+    "ai": "哭|什么|哭，|快|起来！",
+    "en": "Stop crying and get up!"
+   }
+  ],
+  "4.1|什么X不X（的）": [
+   {
+    "ai": "什么|钱|不|钱|的，|别|客气。",
+    "en": "Never mind the money, don't mention it."
+   },
+   {
+    "ai": "什么|累|不|累|的，|我|愿意|帮|你。",
+    "en": "Don't talk about being tired; I'm happy to help you."
+   }
+  ],
+  "4.1|不X白不X": [
+   {
+    "ai": "这些|是|免费|的，|不|拿|白|不|拿。",
+    "en": "These are free, so you might as well take some."
+   },
+   {
+    "ai": "不|吃|白|不|吃。",
+    "en": "It's free, so you'd be silly not to eat it."
+   }
+  ],
+  "4.1|X来X去，都是/就是……": [
+   "375440",
+   {
+    "ai": "我|想来想去，|都|是|我|的|错。",
+    "en": "I've thought it over and over: It's all my fault."
+   },
+   {
+    "ai": "他|说来说去，|就是|不|想|去。",
+    "en": "Whatever he says, it comes down to not wanting to go."
+   }
+  ],
+  "4.1|动词+什么（就）是什么": [
+   {
+    "ai": "你|说|什么|就|是|什么，|我|都|听|你|的。",
+    "en": "Whatever you say goes; I'll do as you say."
+   },
+   {
+    "ai": "在|家里，|妈妈|说|什么|就|是|什么。",
+    "en": "At home, whatever Mom says goes."
+   }
+  ],
+  "5.1|多项状语": [
+   "2052714",
+   "364916",
+   "686920",
+   {
+    "ai": "他|昨天|在|图书馆|认真|地|看了|一天|书。",
+    "en": "Yesterday he spent the whole day reading carefully in the library."
+   }
+  ],
+  "5.2.1|动词+得/不得": [
+   "6089745",
+   {
+    "ai": "这|东西|坏了，|吃|不得。",
+    "en": "This has gone bad; you can't eat it."
+   },
+   {
+    "ai": "那个|地方|很|危险，|去|不得。",
+    "en": "That place is dangerous; you mustn't go there."
+   }
+  ],
+  "5.2.2|形容词/心理动词+得+不得了": [
+   "420262",
+   "420276",
+   {
+    "ai": "她|担心|得|不得了。",
+    "en": "She is extremely worried."
+   }
+  ],
+  "5.2.3|趋向补语的引申用法：表示状态意义：动词/形容词+下来/下去/起来/过来/过去": [
+   "5863295",
+   "6673094",
+   "429425",
+   "7767746",
+   {
+    "ai": "他|终于|醒|过来|了。",
+    "en": "He finally came to."
+   },
+   {
+    "ai": "她|听到|这个|消息|就|晕|过去|了。",
+    "en": "She fainted when she heard the news."
+   }
+  ],
+  "5.2.4|（1）动词/形容词+得+动词短语": [
+   "400069",
+   "403770",
+   "9501196",
+   "1316154"
+  ],
+  "5.2.4|（2）动词/形容词+得+主谓短语": [
+   "833081",
+   "802142",
+   "4264670",
+   {
+    "ai": "他|讲|得|大家|都|笑了。",
+    "en": "He told it so well that everyone laughed."
+   }
+  ],
+  "5.2.4|（3）动词/形容词+得+固定短语": [
+   "579864",
+   "910297",
+   "334419",
+   "372204"
+  ],
+  "6.1.1|（1）表示存在、具有：主语+有+着+宾语": [
+   "8795179",
+   "2482699",
+   {
+    "ai": "中国|有着|悠久|的|历史。",
+    "en": "China has a long history."
+   }
+  ],
+  "6.1.1|（2）表示附着：主语+动词+有+宾语": [
+   "13167246",
+   {
+    "ai": "信封|上|写有|他|的|名字。",
+    "en": "His name is written on the envelope."
+   },
+   {
+    "ai": "墙|上|挂有|一张|地图。",
+    "en": "There is a map hanging on the wall."
+   }
+  ],
+  "6.1.2|（1）主语+把+宾语+一+动词": [
+   {
+    "ai": "他|把|门|一|关，|就|走了。",
+    "en": "He shut the door and left."
+   },
+   {
+    "ai": "她|把|头|一|转，|不|理|我|了。",
+    "en": "She turned her head away and ignored me."
+   },
+   {
+    "ai": "我|把|眼睛|一|闭，|就|睡着了。",
+    "en": "I closed my eyes and fell asleep at once."
+   }
+  ],
+  "6.1.2|（2）主语+把+宾语1+动词+宾语2": [
+   "373397",
+   "334876",
+   "782226",
+   {
+    "ai": "她|把|苹果|削了|皮。",
+    "en": "She peeled the apple."
+   }
+  ],
+  "6.1.3|前后两个动词性词语具有因果、转折、条件关系": [
+   {
+    "ai": "他|生病|没|来|上课。",
+    "en": "He was sick, so he didn't come to class."
+   },
+   {
+    "ai": "我|听了|这个|消息|很|高兴。",
+    "en": "I was very happy to hear this news."
+   },
+   {
+    "ai": "她|有|车|不|开，|每天|走路|上班。",
+    "en": "She has a car but doesn't drive it; she walks to work every day."
+   },
+   {
+    "ai": "你|有|问题|可以|问|我。",
+    "en": "If you have questions, you can ask me."
+   }
+  ],
+  "6.1.4|A+形容词+B+数量补语": [
+   {
+    "ai": "他|大|我|三|岁。",
+    "en": "He is three years older than me."
+   },
+   {
+    "ai": "我|哥哥|高|我|一头。",
+    "en": "My older brother is a head taller than me."
+   },
+   {
+    "ai": "她|早|我|一年|毕业。",
+    "en": "She graduated a year before me."
+   }
+  ],
+  "6.1.5|主语+被/叫/让+宾语+给+动词+其他成分": [
+   {
+    "ai": "我|的|钱包|被|小偷|给|偷|了。",
+    "en": "My wallet was stolen by a thief."
+   },
+   {
+    "ai": "蛋糕|叫|弟弟|给|吃|了。",
+    "en": "The cake got eaten by my little brother."
+   },
+   {
+    "ai": "杯子|让|孩子|给|打破|了。",
+    "en": "The cup was broken by the child."
+   }
+  ],
+  "6.2.1|……，便……": [
+   "338634",
+   "7768322"
+  ],
+  "6.2.2|或是……，或是……": [
+   {
+    "ai": "周末|我|或是|在家|看书，|或是|去|公园|散步。",
+    "en": "On weekends I either read at home or go for a walk in the park."
+   },
+   {
+    "ai": "你|或是|今天|去，|或是|明天|去，|都|可以。",
+    "en": "You can go either today or tomorrow; either is fine."
+   }
+  ],
+  "6.2.3|一旦……，就……": [
+   "385601",
+   "3713533"
+  ],
+  "6.2.3|假如……，（就）……": [
+   "478786",
+   "8652807",
+   {
+    "ai": "假如|明天|下雨，|我们|就|不|去|了。",
+    "en": "If it rains tomorrow, we won't go."
+   }
+  ],
+  "6.2.3|万一……，（就）……": [
+   "801419",
+   "394205",
+   "333239"
+  ],
+  "6.2.3|……，要不然/不然……": [
+   "686614",
+   "358181",
+   "334398",
+   {
+    "ai": "快|走|吧，|要不然|就|来不及|了。",
+    "en": "Let's go, or we won't make it in time."
+   }
+  ],
+  "6.2.4|……，因而……": [
+   {
+    "ai": "他|每天|练习，|因而|进步|很|快。",
+    "en": "He practices every day, so he has improved quickly."
+   },
+   {
+    "ai": "这里|交通|方便，|因而|房子|很|贵。",
+    "en": "Transport here is convenient, so housing is expensive."
+   }
+  ],
+  "6.2.4|……，可见……": [
+   {
+    "ai": "他|连|饭|都|没|吃|就|走了，|可见|事情|很|急。",
+    "en": "He left without even eating, which shows the matter was urgent."
+   },
+   {
+    "ai": "教室|里|一个人|也|没有，|可见|已经|下课|了。",
+    "en": "There's no one in the classroom, so class must be over."
+   }
+  ],
+  "6.2.5|哪怕……，也……": [
+   "381909",
+   {
+    "ai": "哪怕|下雨，|我|也|去。",
+    "en": "Even if it rains, I'll go."
+   }
+  ],
+  "6.2.6|不但不/不但没有……，反而……": [
+   {
+    "ai": "他|不但|不|生气，|反而|笑了。",
+    "en": "Instead of getting angry, he laughed."
+   },
+   {
+    "ai": "吃了|药，|病|不但|没有|好，|反而|更|重|了。",
+    "en": "After taking the medicine, the illness didn't get better; it got worse instead."
+   }
+  ],
+  "6.2.6|不是……，还/还是……": [
+   {
+    "ai": "这|不是|我|一个人|的|事，|还|是|大家|的|事。",
+    "en": "This isn't just my business; it's everyone's business."
+   }
+  ],
+  "6.2.7|……，为的是……": [
+   "346818",
+   "333916",
+   "336855"
+  ],
+  "6.2.8|没有……就没有……": [
+   "884637",
+   "339494",
+   "3625277"
+  ],
+  "6.2.8|不……不……": [
+   {
+    "ai": "明天|七点，|不见|不散。",
+    "en": "Seven tomorrow. We'll wait for each other until we meet."
+   },
+   {
+    "ai": "这个|会|很|重要，|不|去|不|行。",
+    "en": "This meeting is important; I have to go."
+   },
+   {
+    "ai": "不|试|不|知道。",
+    "en": "You won't know until you try."
+   }
+  ],
+  "6.2.8|再……也……": [
+   {
+    "ai": "再|忙|也|要|吃饭。",
+    "en": "No matter how busy you are, you still have to eat."
+   },
+   {
+    "ai": "我|再|累|也|不|会|放弃。",
+    "en": "However tired I am, I won't give up."
+   },
+   "796901"
+  ]
+ },
+ "6": {
+  "1.1|超—、多—、反—、无—、亚—、准—": [
+   "10256745",
+   "13972721",
+   "8511424",
+   {
+    "ai": "压力|太大|会|起|反作用。",
+    "en": "Too much pressure has the opposite effect."
+   },
+   "10041929",
+   "11750249",
+   {
+    "ai": "他|在|比赛|中|得了|亚军。",
+    "en": "He came second in the competition."
+   },
+   {
+    "ai": "她|是|一位|准妈妈。",
+    "en": "She is a mother-to-be."
+   }
+  ],
+  "1.2|—化、—式、—型、—性": [
+   "13903365",
+   {
+    "ai": "我们|的|城市|越来越|现代化|了。",
+    "en": "Our city is becoming more and more modern."
+   },
+   "2201736",
+   "1409034",
+   "840759",
+   "344832",
+   "1350119",
+   "462004"
+  ],
+  "2.1.1|人家": [
+   "419956",
+   "6799619",
+   "883430",
+   {
+    "ai": "人家|的|事，你|别|管。",
+    "en": "Don't meddle in other people's business."
+   }
+  ],
+  "2.2.1|专用名量词：串、滴、枝、扇、卷1、卷2": [
+   "419724",
+   "8572028",
+   "5925242",
+   "345671",
+   "4262051",
+   "850398",
+   "8798294"
+  ],
+  "2.2.2|番": [
+   "1941868",
+   {
+    "ai": "她|打扮|了|一番|才|出门。",
+    "en": "She dressed up before going out."
+   },
+   {
+    "ai": "我们|讨论|了|一番，决定|明天|去。",
+    "en": "We talked it over and decided to go tomorrow."
+   }
+  ],
+  "2.3.1|特、异常、较为": [
+   {
+    "ai": "今天|特|冷。",
+    "en": "It's really cold today."
+   },
+   {
+    "ai": "这家|店|的|菜|特|好吃。",
+    "en": "The food at this restaurant is really good."
+   },
+   "9089093",
+   {
+    "ai": "这个|办法|较为|简单。",
+    "en": "This method is relatively simple."
+   }
+  ],
+  "2.3.2|净、一同、大都": [
+   {
+    "ai": "你|别|净|说|没用|的|话。",
+    "en": "Stop saying nothing but useless things."
+   },
+   {
+    "ai": "他|整天|净|玩|游戏。",
+    "en": "He does nothing but play games all day."
+   },
+   {
+    "ai": "我们|一同|去|吧。",
+    "en": "Let's go together."
+   },
+   "5794107",
+   {
+    "ai": "这里|的|学生|大都|会|说|英语。",
+    "en": "Most of the students here can speak English."
+   }
+  ],
+  "2.3.3|一时、不时、仍旧、依旧、一向": [
+   {
+    "ai": "我|一时|想不起|他|的|名字|了。",
+    "en": "For the moment I can't remember his name."
+   },
+   "884230",
+   {
+    "ai": "他|仍旧|住|在|那里。",
+    "en": "He still lives there."
+   },
+   "4866939",
+   "1962128",
+   "3709354"
+  ],
+  "2.3.4|一再、再三": [
+   "10498055",
+   {
+    "ai": "我|一再|告诉|他|别|迟到。",
+    "en": "I told him again and again not to be late."
+   },
+   "755871",
+   {
+    "ai": "她|再三|感谢|我们。",
+    "en": "She thanked us again and again."
+   }
+  ],
+  "2.3.5|不禁、赶忙、特地、特意、偷偷": [
+   "785242",
+   "941159",
+   {
+    "ai": "看到|老师|来了，他|赶忙|站|起来。",
+    "en": "Seeing the teacher come in, he quickly stood up."
+   },
+   "349756",
+   "344841",
+   "1888811",
+   {
+    "ai": "这|是|我|特意|为|你|做|的|蛋糕。",
+    "en": "This is a cake I made especially for you."
+   },
+   "2737436",
+   "3078795"
+  ],
+  "2.3.6|未必": [
+   "407299",
+   "8591290",
+   "385577",
+   "806207"
+  ],
+  "2.3.7|恰好、倒是、干脆、明明、总算": [
+   "8514598",
+   {
+    "ai": "我|恰好|也|要|去|那儿。",
+    "en": "I happen to be going there too."
+   },
+   "1477269",
+   "9423281",
+   {
+    "ai": "太|晚|了，我们|干脆|打车|吧。",
+    "en": "It's too late; let's just take a taxi."
+   },
+   {
+    "ai": "你|明明|知道，为什么|不|告诉|我？",
+    "en": "You clearly knew, so why didn't you tell me?"
+   },
+   "895132",
+   "1516173"
+  ],
+  "2.4.1|于": [
+   "4264881",
+   "874217",
+   "13726667",
+   "834339"
+  ],
+  "2.4.2|至于": [
+   "348487",
+   "1015627",
+   {
+    "ai": "我|会|去，至于|他，我|不|知道。",
+    "en": "I'll go; as for him, I don't know."
+   }
+  ],
+  "2.4.3|因": [
+   "5595144",
+   "778488",
+   "13953769"
+  ],
+  "2.4.4|除": [
+   "833799",
+   "13109284",
+   "3709259",
+   {
+    "ai": "除|星期天|外，我|每天|都|上班。",
+    "en": "I work every day except Sunday."
+   }
+  ],
+  "2.5.1|不料": [
+   {
+    "ai": "我|以为|他|会|来，不料|他|病|了。",
+    "en": "I thought he would come, but unexpectedly he got sick."
+   },
+   {
+    "ai": "早上|还是|晴天，不料|下午|下起|了|大雨。",
+    "en": "It was sunny in the morning, but unexpectedly it started raining hard in the afternoon."
+   }
+  ],
+  "2.6.1|所": [
+   "6093372",
+   "431622",
+   "2052723",
+   "8589246"
+  ],
+  "2.6.2|啦、嘛": [
+   "686653",
+   "1472065",
+   "417774",
+   "10362551",
+   "461998",
+   {
+    "ai": "他|还是|个|孩子|嘛。",
+    "en": "He's still just a child, after all."
+   }
+  ],
+  "2.6.3|也好": [
+   "522022",
+   {
+    "ai": "不|去|也好，在家|休息|吧。",
+    "en": "It's fine not to go; just rest at home."
+   }
+  ],
+  "3.1.1|A这A那": [
+   "3526197",
+   {
+    "ai": "他|总是|怕|这|怕|那。",
+    "en": "He's always afraid of this and that."
+   },
+   {
+    "ai": "她|一|进门|就|问|这|问|那。",
+    "en": "As soon as she came in, she asked about this and that."
+   }
+  ],
+  "3.1.1|左A右B": [
+   {
+    "ai": "我|左|想|右|想，还是|不|明白。",
+    "en": "I thought it over and over, but I still don't understand."
+   },
+   {
+    "ai": "他|左|等|右|等，她|也|没|来。",
+    "en": "He waited and waited, but she never came."
+   }
+  ],
+  "3.1.2|好（不）容易": [
+   "334323",
+   {
+    "ai": "我|好容易|才|找到|你|家。",
+    "en": "It took me a lot of effort to find your home."
+   },
+   {
+    "ai": "我们|好不容易|才|买到|票。",
+    "en": "We had a hard time getting tickets."
+   }
+  ],
+  "3.1.2|那倒（也）是": [
+   {
+    "ai": "那|倒是，现在|去|太|晚|了。",
+    "en": "That's true; it's too late to go now."
+   },
+   {
+    "ai": "你|说|得|对，那|倒|也|是。",
+    "en": "You're right, that's true enough."
+   }
+  ],
+  "3.1.2|算了": [
+   "14067734",
+   "9989854",
+   "2737408"
+  ],
+  "3.1.2|得了": [
+   "334912",
+   {
+    "ai": "得了，别|说|了。",
+    "en": "That's enough, stop talking."
+   },
+   {
+    "ai": "你|跟|他|说|一声|就|得了。",
+    "en": "Just let him know and that'll do."
+   }
+  ],
+  "4.1|A一+量词，B一+量词": [
+   {
+    "ai": "两个|人|你|一句，我|一句|地|吵|了|起来。",
+    "en": "The two of them started arguing, each taking turns."
+   },
+   {
+    "ai": "我们|你|一口，我|一口，吃完|了|一个|西瓜。",
+    "en": "We took turns taking bites and finished a whole watermelon."
+   }
+  ],
+  "4.1|东一A，西一A": [
+   {
+    "ai": "他|的|衣服|东|一件，西|一件，到处|都是。",
+    "en": "His clothes are scattered here and there, all over the place."
+   },
+   {
+    "ai": "她|说话|东|一句，西|一句，我|听不懂。",
+    "en": "She talks in bits and pieces, and I can't follow her."
+   }
+  ],
+  "4.1|到……为止": [
+   "332859",
+   "339502",
+   "835347",
+   "2003173"
+  ],
+  "4.1|X到Y头上来了": [
+   {
+    "ai": "你|竟然|欺负|到|我|头上|来|了！",
+    "en": "You've actually started picking on me!"
+   },
+   {
+    "ai": "他|管|到|我|头上|来|了。",
+    "en": "He's even started telling me what to do."
+   }
+  ],
+  "4.1|不X不……，一X……": [
+   {
+    "ai": "不|看|不|知道，一|看|吓|一跳。",
+    "en": "You don't know until you look; one look gave me a shock."
+   },
+   {
+    "ai": "不|试|不|知道，一|试|才|发现|很|难。",
+    "en": "You can't tell until you try; once I tried, I found it was hard."
+   }
+  ],
+  "4.1|好你个X": [
+   {
+    "ai": "好|你|个|小王，竟然|骗|我！",
+    "en": "Why you, Xiao Wang, you actually lied to me!"
+   },
+   {
+    "ai": "好|你|个|小李，又|迟到|了！",
+    "en": "Xiao Li, you rascal, you're late again!"
+   }
+  ],
+  "4.1|早（也）不X，晚（也）不X": [
+   {
+    "ai": "他|早|不|来，晚|不|来，偏偏|现在|来。",
+    "en": "Of all times, he had to come right now."
+   },
+   {
+    "ai": "电脑|早|不|坏，晚|不|坏，偏偏|考试|前|坏|了。",
+    "en": "Of all times, the computer had to break right before the exam."
+   }
+  ],
+  "4.1|看/瞧+把+宾语（施事）+X得": [
+   {
+    "ai": "看|把|你|高兴|得！",
+    "en": "Look how happy you are!"
+   },
+   {
+    "ai": "瞧|把|孩子|累|得，快|让|他|休息|吧。",
+    "en": "Look how tired the child is; let him rest."
+   }
+  ],
+  "4.1|放着X不Y": [
+   {
+    "ai": "你|放着|电梯|不|坐，为什么|走|楼梯？",
+    "en": "Why take the stairs when there's an elevator right there?"
+   },
+   {
+    "ai": "他|放着|好|工作|不|做，非要|自己|开|店。",
+    "en": "He gave up a good job to open his own shop."
+   }
+  ],
+  "4.1|X了就X了，（没）有……": [
+   {
+    "ai": "丢|了|就|丢|了，没有|什么|关系。",
+    "en": "If it's lost, it's lost; it doesn't matter."
+   },
+   {
+    "ai": "输|了|就|输|了，有|什么|好|哭|的？",
+    "en": "So we lost; what's there to cry about?"
+   }
+  ],
+  "4.1|这/那也不X，那/这也不Y": [
+   {
+    "ai": "你|这|也|不|吃，那|也|不|吃，怎么|行？",
+    "en": "You won't eat this and you won't eat that. How can that work?"
+   },
+   {
+    "ai": "他|这|也|不|满意，那|也|不|满意。",
+    "en": "He isn't happy with this or with that."
+   }
+  ],
+  "4.1|X归X，Y归Y": [
+   {
+    "ai": "朋友|归|朋友，钱|归|钱。",
+    "en": "Friends are friends, and money is money."
+   },
+   {
+    "ai": "工作|归|工作，休息|归|休息。",
+    "en": "Work is work, and rest is rest."
+   }
+  ],
+  "4.1|看你X的/瞧他X的": [
+   {
+    "ai": "看|你|急|的，慢慢|说。",
+    "en": "Look how worked up you are; take your time."
+   },
+   {
+    "ai": "瞧|他|高兴|的，像|个|孩子。",
+    "en": "Look how happy he is, just like a child."
+   }
+  ],
+  "5.1.1|动词/形容词+透+了": [
+   "802100",
+   "617696",
+   "10541547"
+  ],
+  "6.1.1|（1）主语（非生物体）+把+宾语+动词+其他成分": [
+   "346931",
+   {
+    "ai": "大风|把|门|吹|开|了。",
+    "en": "The strong wind blew the door open."
+   },
+   {
+    "ai": "这|件|事|把|我|累|坏|了。",
+    "en": "This matter has worn me out."
+   }
+  ],
+  "6.1.1|（2）主语+把+宾语（施事）+动词+其他成分": [
+   "13807621",
+   "2680426",
+   {
+    "ai": "他|把|妈妈|气|哭|了。",
+    "en": "He made his mother so angry that she cried."
+   },
+   {
+    "ai": "你|把|孩子|吓|哭|了。",
+    "en": "You scared the child to tears."
+   }
+  ],
+  "6.2.1|一时……一时……": [
+   {
+    "ai": "天气|一时|冷，一时|热。",
+    "en": "The weather is cold one moment and hot the next."
+   },
+   {
+    "ai": "他|一时|哭，一时|笑。",
+    "en": "One moment he cries, the next he laughs."
+   }
+  ],
+  "6.2.2|要么……，要么……": [
+   "411253",
+   "1477277",
+   "813438"
+  ],
+  "6.2.3|虽……，但/可/却/也……": [
+   {
+    "ai": "他|虽|年轻，但|很|有|经验。",
+    "en": "Although he is young, he is very experienced."
+   },
+   {
+    "ai": "这|件|衣服|虽|贵，可|质量|很|好。",
+    "en": "Although this piece of clothing is expensive, the quality is good."
+   },
+   {
+    "ai": "房间|虽|小，却|很|干净。",
+    "en": "Although the room is small, it is very clean."
+   }
+  ],
+  "6.2.4|凡是……，都……": [
+   "10488765",
+   {
+    "ai": "凡是|他|说|的|话，我|都|相信。",
+    "en": "I believe everything he says."
+   },
+   {
+    "ai": "凡是|来|过|这里|的|人，都|说|好。",
+    "en": "Everyone who has been here says it's good."
+   }
+  ],
+  "6.2.4|除非……，才……": [
+   "332695",
+   "461524",
+   {
+    "ai": "除非|你|去，他|才|会|去。",
+    "en": "He'll go only if you go."
+   }
+  ],
+  "6.2.4|除非……，否则/不然……": [
+   "13261308",
+   "1477295",
+   "6404943"
+  ],
+  "6.2.5|就算……，也……": [
+   "557599",
+   "4061619",
+   "4764602",
+   "1923687"
+  ],
+  "6.2.6|……，以便……": [
+   "778730",
+   "1616643",
+   {
+    "ai": "请|留下|电话，以便|我们|联系|你。",
+    "en": "Please leave your phone number so that we can contact you."
+   }
+  ]
+ },
+ "_chunks": {
+  "755483": "尽管|中文|学|起来|不|容易，|可是|比|你|想|的|简单。"
+ },
+ "7-9": {
+  "1.1|后—、亲—": [
+   {
+    "ai": "她对孩子们很好，一点儿也不像|后妈。",
+    "en": "She treats the children well, nothing like a stepmother."
+   },
+   {
+    "ai": "他们俩是|亲兄弟。",
+    "en": "The two of them are real brothers."
+   },
+   {
+    "ai": "他不是我|亲哥哥，是我表哥。",
+    "en": "He isn't my own brother; he's my cousin."
+   }
+  ],
+  "1.2|—观、—鬼、—界、—然、—坛、—为、—制": [
+   "13199814",
+   "5845589",
+   "408847",
+   "1946007",
+   "501352",
+   "765367",
+   {
+    "ai": "我们|实行|八小时|工作制。",
+    "en": "We work an eight-hour day."
+   }
+  ],
+  "2.1|巴不得、并非、除外、犯不着、犯得着、恨不得、可否、可谓、免不了、所谓、有所、予以": [
+   {
+    "ai": "孩子们|巴不得|天天|放假。",
+    "en": "The children wish every day were a holiday."
+   },
+   "9969975",
+   {
+    "ai": "博物馆|每天|开放，星期一|除外。",
+    "en": "The museum is open every day except Monday."
+   },
+   {
+    "ai": "为这点|小事|生气，犯不着。",
+    "en": "It's not worth getting angry over such a small thing."
+   },
+   {
+    "ai": "这点|小事，犯得着|发|这么大|的|火|吗？",
+    "en": "Is such a small thing worth getting so angry about?"
+   },
+   {
+    "ai": "我|恨不得|马上|飞|回家。",
+    "en": "I wish I could fly home right now."
+   },
+   "7772152",
+   {
+    "ai": "他为这个家|可谓|付出了|一切。",
+    "en": "You could say he gave everything for this family."
+   },
+   "5617219",
+   "4815130",
+   "337280",
+   {
+    "ai": "对|表现|好的|员工，公司|将|予以|奖励。",
+    "en": "The company will reward employees who perform well."
+   }
+  ],
+  "2.2.1|我": [
+   "785181",
+   "1468435",
+   {
+    "ai": "我|公司|将于|下月|推出|新产品。",
+    "en": "Our company will launch a new product next month."
+   }
+  ],
+  "2.2.2|彼、这么着、兹": [
+   {
+    "ai": "知己|知彼，百战|不殆。",
+    "en": "Know yourself and know the other side, and you will never lose a battle."
+   },
+   {
+    "ai": "掌声|此起彼伏。",
+    "en": "Applause broke out here and there, one round after another."
+   },
+   {
+    "ai": "这么着|吧，我们|明天|再|谈。",
+    "en": "Let's do it this way: we'll talk again tomorrow."
+   },
+   {
+    "ai": "要是|这么着，我|就|不|去|了。",
+    "en": "If that's how it is, I won't go."
+   },
+   {
+    "ai": "兹|定于|五月|一日|召开|全体|大会。",
+    "en": "Notice is hereby given that a general meeting will be held on May 1."
+   }
+  ],
+  "2.2.3|何、怎么着": [
+   "1537137",
+   "13519172",
+   "4071841",
+   {
+    "ai": "你|到底|想|怎么着？",
+    "en": "What exactly do you want?"
+   },
+   {
+    "ai": "我|就是|不|去，你|能|把|我|怎么着？",
+    "en": "I'm just not going. What are you going to do about it?"
+   }
+  ],
+  "2.2.4|若干": [
+   {
+    "ai": "会议|讨论了|若干|问题。",
+    "en": "The meeting discussed a number of issues."
+   },
+   {
+    "ai": "我们|对|这个|计划|提出了|若干|建议。",
+    "en": "We made several suggestions about this plan."
+   }
+  ],
+  "2.3.1|重、截、缕、码、枚、摊、丸、则、幢、宗": [
+   {
+    "ai": "我们|翻过了|一重|又|一重|山。",
+    "en": "We crossed one range of mountains after another."
+   },
+   {
+    "ai": "他|把|绳子|剪成了|两截。",
+    "en": "He cut the rope in two."
+   },
+   {
+    "ai": "窗外|照进来|一缕|阳光。",
+    "en": "A ray of sunlight shone in through the window."
+   },
+   "332754",
+   "8789702",
+   {
+    "ai": "地上|有|一摊|水。",
+    "en": "There is a puddle of water on the floor."
+   },
+   {
+    "ai": "这种|药|每次|吃|一丸。",
+    "en": "Take one pill of this medicine each time."
+   },
+   "10041979",
+   "346806",
+   {
+    "ai": "警方|正在|调查|这|宗|案子。",
+    "en": "The police are investigating this case."
+   }
+  ],
+  "2.3.2|通": [
+   {
+    "ai": "他|把|我|骂了|一通。",
+    "en": "He gave me a good telling-off."
+   },
+   {
+    "ai": "她|大哭了|一通，心里|好受|多了。",
+    "en": "She had a good cry and felt much better."
+   },
+   {
+    "ai": "他|又|说了|一通|大道理。",
+    "en": "He gave another long lecture."
+   }
+  ],
+  "2.3.3|人次": [
+   {
+    "ai": "这个|展览|每天|接待|观众|上万|人次。",
+    "en": "The exhibition receives over ten thousand visits a day."
+   },
+   {
+    "ai": "去年|来|这里|旅游|的|人|达到|五十万|人次。",
+    "en": "Last year tourist visits here reached 500,000."
+   }
+  ],
+  "2.4.1|大为、分外、何等、极度、极力、略、略微、颇、稍稍、万分、微、尤为、愈加、越发": [
+   "4813405",
+   "10265783",
+   {
+    "ai": "听到|这个|消息，他|大为|吃惊。",
+    "en": "He was greatly surprised to hear the news."
+   },
+   {
+    "ai": "今晚|的|月亮|分外|明亮。",
+    "en": "The moon is especially bright tonight."
+   },
+   {
+    "ai": "能|活着|回来，这是|何等|幸运|的|事！",
+    "en": "How lucky it is to have come back alive!"
+   },
+   {
+    "ai": "他|比|我|略|高|一点儿。",
+    "en": "He is slightly taller than me."
+   },
+   {
+    "ai": "这|一点|尤为|重要。",
+    "en": "This point is especially important."
+   },
+   {
+    "ai": "到了|晚上，风|越发|大了。",
+    "en": "By evening the wind grew even stronger."
+   },
+   {
+    "ai": "他|极力|反对|这个|计划。",
+    "en": "He strongly opposed this plan."
+   },
+   {
+    "ai": "请|稍稍|等|一下。",
+    "en": "Please wait a moment."
+   }
+  ],
+  "2.4.2|大体、概、皆、尽、均、通通、统统、唯、唯独、唯有、无非、一概": [
+   "346175",
+   "13199813",
+   "5804524",
+   "1958159",
+   "1409353",
+   "10650611",
+   {
+    "ai": "他|说了|半天，无非|是|想|借钱。",
+    "en": "He talked for ages, but all he wanted was to borrow money."
+   },
+   {
+    "ai": "过期|的|票|一概|无效。",
+    "en": "Expired tickets are all invalid."
+   },
+   {
+    "ai": "商品|售出，概不|退换。",
+    "en": "Goods once sold cannot be returned or exchanged."
+   },
+   {
+    "ai": "他|说的|尽|是|空话。",
+    "en": "What he says is all empty talk."
+   },
+   {
+    "ai": "把|这些|旧|东西|统统|扔掉|吧。",
+    "en": "Throw all this old stuff away."
+   }
+  ],
+  "2.4.3|姑且、即、即时、届时、尽早、就此、历来、尚、随即、向来、一经、暂且、早日": [
+   "13998065",
+   "756977",
+   {
+    "ai": "他|一到|北京|即|给|我|打了|电话。",
+    "en": "He called me as soon as he arrived in Beijing."
+   },
+   {
+    "ai": "网站|会|即时|更新|消息。",
+    "en": "The website updates the news instantly."
+   },
+   {
+    "ai": "会议|下周|召开，届时|请|准时|参加。",
+    "en": "The meeting will be held next week; please be there on time."
+   },
+   "10596631",
+   "337306",
+   {
+    "ai": "今天|的|会|就此|结束。",
+    "en": "Today's meeting ends here."
+   },
+   {
+    "ai": "他|历来|反对|浪费。",
+    "en": "He has always been against waste."
+   },
+   {
+    "ai": "他|向来|很|准时。",
+    "en": "He has always been punctual."
+   },
+   "1589692",
+   "426887",
+   {
+    "ai": "他|看了|看|表，随即|走了|出去。",
+    "en": "He glanced at his watch and went out right away."
+   },
+   {
+    "ai": "合同|一经|签订，就|必须|执行。",
+    "en": "Once the contract is signed, it must be carried out."
+   },
+   {
+    "ai": "这件事|暂且|放|一放。",
+    "en": "Let's put this matter aside for now."
+   }
+  ],
+  "2.4.4|连连、屡次、屡屡、频、时而、时时、相继、一个劲（儿）、一连、再度": [
+   {
+    "ai": "他|连连|点头。",
+    "en": "He nodded again and again."
+   },
+   {
+    "ai": "他|屡次|迟到，老板|很|生气。",
+    "en": "He has been late again and again, and the boss is angry."
+   },
+   {
+    "ai": "这种|事|屡屡|发生。",
+    "en": "This kind of thing keeps happening."
+   },
+   {
+    "ai": "天|时而|晴，时而|下雨。",
+    "en": "The weather is sunny at times and rainy at others."
+   },
+   {
+    "ai": "妈妈|时时|提醒|我|注意|身体。",
+    "en": "Mom keeps reminding me to look after my health."
+   },
+   {
+    "ai": "客人们|相继|离开了。",
+    "en": "The guests left one after another."
+   },
+   {
+    "ai": "孩子|一个劲儿|地|哭。",
+    "en": "The child kept on crying."
+   },
+   "10311633",
+   {
+    "ai": "他|再度|获得|冠军。",
+    "en": "He won the championship again."
+   }
+  ],
+  "2.4.5|按理、按说、百般、不由得、趁机、趁早、大肆、断然、公然、火速、截然、竭力、尽情、就近、刻意、拼命、强行、任意、日趋、如期、擅自、私自、特此、瞎、一并、一举、一手、毅然、有意、照常、照例、照样、执意、骤然、逐一、专程": [
+   {
+    "ai": "按说|他|早该|到了。",
+    "en": "By rights he should have arrived long ago."
+   },
+   "2394350",
+   {
+    "ai": "他|趁机|溜走了。",
+    "en": "He took the chance to slip away."
+   },
+   {
+    "ai": "天|快|黑了，你|趁早|走|吧。",
+    "en": "It's getting dark; you'd better leave while you can."
+   },
+   "881554",
+   "10194180",
+   "864311",
+   "13999065",
+   "762037",
+   {
+    "ai": "不要|擅自|离开|岗位。",
+    "en": "Don't leave your post without permission."
+   },
+   {
+    "ai": "别|瞎说！",
+    "en": "Don't talk nonsense!"
+   },
+   "840429",
+   "4760001",
+   "1923687",
+   {
+    "ai": "老师|逐一|检查了|大家|的|作业。",
+    "en": "The teacher checked everyone's homework one by one."
+   },
+   {
+    "ai": "他|专程|来|看|你。",
+    "en": "He came here especially to see you."
+   }
+  ],
+  "2.4.6|不见得、绝不、无从、无须、无可、勿": [
+   "3709346",
+   "8634852",
+   {
+    "ai": "他|搬走|以后，我|无从|知道|他|的|消息。",
+    "en": "After he moved away, I had no way of hearing from him."
+   },
+   {
+    "ai": "你|无须|担心。",
+    "en": "You don't need to worry."
+   },
+   "7066677",
+   "13931521",
+   "11231392"
+  ],
+  "2.4.7|必定、必将、不妨、不免、反倒、非得、分明、怪不得、果真、好在、何必、竟、愣、莫非、难怪、宁可、宁愿、碰巧、偏偏、恰巧、切、情愿、势必、索性、万万、未免、务必、幸好、幸亏、终究、何不、何尝、何苦": [
+   "848965",
+   {
+    "ai": "这个|计划|必将|成功。",
+    "en": "This plan is bound to succeed."
+   },
+   "775861",
+   {
+    "ai": "第一次|上台，不免|有点儿|紧张。",
+    "en": "Going on stage for the first time, you can't help being a bit nervous."
+   },
+   {
+    "ai": "我|想|帮|他，他|反倒|生气了。",
+    "en": "I wanted to help him, but he got angry instead."
+   },
+   {
+    "ai": "这件事|非得|你|自己|去|不可。",
+    "en": "You have to go in person for this."
+   },
+   "425422",
+   "423880",
+   {
+    "ai": "怪不得|他|这么|高兴，原来|考上|大学|了。",
+    "en": "No wonder he's so happy: he got into university."
+   },
+   {
+    "ai": "他|说|要|下雨，果真|下|了。",
+    "en": "He said it would rain, and sure enough it did."
+   },
+   {
+    "ai": "好在|没有|人|受伤。",
+    "en": "Fortunately nobody was hurt."
+   },
+   {
+    "ai": "这|是|小事，何必|生气|呢？",
+    "en": "It's a small thing, so why get angry?"
+   },
+   {
+    "ai": "他|竟|一句|话|也|没|说。",
+    "en": "To everyone's surprise, he didn't say a word."
+   },
+   {
+    "ai": "我|叫|他|别|去，他|愣|要|去。",
+    "en": "I told him not to go, but he insisted on going anyway."
+   },
+   {
+    "ai": "他|还|没|来，莫非|生病|了？",
+    "en": "He still isn't here. Could he be ill?"
+   },
+   "793252",
+   "1361991",
+   {
+    "ai": "我|刚要|出门，偏偏|下起|雨|来。",
+    "en": "Just as I was about to go out, it started to rain."
+   },
+   "460625",
+   {
+    "ai": "我|情愿|自己|做。",
+    "en": "I'd rather do it myself."
+   },
+   {
+    "ai": "这样|下去，势必|影响|健康。",
+    "en": "If this goes on, it is bound to affect your health."
+   },
+   {
+    "ai": "雨|太|大了，我们|索性|不|走了。",
+    "en": "The rain was so heavy that we simply decided to stay."
+   },
+   "10327486",
+   {
+    "ai": "你|这样|说|未免|太|过分|了。",
+    "en": "Saying that is going rather too far."
+   },
+   "798217",
+   "349555",
+   {
+    "ai": "他|终究|还是|个|孩子。",
+    "en": "After all, he is still a child."
+   },
+   "334555",
+   "10021292",
+   {
+    "ai": "你|何苦|为|这种|人|伤心？",
+    "en": "Why bother getting upset over someone like that?"
+   }
+  ],
+  "2.4.8|乃": [
+   "1485539",
+   "3130823",
+   {
+    "ai": "鲁迅|乃|中国|著名|作家。",
+    "en": "Lu Xun is a famous Chinese writer."
+   }
+  ],
+  "2.5.1|打": [
+   {
+    "ai": "打|明天|起，我|开始|跑步。",
+    "en": "Starting tomorrow, I'm going to take up running."
+   },
+   {
+    "ai": "他|打|小|就|喜欢|画画。",
+    "en": "He has loved drawing since he was little."
+   },
+   {
+    "ai": "你|打|哪儿|来？",
+    "en": "Where have you come from?"
+   }
+  ],
+  "2.5.2|当着、就6": [
+   {
+    "ai": "别|当着|孩子|的|面|吵架。",
+    "en": "Don't argue in front of the children."
+   },
+   {
+    "ai": "他|当着|大家|的|面|道了歉。",
+    "en": "He apologized in front of everyone."
+   },
+   {
+    "ai": "双方|就|这个|问题|交换了|意见。",
+    "en": "The two sides exchanged views on this issue."
+   },
+   {
+    "ai": "大家|就|工作|安排|进行了|讨论。",
+    "en": "Everyone discussed the work plan."
+   }
+  ],
+  "2.5.3|本着、基于、鉴于1、经、依": [
+   {
+    "ai": "我们|本着|互相|尊重|的|原则|合作。",
+    "en": "We work together on the principle of mutual respect."
+   },
+   "1964269",
+   {
+    "ai": "鉴于|天气|原因，比赛|推迟|举行。",
+    "en": "In view of the weather, the match has been postponed."
+   },
+   {
+    "ai": "经|医生|检查，他|没|什么|大|病。",
+    "en": "The doctor examined him and found nothing seriously wrong."
+   },
+   {
+    "ai": "这个|计划|经|大家|讨论|通过了。",
+    "en": "The plan was approved after everyone discussed it."
+   },
+   "1059482"
+  ],
+  "2.6.1|鉴于2、况且、免得、若、倘若、以防": [
+   {
+    "ai": "鉴于|他|身体|不好，我们|没|让|他|参加。",
+    "en": "Since his health is poor, we didn't let him take part."
+   },
+   "381010",
+   {
+    "ai": "天|晚了，况且|又|下着|雨，你|别|走了。",
+    "en": "It's late, and besides, it's raining, so don't go."
+   },
+   {
+    "ai": "多|穿|点儿，免得|感冒。",
+    "en": "Put on more clothes so you don't catch a cold."
+   },
+   "3704984",
+   {
+    "ai": "倘若|明天|下雨，我们|就|不|去|了。",
+    "en": "If it rains tomorrow, we won't go."
+   },
+   "1516459"
+  ],
+  "2.6.2|加之、乃至、且": [
+   {
+    "ai": "他|本来|身体|就|弱，加之|工作|太|累，就|病倒了。",
+    "en": "He was weak to begin with, and on top of that he worked too hard, so he fell ill."
+   },
+   {
+    "ai": "这件事|影响了|全国|乃至|全世界。",
+    "en": "This affected the whole country and even the whole world."
+   },
+   "805590",
+   "2188423"
+  ],
+  "2.7.1|罢了、也罢、矣": [
+   "10266030",
+   "10548248",
+   {
+    "ai": "不|去|也罢，反正|也|没|什么|意思。",
+    "en": "It's fine if we don't go; it wouldn't be much fun anyway."
+   },
+   {
+    "ai": "有|你|这句|话，我|就|足矣。",
+    "en": "Hearing you say that is enough for me."
+   }
+  ],
+  "2.7.1|爱A不A": [
+   {
+    "ai": "你|爱|去|不|去，我|不|管|了。",
+    "en": "Go or don't go, I don't care anymore."
+   },
+   {
+    "ai": "爱|吃|不|吃！",
+    "en": "Eat it or don't, suit yourself!"
+   },
+   {
+    "ai": "他|对|我|爱理不理|的。",
+    "en": "He barely pays me any attention."
+   }
+  ],
+  "3.1.1|半A半B": [
+   {
+    "ai": "他|半信半疑|地|看着|我。",
+    "en": "He looked at me, half believing and half doubting."
+   },
+   {
+    "ai": "他|的|话|半真半假。",
+    "en": "What he says is half true and half false."
+   },
+   {
+    "ai": "他|半工半读|上完了|大学。",
+    "en": "He worked his way through university."
+   }
+  ],
+  "3.1.1|不A不B": [
+   {
+    "ai": "不大|不小，正好。",
+    "en": "Not too big, not too small: just right."
+   },
+   {
+    "ai": "水|不冷|不热，刚好。",
+    "en": "The water is neither cold nor hot, just right."
+   },
+   {
+    "ai": "他|不慌|不忙|地|走了|进来。",
+    "en": "He walked in calmly, without hurrying."
+   }
+  ],
+  "3.1.1|不A而B": [
+   "334159",
+   {
+    "ai": "两个|人|不欢而散。",
+    "en": "The two of them parted on bad terms."
+   }
+  ],
+  "3.1.1|东A西B": [
+   "2301824",
+   "421028",
+   {
+    "ai": "他|东张西望，好像|在|找|人。",
+    "en": "He was looking all around, as if searching for someone."
+   }
+  ],
+  "3.1.1|非A非B": [
+   {
+    "ai": "他|跟|我|非亲非故，却|帮了|我|很多。",
+    "en": "He is neither a relative nor a friend of mine, yet he helped me a lot."
+   },
+   {
+    "ai": "他|画|的|画|非驴非马，谁|也|看|不|懂。",
+    "en": "His painting is neither one thing nor the other; nobody can make sense of it."
+   }
+  ],
+  "3.1.1|忽A忽B": [
+   {
+    "ai": "最近|天气|忽冷忽热。",
+    "en": "Lately the weather has been cold one moment and hot the next."
+   },
+   {
+    "ai": "灯|忽明忽暗。",
+    "en": "The light keeps flickering."
+   },
+   {
+    "ai": "他|的|成绩|忽高忽低。",
+    "en": "His grades go up and down."
+   }
+  ],
+  "3.1.1|或A或B": [
+   "8514618",
+   {
+    "ai": "大家|或坐|或站，都|在|听|他|讲。",
+    "en": "Some sitting, some standing, everyone was listening to him."
+   }
+  ],
+  "3.1.1|可A可B": [
+   {
+    "ai": "这件事|可大|可小。",
+    "en": "This matter could turn out serious or trivial."
+   },
+   {
+    "ai": "这个|会|可开|可不开。",
+    "en": "This meeting is not really necessary."
+   },
+   {
+    "ai": "这句话|可有|可无，删了|吧。",
+    "en": "This sentence adds nothing; delete it."
+   }
+  ],
+  "3.1.1|连A带B": [
+   {
+    "ai": "他|连|跑|带|跳|地|回了|家。",
+    "en": "He ran and skipped all the way home."
+   },
+   {
+    "ai": "连|吃|带|住，一天|三百|块。",
+    "en": "Meals and lodging together come to 300 yuan a day."
+   },
+   {
+    "ai": "他|连|人|带|车|掉进了|河里。",
+    "en": "He and his car both fell into the river."
+   }
+  ],
+  "3.1.1|七A八B": [
+   {
+    "ai": "大家|七嘴八舌|地|说|个|不|停。",
+    "en": "Everyone kept talking at once."
+   },
+   {
+    "ai": "屋里|乱七八糟|的。",
+    "en": "The room is a complete mess."
+   },
+   {
+    "ai": "我|心里|七上八下|的。",
+    "en": "I feel very uneasy."
+   }
+  ],
+  "3.1.1|时A时B": [
+   {
+    "ai": "他|的|病|时好时坏。",
+    "en": "His illness gets better and worse by turns."
+   },
+   {
+    "ai": "信号|时有时无。",
+    "en": "The signal comes and goes."
+   },
+   {
+    "ai": "雨|时大时小。",
+    "en": "The rain is heavy at times and light at others."
+   }
+  ],
+  "3.1.1|无A不B": [
+   "511628",
+   "3701787",
+   "4466734",
+   "8588263"
+  ],
+  "3.1.1|无A可B": [
+   "8589665",
+   "5581694",
+   "402212"
+  ],
+  "3.1.1|自A自B": [
+   "4504515",
+   "14013509",
+   "1179281"
+  ],
+  "3.1.2|不瞒你说": [
+   {
+    "ai": "不瞒你说，我|已经|找到|新|工作|了。",
+    "en": "To be honest with you, I've already found a new job."
+   },
+   {
+    "ai": "不瞒你说，这件事|我|早|就|知道|了。",
+    "en": "I won't hide it from you: I knew about this long ago."
+   }
+  ],
+  "3.1.2|不是": [
+   {
+    "ai": "不是，我|不是|这个|意思。",
+    "en": "No, wait, that's not what I meant."
+   },
+   {
+    "ai": "不是，你|怎么|又|来|了？",
+    "en": "Hold on, why are you here again?"
+   }
+  ],
+  "3.1.2|不是我说你": [
+   {
+    "ai": "不是我说你，你|也|太|粗心|了。",
+    "en": "I hate to say it, but you're far too careless."
+   },
+   {
+    "ai": "不是我说你，这么|大|的|事|怎么|不|告诉|我？",
+    "en": "I don't mean to criticize, but why didn't you tell me about something this big?"
+   }
+  ],
+  "3.1.2|反过来（说）": [
+   {
+    "ai": "反过来说，如果|我们|不|努力，就|会|失败。",
+    "en": "Conversely, if we don't work hard, we'll fail."
+   },
+   {
+    "ai": "我|帮|你，反过来，你|也|要|帮|我。",
+    "en": "I help you, and in turn you should help me."
+   }
+  ],
+  "3.1.2|概括来说": [
+   {
+    "ai": "概括来说，这|本|书|讲|的|是|友谊。",
+    "en": "In short, this book is about friendship."
+   },
+   {
+    "ai": "概括来说，问题|有|两个。",
+    "en": "To sum up, there are two problems."
+   }
+  ],
+  "3.1.2|归根到底": [
+   {
+    "ai": "归根到底，还是|你|自己|的|问题。",
+    "en": "In the end, it's your own problem."
+   },
+   {
+    "ai": "归根到底，钱|不是|最|重要|的。",
+    "en": "When it comes down to it, money isn't the most important thing."
+   }
+  ],
+  "3.1.2|话是这么说": [
+   {
+    "ai": "话是这么说，可|做|起来|很|难。",
+    "en": "That's easy to say, but hard to do."
+   },
+   {
+    "ai": "话是这么说，但|我|还是|不|放心。",
+    "en": "That may be true, but I'm still worried."
+   }
+  ],
+  "3.1.2|话（又）说回来": [
+   {
+    "ai": "话又说回来，他|也|有|他|的|难处。",
+    "en": "Then again, he has his own difficulties."
+   },
+   {
+    "ai": "这|件|衣服|很|贵，话说回来，质量|确实|好。",
+    "en": "This coat is expensive, but then again the quality really is good."
+   }
+  ],
+  "3.1.2|换句话说": [
+   "890442",
+   "842681"
+  ],
+  "3.1.2|简（而）言之": [
+   "332692",
+   {
+    "ai": "简言之，我们|需要|更多|时间。",
+    "en": "In short, we need more time."
+   }
+  ],
+  "3.1.2|可不（是嘛）": [
+   {
+    "ai": "“今天|真|冷！”“可不是嘛！”",
+    "en": "\"It's really cold today!\" \"It sure is!\""
+   },
+   {
+    "ai": "“他|汉语|说得|真|好。”“可不，他|在|中国|住了|十|年|呢。”",
+    "en": "\"His Chinese is really good.\" \"It sure is: he lived in China for ten years.\""
+   }
+  ],
+  "3.1.2|老实说": [
+   "332879",
+   "1883693",
+   "462100"
+  ],
+  "3.1.2|（你）还别说": [
+   {
+    "ai": "你|还别说，这个|办法|真|管用。",
+    "en": "You know what, this method really works."
+   },
+   {
+    "ai": "还别说，他|穿|这|件|衣服|挺|好看。",
+    "en": "Actually, he looks pretty good in this outfit."
+   }
+  ],
+  "3.1.2|你看你": [
+   {
+    "ai": "你看你，又|把|衣服|弄脏|了。",
+    "en": "Look at you, you've got your clothes dirty again."
+   },
+   {
+    "ai": "你看你，怎么|这么|不|小心！",
+    "en": "Look at you! How could you be so careless?"
+   }
+  ],
+  "3.1.2|说到哪儿去了": [
+   {
+    "ai": "“太|麻烦|你|了。”“说到哪儿去了，我们|是|朋友|嘛。”",
+    "en": "\"Sorry to put you to so much trouble.\" \"Don't be silly, we're friends.\""
+   },
+   {
+    "ai": "你|说到哪儿去了，我|怎么|会|生|你|的|气？",
+    "en": "What are you talking about? How could I be angry with you?"
+   }
+  ],
+  "3.1.2|说真的": [
+   "13575564",
+   {
+    "ai": "说真的，你|应该|休息|一下|了。",
+    "en": "Seriously, you should take a break."
+   }
+  ],
+  "3.1.2|退一步说": [
+   {
+    "ai": "退一步说，就算|失败|了，也|能|学到|东西。",
+    "en": "Even in the worst case, if we fail, we'll still learn something."
+   },
+   {
+    "ai": "退一步说，即使|他|错|了，你|也|不该|骂|他。",
+    "en": "Even granting that he was wrong, you shouldn't have scolded him."
+   }
+  ],
+  "3.1.2|无论如何": [
+   "339287",
+   "501209",
+   "392268"
+  ],
+  "3.1.2|要（让）我说": [
+   {
+    "ai": "要我说，你|就|别|去|了。",
+    "en": "If you ask me, you shouldn't go."
+   },
+   {
+    "ai": "要让我说，这|事|不|怪|他。",
+    "en": "If you ask me, this isn't his fault."
+   }
+  ],
+  "3.1.2|这不": [
+   {
+    "ai": "他|最近|特别|忙，这不，又|加班|去|了。",
+    "en": "He's been really busy lately. See, he's gone to work overtime again."
+   },
+   {
+    "ai": "我|说|他|会|来|的，这不，他|来|了。",
+    "en": "I said he'd come, and look, here he is."
+   }
+  ],
+  "3.1.2|这样一来": [
+   {
+    "ai": "他|走|了，这样一来，工作|就|更|多|了。",
+    "en": "He left, and as a result there's even more work."
+   },
+   {
+    "ai": "这样一来，问题|就|解决|了。",
+    "en": "That way, the problem is solved."
+   }
+  ],
+  "3.1.2|真是的": [
+   {
+    "ai": "真是的，又|下雨|了！",
+    "en": "Oh, come on, it's raining again!"
+   },
+   {
+    "ai": "你|真是的，怎么|不|早|说？",
+    "en": "Honestly, why didn't you say so earlier?"
+   }
+  ],
+  "3.1.2|综上所述": [
+   {
+    "ai": "综上所述，这个|方案|是|可行|的。",
+    "en": "To sum up, this plan is feasible."
+   },
+   {
+    "ai": "综上所述，我们|应该|多|运动。",
+    "en": "In summary, we should exercise more."
+   }
+  ],
+  "3.1.2|总的来说": [
+   "435339",
+   "3709276"
+  ],
+  "3.1.2|总而言之": [
+   "902811",
+   {
+    "ai": "总而言之，这次|旅行|很|愉快。",
+    "en": "All in all, the trip was very pleasant."
+   }
+  ],
+  "4.1|X到这个地步/份上": [
+   "8091305",
+   {
+    "ai": "事情|已经|到了|这个|份上，后悔|也|没用|了。",
+    "en": "Now that things have come to this, regret is no use."
+   },
+   {
+    "ai": "他|穷|到了|这个|地步，还|不|肯|找|工作。",
+    "en": "He has become this poor and still won't look for work."
+   }
+  ],
+  "4.1|X得要命/要死": [
+   "347166",
+   "14038303",
+   "372204"
+  ],
+  "4.1|X都不/没X": [
+   "859250",
+   "8215743",
+   "13855615"
+  ],
+  "4.1|X就X个Y": [
+   {
+    "ai": "要|玩|就|玩|个|痛快。",
+    "en": "If we're going to play, let's play to our heart's content."
+   },
+   {
+    "ai": "要|吃|就|吃|个|饱。",
+    "en": "If you're going to eat, eat your fill."
+   }
+  ],
+  "4.1|X了Y，Y了X": [
+   {
+    "ai": "他|每天|吃了|睡，睡了|吃。",
+    "en": "Every day he eats and sleeps, sleeps and eats."
+   },
+   {
+    "ai": "我|写了|改，改了|写，忙了|一|晚上。",
+    "en": "I wrote and revised, revised and wrote, the whole evening."
+   }
+  ],
+  "4.1|X也好，Y也罢": [
+   {
+    "ai": "你|去|也好，不|去|也罢，自己|决定|吧。",
+    "en": "Go or don't go, it's up to you."
+   },
+   {
+    "ai": "喜欢|也好，不|喜欢|也罢，这件事|都|得|做。",
+    "en": "Like it or not, this has to be done."
+   }
+  ],
+  "4.1|别提（有）多+形容词+了": [
+   {
+    "ai": "孩子们|别提|多|高兴|了。",
+    "en": "The children were happier than words can say."
+   },
+   {
+    "ai": "那里|的|风景|别提|有|多|美|了。",
+    "en": "The scenery there is incredibly beautiful."
+   }
+  ],
+  "4.1|不亚于……": [
+   {
+    "ai": "他|的|汉语|水平|不亚于|中国人。",
+    "en": "His Chinese is as good as a native speaker's."
+   },
+   {
+    "ai": "这里|的|风景|不亚于|桂林。",
+    "en": "The scenery here is just as beautiful as Guilin's."
+   }
+  ],
+  "4.1|不知X是/才好": [
+   "2581471",
+   "11",
+   {
+    "ai": "我|不知|说|什么|才好。",
+    "en": "I didn't know what to say."
+   }
+  ],
+  "4.1|动不动就……": [
+   "1324084",
+   {
+    "ai": "他|动不动|就|哭。",
+    "en": "He cries at the slightest thing."
+   },
+   {
+    "ai": "别|动不动|就|生气。",
+    "en": "Don't get angry over every little thing."
+   }
+  ],
+  "4.1|动词+得个……": [
+   {
+    "ai": "他|说了|实话，却|落|得个|被|开除|的|下场。",
+    "en": "He told the truth, but ended up getting fired."
+   },
+   {
+    "ai": "这样|做，最后|只|会|落|得个|两头|不|讨好。",
+    "en": "If you do it this way, you'll end up pleasing neither side."
+   }
+  ],
+  "4.1|动词+个X": [
+   {
+    "ai": "我们|去|吃|个|饭|吧。",
+    "en": "Let's go grab a meal."
+   },
+   {
+    "ai": "他|笑|个|不停。",
+    "en": "He couldn't stop laughing."
+   },
+   {
+    "ai": "回去|睡|个|好觉|吧。",
+    "en": "Go home and get a good night's sleep."
+   }
+  ],
+  "4.1|该X（就）X，该Y（就）Y": [
+   {
+    "ai": "该|吃|就|吃，该|睡|就|睡。",
+    "en": "Eat when it's time to eat, sleep when it's time to sleep."
+   },
+   {
+    "ai": "该|学习|的|时候|就|学习，该|玩|的|时候|就|玩。",
+    "en": "Study when it's time to study, and play when it's time to play."
+   }
+  ],
+  "4.1|何至于……": [
+   {
+    "ai": "一点儿|小事，何至于|发|这么|大|的|火？",
+    "en": "Why get so angry over such a small thing?"
+   },
+   {
+    "ai": "要是|早点儿|看|医生，何至于|病得|这么|重？",
+    "en": "If he had seen a doctor sooner, he wouldn't have got this ill."
+   }
+  ],
+  "4.1|仅次于X": [
+   "413243",
+   {
+    "ai": "我|的|成绩|仅次于|他。",
+    "en": "My grades are second only to his."
+   }
+  ],
+  "4.1|看在X的面子上": [
+   {
+    "ai": "看在|你|的|面子|上，我|就|原谅|他|了。",
+    "en": "For your sake, I'll forgive him."
+   },
+   {
+    "ai": "看在|老|朋友|的|面子|上，帮|我|一|次|吧。",
+    "en": "For old times' sake, help me just this once."
+   }
+  ],
+  "4.1|没什么+动词+头儿": [
+   {
+    "ai": "这|部|电影|没什么|看|头儿。",
+    "en": "This movie isn't worth watching."
+   },
+   {
+    "ai": "这|种|游戏|没什么|玩|头儿。",
+    "en": "This kind of game isn't much fun."
+   }
+  ],
+  "4.1|没什么好+动词+的": [
+   "834951",
+   {
+    "ai": "没什么|好|怕|的。",
+    "en": "There's nothing to be afraid of."
+   },
+   {
+    "ai": "事情|都|过去|了，没什么|好|说|的。",
+    "en": "It's all in the past; there's nothing more to say."
+   }
+  ],
+  "4.1|莫过于……": [
+   {
+    "ai": "世上|最|难|的|事|莫过于|坚持。",
+    "en": "Nothing in the world is harder than keeping at something."
+   },
+   {
+    "ai": "最|让|我|高兴|的|莫过于|见到|老|朋友。",
+    "en": "Nothing makes me happier than seeing old friends."
+   }
+  ],
+  "4.1|你说你一个X，……": [
+   {
+    "ai": "你|说|你|一个|大|学生，连|这个|都|不|会？",
+    "en": "Come on, you're a university student and you can't even do this?"
+   },
+   {
+    "ai": "你|说|你|一个|大|男人，哭|什么？",
+    "en": "You're a grown man. What are you crying for?"
+   }
+  ],
+  "4.1|什么A的B的": [
+   {
+    "ai": "什么|苹果|的|香蕉|的，我|都|爱|吃。",
+    "en": "Apples, bananas, whatever: I love them all."
+   },
+   {
+    "ai": "什么|吃|的|喝|的，家里|都|有。",
+    "en": "Food, drinks, you name it, we've got it at home."
+   }
+  ],
+  "4.1|视……而定": [
+   {
+    "ai": "去|不|去，视|天气|而定。",
+    "en": "Whether we go depends on the weather."
+   },
+   {
+    "ai": "价格|视|数量|而定。",
+    "en": "The price depends on the quantity."
+   }
+  ],
+  "4.1|谈何……": [
+   {
+    "ai": "学好|一门|外语，谈何|容易！",
+    "en": "Learning a foreign language well is easier said than done!"
+   },
+   {
+    "ai": "没有|钱，开|公司|谈何|容易？",
+    "en": "Without money, starting a company is far from easy."
+   }
+  ],
+  "4.1|无非/不过/只是……罢了/而已": [
+   "7781775",
+   "1766219",
+   "10326056",
+   {
+    "ai": "他|无非|是|想|让|你|高兴|罢了。",
+    "en": "He just wanted to make you happy, that's all."
+   }
+  ],
+  "4.1|想X之所想，急X之所急": [
+   {
+    "ai": "好|医生|应该|想|病人|之所想，急|病人|之所急。",
+    "en": "A good doctor should think what patients think and treat their urgent needs as his own."
+   },
+   {
+    "ai": "我们|要|想|顾客|之所想，急|顾客|之所急。",
+    "en": "We should think as our customers think and treat their urgent needs as our own."
+   }
+  ],
+  "4.1|向……致以……": [
+   "13977160",
+   {
+    "ai": "我|代表|公司|向|大家|致以|诚挚|的|谢意。",
+    "en": "On behalf of the company, I extend my sincere thanks to everyone."
+   },
+   {
+    "ai": "向|全体|老师|致以|节日|的|问候！",
+    "en": "Holiday greetings to all the teachers!"
+   }
+  ],
+  "4.1|要X有/没X，要Y有/没Y": [
+   {
+    "ai": "他|要|钱|没|钱，要|房|没|房。",
+    "en": "He has neither money nor a home."
+   },
+   {
+    "ai": "这里|要|山|有|山，要|水|有|水。",
+    "en": "Here there are mountains and rivers, everything you could want."
+   }
+  ],
+  "4.1|因……而……": [
+   "1695461",
+   "889641",
+   "778488",
+   "8877847"
+  ],
+  "4.1|有何X": [
+   "10511279",
+   {
+    "ai": "这|有何|不可？",
+    "en": "Why not?"
+   },
+   {
+    "ai": "这|两|个|词|有何|区别？",
+    "en": "What is the difference between these two words?"
+   }
+  ],
+  "4.1|有什么+动词+头儿": [
+   {
+    "ai": "这|种|电影|有什么|看|头儿？",
+    "en": "What's worth watching in a film like this?"
+   },
+   {
+    "ai": "这|游戏|有什么|玩|头儿？",
+    "en": "What's fun about this game?"
+   }
+  ],
+  "4.1|（在）……之余": [
+   {
+    "ai": "工作|之余，他|喜欢|画画。",
+    "en": "In his time off work, he likes to paint."
+   },
+   {
+    "ai": "在|学习|之余，她|还|做|志愿者。",
+    "en": "Besides studying, she also volunteers."
+   },
+   {
+    "ai": "高兴|之余，我|也|有点儿|担心。",
+    "en": "Happy as I was, I was also a little worried."
+   }
+  ],
+  "4.1|值此……之际，……": [
+   {
+    "ai": "值此|新年|之际，祝|大家|身体|健康！",
+    "en": "On the occasion of the New Year, I wish you all good health!"
+   },
+   {
+    "ai": "值此|学校|成立|五十|周年|之际，我们|向|全体|校友|表示|祝贺。",
+    "en": "As the school marks its fiftieth anniversary, we congratulate all its alumni."
+   }
+  ],
+  "5.1.1|A+形容词+于/过+B": [
+   "3890949",
+   "6142566",
+   "437424",
+   {
+    "ai": "健康|重于|金钱。",
+    "en": "Health matters more than money."
+   },
+   {
+    "ai": "这|栋|楼|高过|那|栋。",
+    "en": "This building is taller than that one."
+   }
+  ],
+  "5.2.1|一来……，二来……，三来……": [
+   "380560",
+   {
+    "ai": "我|这次|来，一来|是|看|朋友，二来|是|谈|生意。",
+    "en": "I came this time, first to see friends, and second to do business."
+   },
+   {
+    "ai": "住|在|这儿|很|好，一来|安静，二来|方便，三来|便宜。",
+    "en": "Living here is good: first, it's quiet; second, it's convenient; and third, it's cheap."
+   }
+  ],
+  "5.2.1|一则……，二则……，三则……": [
+   {
+    "ai": "我|不|去|了，一则|太|忙，二则|身体|也|不|好。",
+    "en": "I won't go: for one thing I'm too busy, and for another I'm not feeling well."
+   },
+   {
+    "ai": "一则|天气|不好，二则|时间|太|晚，三则|路|也|远，我们|改天|再|去|吧。",
+    "en": "For one thing the weather is bad, for another it's too late, and it's a long way too; let's go another day."
+   }
+  ],
+  "5.2.2|所谓……，就是……": [
+   "1768056",
+   {
+    "ai": "所谓|朋友，就是|在|你|困难|的|时候|帮|你|的|人。",
+    "en": "A friend is someone who helps you when you're in trouble."
+   },
+   {
+    "ai": "所谓|成功，就是|做|自己|喜欢|的|事。",
+    "en": "Success means doing what you love."
+   }
+  ],
+  "5.2.3|或……，或……": [
+   {
+    "ai": "周末|大家|或|看|书，或|运动，各|有|安排。",
+    "en": "At weekends some people read and some exercise; everyone has their own plans."
+   },
+   {
+    "ai": "或|去|或|留，你|自己|决定。",
+    "en": "Go or stay, you decide."
+   }
+  ],
+  "5.2.3|宁可/宁愿……，也不……": [
+   "789318",
+   "1948465",
+   "794462",
+   {
+    "ai": "我|宁可|走路，也|不|坐|他|的|车。",
+    "en": "I'd rather walk than ride in his car."
+   }
+  ],
+  "5.2.3|与其……，宁愿/宁可……": [
+   "415667",
+   {
+    "ai": "与其|在家|等，我|宁可|自己|去|找|他。",
+    "en": "Rather than wait at home, I'd sooner go and find him myself."
+   }
+  ],
+  "5.2.4|X（倒）是X（了），……": [
+   {
+    "ai": "这|件|衣服|好看|倒是|好看，就是|太|贵|了。",
+    "en": "This dress is nice, all right, but it's too expensive."
+   },
+   {
+    "ai": "去|是|去|了，可是|没|见到|他。",
+    "en": "I did go, but I didn't see him."
+   },
+   {
+    "ai": "便宜|是|便宜，质量|不|太|好。",
+    "en": "It's cheap, sure, but the quality isn't great."
+   }
+  ],
+  "5.2.4|别看……，……": [
+   {
+    "ai": "别看|他|年纪|小，懂得|可|多|了。",
+    "en": "He may be young, but he knows a lot."
+   },
+   {
+    "ai": "别看|这|家|店|不|大，菜|做得|很|好吃。",
+    "en": "This restaurant may be small, but the food is very good."
+   }
+  ],
+  "5.2.4|虽说……，但/可……": [
+   {
+    "ai": "虽说|天气|不好，但|我们|还是|去|了。",
+    "en": "Although the weather was bad, we still went."
+   },
+   {
+    "ai": "虽说|他|是|新手，可|做得|很|不错。",
+    "en": "He may be a beginner, but he does a good job."
+   }
+  ],
+  "5.2.5|无论……与否，都……": [
+   {
+    "ai": "无论|你|同意|与否，我|都|要|去。",
+    "en": "Whether you agree or not, I'm going."
+   },
+   {
+    "ai": "无论|成功|与否，我们|都|要|试|一|试。",
+    "en": "Whether or not we succeed, we have to give it a try."
+   },
+   "332945"
+  ],
+  "5.2.5|凡……（者），均（可）……": [
+   {
+    "ai": "凡|年满|十八岁|者，均|可|报名。",
+    "en": "Anyone aged eighteen or over may sign up."
+   },
+   {
+    "ai": "凡|在|本店|购物，均|可|免费|送货。",
+    "en": "Free delivery on all purchases from this store."
+   },
+   "10488765"
+  ],
+  "5.2.6|假若/假使……，……": [
+   "11294948",
+   {
+    "ai": "假使|我|是|你，我|就|不|去。",
+    "en": "If I were you, I wouldn't go."
+   },
+   {
+    "ai": "假若|明天|下雨，比赛|就|推迟。",
+    "en": "If it rains tomorrow, the match will be postponed."
+   }
+  ],
+  "5.2.6|幸亏/幸好……，不然/否则……": [
+   "5624922",
+   {
+    "ai": "幸亏|你|来|了，不然|我|真|不|知道|怎么办。",
+    "en": "Luckily you came, or I really wouldn't have known what to do."
+   },
+   {
+    "ai": "幸好|带|了|伞，否则|就|淋湿|了。",
+    "en": "Good thing I brought an umbrella, otherwise I'd have got soaked."
+   }
+  ],
+  "5.2.6|纵然/纵使……，也……": [
+   "381911",
+   "381912",
+   {
+    "ai": "纵然|失败|了，我|也|不|后悔。",
+    "en": "Even if I fail, I won't regret it."
+   }
+  ],
+  "5.2.7|（因）……，故……": [
+   {
+    "ai": "因|身体|不适，故|不能|出席。",
+    "en": "I am unwell and therefore cannot attend."
+   },
+   {
+    "ai": "本店|因|装修，故|暂停|营业。",
+    "en": "This shop is temporarily closed for renovation."
+   }
+  ],
+  "5.2.7|……，以至（于）……": [
+   "794133",
+   "3149364",
+   "949172"
+  ],
+  "5.2.8|别说……，都/也……": [
+   {
+    "ai": "别说|一百|块，一块|钱|我|也|没有。",
+    "en": "Forget a hundred yuan, I don't even have one."
+   },
+   {
+    "ai": "这么|重|的|箱子，别说|孩子，大人|都|搬|不|动。",
+    "en": "Never mind a child, even an adult can't move such a heavy box."
+   }
+  ],
+  "5.2.8|……不说，还……": [
+   {
+    "ai": "他|迟到|了|不说，还|忘|了|带|书。",
+    "en": "Not only was he late, he also forgot his book."
+   },
+   {
+    "ai": "这|家|饭馆|菜|贵|不说，还|不|好吃。",
+    "en": "The food at this restaurant is not only expensive but also not good."
+   }
+  ],
+  "5.2.8|连……都……，更不用说……了": [
+   "616340",
+   "339922"
+  ],
+  "5.2.8|……尚且……，（更）何况……": [
+   {
+    "ai": "大人|尚且|搬|不|动，何况|孩子|呢？",
+    "en": "Even adults can't lift it, let alone a child."
+   },
+   {
+    "ai": "这|道|题|老师|尚且|不会，更|何况|我们？",
+    "en": "Even the teacher can't solve this problem, much less us."
+   }
+  ],
+  "5.2.8|……，更不用说……了": [
+   "349912",
+   "6828261"
+  ],
+  "5.2.9|为（了）……起见，……": [
+   "4182631",
+   {
+    "ai": "为|安全|起见，请|系好|安全带。",
+    "en": "For safety's sake, please fasten your seatbelt."
+   },
+   {
+    "ai": "为了|保险|起见，我们|再|检查|一|遍。",
+    "en": "To be on the safe side, let's check it once more."
+   }
+  ],
+  "5.2.9|……，以……": [
+   {
+    "ai": "我们|要|多|运动，以|保持|健康。",
+    "en": "We should exercise more to stay healthy."
+   },
+   {
+    "ai": "他|每天|读|报，以|了解|国家|大事。",
+    "en": "He reads the paper every day to keep up with national affairs."
+   }
+  ],
+  "5.2.10|非得……才……": [
+   {
+    "ai": "这|病|非得|动|手术|才|能|好。",
+    "en": "This illness can only be cured by an operation."
+   },
+   {
+    "ai": "你|非得|亲自|去|一|趟|才|行。",
+    "en": "You'll have to go in person."
+   }
+  ],
+  "5.2.10|任……也……": [
+   {
+    "ai": "任|你|怎么|说，他|也|不|听。",
+    "en": "Whatever you say, he won't listen."
+   },
+   {
+    "ai": "任|他|怎么|劝，我|也|不|去。",
+    "en": "However hard he tries to persuade me, I won't go."
+   }
+  ],
+  "5.3|多重并列复句": [
+   {
+    "ai": "这里|春天|很|暖和，夏天|也|不|太|热；秋天|很|凉快，冬天|也|不|太|冷。",
+    "en": "Here spring is warm and summer isn't too hot; autumn is cool and winter isn't too cold either."
+   }
+  ],
+  "5.3|多重转折复句": [
+   "13108726",
+   {
+    "ai": "这|件|衣服|虽然|很|漂亮，但是|太|贵|了，不过|打折|的|时候|可以|买。",
+    "en": "Although this coat is very pretty, it's too expensive, but you could buy it when it's on sale."
+   }
+  ],
+  "5.3|多重假设复句": [
+   {
+    "ai": "如果|明天|不|下雨，我们|就|去|爬山；如果|下雨，就|在家|看|电影。",
+    "en": "If it doesn't rain tomorrow we'll go hiking; if it rains, we'll watch a film at home."
+   },
+   {
+    "ai": "即使|失败|了，只要|不|放弃，就|还|有|机会。",
+    "en": "Even if you fail, as long as you don't give up, there's still a chance."
+   }
+  ],
+  "5.3|多重因果复句": [
+   {
+    "ai": "因为|他|每天|都|练习，进步|很|快，所以|这次|比赛|得了|第一。",
+    "en": "Because he practiced every day and improved quickly, he came first in this competition."
+   },
+   {
+    "ai": "由于|下|大雨，路|很|滑，因此|很多|人|迟到|了。",
+    "en": "Because of the heavy rain the roads were slippery, so many people were late."
+   }
+  ],
+  "5.3|多重递进复句": [
+   {
+    "ai": "他|不但|会|说|汉语，而且|说得|很|好，甚至|还|会|写|毛笔字。",
+    "en": "He not only speaks Chinese, he speaks it very well, and he can even do calligraphy."
+   },
+   {
+    "ai": "她|不仅|自己|学习|好，还|帮助|同学，更|难得|的|是|从来|不|骄傲。",
+    "en": "Not only does she do well in her own studies, she also helps her classmates, and what's more she's never arrogant."
+   }
+  ],
+  "6.1|时间顺序": [
+   {
+    "ai": "我|早上|七点|起床，吃完|早饭|就|去|上班。中午|在|公司|吃饭，晚上|六点|回家。",
+    "en": "I get up at seven, and after breakfast I go to work. At noon I eat at the office, and at six in the evening I go home."
+   }
+  ],
+  "6.1|空间顺序": [
+   {
+    "ai": "我|的|房间|不|大。进门|左边|是|书桌，右边|是|床，窗户|前面|放着|一|盆|花。",
+    "en": "My room isn't big. To the left of the door is a desk, to the right is the bed, and in front of the window there's a pot of flowers."
+   }
+  ],
+  "6.1|逻辑顺序": [
+   {
+    "ai": "学|外语，首先|要|多|听，其次|要|多|说，最后|还|要|多|读|多|写。",
+    "en": "To learn a foreign language, first listen a lot, then speak a lot, and finally read and write a lot."
+   }
+  ],
+  "6.1|话题延伸": [
+   {
+    "ai": "我|有|一个|好|朋友。她|是|医生，工作|很|忙。可是|不管|多|忙，她|每个|周末|都|给|父母|打|电话。",
+    "en": "I have a good friend. She's a doctor and her work keeps her very busy. But however busy she is, she calls her parents every weekend."
+   }
+  ],
+  "6.1|话题转换": [
+   {
+    "ai": "今天|的|会|就|开|到|这儿。另外，下周|的|活动|大家|准备|得|怎么样|了？",
+    "en": "That's all for today's meeting. Another thing: how are the preparations for next week's event going?"
+   },
+   {
+    "ai": "工作|的|事|先|不|说|了。对了，你|妈妈|身体|好|点儿|了|吗？",
+    "en": "Let's leave work aside for now. By the way, is your mother feeling better?"
+   }
+  ],
+  "6.1|承前省略": [
+   {
+    "ai": "小王|今天|没|来|上班，听说|病|了。",
+    "en": "Xiao Wang didn't come to work today; I hear he's ill."
+   },
+   {
+    "ai": "我|买|了|一|本|书，很|有意思，已经|看|了|一半|了。",
+    "en": "I bought a book. It's very interesting, and I've already read half of it."
+   }
+  ],
+  "6.1|蒙后省略": [
+   {
+    "ai": "听|了|这个|消息，大家|都|很|高兴。",
+    "en": "On hearing the news, everyone was very happy."
+   },
+   {
+    "ai": "走|进|教室，他|发现|一个|人|也|没有。",
+    "en": "Walking into the classroom, he found nobody there."
    }
   ]
  }

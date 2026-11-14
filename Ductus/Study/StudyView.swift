@@ -163,9 +163,13 @@ struct StudyView: View {
                 .textCase(.uppercase)
                 .foregroundStyle(study.revealed ? Color.orange : .secondary)
             if characters {
-                Text(verbatim: word.native)
+                Text(SpokenText.attributed(word.native, speaker: study.speaker))
                     .font(.system(size: 76 * textScale))
                     .textSelection(.disabled)
+            }
+            // Hearing the word gives the pinyin away, so recall cards offer it only once answered.
+            if learning || study.awaitingNext || study.revealed {
+                SpeakButton(text: word.native, speaker: study.speaker)
             }
             Text(verbatim: pinyin ? word.reading : " ")
                 .font(.system(size: 28 * textScale))
@@ -392,5 +396,52 @@ struct CandidateBar: View {
         .padding(.horizontal, 16).padding(.vertical, 8)
         .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 8))
         .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(wrong ? Color.red.opacity(0.6) : .clear))
+    }
+}
+
+
+/// Plays text aloud with the chosen voice (⌘R).
+struct SpeakButton: View {
+    let text: String
+    let speaker: StudySpeaker
+
+    var body: some View {
+        Button {
+            speaker.speak(text)
+        } label: {
+            if speaker.isSpeaking(text) {
+                Label("Stop", systemImage: "stop.fill")
+            } else {
+                Label("Listen", systemImage: "speaker.wave.2.fill")
+            }
+        }
+        .keyboardShortcut("r", modifiers: .command)
+        .help("Read aloud (⌘R)")
+        .focusable(false)
+    }
+}
+
+enum SpokenText {
+    /// The text with the word being spoken right now highlighted.
+    @MainActor
+    static func attributed(_ text: String, speaker: StudySpeaker, base: AttributedString? = nil) -> AttributedString {
+        var result = base ?? AttributedString(text)
+        guard speaker.isSpeaking(text), let range = speaker.spokenRange,
+              let start = result.index(result.startIndex, offsetByCharacters: range.lowerBound, limitedBy: result.endIndex),
+              let end = result.index(result.startIndex, offsetByCharacters: range.upperBound, limitedBy: result.endIndex)
+        else { return result }
+        result[start..<end].backgroundColor = .accentColor.opacity(0.35)
+        return result
+    }
+}
+
+extension AttributedString {
+    func index(_ i: AttributedString.Index, offsetByCharacters n: Int, limitedBy limit: AttributedString.Index) -> AttributedString.Index? {
+        var index = i
+        for _ in 0..<n {
+            guard index < limit else { return nil }
+            index = characters.index(after: index)
+        }
+        return index
     }
 }

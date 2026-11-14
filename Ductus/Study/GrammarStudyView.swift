@@ -97,8 +97,16 @@ struct GrammarStudyView: View {
     private func exampleRow(_ example: GrammarSet.Example) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Text(Self.highlighted(example)).font(.system(size: 22 * textScale))
+                Text(SpokenText.attributed(example.text, speaker: study.speaker, base: Self.highlighted(example)))
+                    .font(.system(size: 22 * textScale))
                 if example.isAIWritten { aiBadge }
+                Button {
+                    study.speaker.speak(example.text)
+                } label: {
+                    Image(systemName: study.speaker.isSpeaking(example.text) ? "stop.fill" : "speaker.wave.2.fill")  // not UI
+                }
+                .buttonStyle(.borderless)
+                .help("Read aloud")
             }
             if showPinyin {
                 Text(verbatim: example.pinyin).foregroundStyle(.secondary)
@@ -119,8 +127,10 @@ struct GrammarStudyView: View {
             VStack(spacing: 12) {
                 Text(verbatim: "\(study.exampleIndex + 1) / \(point.examples.count)")
                     .font(.caption).foregroundStyle(.secondary)
-                Text(Self.highlighted(example)).font(.system(size: 40 * textScale))
+                Text(SpokenText.attributed(example.text, speaker: study.speaker, base: Self.highlighted(example)))
+                    .font(.system(size: 40 * textScale))
                 if example.isAIWritten { aiBadge }
+                SpeakButton(text: example.text, speaker: study.speaker)
                 Text(verbatim: showPinyin ? example.pinyin : " ").font(.system(size: 20 * textScale)).foregroundStyle(.secondary)
                 Text(verbatim: example.english).font(.title3).foregroundStyle(.secondary)
                 DrillText(session: typing, lastKeyWrong: study.lastKeyWrong, fontSize: 28 * textScale)

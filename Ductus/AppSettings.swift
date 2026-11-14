@@ -46,6 +46,9 @@ extension SettingsKey {
     static let studyMode = "studyMode"
     /// Study: after typing a word's pinyin, pick its characters by number, like an input method.
     static let studyChooseCharacters = "studyChooseCharacters"
+    /// Study: the voice that reads Chinese aloud ("" picks the best installed one), and its speed (0.4 to 1.2).
+    static let studyVoice = "studyVoice"
+    static let studySpeechSpeed = "studySpeechSpeed"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -77,6 +80,8 @@ extension SettingsKey {
             studyShowMeaning: true,
             studyMode: "words",
             studyChooseCharacters: true,
+            studyVoice: "",
+            studySpeechSpeed: 0.8,
         ])
     }
 }

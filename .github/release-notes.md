@@ -1,14 +1,10 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.8.0
+## What's new in 0.9.0
 
-- **Grammar in Study:** Every grammar point of the revised HSK 3.0 syllabus, from HSK 1 to 7-9, with its English name and a link to look it up. HSK 1 and HSK 2 points come with example sentences to read with or without pinyin and to type, with the grammar highlighted. They are written by people (from Tatoeba), checked by hand and by a second review. Where no human sentence fit an HSK 2 point, a short sentence was written by AI, checked the same way, and labeled AI-written. Higher levels follow as they are checked.
-- **Choose the characters, like a Chinese input method:** After typing a word's pinyin, pick its characters from a numbered list (1 to 9, or space). The list is shuffled, so you have to recognize them. You can turn this off in Settings.
-- **Recall really is from memory:** On review cards the pinyin to type stays hidden, and the keyboard gives no hints, until you type it or press Return.
-- **Return for the next card:** An answered card stays up with its grade until you press Return.
-- **I Know This Word:** Skip a word you already know. It comes back for review in about six months.
-- **Study in History:** Answers per day, reviews due this week, and your recently studied words. Study Again puts a word back as new, for example if you pressed I Know This Word by mistake.
-- **Study types pinyin on your Mac's layout:** If your practice layout cannot type Latin letters (Russian, Hindi, Arabic...), the Study tab uses your Mac's own layout and switches back when you leave.
+- **Grammar for every HSK level:** HSK 3, 4, 5, 6 and 7-9 now have example sentences for every grammar point, with the grammar highlighted. Human-written sentences from Tatoeba where one fit, short AI-written ones (labeled) where none did, all checked by hand and by a second review.
+- **Read aloud:** Listen to words and grammar sentences in Mandarin, with each word highlighted as it is spoken. It uses your Mac's own voices, on your Mac. Pick the voice and speed in Settings › Study, and download nicer Enhanced or Premium voices in System Settings. Recall cards only read the word once you have answered, so it doesn't give the answer away.
+- **More accurate pinyin:** Readings of characters with several pronunciations (得, 着, 长, 为, 倒, 重, 地 and more) are now chosen from the sentence around them.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

@@ -79,7 +79,7 @@ def main() -> int:
             if not key.isalpha() or not key.isascii():
                 print(f"hsk{level}: skipped {word['simplified']} ({key})", file=sys.stderr)
                 continue
-            rows.append(f"{word['simplified']}\t{re.sub(r'\d', '', form['transcriptions']['pinyin'])}\t{key}\t{meaning(form)}")
+            rows.append(f"{word['simplified']}\t{re.sub(r'\d', '', form['transcriptions']['pinyin']).replace('u:', 'ü')}\t{key}\t{meaning(form)}")
         path = RESOURCES / f"study-hsk{level}.tsv"
         header = ("# HSK " + ("7-9" if level == "7" else level) + " (revised HSK 3.0 syllabus, 2025). Word list: "
                   "complete-hsk-vocabulary (MIT). Meanings: CC-CEDICT, CC BY-SA 4.0.\n")

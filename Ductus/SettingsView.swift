@@ -1,3 +1,4 @@
+import AVFoundation
 import DuctusEngine
 import DuctusLog
 import SwiftUI
@@ -33,6 +34,9 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.practiceLayoutAuto) private var practiceLayoutAuto = false
     @AppStorage(SettingsKey.studyNewPerDay) private var studyNewPerDay = 10
     @AppStorage(SettingsKey.studyChooseCharacters) private var studyChooseCharacters = true
+    @AppStorage(SettingsKey.studyVoice) private var studyVoice = ""
+    @AppStorage(SettingsKey.studySpeechSpeed) private var studySpeechSpeed = 0.8
+    @State private var voiceTester = StudySpeaker()
     @AppStorage(SettingsKey.practiceLanguage) private var practiceLanguage = "auto"
     @Environment(KeyboardState.self) private var keyboard
 
@@ -87,6 +91,19 @@ struct SettingsView: View {
                 note("Study shows this many new words a day, plus every word due for review. Keep Going adds more whenever you like.")
                 Toggle("Choose the characters after typing pinyin", isOn: $studyChooseCharacters)
                 note("Like a Chinese input method: after the pinyin, pick the right characters from a numbered list (1 to 9, or space for the first). The list is shuffled, so you have to recognize the characters.")
+                Picker("Voice", selection: $studyVoice) {
+                    Text("Best installed voice").tag("")
+                    ForEach(StudySpeaker.voices, id: \.identifier) { voice in
+                        Text(verbatim: "\(voice.name) (\(voice.language))\(Self.qualityLabel(voice.quality))").tag(voice.identifier)
+                    }
+                }
+                LabeledContent("Speed") {
+                    HStack {
+                        Slider(value: $studySpeechSpeed, in: 0.4...1.2, step: 0.1)
+                        Button("Test") { voiceTester.speak("你好，我们一起学习中文吧。") }
+                    }
+                }
+                note("Words and sentences are read aloud with the Mac's own voices, on this Mac. For more natural voices, download an Enhanced or Premium Chinese voice in System Settings › Accessibility › Spoken Content › System Voice › Manage Voices.")
             }
 
             Section("Unlocking") {
@@ -282,6 +299,15 @@ struct SettingsView: View {
 }
 
 extension SettingsView {
+    /// " · Enhanced" / " · Premium" for the better voices.
+    static func qualityLabel(_ quality: AVSpeechSynthesisVoiceQuality) -> String {
+        switch quality {
+        case .premium: " · Premium"  // not UI
+        case .enhanced: " · Enhanced"  // not UI
+        default: ""
+        }
+    }
+
     /// The layout Ductus types and shows, which can differ from the Mac's.
     @ViewBuilder
     var layoutPicker: some View {
