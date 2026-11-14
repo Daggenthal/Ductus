@@ -6,6 +6,7 @@ import DuctusLog
 @MainActor
 final class KeySounds {
     private let engine = AVAudioEngine()
+    private var configObserver: NSObjectProtocol?
     /// Several players so fast typing does not cut sounds off.
     private var players: [AVAudioPlayerNode] = []
     private var nextPlayer = 0
@@ -20,11 +21,31 @@ final class KeySounds {
     }
 
     /// Starts or stops the audio engine to match the settings.
+    /// Plays a preview when a sound is turned on or the volume moves.
     func configure(clicks: Bool, mistakes: Bool, volume: Float) {
+        let turnedOnClicks = clicks && !clicksOn
+        let turnedOnMistakes = mistakes && !mistakesOn
+        let volumeMoved = volume != self.volume
         clicksOn = clicks
         mistakesOn = mistakes
         self.volume = volume
         if clicks || mistakes { start() } else { stop() }
+        guard configured else { configured = true; return }  // silent at launch
+        if turnedOnMistakes {
+            play(mistake)
+        } else if turnedOnClicks || volumeMoved {
+            previewThrottled()
+        }
+    }
+
+    private var configured = false
+    private var lastPreview = Date.distantPast
+
+    /// The volume slider fires many times while dragging, so space previews out.
+    private func previewThrottled() {
+        guard Date().timeIntervalSince(lastPreview) > 0.15 else { return }
+        lastPreview = Date()
+        play(clicksOn ? click : mistake)
     }
 
     func keystroke(correct: Bool) {
@@ -33,6 +54,14 @@ final class KeySounds {
 
     private func start() {
         guard !engine.isRunning else { return }
+        if configObserver == nil {
+            // A new output device (headphones, display audio) stops the engine.
+            configObserver = NotificationCenter.default.addObserver(
+                forName: .AVAudioEngineConfigurationChange, object: engine, queue: .main
+            ) { [weak self] _ in
+                MainActor.assumeIsolated { self?.restart() }
+            }
+        }
         if players.isEmpty {
             for _ in 0..<6 {
                 let player = AVAudioPlayerNode()
@@ -48,6 +77,14 @@ final class KeySounds {
         } catch {
             Log.error("Could not start key sounds: \(error)")
         }
+    }
+
+    private func restart() {
+        guard clicksOn || mistakesOn else { return }
+        Log.info("Audio output changed, restarting key sounds")
+        players.forEach { $0.stop() }
+        engine.stop()
+        start()
     }
 
     private func stop() {
@@ -75,20 +112,25 @@ final class KeySounds {
         return buffer
     }
 
-    /// Short, soft tick: a burst of filtered noise with a fast decay.
+    /// Short tick: a noise transient plus a quick high "tock", pitched where
+    /// laptop speakers play it clearly.
     private func makeClick() -> AVAudioPCMBuffer {
         var last: Float = 0
-        return buffer(seconds: 0.03) { t in
+        return buffer(seconds: 0.04) { t in
             let noise = Float.random(in: -1...1)
-            last = last * 0.55 + noise * 0.45  // simple low-pass, takes the hiss off
-            return last * Float(exp(-t * 180)) * 0.5
+            last = last * 0.3 + noise * 0.7
+            let transient = last * Float(exp(-t * 400))
+            let body = sin(2 * .pi * 1_900 * t) * 0.6 + sin(2 * .pi * 3_100 * t) * 0.3
+            return (transient * 0.5 + Float(body * exp(-t * 140)) * 0.6)
         }
     }
 
-    /// Low, short "bump" for a mistake.
+    /// Short low "bonk" for a mistake. Two tones so small speakers still play it.
     private func makeMistake() -> AVAudioPCMBuffer {
-        buffer(seconds: 0.12) { t in
-            Float(sin(2 * .pi * 180 * t) * exp(-t * 28)) * 0.45
+        buffer(seconds: 0.16) { t in
+            let tone = sin(2 * .pi * 330 * t) * 0.6 + sin(2 * .pi * 660 * t) * 0.35
+            let attack = min(1, t / 0.004)  // no pop at the start
+            return Float(tone * exp(-t * 18) * attack) * 0.8
         }
     }
 }
