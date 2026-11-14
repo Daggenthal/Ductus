@@ -81,7 +81,9 @@ final class KeyboardState {
 
     func reloadLayout() {
         let new = KeyboardLayout.current()
-        let changed = new?.id != layout?.id
+        // Switching to a Japanese or Chinese input method keeps the same layout
+        // but changes the language, so that counts as a change too.
+        let changed = new?.id != layout?.id || new?.inputMethodID != layout?.inputMethodID
         layout = new
         if changed {
             Log.success("Keyboard layout: \(new?.name ?? "none")")

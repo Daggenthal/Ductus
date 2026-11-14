@@ -187,10 +187,24 @@ Non-English books are prose fiction by authors born in 1830 or later, so spellin
 | 16841 | Johan Doxa, Herman Teirlinck |
 | 45017 | Het boek van Siman den Javaan, E. F. E. Douwes Dekker |
 
+## Japanese and Chinese
+
+Japanese and Chinese are typed in Latin letters, the way you would type into a macOS input method, with the Japanese or Chinese text shown above: Japanese as kana-faithful romaji ("toukyou", "watashiha"), Chinese as toneless pinyin with v for ü ("zhongwen", "lv").
+
+- **Source:** sentences from [Tatoeba](https://tatoeba.org), licensed [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Word counts use all Japanese (jpn) and Mandarin (cmn) sentences. The 4,000 sentences shipped per language are only ones with a named author, and each one's Tatoeba ID and author are listed in `japanese-credits.tsv` and `chinese-credits.tsv` (also shown in Settings under Text Sources).
+- **Changes made:** sentences are romanized and split into typing chunks (a word with its particles), full-width punctuation becomes the key you type for it, and Chinese is converted to Simplified.
+- **Tools, used only when building the lists (not shipped):** [fugashi](https://github.com/polm/fugashi) (MIT) with [unidic-lite](https://github.com/polm/unidic-lite) (MIT, UniDic BSD) for Japanese words and readings, [jieba](https://github.com/fxsjy/jieba) (MIT) for Chinese words, [pypinyin](https://github.com/mozillazg/python-pinyin) (MIT) for pinyin, and [opencc-python-reimplemented](https://github.com/yichen0831/opencc-python) (Apache 2.0) for Simplified Chinese.
+- **Filters:** names, numbers and symbols are left out of the word lists. Japanese verbs and adjectives appear in dictionary form ("okiru", not the stem "oki"). Sentences have 20 to 120 typed characters and only Japanese or Chinese script and punctuation.
+
+Japanese public-domain books from [Aozora Bunko](https://www.aozora.gr.jp) could be added later; their out-of-copyright texts may be freely copied and redistributed.
+
 ## Rebuilding
 
 ```sh
 python3 scripts/build_corpus.py --cache /path/to/download/folder
+# Japanese and Chinese (see the script header for the Tatoeba downloads):
+pip install fugashi unidic-lite jieba pypinyin opencc-python-reimplemented
+python3 scripts/build_cjk_corpus.py --tatoeba /path/to/tatoeba/exports
 # or only some languages:
 python3 scripts/build_corpus.py --cache /path/to/download/folder --languages french,german
 ```

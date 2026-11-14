@@ -36,6 +36,7 @@ struct SettingsView: View {
     @State private var confirmingReset = false
     @State private var exporting = false
     @State private var hasInputMonitoring = GlobalKeyMonitor.hasPermission
+    @State private var showingCredits = false
 
     var body: some View {
         Form {
@@ -53,7 +54,7 @@ struct SettingsView: View {
                         Text(language.nativeName).tag(language.rawValue)
                     }
                 }
-                note("The words and sentences you practice. Automatic follows your keyboard layout, so a French layout practices French. Progress is kept separately for each layout and language.")
+                note("The words and sentences you practice. Automatic follows your keyboard layout or input method, so a French layout practices French and the Japanese input method practices Japanese. Japanese is typed in romaji and Chinese in pinyin (no tones, v for ü), with the text shown above. Progress is kept separately for each layout and language.")
             }
 
             Section("Unlocking") {
@@ -155,6 +156,17 @@ struct SettingsView: View {
                 .disabled(!keySounds && !mistakeSound)
             }
 
+            Section("Text Sources") {
+                note("Words and sentences come from public-domain books on Project Gutenberg. Japanese and Chinese sentences come from Tatoeba (CC BY 2.0 FR), romanized and split into chunks for typing; Chinese is converted to Simplified.")
+                HStack {
+                    Link("Project Gutenberg", destination: URL(string: "https://www.gutenberg.org")!)
+                    Link("Tatoeba", destination: URL(string: "https://tatoeba.org")!)
+                    Spacer()
+                    Button("Sentence Authors…") { showingCredits = true }
+                }
+                note("Readings were made with UniDic, pypinyin and OpenCC when building the lists. See CORPUS.md in the source code for every book and tool.")
+            }
+
             Section("Progress") {
                 LabeledContent("Layout", value: practice.layoutName)
                 LabeledContent("Drills completed", value: "\(practice.profile?.drills.count ?? 0)")
@@ -170,6 +182,7 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
+        .sheet(isPresented: $showingCredits) { SentenceAuthorsSheet() }
         .onAppear { hasInputMonitoring = GlobalKeyMonitor.hasPermission }
         .confirmationDialog(
             "Reset all progress for \(practice.layoutName)?",
@@ -195,6 +208,38 @@ struct SettingsView: View {
         Text(text)
             .font(.caption)
             .foregroundStyle(color)
+    }
+}
+
+/// Every Tatoeba author whose sentences are bundled, as the license asks.
+private struct SentenceAuthorsSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    private let languages = PracticeLanguage.allCases
+        .map { ($0, $0.sentenceAuthors()) }
+        .filter { !$0.1.isEmpty }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Sentence Authors").font(.title3.weight(.semibold))
+            Text("Sentences from Tatoeba (tatoeba.org) under CC BY 2.0 FR, by these contributors. Each sentence's ID and author is listed in the credits files in the source code.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            List {
+                ForEach(languages, id: \.0) { language, authors in
+                    Section("\(language.nativeName): \(authors.count) authors") {
+                        ForEach(authors, id: \.author) { entry in
+                            LabeledContent(entry.author, value: "\(entry.sentences)")
+                        }
+                    }
+                }
+            }
+            HStack {
+                Spacer()
+                Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
+            }
+        }
+        .padding(20)
+        .frame(width: 440, height: 520)
     }
 }
 

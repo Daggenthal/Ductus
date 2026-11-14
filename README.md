@@ -11,7 +11,7 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 Early development. Right now the repo has the core engine with tests:
 
 - Keystroke logging with per-key and per-bigram speed and accuracy stats.
-- Drills made of real words in English, French, Spanish, German, Italian, Portuguese or Dutch, weighted toward your weakest keys. The language follows your keyboard layout, or pick one in Settings. Accents work, including dead keys (´ then e). Each session starts with a short warm-up on keys you have mastered.
+- Drills made of real words in English, French, Spanish, German, Italian, Portuguese, Dutch, Japanese (typed in romaji) or Chinese (typed in pinyin), weighted toward your weakest keys. The language follows your keyboard layout, or pick one in Settings. Accents work, including dead keys (´ then e). Each session starts with a short warm-up on keys you have mastered.
 - Progressive unlocking: Start on your layout's home row, unlock the next letter once every current key hits the target speed and accuracy (35 WPM and 95% by default).
 
 The Mac app has:

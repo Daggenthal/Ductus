@@ -82,7 +82,11 @@ enum PracticeSettings {
     }
 
     static func detectedLanguage(for layout: KeyboardLayout?) -> PracticeLanguage {
-        layout?.languages.lazy.compactMap(PracticeLanguage.init(code:)).first ?? .english
+        guard let layout else { return .english }
+        // An active input method (Japanese, Chinese) wins over its layout's language.
+        return layout.inputMethodLanguages.lazy.compactMap(PracticeLanguage.init(code:)).first
+            ?? layout.languages.lazy.compactMap(PracticeLanguage.init(code:)).first
+            ?? .english
     }
 
     static var warmUp: Bool { defaults.bool(forKey: SettingsKey.warmUp) }

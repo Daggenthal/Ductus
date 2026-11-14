@@ -2,7 +2,7 @@ import Foundation
 
 /// Languages with a bundled word list and sentence sample (see CORPUS.md).
 public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifiable {
-    case english, french, spanish, german, italian, portuguese, dutch
+    case english, french, spanish, german, italian, portuguese, dutch, japanese, chinese
 
     public var id: String { rawValue }
 
@@ -16,6 +16,8 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .italian: "it"
         case .portuguese: "pt"
         case .dutch: "nl"
+        case .japanese: "ja"
+        case .chinese: "zh"
         }
     }
 
@@ -29,6 +31,21 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .italian: "Italiano"
         case .portuguese: "Português"
         case .dutch: "Nederlands"
+        case .japanese: "日本語"
+        case .chinese: "中文"
+        }
+    }
+
+    /// Typed in Latin letters with the native text shown alongside:
+    /// Japanese as romaji ("nihongo"), Chinese as toneless pinyin ("zhongwen").
+    public var isRomanized: Bool { self == .japanese || self == .chinese }
+
+    /// What you type, for the UI: "romaji", "pinyin" or nil.
+    public var romanizationName: String? {
+        switch self {
+        case .japanese: "romaji"
+        case .chinese: "pinyin"
+        default: nil
         }
     }
 
@@ -44,6 +61,20 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
 
     /// Spanish opens questions and exclamations with ¿ and ¡.
     public var usesInvertedMarks: Bool { self == .spanish }
+
+    /// Authors of the bundled sentences, for languages whose sentences need
+    /// credit (Tatoeba, CC BY 2.0 FR): (author, number of sentences), most first.
+    public func sentenceAuthors() -> [(author: String, sentences: Int)] {
+        guard let url = Bundle.module.url(forResource: "\(rawValue)-credits", withExtension: "tsv"),
+              let text = try? String(contentsOf: url, encoding: .utf8) else { return [] }
+        var counts: [String: Int] = [:]
+        for line in text.split(separator: "\n") where !line.hasPrefix("#") {
+            let columns = line.split(separator: "\t")
+            if columns.count == 2 { counts[String(columns[1]), default: 0] += 1 }
+        }
+        return counts.map { ($0.key, $0.value) }
+            .sorted { $0.sentences != $1.sentences ? $0.sentences > $1.sentences : $0.author < $1.author }
+    }
 
     var wordsResource: String { "\(rawValue)-words" }
     var sentencesResource: String { "\(rawValue)-sentences" }

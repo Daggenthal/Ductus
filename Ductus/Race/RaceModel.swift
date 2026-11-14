@@ -27,6 +27,8 @@ final class RaceModel {
     }
 
     private(set) var session: TypingSession?
+    /// Japanese or Chinese text for romaji or pinyin races.
+    private(set) var gloss: Gloss?
     private(set) var lastKeyWrong = false
     private(set) var result: Result?
     /// Wall-clock time of the first key. The countdown starts here.
@@ -77,7 +79,8 @@ final class RaceModel {
     func newRace() {
         timer?.cancel()
         timer = nil
-        guard let text = moreWords() else {
+        gloss = practice.language.isRomanized ? Gloss() : nil
+        guard let text = moreWords(offset: 0) else {
             Log.error("No words available for a race")
             return
         }
@@ -101,7 +104,8 @@ final class RaceModel {
         practice.recordExternal(keystroke)
 
         // Keep a comfortable amount of text ahead of the cursor.
-        if let session, session.text.count - session.position < 120, let more = moreWords() {
+        if let session, session.text.count - session.position < 120,
+           let more = moreWords(offset: session.text.count + 1) {
             self.session?.extend(with: " " + more)
         }
         return true
@@ -125,7 +129,8 @@ final class RaceModel {
         }
     }
 
-    private func moreWords() -> String? {
+    /// More race text. `offset` is where it will start in the race text, for the gloss.
+    private func moreWords(offset: Int) -> String? {
         let words: String?
         switch textMode {
         case .sentences:
@@ -133,7 +138,9 @@ final class RaceModel {
             guard let sentences = practice.sentences else { return nil }
             // Only sentences this layout can type (e.g. no "ñ" without a way to make it).
             let pool = practice.typeableLetters.map { sentences.sentences(using: $0) } ?? sentences.entries
-            return SentenceList.pick(from: pool, minCharacters: 250, using: &rng)
+            guard let picked = SentenceList.pickEntries(from: pool, minCharacters: 250, using: &rng) else { return nil }
+            gloss?.append(Gloss(sentences: picked), offset: offset)
+            return picked.map(\.text).joined(separator: " ")
         case .unlocked:
             // Same word picking as practice: unlocked letters, weighted toward
             // weak keys. Picked fresh for each chunk, so it follows the stats live.
@@ -142,9 +149,14 @@ final class RaceModel {
             guard let list = practice.words else { return nil }
             words = Race.text(from: list, wordCount: Self.chunkWords, allowed: practice.typeableLetters, using: &rng)
         }
-        return words.map {
+        let text = words.map {
             TextDecorator.decorate($0, style: PracticeSettings.textStyle, language: practice.language, using: &rng)
         }
+        if let text, gloss != nil {
+            let native = practice.nativeForms
+            gloss?.append(text: text, offset: offset, lookup: { native[$0] ?? native[String($0.filter(\.isLetter))] })
+        }
+        return text
     }
 
     private func finish() {

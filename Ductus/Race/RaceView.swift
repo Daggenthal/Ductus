@@ -40,6 +40,9 @@ struct RaceView: View {
                 }
             } else if let session = race.session {
                 LiveRace(session: session, startedAt: race.startedAt, timeLimit: race.timeLimit, bestWPM: race.bestWPM)
+                if let gloss = race.gloss {
+                    GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                }
                 RaceTextView(session: session, lastKeyWrong: race.lastKeyWrong, fontSize: 28 * textScale)
                     .id(race.raceID)
                 if race.startedAt == nil {

@@ -16,6 +16,9 @@ struct PracticeView: View {
             if let error = practice.loadError {
                 Text(error).foregroundStyle(.red)
             } else if let session = practice.session {
+                if let gloss = practice.gloss {
+                    GlossBar(gloss: gloss, position: session.position, fontSize: 40 * textScale)
+                }
                 DrillText(session: session, lastKeyWrong: practice.lastKeyWrong, fontSize: 28 * textScale)
             } else {
                 ProgressView()

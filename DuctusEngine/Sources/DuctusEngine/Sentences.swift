@@ -4,20 +4,32 @@ import Foundation
 /// and races.
 public struct SentenceList: Sendable {
     public struct Entry: Sendable, Equatable {
+        /// What you type.
         public let text: String
         /// Lowercase letters used, for filtering by unlocked letters.
         public let letters: Set<Character>
+        /// For romanized languages: the native text of each space-separated
+        /// chunk of `text`, in order ("私は", "眠らなければ", ...).
+        public let native: [String]?
     }
 
     public let entries: [Entry]
 
-    /// One sentence per line. Blank lines are ignored.
+    /// One sentence per line. Blank lines are ignored. Romanized sentences are
+    /// `typed<TAB>native chunks joined by "|"`, one chunk per typed word.
     public init(text: String) {
         entries = text.split(separator: "\n").compactMap { line in
-            let sentence = line.trimmingCharacters(in: .whitespaces)
+            let columns = line.split(separator: "\t", maxSplits: 1)
+            let sentence = columns[0].trimmingCharacters(in: .whitespaces)
             guard !sentence.isEmpty else { return nil }
             let letters = Set(sentence.lowercased().filter(\.isLetter))
-            return Entry(text: sentence, letters: letters)
+            var native: [String]?
+            if columns.count == 2 {
+                let chunks = columns[1].split(separator: "|").map(String.init)
+                // Only trust the chunks if they line up with the typed words.
+                if chunks.count == sentence.split(separator: " ").count { native = chunks }
+            }
+            return Entry(text: sentence, letters: letters, native: native)
         }
     }
 
@@ -43,8 +55,19 @@ public struct SentenceList: Sendable {
         weakness: [Character: Double] = [:],
         using rng: inout G
     ) -> String? {
+        pickEntries(from: pool, minCharacters: minCharacters, weakness: weakness, using: &rng)?
+            .map(\.text).joined(separator: " ")
+    }
+
+    /// Like `pick`, but returns the sentences, so their native text can be shown.
+    public static func pickEntries<G: RandomNumberGenerator>(
+        from pool: [Entry],
+        minCharacters: Int,
+        weakness: [Character: Double] = [:],
+        using rng: inout G
+    ) -> [Entry]? {
         guard !pool.isEmpty else { return nil }
-        var picked: [String] = []
+        var picked: [Entry] = []
         var length = 0
         while length < minCharacters {
             let entry = pool.weightedRandomElement(using: &rng) { entry in
@@ -53,10 +76,10 @@ public struct SentenceList: Sendable {
                 let total = letters.reduce(0) { $0 + (weakness[$1] ?? 0) }
                 return 1 + total / Double(letters.count) * 3
             }!
-            if picked.last == entry.text, pool.count > 1 { continue }
+            if picked.last?.text == entry.text, pool.count > 1 { continue }
             length += (picked.isEmpty ? 0 : 1) + entry.text.count  // joined length, spaces included
-            picked.append(entry.text)
+            picked.append(entry)
         }
-        return picked.joined(separator: " ")
+        return picked
     }
 }

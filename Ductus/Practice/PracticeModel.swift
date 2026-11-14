@@ -202,10 +202,29 @@ final class PracticeModel {
         nextDrill()
     }
 
+    /// Japanese or Chinese text for the current drill's romaji or pinyin.
+    private(set) var gloss: Gloss?
+
+    /// Native forms of the current language's romanized words ("nihongo" → "日本語").
+    var nativeForms: [String: String] {
+        guard language.isRomanized else { return [:] }
+        if let cached = nativeFormsCache[language] { return cached }
+        let forms = wordList?.nativeForms ?? [:]
+        nativeFormsCache[language] = forms
+        return forms
+    }
+    @ObservationIgnored private var nativeFormsCache: [PracticeLanguage: [String: String]] = [:]
+
+    /// A gloss for word text in a romanized language, `nil` otherwise.
+    func wordGloss(_ text: String) -> Gloss? {
+        language.isRomanized ? Gloss(text: text, native: nativeForms) : nil
+    }
+
     func nextDrill() {
         guard let trainer else { return }
         if wantsWarmUp, let words = trainer.warmUpDrill(using: &rng) {
             let text = TextDecorator.decorate(words, style: PracticeSettings.textStyle, language: language, using: &rng)
+            gloss = wordGloss(text)
             session = TypingSession(text: text, mistakeMode: PracticeSettings.mistakeMode)
             isWarmUp = true
             drillID += 1
@@ -229,13 +248,17 @@ final class PracticeModel {
     private func makeDrillText(_ trainer: Trainer) -> String? {
         if PracticeSettings.sentenceDrills {
             let pool = sentencePool
-            if pool.count >= Self.minSentencePool {
-                return SentenceList.pick(from: pool, minCharacters: 90,
-                                         weakness: trainer.drillRequest().keyWeakness, using: &rng)
+            if pool.count >= Self.minSentencePool,
+               let picked = SentenceList.pickEntries(from: pool, minCharacters: 90,
+                                                     weakness: trainer.drillRequest().keyWeakness, using: &rng) {
+                gloss = language.isRomanized ? Gloss(sentences: picked) : nil
+                return picked.map(\.text).joined(separator: " ")
             }
         }
         guard let words = trainer.nextDrill(using: &rng) else { return nil }
-        return TextDecorator.decorate(words, style: PracticeSettings.textStyle, language: language, using: &rng)
+        let text = TextDecorator.decorate(words, style: PracticeSettings.textStyle, language: language, using: &rng)
+        gloss = wordGloss(text)
+        return text
     }
 
     /// Feeds one typed character. Returns `true` if practice consumed it.

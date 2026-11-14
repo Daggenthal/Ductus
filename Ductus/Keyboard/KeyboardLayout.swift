@@ -28,6 +28,10 @@ struct KeyboardLayout: Equatable, Sendable {
     let name: String
     /// Language codes macOS lists for this layout, e.g. ["fr"]. Often just ["en"].
     let languages: [String]
+    /// The active input method when it is not a plain layout (Japanese or
+    /// Chinese input methods type through a layout like ABC), and its languages.
+    private(set) var inputMethodID: String?
+    private(set) var inputMethodLanguages: [String] = []
     private(set) var plain: [UInt16: String] = [:]
     private(set) var shifted: [UInt16: String] = [:]
     private(set) var command: [UInt16: String] = [:]
@@ -39,7 +43,7 @@ struct KeyboardLayout: Equatable, Sendable {
     private let keyboardType: UInt32
 
     static func == (a: KeyboardLayout, b: KeyboardLayout) -> Bool {
-        a.id == b.id && a.keyboardType == b.keyboardType
+        a.id == b.id && a.keyboardType == b.keyboardType && a.inputMethodID == b.inputMethodID
     }
 
     /// The active layout, or `nil` if it has no Unicode layout data
@@ -50,7 +54,15 @@ struct KeyboardLayout: Equatable, Sendable {
             Log.warning("No current keyboard layout input source")
             return nil
         }
-        return KeyboardLayout(source: source)
+        var layout = KeyboardLayout(source: source)
+        // With an input method on (Japanese, Chinese), the layout above is the one
+        // it types through; the input method says which language is being typed.
+        if let input = TISCopyCurrentKeyboardInputSource()?.takeRetainedValue(),
+           let inputID = stringProperty(input, kTISPropertyInputSourceID), inputID != layout?.id {
+            layout?.inputMethodID = inputID
+            layout?.inputMethodLanguages = arrayProperty(input, kTISPropertyInputSourceLanguages)
+        }
+        return layout
     }
 
     /// A specific installed layout by input source ID, e.g. `com.apple.keylayout.US`.
@@ -79,11 +91,7 @@ struct KeyboardLayout: Equatable, Sendable {
         let data = Unmanaged<CFData>.fromOpaque(dataPointer).takeUnretainedValue() as Data
         id = Self.stringProperty(source, kTISPropertyInputSourceID) ?? "unknown"
         name = Self.stringProperty(source, kTISPropertyLocalizedName) ?? id
-        if let pointer = TISGetInputSourceProperty(source, kTISPropertyInputSourceLanguages) {
-            languages = Unmanaged<CFArray>.fromOpaque(pointer).takeUnretainedValue() as? [String] ?? []
-        } else {
-            languages = []
-        }
+        languages = Self.arrayProperty(source, kTISPropertyInputSourceLanguages)
         keyData = data
 
         let keyboardType = UInt32(LMGetKbdType())
@@ -206,6 +214,12 @@ struct KeyboardLayout: Equatable, Sendable {
             // Skip control characters; they have no useful label.
             return string.unicodeScalars.allSatisfy { $0.value >= 0x20 && $0.value != 0x7F } ? string : nil
         }
+    }
+
+    @MainActor
+    private static func arrayProperty(_ source: TISInputSource, _ key: CFString) -> [String] {
+        guard let pointer = TISGetInputSourceProperty(source, key) else { return [] }
+        return Unmanaged<CFArray>.fromOpaque(pointer).takeUnretainedValue() as? [String] ?? []
     }
 
     @MainActor
