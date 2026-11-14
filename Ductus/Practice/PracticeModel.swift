@@ -67,6 +67,16 @@ final class PracticeModel {
     /// Letters the active layout can type, or `nil` if unknown.
     var typeableLetters: Set<Character>? { layout?.typeableLetters }
 
+    /// Whether the active layout can type `character` (directly or with a dead key).
+    /// `true` when the layout is unknown, so nothing is thrown away by mistake.
+    func canType(_ character: Character) -> Bool {
+        guard let layout else { return true }
+        return character == " " || character == "\n" || layout.strokes[character] != nil
+    }
+
+    /// Typing time under this long between keys counts as active.
+    var pauseThreshold: TimeInterval { trainer?.stats.config.pauseThreshold ?? 2 }
+
     /// Deletes all saved progress for the current layout and starts over.
     func resetProgress() {
         if let profile {
@@ -230,7 +240,7 @@ final class PracticeModel {
 
     /// Feeds one typed character. Returns `true` if practice consumed it.
     func type(_ character: Character, keyCode: UInt16, at time: TimeInterval) -> Bool {
-        guard trainer != nil, session != nil else { return false }
+        guard trainer != nil, session != nil, character != "\n" else { return false }
         guard let keystroke = session?.type(character, keyCode: keyCode, at: time) else { return true }
         lastPracticeKeystroke = Date()
 
@@ -332,7 +342,12 @@ final class PracticeModel {
         return new
     }
 
-    private func recordDrill(_ summary: SessionSummary, activeTime: TimeInterval) {
+    /// A finished part of a custom text: shows in History and counts toward the daily goal.
+    func recordTextPart(_ summary: SessionSummary, activeTime: TimeInterval) {
+        recordDrill(summary, activeTime: activeTime, custom: true)
+    }
+
+    private func recordDrill(_ summary: SessionSummary, activeTime: TimeInterval, custom: Bool = false) {
         let before = todayPracticeTime
         defer { checkDailyGoal(before: before) }
         guard let trainer, let profile = ensureProfile() else { return }
@@ -340,7 +355,8 @@ final class PracticeModel {
         profile.drills.append(DrillEntry(DrillRecord(
             date: now, characters: summary.characters, duration: summary.duration, activeTime: activeTime,
             wpm: summary.wpm, accuracy: summary.accuracy,
-            focusKey: trainer.focusKey.map(String.init), unlockedCount: trainer.curriculum.unlockedCount
+            focusKey: custom ? nil : trainer.focusKey.map(String.init),
+            unlockedCount: trainer.curriculum.unlockedCount
         )))
 
         // Update today's snapshot of every practiced key (one row per key per day).

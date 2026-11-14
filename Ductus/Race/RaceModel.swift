@@ -90,6 +90,7 @@ final class RaceModel {
 
     /// Feeds one typed character. Returns `true` if the race consumed it.
     func type(_ character: Character, keyCode: UInt16, at time: TimeInterval) -> Bool {
+        guard character != "\n" else { return false }  // race text has no line breaks
         if session == nil { newRace() }
         guard result == nil else { return true }  // finished: wait for a new race
         guard let keystroke = session?.type(character, keyCode: keyCode, at: time) else { return true }

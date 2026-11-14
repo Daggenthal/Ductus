@@ -16,7 +16,7 @@ Early development. Right now the repo has the core engine with tests:
 
 The Mac app has:
 
-- Practice, Race and History tabs. Races are timed (30s to 5 min) against your own best, with all letters, unlocked letters only, or real sentences.
+- Practice, Race, Text and History tabs. Text lets you paste your own text (an article, a chapter, some code) and type through it part by part. Races are timed (30s to 5 min) against your own best, with all letters, unlocked letters only, or real sentences.
 - An on-screen keyboard (ANSI, ISO or JIS) that follows your active layout, docked or floating, with a configurable ⌘ shortcut glow. It fades keys you have mastered, and can light up while you type in other apps (opt-in, needs Input Monitoring).
 - Options for unlock targets, stop-on-mistake or fix-with-Backspace, capitals, punctuation, sentence drills, text size, a daily goal and key sounds.
 - Saved progress per layout, history with charts, a weak-key heatmap, and CSV export.

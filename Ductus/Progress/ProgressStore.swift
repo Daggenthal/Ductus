@@ -14,7 +14,7 @@ final class ProgressStore {
     var context: ModelContext { container.mainContext }
 
     init() {
-        let schema = Schema([LayoutProfile.self, DrillEntry.self, KeyDayEntry.self, UnlockEntry.self, RaceEntry.self])
+        let schema = Schema([LayoutProfile.self, DrillEntry.self, KeyDayEntry.self, UnlockEntry.self, RaceEntry.self, SavedText.self])
         do {
             container = try ModelContainer(for: schema)
             isPersistent = true
@@ -46,6 +46,27 @@ final class ProgressStore {
     /// Deletes a profile and, through cascade rules, all its history.
     func delete(_ profile: LayoutProfile) {
         context.delete(profile)
+        save()
+    }
+
+    /// Saved practice texts, most recently opened first.
+    func savedTexts() -> [SavedText] {
+        let descriptor = FetchDescriptor<SavedText>(sortBy: [SortDescriptor(\.lastOpened, order: .reverse)])
+        do {
+            return try context.fetch(descriptor)
+        } catch {
+            Log.error("Could not load saved texts: \(error)")
+            return []
+        }
+    }
+
+    func insert(_ text: SavedText) {
+        context.insert(text)
+        save()
+    }
+
+    func delete(_ text: SavedText) {
+        context.delete(text)
         save()
     }
 

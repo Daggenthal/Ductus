@@ -100,6 +100,7 @@ final class KeyboardState {
     /// accented letter like "é", then the letter once the dead key is down.
     func nextStroke(for character: Character) -> KeyboardLayout.Stroke? {
         if character == " " { return KeyboardLayout.Stroke(code: 49) }
+        if character == "\n" { return KeyboardLayout.Stroke(code: 36) }
         guard let sequence = layout?.strokes[character], let first = sequence.first else { return nil }
         if sequence.count > 1, pendingDeadKey == first { return sequence[1] }
         return first
@@ -254,6 +255,12 @@ final class KeyboardState {
             return !(onCharacter?(character, event.keyCode, event.timestamp) ?? false)
         }
         let flags = event.modifierFlags
+        // Return (and keypad Enter) types a line break, for texts that keep them.
+        // If nothing takes it, it goes on to the window (default buttons).
+        if event.keyCode == 36 || event.keyCode == 76, !flags.contains(.option) {
+            clearDeadKey()
+            return !(onCharacter?("\n", event.keyCode, event.timestamp) ?? false)
+        }
         let stroke = KeyboardLayout.Stroke(code: event.keyCode, shift: flags.contains(.shift),
                                            option: flags.contains(.option))
         switch layout.type(code: event.keyCode, shift: stroke.shift, option: stroke.option,

@@ -139,3 +139,26 @@ final class RaceEntry {
         self.textMode = textMode
     }
 }
+
+/// Text the user pasted in to practice on (an article, a chapter, some code).
+/// Not tied to a layout. Stored only on this Mac.
+@Model
+final class SavedText {
+    var title: String
+    /// Already cleaned for typing (see `CustomText.clean`).
+    var body: String
+    /// Typed with Return at line ends (code, poems).
+    var keepLineBreaks: Bool
+    /// Index of the part to type next.
+    var part: Int = 0
+    var created: Date
+    var lastOpened: Date
+
+    init(title: String, body: String, keepLineBreaks: Bool) {
+        self.title = title
+        self.body = body
+        self.keepLineBreaks = keepLineBreaks
+        created = Date()
+        lastOpened = Date()
+    }
+}

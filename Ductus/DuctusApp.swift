@@ -16,6 +16,7 @@ struct DuctusApp: App {
             MainView()
                 .environment(app.practice)
                 .environment(app.race)
+                .environment(app.textPractice)
                 .environment(app.keyboard)
                 .environment(app.ui)
         }
@@ -31,14 +32,16 @@ struct DuctusApp: App {
                     .keyboardShortcut("1")
                 Button("Race") { app.showTab(.race) }
                     .keyboardShortcut("2")
-                Button("History") { app.showTab(.history) }
+                Button("Text") { app.showTab(.text) }
                     .keyboardShortcut("3")
+                Button("History") { app.showTab(.history) }
+                    .keyboardShortcut("4")
                 Button("Show History") { app.showTab(.history) }
                     .keyboardShortcut("y")
                 Divider()
             }
             CommandMenu("Practice") {
-                Button("Next Drill or Race") { app.newDrillOrRace() }
+                Button("Next Drill, Race or Part") { app.newDrillOrRace() }
                     .keyboardShortcut("n")
                 Divider()
                 Toggle("Show Keyboard", isOn: $showKeyboard)
@@ -143,11 +146,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let panelFocus = PanelFocus()
     let ui = AppUIState()
     lazy var race = RaceModel(practice: practice)
+    lazy var textPractice = TextPracticeModel(practice: practice, store: store)
     private let sounds = KeySounds()
     private lazy var globalMonitor = GlobalKeyMonitor { [weak self] event in
         self?.keyboard.handleExternal(event)
     }
-    private var store: ProgressStore?
+    /// Created on first use: the window can ask for the Text tab's model
+    /// before launch finishes.
+    private lazy var store = ProgressStore()
     /// Last seen pop-out state, to react only to changes (not at launch).
     private var lastPoppedOut: Bool?
     /// Guards against `applySettings` re-entering itself through a tab change.
@@ -182,6 +188,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             switch self.ui.tab {
             case .practice: return self.practice.type(character, keyCode: keyCode, at: time)
             case .race: return self.race.type(character, keyCode: keyCode, at: time)
+            case .text: return self.textPractice.type(character, keyCode: keyCode, at: time)
             case .history: return false
             }
         }
@@ -192,6 +199,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             switch self.ui.tab {
             case .practice: return self.practice.backspace(word: word)
             case .race: return self.race.backspace(word: word)
+            case .text: return self.textPractice.backspace(word: word)
             case .history: return false
             }
         }
@@ -204,8 +212,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Progress is saved per layout. Switching input source switches progress.
         practice.onKeystroke = { [sounds] correct in sounds.keystroke(correct: correct) }
-        let store = ProgressStore()
-        self.store = store
         practice.start(layout: keyboard.layout, store: store)
         keyboard.onLayoutChange = { [practice] layout in
             practice.switchLayout(to: layout)
@@ -255,6 +261,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func newDrillOrRace() {
         switch ui.tab {
         case .race: race.newRace()
+        case .text: textPractice.skipPart()
         default: practice.nextDrill()
         }
     }

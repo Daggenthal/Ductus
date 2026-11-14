@@ -42,7 +42,8 @@ struct RaceTextView: View {
         let position = session.position
         var result = AttributedString()
         for index in range {
-            var piece = AttributedString(String(text[index]))
+            // Line breaks show as a faint return arrow.
+            var piece = AttributedString(text[index] == "\n" ? "↵" : String(text[index]))
             if index < position, session.isError(at: index) {
                 piece.foregroundColor = .red
                 piece.backgroundColor = .red.opacity(0.15)
@@ -53,14 +54,14 @@ struct RaceTextView: View {
                 piece.backgroundColor = lastKeyWrong ? .red.opacity(0.35) : .accentColor.opacity(0.3)
                 piece.underlineStyle = .single
             } else {
-                piece.foregroundColor = .primary
+                piece.foregroundColor = text[index] == "\n" ? .secondary : .primary
             }
             result += piece
         }
         return result
     }
 
-    /// Greedy word wrap by character count. Each range includes the trailing
+    /// Greedy word wrap by character count, breaking after line breaks too. Each range includes the trailing
     /// space, so the cursor on a space belongs to the line it ends.
     /// Appending text only changes the last line, so earlier lines stay put.
     static func wrap(_ text: [Character], width: Int) -> [Range<Int>] {
@@ -68,7 +69,9 @@ struct RaceTextView: View {
         var start = 0
         while start < text.count {
             var end = min(text.count, start + width)
-            if end < text.count {
+            if let newline = text[start..<end].firstIndex(of: "\n") {
+                end = newline + 1  // a line break always ends the line
+            } else if end < text.count {
                 // Break after the last space within the line, if there is one.
                 if let space = text[start..<end].lastIndex(of: " ") {
                     end = space + 1
