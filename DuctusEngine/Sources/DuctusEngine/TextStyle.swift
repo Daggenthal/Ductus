@@ -13,33 +13,41 @@ public struct TextStyle: Sendable, Equatable, Codable {
 
 public enum TextDecorator {
     /// Groups words into short sentences. With `capitals`, each sentence starts
-    /// with a capital and some other words are capitalized too. With
-    /// `punctuation`, sentences end in . ? or ! and some words get a comma,
-    /// semicolon or colon. The words themselves never change.
+    /// with a capital and some other words are capitalized too (not in German,
+    /// where capitals mark nouns). With `punctuation`, sentences end in . ? or !
+    /// (Spanish opens them with ¿ or ¡) and some words get a comma, semicolon
+    /// or colon. The words themselves never change.
     public static func decorate<G: RandomNumberGenerator>(
         _ text: String,
         style: TextStyle,
+        language: PracticeLanguage = .english,
         using rng: inout G
     ) -> String {
         guard !style.isPlain else { return text }
         let words = text.split(separator: " ").map(String.init)
         guard !words.isEmpty else { return text }
+        let randomCapitals = !language.keepsCase
 
         var output: [String] = []
         var index = 0
         while index < words.count {
             let length = min(Int.random(in: 4...10, using: &rng), words.count - index)
+            let ending = style.punctuation ? [".", ".", ".", ".", "?", "!"].randomElement(using: &rng)! : ""
             for offset in 0..<length {
                 var word = words[index + offset]
                 let isFirst = offset == 0
                 let isLast = offset == length - 1
 
-                if style.capitals, isFirst || Double.random(in: 0..<1, using: &rng) < 0.08 {
+                if style.capitals,
+                   isFirst || (randomCapitals && Double.random(in: 0..<1, using: &rng) < 0.08) {
                     word = word.prefix(1).uppercased() + word.dropFirst()
                 }
                 if style.punctuation {
+                    if isFirst, language.usesInvertedMarks {
+                        if ending == "?" { word = "¿" + word } else if ending == "!" { word = "¡" + word }
+                    }
                     if isLast {
-                        word += ["." , ".", ".", ".", "?", "!"].randomElement(using: &rng)!
+                        word += ending
                     } else {
                         let roll = Double.random(in: 0..<1, using: &rng)
                         if roll < 0.12 { word += "," }

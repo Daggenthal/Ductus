@@ -27,8 +27,7 @@ struct KeyboardView: View {
 
     var body: some View {
         let shortcutCodes = keyboard.commandHeld ? keyboard.shortcutKeyCodes : []
-        let nextCode = nextCharacter.flatMap { keyboard.keyCode(for: $0) }
-        let nextNeedsShift = nextCharacter.map { keyboard.needsShift(for: $0) } ?? false
+        let next = nextCharacter.flatMap { keyboard.nextStroke(for: $0) }
 
         VStack(alignment: .leading, spacing: spacing) {
             ForEach(Array(KeyboardGeometry.rows(for: keyboard.shape).enumerated()), id: \.offset) { _, row in
@@ -45,7 +44,7 @@ struct KeyboardView: View {
                                 tallBottomWidth: tallBottomWidth(key),
                                 rowSpacing: spacing,
                                 isPressed: keyboard.pressed.contains(key.code),
-                                isNext: key.code == nextCode || (nextNeedsShift && (key.code == 56 || key.code == 60)),
+                                isNext: isNext(key, next),
                                 isShortcut: shortcutCodes.contains(key.code),
                                 isDimmed: isLocked(key),
                                 isFaded: isMastered(key),
@@ -60,6 +59,15 @@ struct KeyboardView: View {
         .padding(spacing * 3)
         .animation(animatesPresses ? .easeOut(duration: 0.08) : nil, value: keyboard.pressed)
         .animation(.easeInOut(duration: 0.15), value: keyboard.commandHeld)
+    }
+
+    /// The next key, plus Shift or Option when it needs them (both sides outlined).
+    private func isNext(_ key: KeyboardGeometry.Key, _ next: KeyboardLayout.Stroke?) -> Bool {
+        guard let next else { return false }
+        if key.code == next.code { return true }
+        if next.shift, key.code == 56 || key.code == 60 { return true }
+        if next.option, key.code == 58 || key.code == 61 { return true }
+        return false
     }
 
     private func width(_ units: Double) -> CGFloat {

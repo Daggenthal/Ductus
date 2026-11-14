@@ -5,37 +5,40 @@ public enum EngineError: Error, Equatable {
     case malformedLine(number: Int, line: String)
 }
 
-/// Lowercase English words with frequency counts.
+/// Words with frequency counts, for one language.
 public struct WordList: Sendable {
     public struct Entry: Sendable, Equatable {
+        /// As typed: lowercase, except German nouns ("Haus").
         public let word: String
         public let count: Int
+        /// Lowercase letters, for matching against unlocked keys (case-folded like stats).
         public let letters: Set<Character>
 
         init(word: String, count: Int) {
             self.word = word
             self.count = count
-            self.letters = Set(word)
+            self.letters = Set(word.lowercased())
         }
     }
 
     /// Sorted by count, most common first.
     public let entries: [Entry]
 
-    /// Words are lowercased. Anything that is not a plain `a`-`z` word is dropped.
-    public init(_ words: [(word: String, count: Int)]) {
+    /// Words are lowercased unless `keepCase` (German nouns). Anything that is
+    /// not made only of letters (accents are fine) is dropped.
+    public init(_ words: [(word: String, count: Int)], keepCase: Bool = false) {
         var kept: [Entry] = []
         for (word, count) in words {
-            let lower = word.lowercased()
-            guard !lower.isEmpty, count > 0, lower.allSatisfy(\.isASCIILowercaseLetter) else { continue }
-            kept.append(Entry(word: lower, count: count))
+            let word = keepCase ? word : word.lowercased()
+            guard !word.isEmpty, count > 0, word.allSatisfy(\.isLetter) else { continue }
+            kept.append(Entry(word: word, count: count))
         }
         kept.sort { a, b in a.count != b.count ? a.count > b.count : a.word < b.word }
         entries = kept
     }
 
     /// Parses `word<TAB>count` lines. Blank lines are ignored.
-    public init(tsv: String) throws {
+    public init(tsv: String, keepCase: Bool = false) throws {
         var words: [(word: String, count: Int)] = []
         for (index, line) in tsv.split(separator: "\n", omittingEmptySubsequences: false).enumerated() {
             if line.trimmingCharacters(in: .whitespaces).isEmpty { continue }
@@ -45,22 +48,24 @@ public struct WordList: Sendable {
             }
             words.append((String(parts[0]), count))
         }
-        self.init(words)
+        self.init(words, keepCase: keepCase)
     }
 
-    /// The bundled list built from public-domain books (see CORPUS.md).
-    public static func bundledEnglish() throws -> WordList {
-        guard let url = Bundle.module.url(forResource: "english-words", withExtension: "tsv") else {
-            throw EngineError.missingResource("english-words.tsv")
+    /// The bundled list for `language`, built from public-domain books (see CORPUS.md).
+    public static func bundled(_ language: PracticeLanguage) throws -> WordList {
+        guard let url = Bundle.module.url(forResource: language.wordsResource, withExtension: "tsv") else {
+            throw EngineError.missingResource("\(language.wordsResource).tsv")
         }
-        return try WordList(tsv: String(contentsOf: url, encoding: .utf8))
+        return try WordList(tsv: String(contentsOf: url, encoding: .utf8), keepCase: language.keepsCase)
     }
+
+    public static func bundledEnglish() throws -> WordList { try bundled(.english) }
 
     /// Letters ordered by how often they appear in running text (word counts included).
     public func letterFrequencyOrder() -> [Character] {
         var counts: [Character: Int] = [:]
         for entry in entries {
-            for letter in entry.word { counts[letter, default: 0] += entry.count }
+            for letter in entry.word.lowercased() { counts[letter, default: 0] += entry.count }
         }
         return counts.sorted { $0.value != $1.value ? $0.value > $1.value : $0.key < $1.key }.map(\.key)
     }

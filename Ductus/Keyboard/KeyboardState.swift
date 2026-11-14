@@ -18,6 +18,10 @@ final class KeyboardState {
     /// key types each of these with Command, so positions are never hardcoded.
     var shortcutLetters: [Character] = ["z", "x", "c", "v"]
 
+    /// A dead key (accent) that was pressed and is waiting for its letter.
+    private(set) var pendingDeadKey: KeyboardLayout.Stroke?
+    @ObservationIgnored private var deadKeyState: UInt32 = 0
+
     /// Physical keyboard shape chosen in Settings. `nil` = detect automatically.
     var shapeOverride: KeyboardGeometry.Shape?
     /// What macOS reports for the keyboard last typed on.
@@ -34,6 +38,10 @@ final class KeyboardState {
     /// Called for each key press that types a character, before the HUD updates.
     /// Return `true` to swallow the event (so the window does not beep).
     @ObservationIgnored var onCharacter: ((Character, UInt16, TimeInterval) -> Bool)?
+
+    /// Called for a dead key (accent) press. Return `true` to swallow it, so the
+    /// window does not beep. The accent is applied to the next key here, not by macOS.
+    @ObservationIgnored var onDeadKey: (() -> Bool)?
 
     /// Called for Backspace (`true` = Option-Backspace, delete a word).
     /// Return `true` to swallow the event.
@@ -88,15 +96,13 @@ final class KeyboardState {
         return Set(shortcutLetters.compactMap { layout.commandKeyCode(for: $0, on: shape) })
     }
 
-    func keyCode(for character: Character) -> UInt16? {
-        character == " " ? 49 : layout?.keyCode(for: character, on: shape)
-    }
-
-    /// `true` if typing `character` needs Shift on the active layout.
-    func needsShift(for character: Character) -> Bool {
-        guard character != " ", let layout else { return false }
-        let string = String(character)
-        return !layout.plain.values.contains(string) && layout.shifted.values.contains(string)
+    /// The next key press for typing `character`: the dead key first for an
+    /// accented letter like "é", then the letter once the dead key is down.
+    func nextStroke(for character: Character) -> KeyboardLayout.Stroke? {
+        if character == " " { return KeyboardLayout.Stroke(code: 49) }
+        guard let sequence = layout?.strokes[character], let first = sequence.first else { return nil }
+        if sequence.count > 1, pendingDeadKey == first { return sequence[1] }
+        return first
     }
 
     // MARK: - Events
@@ -140,15 +146,14 @@ final class KeyboardState {
             // Backspace (51), plain or with Option. Repeats are fine here.
             if event.keyCode == 51, modifiers.subtracting(.option).isEmpty,
                onBackspace?(modifiers.contains(.option)) == true {
+                clearDeadKey()
                 return false
             }
-            guard modifiers.isEmpty, !event.isARepeat,
-                  let character = event.characters?.first,
-                  character == " " || !(character.isWhitespace || character.isNewline),
-                  character.unicodeScalars.allSatisfy({ $0.value >= 0x20 && $0.value != 0x7F })
-            else { return true }
-            let swallow = onCharacter?(character, event.keyCode, event.timestamp) ?? false
-            return !swallow
+            guard modifiers.subtracting(.option).isEmpty, !event.isARepeat else {
+                clearDeadKey()
+                return true
+            }
+            return typeKey(event)
 
         case .keyUp:
             syncModifiers(event.modifierFlags)
@@ -238,7 +243,50 @@ final class KeyboardState {
         }
     }
 
+    /// Works out what a key typed from the layout, with dead keys (accents)
+    /// applied, and passes each character on. Option is allowed: it types
+    /// accents on many layouts (⌥e then e is "é" on U.S.).
+    private func typeKey(_ event: NSEvent) -> Bool {
+        guard let layout else {
+            // No layout data (some input methods): use what macOS typed.
+            guard !event.modifierFlags.contains(.option), let character = event.characters?.first,
+                  Self.isTypeable(character) else { return true }
+            return !(onCharacter?(character, event.keyCode, event.timestamp) ?? false)
+        }
+        let flags = event.modifierFlags
+        let stroke = KeyboardLayout.Stroke(code: event.keyCode, shift: flags.contains(.shift),
+                                           option: flags.contains(.option))
+        switch layout.type(code: event.keyCode, shift: stroke.shift, option: stroke.option,
+                           capsLock: flags.contains(.capsLock), state: &deadKeyState) {
+        case .deadKey:
+            pendingDeadKey = stroke
+            return !(onDeadKey?() ?? false)
+        case .nothing:
+            clearDeadKey()
+            return true
+        case .text(let text):
+            pendingDeadKey = nil
+            // An accent that does not combine comes out as two characters ("´t").
+            var swallow = false
+            for character in text where Self.isTypeable(character) {
+                swallow = onCharacter?(character, event.keyCode, event.timestamp) ?? false || swallow
+            }
+            return !swallow
+        }
+    }
+
+    private static func isTypeable(_ character: Character) -> Bool {
+        (character == " " || !(character.isWhitespace || character.isNewline))
+            && character.unicodeScalars.allSatisfy { $0.value >= 0x20 && $0.value != 0x7F }
+    }
+
+    private func clearDeadKey() {
+        deadKeyState = 0
+        if pendingDeadKey != nil { pendingDeadKey = nil }
+    }
+
     private func releaseAll() {
+        clearDeadKey()
         pressed = []
         commandHeld = false
         updateStaleModifierTimer()

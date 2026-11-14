@@ -195,6 +195,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             case .history: return false
             }
         }
+        // Swallow accent keys when practice or a race would take the letter.
+        keyboard.onDeadKey = { [weak self] in
+            guard let self, let window = NSApp.keyWindow, !(window.firstResponder is NSTextView) else { return false }
+            return window.identifier == KeyboardHUD.panelID || (window.title == "Ductus" && self.ui.tab != .history)
+        }
         ui.onTabChange = { [weak self] in self?.applySettings() }
 
         // Progress is saved per layout. Switching input source switches progress.

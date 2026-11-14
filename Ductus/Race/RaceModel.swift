@@ -130,16 +130,20 @@ final class RaceModel {
         case .sentences:
             // Real sentences already have their own capitals and punctuation.
             guard let sentences = practice.sentences else { return nil }
-            return SentenceList.pick(from: sentences.entries, minCharacters: 250, using: &rng)
+            // Only sentences this layout can type (e.g. no "ñ" without a way to make it).
+            let pool = practice.typeableLetters.map { sentences.sentences(using: $0) } ?? sentences.entries
+            return SentenceList.pick(from: pool, minCharacters: 250, using: &rng)
         case .unlocked:
             // Same word picking as practice: unlocked letters, weighted toward
             // weak keys. Picked fresh for each chunk, so it follows the stats live.
             words = practice.practiceStyleWords(atLeast: Self.chunkWords)
         case .allLetters:
             guard let list = practice.words else { return nil }
-            words = Race.text(from: list, wordCount: Self.chunkWords, using: &rng)
+            words = Race.text(from: list, wordCount: Self.chunkWords, allowed: practice.typeableLetters, using: &rng)
         }
-        return words.map { TextDecorator.decorate($0, style: PracticeSettings.textStyle, using: &rng) }
+        return words.map {
+            TextDecorator.decorate($0, style: PracticeSettings.textStyle, language: practice.language, using: &rng)
+        }
     }
 
     private func finish() {

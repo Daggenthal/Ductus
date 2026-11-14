@@ -28,8 +28,11 @@ final class PracticeModel {
     private(set) var layoutName = "Unknown layout"
 
     @ObservationIgnored private var store: ProgressStore?
-    @ObservationIgnored private var wordList: WordList?
-    @ObservationIgnored private var sentenceList: SentenceList?
+    /// Language of the word list and sentences: from the layout, or the setting.
+    private(set) var language = PracticeLanguage.english
+    @ObservationIgnored private var wordLists: [PracticeLanguage: WordList] = [:]
+    @ObservationIgnored private var sentenceLists: [PracticeLanguage: SentenceList] = [:]
+    private var wordList: WordList? { wordLists[language] }
     /// Called after each keystroke with whether it was correct (for sounds).
     @ObservationIgnored var onKeystroke: ((Bool) -> Void)?
     @ObservationIgnored private var layout: KeyboardLayout?
@@ -47,11 +50,22 @@ final class PracticeModel {
 
     /// Saves the current layout's progress and switches to the new layout's.
     func switchLayout(to layout: KeyboardLayout?) {
-        guard (layout?.id ?? "unknown") != layoutID else { return }
+        let language = PracticeSettings.language(for: layout)
+        guard Self.profileID(layout: layout, language: language) != layoutID else { return }
         persist()
         Log.info("Layout changed to \(layout?.name ?? "unknown"). Switching progress.")
         load(layout: layout)
     }
+
+    /// Progress is saved per layout and language. English keeps the plain
+    /// layout ID, so progress saved before languages existed still loads.
+    static func profileID(layout: KeyboardLayout?, language: PracticeLanguage) -> String {
+        let id = layout?.id ?? "unknown"
+        return language == .english ? id : "\(id)|\(language.rawValue)"
+    }
+
+    /// Letters the active layout can type, or `nil` if unknown.
+    var typeableLetters: Set<Character>? { layout?.typeableLetters }
 
     /// Deletes all saved progress for the current layout and starts over.
     func resetProgress() {
@@ -66,7 +80,8 @@ final class PracticeModel {
     private func load(layout: KeyboardLayout?, forceFresh: Bool = false) {
         self.layout = layout
         lastPracticeKeystroke = nil
-        layoutID = layout?.id ?? "unknown"
+        language = PracticeSettings.language(for: layout)
+        layoutID = Self.profileID(layout: layout, language: language)
         layoutName = layout?.name ?? "Unknown layout"
         lastSummary = nil
         unlockMessage = nil
@@ -86,13 +101,13 @@ final class PracticeModel {
                 // History is kept; only the live key stats start over.
                 Log.error("Saved key stats for \(layoutName) could not be read, starting them fresh: \(error)")
                 trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [],
-                                  progression: PracticeSettings.progression)
+                                  progression: PracticeSettings.progression, typeable: layout?.typeableLetters)
             }
         } else {
             profile = nil
             trainer = Trainer(wordList: words, startingKeys: layout?.homeRowLetters ?? [],
-                              progression: PracticeSettings.progression)
-            Log.success("New progress for \(layoutName) (starting keys: \(String(trainer!.curriculum.unlocked)))")
+                              progression: PracticeSettings.progression, typeable: layout?.typeableLetters)
+            Log.success("New \(language.nativeName) progress for \(layoutName) (starting keys: \(String(trainer!.curriculum.unlocked)))")
         }
         nextDrill()
     }
@@ -100,9 +115,10 @@ final class PracticeModel {
     private func loadWords() -> WordList? {
         if let wordList { return wordList }
         do {
-            let words = try WordList.bundledEnglish()
-            wordList = words
-            Log.success("Loaded \(words.entries.count) words")
+            let words = try WordList.bundled(language)
+            wordLists[language] = words
+            loadError = nil
+            Log.success("Loaded \(words.entries.count) \(language.nativeName) words")
             return words
         } catch {
             loadError = "Could not load the word list: \(error)"
@@ -112,10 +128,11 @@ final class PracticeModel {
     }
 
     private func loadSentences() -> SentenceList? {
-        if let sentenceList { return sentenceList }
+        if let list = sentenceLists[language] { return list }
         do {
-            sentenceList = try SentenceList.bundledEnglish()
-            return sentenceList
+            let list = try SentenceList.bundled(language)
+            sentenceLists[language] = list
+            return list
         } catch {
             Log.error("Could not load sentences: \(error)")
             return nil
@@ -126,6 +143,12 @@ final class PracticeModel {
 
     /// Applies changed settings. Targets take effect at once; text options from the next drill.
     func applySettings() {
+        if trainer != nil, PracticeSettings.language(for: layout) != language {
+            persist()
+            Log.info("Practice language changed. Switching progress.")
+            load(layout: layout)
+            return
+        }
         let progression = PracticeSettings.progression
         if let trainer, trainer.scorer.config != progression {
             self.trainer?.scorer = WeaknessScorer(config: progression)
@@ -172,7 +195,7 @@ final class PracticeModel {
     func nextDrill() {
         guard let trainer else { return }
         if wantsWarmUp, let words = trainer.warmUpDrill(using: &rng) {
-            let text = TextDecorator.decorate(words, style: PracticeSettings.textStyle, using: &rng)
+            let text = TextDecorator.decorate(words, style: PracticeSettings.textStyle, language: language, using: &rng)
             session = TypingSession(text: text, mistakeMode: PracticeSettings.mistakeMode)
             isWarmUp = true
             drillID += 1
@@ -202,7 +225,7 @@ final class PracticeModel {
             }
         }
         guard let words = trainer.nextDrill(using: &rng) else { return nil }
-        return TextDecorator.decorate(words, style: PracticeSettings.textStyle, using: &rng)
+        return TextDecorator.decorate(words, style: PracticeSettings.textStyle, language: language, using: &rng)
     }
 
     /// Feeds one typed character. Returns `true` if practice consumed it.

@@ -16,17 +16,19 @@ public struct SentenceList: Sendable {
         entries = text.split(separator: "\n").compactMap { line in
             let sentence = line.trimmingCharacters(in: .whitespaces)
             guard !sentence.isEmpty else { return nil }
-            let letters = Set(sentence.lowercased().filter(\.isASCIILowercaseLetter))
+            let letters = Set(sentence.lowercased().filter(\.isLetter))
             return Entry(text: sentence, letters: letters)
         }
     }
 
-    public static func bundledEnglish() throws -> SentenceList {
-        guard let url = Bundle.module.url(forResource: "english-sentences", withExtension: "txt") else {
-            throw EngineError.missingResource("english-sentences.txt")
+    public static func bundled(_ language: PracticeLanguage) throws -> SentenceList {
+        guard let url = Bundle.module.url(forResource: language.sentencesResource, withExtension: "txt") else {
+            throw EngineError.missingResource("\(language.sentencesResource).txt")
         }
         return SentenceList(text: try String(contentsOf: url, encoding: .utf8))
     }
+
+    public static func bundledEnglish() throws -> SentenceList { try bundled(.english) }
 
     /// Sentences whose letters are all in `allowed` (capitals and punctuation are fine).
     public func sentences(using allowed: Set<Character>) -> [Entry] {
@@ -46,7 +48,7 @@ public struct SentenceList: Sendable {
         var length = 0
         while length < minCharacters {
             let entry = pool.weightedRandomElement(using: &rng) { entry in
-                let letters = entry.text.lowercased().filter(\.isASCIILowercaseLetter)
+                let letters = entry.text.lowercased().filter(\.isLetter)
                 guard !letters.isEmpty else { return 1 }
                 let total = letters.reduce(0) { $0 + (weakness[$1] ?? 0) }
                 return 1 + total / Double(letters.count) * 3

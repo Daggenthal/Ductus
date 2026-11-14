@@ -13,10 +13,15 @@ public struct Trainer: Sendable {
         startingKeys: [Character],
         progression: ProgressionConfig = ProgressionConfig(),
         engine: EngineConfig = EngineConfig(),
-        drill: DrillConfig = DrillConfig()
+        drill: DrillConfig = DrillConfig(),
+        typeable: Set<Character>? = nil
     ) {
         stats = StatsTracker(config: engine)
-        curriculum = Curriculum(startingKeys: startingKeys, frequencyOrder: wordList.letterFrequencyOrder())
+        // Letters the layout cannot type (e.g. "ñ" with no way to make it) are
+        // never unlocked, so no drill asks for them.
+        var order = wordList.letterFrequencyOrder()
+        if let typeable { order = order.filter(typeable.contains) }
+        curriculum = Curriculum(startingKeys: startingKeys, frequencyOrder: order)
         scorer = WeaknessScorer(config: progression)
         generator = DrillGenerator(wordList: wordList, config: drill)
 

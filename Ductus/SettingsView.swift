@@ -29,6 +29,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.warmUp) private var warmUp = true
     @AppStorage(SettingsKey.shortcutKeys) private var shortcutKeys = SettingsKey.defaultShortcutKeys
     @AppStorage(SettingsKey.keyboardShape) private var keyboardShape = "auto"
+    @AppStorage(SettingsKey.practiceLanguage) private var practiceLanguage = "auto"
     @Environment(KeyboardState.self) private var keyboard
 
     @Environment(PracticeModel.self) private var practice
@@ -46,6 +47,13 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
                 note("System follows your macOS setting. Applies to the floating keyboard too.")
+                Picker("Practice language", selection: $practiceLanguage) {
+                    Text("Automatic (\(PracticeSettings.detectedLanguage(for: keyboard.layout).nativeName))").tag("auto")
+                    ForEach(PracticeLanguage.allCases) { language in
+                        Text(language.nativeName).tag(language.rawValue)
+                    }
+                }
+                note("The words and sentences you practice. Automatic follows your keyboard layout, so a French layout practices French. Progress is kept separately for each layout and language.")
             }
 
             Section("Unlocking") {

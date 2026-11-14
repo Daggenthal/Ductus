@@ -88,7 +88,7 @@ public struct DrillGenerator: Sendable {
 
     /// How much a word is worth practicing: common words and words full of weak spots win.
     func score(_ entry: WordList.Entry, request: DrillRequest) -> Double {
-        let letters = Array(entry.word)
+        let letters = Array(entry.word.lowercased())
         let keyWeakness = letters.reduce(0) { $0 + (request.keyWeakness[$1] ?? 0) } / Double(letters.count)
         var bigramWeakness = 0.0
         if letters.count > 1 {

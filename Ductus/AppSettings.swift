@@ -23,6 +23,8 @@ extension SettingsKey {
     static let defaultShortcutKeys = "zxcv"
     /// "auto", or a `KeyboardGeometry.Shape` raw value.
     static let keyboardShape = "keyboardShape"
+    /// "auto" (from the layout), or a `PracticeLanguage` raw value.
+    static let practiceLanguage = "practiceLanguage"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -42,6 +44,7 @@ extension SettingsKey {
             warmUp: true,
             shortcutKeys: defaultShortcutKeys,
             keyboardShape: "auto",
+            practiceLanguage: "auto",
         ])
     }
 }
@@ -66,6 +69,20 @@ enum PracticeSettings {
             capitals: defaults.bool(forKey: SettingsKey.capitals),
             punctuation: defaults.bool(forKey: SettingsKey.punctuation)
         )
+    }
+
+    /// The setting's language, or the layout's own language when on Automatic.
+    /// Layouts in a language without a word list (and unknown ones) use English.
+    @MainActor
+    static func language(for layout: KeyboardLayout?) -> PracticeLanguage {
+        if let chosen = PracticeLanguage(rawValue: defaults.string(forKey: SettingsKey.practiceLanguage) ?? "") {
+            return chosen
+        }
+        return detectedLanguage(for: layout)
+    }
+
+    static func detectedLanguage(for layout: KeyboardLayout?) -> PracticeLanguage {
+        layout?.languages.lazy.compactMap(PracticeLanguage.init(code:)).first ?? .english
     }
 
     static var warmUp: Bool { defaults.bool(forKey: SettingsKey.warmUp) }
