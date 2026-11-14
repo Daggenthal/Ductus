@@ -154,6 +154,7 @@ def main() -> int:
     reviewed = json.loads((labels_path.parent / "grammar_reviewed.json").read_text(encoding="utf-8"))
     reviewed.pop("_about", None)
     reviewed.pop("_rejected", None)  # reasons for turned-down sentences, for reviewers
+    translations = reviewed.pop("_translations", {})
     search_unreviewed = __import__("os").environ.get("GRAMMAR_SEARCH") == "1"
 
     # English translations (first one per Chinese sentence) and their authors.
@@ -249,7 +250,12 @@ def main() -> int:
                 # Typed form from the same readings, keeping each chunk's punctuation keys.
                 typed = " ".join(plain(t) + re.sub(r"[a-z]", "", piece)
                                  for t, piece in zip(tone_chunks, s["typed"].split(" ")))
-                out.append("\t".join([typed, "|".join(s["chunks"]), tones, s["english"], s["id"], s["eng_id"]]))
+                english_text = s["english"]
+                choice = translations.get("choose", {}).get(s["id"])
+                if choice and choice in english:
+                    english_text, s["eng_id"], s["eng_author"] = english[choice][0], choice, english[choice][1]
+                english_text = translations.get("correct", {}).get(s["id"], english_text)
+                out.append("\t".join([typed, "|".join(s["chunks"]), tones, english_text, s["id"], s["eng_id"]]))
                 credits[s["id"]] = s["author"]
                 credits[s["eng_id"]] = s["eng_author"]
         (RESOURCES / f"study-grammar-hsk{level.split('-')[0]}.tsv").write_text("\n".join(out) + "\n", encoding="utf-8")

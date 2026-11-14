@@ -5,8 +5,7 @@
    "13203871",
    "1523540",
    "3148909",
-   "1413693",
-   "382983"
+   "1413693"
   ],
   "1.2|—们、—边": [
    "13138946",
@@ -78,7 +77,7 @@
    "13167247",
    "1953193",
    "10336759",
-   "400323"
+   "333128"
   ],
   "2.4|一、二/两、三、四、五、六、七、八、九、零、十、百、半、千": [
    "382212",
@@ -119,8 +118,7 @@
   "2.6.2|都1": [
    "405210",
    "333284",
-   "343153",
-   "11508828"
+   "343153"
   ],
   "2.6.3|在、正在": [
    "843818",
@@ -131,7 +129,6 @@
    "826188"
   ],
   "2.6.4|再1": [
-   "8734952",
    "334887",
    "8698961",
    "10308337",
@@ -347,6 +344,24 @@
    "neutral tones from the HSK readings (péng you, xǐ huan, dōng xi)",
    "谁 is shéi",
    "dictionary tones for 一 and 不"
+  ],
+  "second review (DeepSeek)": [
+   "小王，你是哪年生的: really shows 是……的 (HSK 2), not the 小 prefix",
+   "他们都很喜欢: incomplete without an object on its own",
+   "我明天再做: 再 means 'then, later' here, not 'again'",
+   "有的人是好的，有的人是坏的: stiff; replaced by 有些人喜欢运动，有些人不喜欢"
   ]
+ },
+ "_translations": {
+  "_about": "English for an approved sentence: another human translation from Tatoeba (by its ID), or a corrected one where none fits. Corrections were checked by a second review (DeepSeek) and are marked as changed in CORPUS.md.",
+  "choose": {
+   "801456": "14106309"
+  },
+  "correct": {
+   "1068400": "There's nothing over here.",
+   "433552": "I'll give you five yuan.",
+   "343975": "I'd like to rest for a bit.",
+   "452577": "I want to have dinner at a restaurant."
+  }
  }
 }
