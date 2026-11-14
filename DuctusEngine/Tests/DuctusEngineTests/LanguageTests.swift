@@ -1,3 +1,5 @@
+import CryptoKit
+import Foundation
 import Testing
 @testable import DuctusEngine
 
@@ -138,5 +140,33 @@ import Testing
                 #expect(text[text.index(before: range.lowerBound)] == " ")
             }
         }
+    }
+
+    /// The corpus build filters swear words and slurs (scripts/blocklist.py).
+    /// The words are kept here as SHA-256 fingerprints, so they do not appear in the repo.
+    @Test func noSwearWordsInWordLists() throws {
+        let banned: [PracticeLanguage: Set<String>] = [
+            .english: ["2062f80093066633876b542212c496501a5e79523cc4ea9b28667dff065afd8f", "6ac3c336e4094835293a3fed8a4b5fedde1b5e2626d9838fed50693bba00af0e", "85fc17f7069acd39a5c636cd0a6530651096128da447959f5e250824857dc559", "120f6e5b4ea32f65bda68452fcfaaef06b0136e1d0e4a6f60bc3771fa0936dd6"],
+            .french: ["a0f9178f3cf701a4d0017965b80302721a133943806b48b08e24e12ab73a2992", "7b18f199984c57b21bc6f65f028d25aa4f40b443f4d5e11228fff30e8edb4955"],
+            .spanish: ["8fcdc6287be29b5f294cee970e039bf6c162e1b6709ab99907cf2b8444ae3ac4", "489a845537412def5431c0b0022bac0022dd00dadcb971bf375c862e5b1f0085"],
+            .german: ["e9f7ea7722a6ad53f72d4d850eca2f40f886af0247858a8b38c4d451ce9001bc"],
+            .italian: ["880e042d271f08cd3c456f28704702a6b0ad1c7b442f257bf40578112c8e6ffb", "66a65afbf25fc4de9327e7b1d489fe0e6ad113fbba84980c89ad83c4cfaa5b04"],
+            .portuguese: ["c3423a6895e2c35db775db665ed5dd4e058f9bf8407e7dcbe008f658d79a0f2f", "c0f9c42d0879573e1fcf23e080a8e919b33d5d428678c27a1c5695f7fd0c7b81"],
+            .dutch: ["341e7a8fb5984414cecd33b2418e08eb8095a95d187b27695554d320ec8b21ba", "dcff2e2c80221583fd4297745a42d1bdde5096a570b8475a04386da86c94e7d8"],
+            .japanese: ["1a37b2827f8762c9485b7c6cd4ebe86067071fbfd1bbfe51fd849ffcc9e9a907", "c58a847f94dcf2d93b5c88072186977a003741cc9bcc25fe97bb09d788da6a18"],
+            .chinese: ["f8ae539c6618a29cfb0a8fa662fafbc0dd48b9d2ef08c275b5c2936b488e2d99", "f6d6732bd09282844560984ced01c010e7f2e262c71d80d78f690dad83ed9e99"],
+            .korean: ["32dadec2f52cc531138b43652f817e8bb3b188673042f26af15581d93ac5878a"],
+        ]
+        for (language, fingerprints) in banned {
+            let list = try WordList.bundled(language)
+            let found = list.entries.filter { entry in
+                fingerprints.contains(Self.fingerprint((entry.native ?? entry.word).lowercased()))
+            }
+            #expect(found.isEmpty, "\(language): \(found.count) blocked word(s) in the word list")
+        }
+    }
+
+    private static func fingerprint(_ text: String) -> String {
+        SHA256.hash(data: Data(text.utf8)).map { String(format: "%02x", $0) }.joined()
     }
 }

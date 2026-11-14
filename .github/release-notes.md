@@ -1,13 +1,12 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.3.0
+## What's new in 0.3.1
 
-- **Updates from inside the app:** Ductus › Check for Updates… shows what is new, and Download and Install updates Ductus for you. Nothing is downloaded or installed until you click. Turn on automatic checks in Settings if you like (off by default).
-- **Ductus in your language:** The app itself is now in English, French, Spanish, German, Italian, Portuguese, Dutch, Japanese, Chinese and Korean. It follows your macOS language, or pick one in Settings › General, and it switches right away. These translations were made with AI, so some wording may not be completely accurate. Corrections are welcome.
-- **Color keys by finger:** An optional on-screen keyboard mode that tints each key by the finger that presses it (Settings › Keyboard).
-- **Fixes:** Collapsible sentence authors in About, and more of the app translated.
+- **Cleaner word lists:** Swear words and slurs are filtered out of the practice words and sentences in every language.
+- **Finger legend on the floating keyboard:** With "Color keys by finger" on, the floating keyboard shows which color is which finger.
+- **More of the app translated:** The finger names, durations, the unlocked-letters grid in History, race labels and more.
 
-**Updating from 0.1.0:** Version 0.1.0 cannot update itself, so download this one by hand once (below). From 0.3.0 on, updates come through the app. Keep Ductus in your Applications folder for updates to work.
+**Updating:** From 0.3.0, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 
 ## Download
 

@@ -6,6 +6,8 @@ The works are public domain in the United States. The Project Gutenberg header a
 
 ## How the lists are cleaned
 
+- Swear words and slurs are left out of the word lists, and sentences containing them are dropped, in every language. The terms come from the [List of Dirty, Naughty, Obscene, and Otherwise Bad Words](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words) (LDNOOBW, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)), downloaded when building and not shipped with the app. `scripts/blocklist.py` keeps a short allow-list of everyday words those lists also flag (Portuguese "comer", Italian "pesce", Japanese 成功, ...) and a few extra spellings. Spaced languages match whole words; Japanese, Chinese and Korean are checked word by word, with katakana and hiragana treated as the same.
+
 - Proper nouns are dropped: a word must be lowercase at least 30% of the time. German keeps nouns capitalized when they appear capitalized in at least 5 different books (names usually appear in one or two).
 - Elided words count as the word itself: "l'homme" counts as "homme" (French, Italian, Portuguese, Dutch).
 - Old spellings are mapped to modern ones where the change is simple (Spanish "fué" to "fue", German "daß" to "dass", Italian "perchè" to "perché"), and dropped otherwise.

@@ -6,6 +6,7 @@ import SwiftUI
 struct FloatingStatsBar: View {
     let practice: PracticeModel
     @Environment(\.colorScheme) private var colorScheme
+    @AppStorage(SettingsKey.fingerZones) private var fingerZones = false
 
     var body: some View {
         let _ = LanguageState.shared.locale  // redraw when the app language changes
@@ -19,6 +20,13 @@ struct FloatingStatsBar: View {
                 Item(title: "Focus", value: focus.uppercased(), detail: "")
             }
             Spacer(minLength: 0)
+            // The finger colors, when the keys are tinted by finger.
+            if fingerZones {
+                FingerLegend(compact: true)
+                    .foregroundStyle(palette.secondaryText)
+                    .alignmentGuide(.firstTextBaseline) { $0[.bottom] - 1 }
+                Spacer(minLength: 0)
+            }
             if let curriculum = practice.trainer?.curriculum {
                 Item(
                     title: "Unlocked",

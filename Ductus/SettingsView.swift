@@ -314,21 +314,6 @@ struct SentenceAuthorsSheet: View {
     }
 }
 
-/// The finger colors, as a small key.
-private struct FingerLegend: View {
-    var body: some View {
-        HStack(spacing: 12) {
-            ForEach([(KeyboardGeometry.Finger.pinky, "Pinky"), (.ring, "Ring"), (.middle, "Middle"),
-                     (.index, "Index"), (.thumb, "Thumb")], id: \.1) { finger, name in
-                HStack(spacing: 4) {
-                    RoundedRectangle(cornerRadius: 3).fill(finger.color.opacity(0.6)).frame(width: 12, height: 12)
-                    Text(name).font(.caption)
-                }
-            }
-        }
-    }
-}
-
 /// Grid of A to Z toggles. The selection is stored as a sorted string, e.g. "cvxz".
 private struct ShortcutKeyPicker: View {
     @Binding var selection: String

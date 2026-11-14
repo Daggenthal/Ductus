@@ -25,6 +25,9 @@ import sys
 import time
 import urllib.request
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from blocklist import Blocklist  # noqa: E402
+
 RESOURCES = pathlib.Path("DuctusEngine/Sources/DuctusEngine/Resources")
 URL = "https://www.gutenberg.org/cache/epub/{id}/pg{id}.txt"
 USER_AGENT = "ductus-corpus-builder"
@@ -399,6 +402,7 @@ def strip_gutenberg(text: str, book_id: int) -> str:
 
 
 def build(language: str, cache: pathlib.Path) -> None:
+    blocklist = Blocklist(language, cache)
     total = collections.Counter()
     lowercase = collections.Counter()
     capitalized_in_books = collections.Counter()
@@ -443,6 +447,12 @@ def build(language: str, cache: pathlib.Path) -> None:
             kept.append((word, count))
         elif noun_books and capitalized_in_books[word] >= noun_books:
             kept.append((word[0].upper() + word[1:], count))
+    # No swear words or slurs, in words or sentences.
+    before_words, before_sentences = len(kept), len(sentences)
+    kept = [(w, c) for w, c in kept if not blocklist.blocks_word(w)]
+    sentences = [s for s in sentences if not blocklist.blocks_text(s)]
+    print(f"blocklist removed {before_words - len(kept)} words and {before_sentences - len(sentences)} sentences",
+          file=sys.stderr)
     if language != "english":
         kept = [(w, c) for w, c in kept if books_with[w.lower()] >= MIN_BOOKS]
         accepted = spell_checked({w for w, _ in kept}, language)

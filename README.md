@@ -107,6 +107,7 @@ The app itself has no AI in it. We tested small on-device models for writing dri
 - Words and sentences in English, French, Spanish, German, Italian, Portuguese and Dutch: public-domain books from [Project Gutenberg](https://www.gutenberg.org).
 - Japanese, Chinese and Korean sentences: the contributors of [Tatoeba](https://tatoeba.org), under [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Every sentence's author is listed in the app (About Ductus, Sentence Authors) and in the `*-credits.tsv` files.
 - Tools used only to build the word lists: fugashi and unidic-lite, jieba, pypinyin and OpenCC.
+- Swear words are left out using the [List of Dirty, Naughty, Obscene, and Otherwise Bad Words](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words) (CC BY 4.0), used only when building the word lists.
 - The adaptive approach was inspired by [keybr.com](https://www.keybr.com). No code from it is used.
 
 [CORPUS.md](CORPUS.md) lists every book, source, filter and tool.

@@ -36,6 +36,9 @@ import random
 import re
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from blocklist import Blocklist  # noqa: E402
+
 RESOURCES = pathlib.Path("DuctusEngine/Sources/DuctusEngine/Resources")
 MAX_WORDS = 10_000
 MIN_COUNT = 2
@@ -315,6 +318,20 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
     rng = random.Random(42)
     rows = list(read_tatoeba(tatoeba / f"{code}_sentences_detailed.tsv"))
     counts, natives, sentences = builder(rows, rng)
+
+    # No swear words or slurs: check the native text of words and sentences.
+    blocklist = Blocklist(language, tatoeba)
+    before_words, before_sentences = len(counts), len(sentences)
+    for typed in list(counts):
+        # Several words can share a typed form ("bi"): drop only the blocked ones,
+        # and the typed form only if nothing clean is left to show for it.
+        for native in [n for n in natives[typed] if blocklist.blocks_word(n)]:
+            del natives[typed][native]
+        if not natives[typed]:
+            del counts[typed]
+    sentences = [s for s in sentences if not blocklist.blocks_text(s[3], chunks=s[3].split("|"))]
+    print(f"{language}: blocklist removed {before_words - len(counts)} words and {before_sentences - len(sentences)} sentences",
+          file=sys.stderr)
 
     kept = [(typed, n) for typed, n in counts.items() if n >= MIN_COUNT and typed.isalpha()]
     # Korean has fewer sentences on Tatoeba, so single uses are kept too.
