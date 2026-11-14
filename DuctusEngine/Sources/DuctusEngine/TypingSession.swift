@@ -31,7 +31,7 @@ public struct TypingSession: Sendable {
 
     public init(text: String, mistakeMode: MistakeMode = .stop) {
         precondition(!text.isEmpty, "Drill text must not be empty")
-        self.text = Array(text)
+        self.text = text.typingUnits
         self.mistakeMode = mistakeMode
     }
 

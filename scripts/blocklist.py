@@ -23,7 +23,7 @@ CODES = {
     "english": "en", "french": "fr", "spanish": "es", "german": "de", "italian": "it",
     "portuguese": "pt", "dutch": "nl", "japanese": "ja", "chinese": "zh", "korean": "ko",
     "arabic": "ar", "russian": "ru", "turkish": "tr", "polish": "pl", "czech": "cs", "hungarian": "hu",
-    "persian": "fa",
+    "persian": "fa", "hindi": "hi",
     # LDNOOBW has no Greek or Hebrew list: those use only the EXTRA words below.
     "greek": None, "hebrew": None,
     # LDNOOBW has no Ukrainian list; the Russian one covers most of the same words.
@@ -56,6 +56,8 @@ ALLOW = {
 EXTRA = {
     # Base64 so the words do not show up when reading the repo. Kana folding
     # covers the katakana spellings too.
+    # LDNOOBW's Hindi list is in Latin letters (Hinglish), so Devanagari needs its own.
+    "hindi": {base64.b64decode(w).decode() for w in ("4KSa4KWC4KSk4KS/4KSv4KS+", "4KSa4KWB4KSk4KS/4KSv4KS+", "4KSt4KWL4KS44KSh4KS84KWA", "4KSt4KWL4KS44KSh4KS84KWA4KSV4KWH", "4KSu4KS+4KSm4KSw4KSa4KWL4KSm", "4KSs4KS54KSo4KSa4KWL4KSm", "4KSt4KWH4KSo4KSa4KWL4KSm", "4KSw4KSC4KSh4KWA", "4KSw4KSj4KWN4KSh4KWA", "4KS54KSw4KS+4KSu4KWA", "4KS54KSw4KS+4KSu4KSc4KS84KS+4KSm4KS+", "4KS54KSw4KS+4KSu4KSc4KS+4KSm4KS+", "4KS54KSw4KS+4KSu4KSc4KS84KS+4KSm4KWH", "4KSX4KS+4KSC4KSh4KWC", "4KSX4KS+4KSC4KSh", "4KSX4KS+4KSB4KSh", "4KSy4KWM4KSh4KS84KS+", "4KSy4KSC4KSh", "4KSa4KWC4KSk", "4KSV4KSu4KWA4KSo4KS+", "4KSV4KSu4KWA4KSo4KWH", "4KSt4KSh4KS84KS14KS+", "4KSV4KWB4KSk4KS/4KSv4KS+", "4KSb4KS/4KSo4KS+4KSy",)},
     "greek": {base64.b64decode(w).decode() for w in ("zrzOsc67zqzOus6xz4I=", "zrzOsc67zqzOus6x", "zrzOsc67zqzOus61z4I=", "z4DOv8+Fz4TOrM69zrE=", "z4DOv8+Fz4TOrM69zrXPgg==", "zrPOsc68z44=", "zrPOsc68zq7Pg86/z4U=", "zrPOsc68zrnPjM67zrc=", "zrrOsc+BzrnPjM67zrc=", "zrrOsc+BzrnPjM67zrfPgg==", "z4DOv8+Nz4PPhM63z4I=", "z4DOv8+Nz4PPhM63", "zrHPgc+Hzq/OtM65", "zrHPgc+Hzq/OtM65zrE=", "zrzOv8+Fzr3Orw==", "z4DOv8+Nz4TPg86x", "z4POus6xz4TOrA==",)},
     "hebrew": {base64.b64decode(w).decode() for w in ("15bXldeg15Q=", "15bXldeg15XXqg==", "16nXqNee15XXmNeU", "16nXqNee15XXmNeV16o=", "157XoNeZ15DXpw==", "157XoNeZ15DXp9eZ150=", "15vXldeh15nXqg==", "15bXmdeV158=", "15zXlteZ15nXnw==", "157XlteT15nXmdef", "15fXqNeQ", "15vXldep15k=",)},
     "ukrainian": {base64.b64decode(w).decode() for w in ("0LrRg9GA0LLQsA==", "0YHRgNCw0LrQsA==", "0YXRg9C50L3Rjw==",)},
@@ -74,7 +76,9 @@ ARABIC_PREFIXES = ("", "و", "ف", "ب", "ل", "ال", "وال", "بال", "فا
 HEBREW_PREFIXES = ("", "ו", "ה", "ב", "ל", "מ", "ש", "כ", "וה", "וב", "ול", "שה", "שב", "מה", "כש")
 PREFIXES = {"arabic": ARABIC_PREFIXES, "persian": ("",), "hebrew": HEBREW_PREFIXES}
 
-WORD = re.compile(r"[^\W\d_]+(?:'[^\W\d_]+)*")
+# A letter, or a Devanagari letter or sign (vowel signs are marks, not word characters, to \w).
+_L = r"(?:[^\W\d_]|[\u0900-\u0963\u0970-\u097F])"
+WORD = re.compile(_L + "+(?:'" + _L + "+)*")
 
 
 class Blocklist:

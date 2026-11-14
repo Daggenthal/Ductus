@@ -25,11 +25,12 @@ import Testing
         case .hungarian: "aábcdeéfghiíjklmnoóöőprstuúüűvz"
         case .greek: "αβγδεζηθικλμνξοπρσςτυφχψωάέήίόύώ"
         case .hebrew: "אבגדהוזחטיכךלמםנןסעפףצץקרשת"
+        case .hindi: "कखगचजटडतदनपबमयरलवसहािीुेो्"
         case .persian: "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی"
         case .japanese, .chinese: "abdeghikmnorstuyz"
         default: "abcdefghilmnopqrstuvz"
         }
-        #expect(Set(core).isSubset(of: letters))
+        #expect(Set(core.typingUnits).isSubset(of: letters))
     }
 
     @Test func codesMatch() {
@@ -175,6 +176,7 @@ import Testing
             .hungarian: ["c15669d7810d9b2555fc6376557692db6c8baf82462c35bcbcbfcf053d59d0e9", "f76e5b875e053a415835d0d06d6be080601998fce946e0036a3ce87e90d4709e", "0131f813bddf1df6b7601abe7ca02bd3bb20890f3ac9eb74139ea7fcf2dfa7a8"],
             .greek: ["48ec206e1619a4fdb5912230fc96504c6f5f1d27bcbc7cc7e4970a9cbcec521d", "6cf7ce7b8c1c9e9a3c4a13d0fd46bf4ab8db41e3606dd50adf89bdd489f3e0b2", "369c311a7de62f1898509314962c2ccabaf285198bdb33be342e196b61db3f00"],
             .hebrew: ["44f5b83bb0cecee75d6b5f7ae1b20a6b655c0026e70c11d798160b1a908b85f5", "2c130c7cd105bf547e6cffe54259671e9090f9eaa4b1154f87125e7b16837be9", "be179b77dd7ea7e35877b9808cc4b90363c419df3199642c16435e52a7875fb9"],
+            .hindi: ["a5364f20cf88e6db8bd9ba29e7e8e13c3422628afa025a273e5e8a3f47020dc6", "8cf60e9a2d48700efa02dd97c2bd85b7221f7d5df0bca3ac9426b70a9c999f49", "8ce21ac2c9584fef290f7e9e59f8b163d2e9f775b272e356f1cd080374c62219"],
             .persian: ["9ba38f42ac90ca08a0cc316e5cd7028522febbec8980af4e97e3dc43a6fbb209", "c060b1520a946c5a6656c8da5e18a919d670fbae6cc80e812af62993194fa3ca", "51dc1772f691e20363f9b4ccbc5e595bac1491cd3071be534c496b885a9092e7"],
         ]
         for (language, fingerprints) in banned {
@@ -207,6 +209,18 @@ import Testing
         #expect(Character("İ").keyLetter == "i")
         #expect(PracticeLanguage(code: "iw") == .hebrew && PracticeLanguage.hebrew.isRightToLeft)
         #expect(PracticeLanguage.greek.questionMark == ";")
+    }
+
+    @Test func devanagariIsTypedOneKeyAtATime() {
+        // कि is क then the vowel sign ि; क्ष is क, virama, ष.
+        #expect("कि".typingUnits == ["क", "ि"])
+        #expect("क्ष".typingUnits.count == 3)
+        #expect("hé".typingUnits == ["h", "é"])  // everything else stays whole
+        #expect(Character("ि").isTypingLetter && Character("्").isTypingLetter && !Character("।").isTypingLetter)
+        let session = TypingSession(text: "किताब")
+        #expect(session.text.count == 5)
+        let words = WordList([("किताब", 3)])
+        #expect(words.entries.first?.letters == Set("किताब".typingUnits))
     }
 
     @Test func newLanguageCodes() {

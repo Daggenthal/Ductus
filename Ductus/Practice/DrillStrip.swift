@@ -40,7 +40,8 @@ struct DrillStrip: View {
     private func offset(width: CGFloat, rightToLeft: Bool) -> CGFloat {
         let window = visibleRange
         let typed = session.text[window.lowerBound..<min(session.position, window.upperBound)]
-        guard rightToLeft else { return width * anchor - TextMeasure.width(of: typed, size: fontSize) }
+        // Shaped widths: Devanagari vowel signs and Arabic letters change width with their neighbors.
+        guard rightToLeft else { return width * anchor - TextMeasure.shapedWidth(of: typed, size: fontSize) }
         let all = session.text[window]
         return width * (1 - anchor) + TextMeasure.shapedWidth(of: typed, size: fontSize)
             - TextMeasure.shapedWidth(of: all, size: fontSize)

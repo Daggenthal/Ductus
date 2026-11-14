@@ -1,10 +1,10 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.5.0
+## What's new in 0.6.0
 
-- **Seven more languages:** Turkish, Polish, Czech, Hungarian, Greek, Hebrew and Persian, with real words and sentences, picked automatically from your keyboard layout. Hebrew and Persian run right to left.
-- **The app in all seven:** Ductus itself is now available in 20 languages.
-- **Fix:** Russian, Ukrainian and Arabic drills no longer show stray single letters as words.
+- **Hindi:** Practice Hindi on the Devanagari layouts (InScript and Devanagari QWERTY), with real words and sentences. Each key counts on its own, so कि is practiced as क then ि, and vowel signs and the virama unlock like letters.
+- **The app in Hindi.**
+- **Letter row:** The row of letters in Practice now scrolls to keep the next letter in view, for languages with many letters.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

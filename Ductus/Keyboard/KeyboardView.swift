@@ -1,3 +1,4 @@
+import DuctusEngine
 import SwiftUI
 
 /// On-screen keyboard drawn from the active layout.
@@ -114,7 +115,7 @@ struct KeyboardView: View {
     private func isLocked(_ key: KeyboardGeometry.Key) -> Bool {
         guard let unlockedLetters, !keyboard.commandHeld, key.isCharacterKey,
               let label = keyboard.character(for: key.code), label.count == 1,
-              let letter = label.first, letter.isLetter
+              let letter = label.first, letter.isTypingLetter
         else { return false }
         return !unlockedLetters.contains(Character(label.lowercased()))
     }

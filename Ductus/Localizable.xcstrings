@@ -57,6 +57,12 @@
             "value" : "%1$@ מתוך %2$@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$@ में से %1$@"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
             "value" : "הדגשת קיצורי %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ शॉर्टकट चमक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -300,6 +312,12 @@
           }
         },
         "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@: %@"
@@ -429,6 +447,12 @@
             "value" : "%@: %lld כותבים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %lld लेखक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,6 +572,12 @@
           }
         },
         "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
@@ -677,6 +707,12 @@
             "value" : "%lld תווים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld अक्षर"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -799,6 +835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld ימים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld दिन"
           }
         },
         "hu" : {
@@ -925,6 +967,12 @@
             "value" : "%lld ש׳ %lld דק׳"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld घंटे %lld मिनट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1047,6 +1095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld דק׳"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld मिनट"
           }
         },
         "hu" : {
@@ -1173,6 +1227,12 @@
             "value" : "%lld דקות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld मिनट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1295,6 +1355,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld מתוך %2$lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$lld में से %1$lld"
           }
         },
         "hu" : {
@@ -1421,6 +1487,12 @@
             "value" : "%1$lld מתוך %2$lld דק׳"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$lld में से %1$lld मिनट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1543,6 +1615,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld שנ׳"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld सेकंड"
           }
         },
         "hu" : {
@@ -1669,6 +1747,12 @@
             "value" : "%lld WPM"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld WPM"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1788,6 +1872,12 @@
           }
         },
         "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld%%"
@@ -1918,6 +2008,12 @@
             "value" : "%lld שנ׳"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld से."
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2042,6 +2138,12 @@
             "value" : "© 2026 Daggenthal. חינמי וקוד פתוח לפי רישיון MIT."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "© 2026 Daggenthal। MIT लाइसेंस के तहत मुफ़्त और ओपन सोर्स।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2161,6 +2263,12 @@
           }
         },
         "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘N"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "⌘N"
@@ -2290,6 +2398,12 @@
             "value" : "יום אחד"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 दिन"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2412,6 +2526,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אות QWERTY עמומה בפינת כל מקש, שמראה מה מודפס על המקלדת האמיתית שלך."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हर की के कोने में एक हल्का QWERTY अक्षर, जो दिखाता है कि आपके असली कीबोर्ड पर क्या छपा है।"
           }
         },
         "hu" : {
@@ -2538,6 +2658,12 @@
             "value" : "מורה הקלדה ללימוד פריסת מקלדת חדשה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया कीबोर्ड लेआउट सीखने के लिए एक टाइपिंग ट्यूटर।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2660,6 +2786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "נותרו כ-%lld דק׳"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लगभग %lld मिनट बाकी"
           }
         },
         "hu" : {
@@ -2786,6 +2918,12 @@
             "value" : "נותרו כ-%lld שנ׳"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लगभग %lld सेकंड बाकी"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2908,6 +3046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אודות וקרדיטים…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिचय और आभार…"
           }
         },
         "hu" : {
@@ -3034,6 +3178,12 @@
             "value" : "אודות Ductus"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus के बारे में"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3156,6 +3306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "דיוק"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सटीकता"
           }
         },
         "hu" : {
@@ -3282,6 +3438,12 @@
             "value" : "הוסף"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जोड़ें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3404,6 +3566,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כל האותיות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी अक्षर"
           }
         },
         "hu" : {
@@ -3530,6 +3698,12 @@
             "value" : "תרגיל קל רק עם המקשים ששלטת בהם, כדי להתחיל סשן"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सत्र शुरू करने के लिए एक आसान अभ्यास, केवल उन कीज़ के साथ जिनमें आप माहिर हो चुके हैं"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3652,6 +3826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ANSI (ארה״ב)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANSI (अमेरिका)"
           }
         },
         "hu" : {
@@ -3778,6 +3958,12 @@
             "value" : "שפת היישום"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐप की भाषा"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3900,6 +4086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מראה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रूप"
           }
         },
         "hu" : {
@@ -4026,6 +4218,12 @@
             "value" : "לכל היותר פעם ביום, Ductus שואל את GitHub אם יש גרסה חדשה יותר ומודיע לך. עדכונים מורדים ומותקנים רק כשלוחצים על ״הורד והתקן״. שום מידע עליך לא נשלח."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दिन में अधिकतम एक बार, Ductus GitHub से पूछता है कि क्या कोई नया संस्करण है और आपको बताता है। अपडेट केवल तभी डाउनलोड और इंस्टॉल होते हैं जब आप \"डाउनलोड और इंस्टॉल करें\" पर क्लिक करते हैं। आपके बारे में कुछ भी नहीं भेजा जाता।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4148,6 +4346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אוטומטי (%@)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्वचालित (%@)"
           }
         },
         "hu" : {
@@ -4274,6 +4478,12 @@
             "value" : "זמן ממוצע"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "औसत समय"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4396,6 +4606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הטוב ביותר"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सर्वश्रेष्ठ"
           }
         },
         "hu" : {
@@ -4522,6 +4738,12 @@
             "value" : "שיא %lld"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सर्वश्रेष्ठ %lld"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4644,6 +4866,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "התרגיל הטוב ביותר"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सर्वश्रेष्ठ अभ्यास"
           }
         },
         "hu" : {
@@ -4770,6 +4998,12 @@
             "value" : "המרוץ הטוב ביותר"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सर्वश्रेष्ठ रेस"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4892,6 +5126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לפי יום"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दिन के अनुसार"
           }
         },
         "hu" : {
@@ -5018,6 +5258,12 @@
             "value" : "ביטול"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5140,6 +5386,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אותיות רישיות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बड़े अक्षर"
           }
         },
         "hu" : {
@@ -5266,6 +5518,12 @@
             "value" : "תווים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अक्षर"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5388,6 +5646,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תווים שלא ניתן להקליד הושמטו: %lld."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जो अक्षर टाइप नहीं किए जा सकते, उन्हें छोड़ दिया गया: %lld।"
           }
         },
         "hu" : {
@@ -5514,6 +5778,12 @@
             "value" : "בדוק אם יש עדכונים באופן אוטומטי"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट के लिए अपने आप जाँचें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5636,6 +5906,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "בדוק אם יש עדכונים…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट के लिए जाँचें…"
           }
         },
         "hu" : {
@@ -5762,6 +6038,12 @@
             "value" : "בדוק עכשיו"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी जाँचें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5884,6 +6166,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "בודק אם יש עדכונים…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट के लिए जाँच हो रही है…"
           }
         },
         "hu" : {
@@ -6010,6 +6298,12 @@
             "value" : "נקה יומן"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉग साफ़ करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6132,6 +6426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לחיצות עוברות דרך המקלדת הצפה אל מה שנמצא מתחתיה. כשאפשרות זו פעילה, לא ניתן לגרור אותה או להקליד בה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्लिक फ़्लोटिंग कीबोर्ड से होकर उसके नीचे की चीज़ तक पहुँचते हैं। जब तक यह चालू है, आप इसे खींच नहीं सकते और न ही इसमें टाइप कर सकते हैं।"
           }
         },
         "hu" : {
@@ -6258,6 +6558,12 @@
             "value" : "סגור"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6380,6 +6686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צבע מקשים לפי אצבע"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उंगली के अनुसार कीज़ को रंगें"
           }
         },
         "hu" : {
@@ -6506,6 +6818,12 @@
             "value" : "לא ניתן לבדוק אם יש עדכונים: %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट की जाँच नहीं हो सकी: %@"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6628,6 +6946,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא ניתן היה לסיים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा नहीं हो सका"
           }
         },
         "hu" : {
@@ -6754,6 +7078,12 @@
             "value" : "לא ניתן לטעון את רשימת המילים: %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द सूची लोड नहीं हो सकी: %@"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6876,6 +7206,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קרדיטים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आभार"
           }
         },
         "hu" : {
@@ -7002,6 +7338,12 @@
             "value" : "מירכאות מעוגלות, קווים ארוכים ותווים דומים מוחלפים במקשים שניתן להקליד. תווים שהפריסה שלך לא יכולה להקליד מושמטים. יפנית, סינית וקוריאנית מוקלדות ב-romaji, ב-pinyin או ב-2-Set, והמקור מוצג. הטקסט נשמר רק ב-Mac הזה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घुमावदार उद्धरण चिह्न, लंबे डैश और ऐसे ही चिह्न उन कीज़ में बदल दिए जाते हैं जिन्हें आप टाइप कर सकते हैं। जो अक्षर आपका लेआउट टाइप नहीं कर सकता, उन्हें छोड़ दिया जाता है। जापानी, चीनी और कोरियाई को romaji, pinyin या 2-Set पर टाइप किया जाता है, और मूल पाठ ऊपर दिखाया जाता है। पाठ केवल इसी Mac पर सहेजा जाता है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7124,6 +7466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "יעד יומי"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दैनिक लक्ष्य"
           }
         },
         "hu" : {
@@ -7250,6 +7598,12 @@
             "value" : "היעד היומי הושג 🎉"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दैनिक लक्ष्य पूरा हुआ 🎉"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7372,6 +7726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "יעד יומי. גם זמן ההקלדה בתרגילים וגם מרוצים נספרים."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दैनिक लक्ष्य। अभ्यास में टाइपिंग का समय और रेस, दोनों गिने जाते हैं।"
           }
         },
         "hu" : {
@@ -7498,6 +7858,12 @@
             "value" : "כהה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डार्क"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7620,6 +7986,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ימי תרגול"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास के दिन"
           }
         },
         "hu" : {
@@ -7746,6 +8118,12 @@
             "value" : "ניפוי באגים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डीबग"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7868,6 +8246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מצב ניפוי באגים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डीबग मोड"
           }
         },
         "hu" : {
@@ -7994,6 +8378,12 @@
             "value" : "מחק"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिलीट करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8116,6 +8506,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תצוגה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिस्प्ले"
           }
         },
         "hu" : {
@@ -8242,6 +8638,12 @@
             "value" : "החזר את המקלדת לחלון הראשי"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड को वापस मुख्य विंडो में रखें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8364,6 +8766,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "סיום"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो गया"
           }
         },
         "hu" : {
@@ -8490,6 +8898,12 @@
             "value" : "הורד והתקן"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डाउनलोड और इंस्टॉल करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8612,6 +9026,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "גודל ההורדה: %@."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डाउनलोड का आकार: %@।"
           }
         },
         "hu" : {
@@ -8738,6 +9158,12 @@
             "value" : "מוריד את Ductus %@…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus %@ डाउनलोड हो रहा है…"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8860,6 +9286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תרגיל %lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास %lld"
           }
         },
         "hu" : {
@@ -8986,6 +9418,12 @@
             "value" : "תרגילים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9110,6 +9548,12 @@
             "value" : "תרגילים שהושלמו"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरे किए गए अभ्यास"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9229,6 +9673,12 @@
           }
         },
         "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ductus"
@@ -9358,6 +9808,12 @@
             "value" : "Ductus %@ זמין"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus %@ उपलब्ध है"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9480,6 +9936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ductus מוריד את העדכון, בודק אותו, ואז נסגר ונפתח מחדש בגרסה החדשה. ההתקדמות וההגדרות שלך נשמרות."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus अपडेट डाउनलोड करता है, उसकी जाँच करता है, फिर बंद होकर नए संस्करण के रूप में दोबारा खुलता है। आपकी प्रगति और सेटिंग्ज़ बनी रहती हैं।"
           }
         },
         "hu" : {
@@ -9607,6 +10069,12 @@
             "value" : "היסטוריית Ductus"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus इतिहास"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9729,6 +10197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ductus מעודכן"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus अप टू डेट है"
           }
         },
         "hu" : {
@@ -9855,6 +10329,12 @@
             "value" : "Ductus ייסגר וייפתח מחדש בעוד רגע. ההתקדמות וההגדרות שלך נשמרות."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus थोड़ी देर में बंद होकर दोबारा खुलेगा। आपकी प्रगति और सेटिंग्ज़ बनी रहती हैं।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9977,6 +10457,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כל סשן מתחיל בתרגיל קל אחד רק עם מקשים ששלטת בהם. סשן מתחיל בהפעלה או אחרי הפסקה של 10 דקות."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हर सत्र एक आसान अभ्यास से शुरू होता है, जिसमें केवल वे कीज़ होती हैं जिनमें आप माहिर हो चुके हैं। सत्र ऐप खुलने पर या 10 मिनट के विराम के बाद शुरू होता है।"
           }
         },
         "hu" : {
@@ -10103,6 +10589,12 @@
             "value" : "שגיאות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्रुटियाँ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10225,6 +10717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כל מקש פתוח חייב להגיע לשניהם לפני שהאות הבאה נפתחת. הנתונים שלך נשמרים כשמשנים אותם."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगला अक्षर अनलॉक होने से पहले हर अनलॉक की गई की को दोनों लक्ष्यों तक पहुँचना होगा। इन्हें बदलने पर आपके आँकड़े बने रहते हैं।"
           }
         },
         "hu" : {
@@ -10351,6 +10849,12 @@
             "value" : "ייצא היסטוריה…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इतिहास एक्सपोर्ट करें…"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10473,6 +10977,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "עמעם מקשים ששלטת בהם"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जिन कीज़ में आप माहिर हैं, उन्हें धुंधला करें"
           }
         },
         "hu" : {
@@ -10599,6 +11109,12 @@
             "value" : "סיים תרגיל וההתקדמות שלך תופיע כאן."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक अभ्यास पूरा करें और आपकी प्रगति यहाँ दिखेगी।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10721,6 +11237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "סיים מרוץ כדי לקבוע שיא להתחרות מולו."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक रेस पूरी करें, ताकि आपके पास मुकाबला करने के लिए एक सर्वश्रेष्ठ स्कोर हो।"
           }
         },
         "hu" : {
@@ -10848,6 +11370,12 @@
             "value" : "הסתיים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा हुआ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10970,6 +11498,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג את המקלדת בחלון צף משלה (⌘⇧K)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड को उसकी अपनी विंडो में फ़्लोट करें (⌘⇧K)"
           }
         },
         "hu" : {
@@ -11096,6 +11630,12 @@
             "value" : "לחיצות עוברות (מקלדת צפה)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग क्लिक-थ्रू"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11218,6 +11758,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אטימות המקלדת הצפה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग अपारदर्शिता"
           }
         },
         "hu" : {
@@ -11344,6 +11890,12 @@
             "value" : "מיקוד"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोकस"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11466,6 +12018,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מקש מיקוד"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोकस की"
           }
         },
         "hu" : {
@@ -11592,6 +12150,12 @@
             "value" : "לכל שאר השפות, מאת התורמים של Tatoeba, בשימוש לפי CC BY 2.0 FR. סימני הניקוד הוסרו מערבית, פרסית ועברית, והערבית כוללת ערבית מצרית. יפנית וסינית מתועתקות לאותיות לטיניות ומחולקות לקטעים (הסינית הומרה לסינית מפושטת), וקוריאנית מותאמת למקשי 2-Set."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाकी सभी भाषाओं के लिए, Tatoeba के योगदानकर्ताओं द्वारा, CC BY 2.0 FR के तहत उपयोग किए गए। अरबी, फ़ारसी और हिब्रू से स्वर चिह्न हटा दिए गए हैं, और अरबी में मिस्री अरबी भी शामिल है। जापानी और चीनी को रोमन लिपि में बदलकर टुकड़ों में बाँटा गया है (चीनी को सरलीकृत में बदला गया है), और कोरियाई को 2-Set कीज़ के साथ जोड़ा गया है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11714,6 +12278,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מספרים בנחלת הכלל ב-Project Gutenberg, באנגלית, צרפתית, ספרדית, גרמנית, איטלקית, פורטוגזית והולנדית."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project Gutenberg की पब्लिक डोमेन किताबों से, अंग्रेज़ी, फ़्रेंच, स्पेनिश, जर्मन, इतालवी, पुर्तगाली और डच में।"
           }
         },
         "hu" : {
@@ -11840,6 +12410,12 @@
             "value" : "fugashi ו-unidic-lite (MIT, UniDic לפי BSD) לקריאות ביפנית, jieba (MIT) למילים בסינית, pypinyin (MIT) ל-pinyin, ו-OpenCC (Apache 2.0) לסינית מפושטת. אף אחד מהם לא כלול ביישום. הרשימה המלאה של הספרים והכלים נמצאת ב-CORPUS.md בקוד המקור."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जापानी उच्चारण के लिए fugashi और unidic-lite (MIT, UniDic BSD के तहत), चीनी शब्दों के लिए jieba (MIT), pinyin के लिए pypinyin (MIT), और सरलीकृत चीनी के लिए OpenCC (Apache 2.0)। इनमें से कोई भी ऐप के साथ नहीं आता। किताबों और टूल की पूरी सूची सोर्स कोड में CORPUS.md में है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11962,6 +12538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כללי"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य"
           }
         },
         "hu" : {
@@ -12088,6 +12670,12 @@
             "value" : "GitHub לא ענה כמצופה. נסה שוב בעוד זמן מה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub ने अपेक्षित जवाब नहीं दिया। थोड़ी देर बाद फिर से कोशिश करें।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12210,6 +12798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "היסטוריה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इतिहास"
           }
         },
         "hu" : {
@@ -12336,6 +12930,12 @@
             "value" : "בקליגרפיה, ה-ductus הוא הסדר, הכיוון והקצב של המשיכות שיוצרות אות. זה זיכרון שריר, ואת זה Ductus מאמן."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सुलेख में, ductus उन रेखाओं का क्रम, दिशा और लय है जिनसे एक अक्षर बनता है। यही मसल मेमोरी है, और Ductus इसी का अभ्यास कराता है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12458,6 +13058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "בתהליך"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जारी है"
           }
         },
         "hu" : {
@@ -12584,6 +13190,12 @@
             "value" : "אצבע"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तर्जनी"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12706,6 +13318,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מתקין את Ductus %@…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus %@ इंस्टॉल हो रहा है…"
           }
         },
         "hu" : {
@@ -12832,6 +13450,12 @@
             "value" : "ISO (אירופה)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ISO (यूरोप)"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12954,6 +13578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "טקסט ביפנית ובסינית שמדביקים בכרטיסייה ״טקסט״ נקרא בעזרת כלי הטקסט המובנים ב-macOS."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ टैब में चिपकाई गई जापानी और चीनी को macOS में बने टेक्स्ट टूल से पढ़ा जाता है।"
           }
         },
         "hu" : {
@@ -13080,6 +13710,12 @@
             "value" : "JIS (יפן)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JIS (जापान)"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13202,6 +13838,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "פשוט התחל להקליד. בטעות, הסמן נשאר במקומו עד שתקיש על המקש הנכון."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बस टाइप करना शुरू करें। गलती होने पर कर्सर तब तक वहीं रुका रहता है जब तक आप सही की नहीं दबाते।"
           }
         },
         "hu" : {
@@ -13328,6 +13970,12 @@
             "value" : "פשוט התחל להקליד. ההקשות שלך נספרות בתרגול, כמו במרוצים."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बस टाइप करना शुरू करें। रेस की तरह, आपकी कीज़ अभ्यास में गिनी जाती हैं।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13450,6 +14098,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "המשך, תקן עם מחיקה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जारी रखें, Backspace से सुधारें"
           }
         },
         "hu" : {
@@ -13576,6 +14230,12 @@
             "value" : "שמור מעברי שורה (לקוד ולשירים)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति विराम बनाए रखें (कोड और कविताओं के लिए)"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13698,6 +14358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שומר את המילים והמקשים קרובים זה לזה כדי שהעיניים לא יצטרכו לנדוד."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्दों और कीज़ को पास-पास रखता है, ताकि आपकी आँखों को दूर न जाना पड़े।"
           }
         },
         "hu" : {
@@ -13824,6 +14490,12 @@
             "value" : "מקש"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "की"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13946,6 +14618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צלילי הקשה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "की क्लिक"
           }
         },
         "hu" : {
@@ -14072,6 +14750,12 @@
             "value" : "מקלדת"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14194,6 +14878,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "סוג מקלדת"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड का प्रकार"
           }
         },
         "hu" : {
@@ -14320,6 +15010,12 @@
             "value" : "המקשים שעולים לך הכי הרבה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जिन कीज़ पर आपका सबसे ज़्यादा समय जाता है"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14442,6 +15138,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מקשים שדורשים עבודה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जिन कीज़ पर काम करना है"
           }
         },
         "hu" : {
@@ -14568,6 +15270,12 @@
             "value" : "התוויות מתעמעמות על מקשים שעומדים ביעדים שלך, כך שתסתכל למטה פחות. המקש הבא עדיין מסומן במסגרת."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जो कीज़ आपके लक्ष्य पूरे करती हैं, उनके लेबल धुंधले हो जाते हैं, ताकि आपको नीचे कम देखना पड़े। अगली की की रूपरेखा फिर भी दिखती है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14690,6 +15398,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ממוצע 10 אחרונים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछले 10 का औसत"
           }
         },
         "hu" : {
@@ -14816,6 +15530,12 @@
             "value" : "50 התרגילים האחרונים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछले 50 अभ्यास"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14938,6 +15658,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "נבדק לאחרונה %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछली जाँच: %@"
           }
         },
         "hu" : {
@@ -15064,6 +15790,12 @@
             "value" : "התרגיל האחרון"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछला अभ्यास"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15186,6 +15918,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "החלק האחרון"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंतिम भाग"
           }
         },
         "hu" : {
@@ -15312,6 +16050,12 @@
             "value" : "פריסה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लेआउट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15434,6 +16178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אורך"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबाई"
           }
         },
         "hu" : {
@@ -15560,6 +16310,12 @@
             "value" : "בהיר"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15684,6 +16440,12 @@
             "value" : "הדלק את המקלדת הצפה ביישומים אחרים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दूसरी ऐप्स में फ़्लोटिंग कीबोर्ड को रोशन करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15806,6 +16568,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מהירות ודיוק בזמן אמת, התרגיל האחרון, מקש המיקוד שלך והתקדמות הפתיחה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइव गति और सटीकता, पिछला अभ्यास, आपकी फ़ोकस की और अनलॉक की प्रगति।"
           }
         },
         "hu" : {
@@ -15933,6 +16701,12 @@
             "value" : "נעול"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16055,6 +16829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "רושם כל מה ש-Ductus עושה (טקסט התרגילים, פתיחות, שמירות, שגיאות) בקובץ ב-Mac הזה. מקשים מוקלדים לעולם לא נרשמים. מקטע זה מוצג כשמחזיקים את Option בזמן פתיחת ההגדרות."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus जो कुछ भी करता है (अभ्यास का पाठ, अनलॉक, सहेजना, त्रुटियाँ), उसे इस Mac पर एक फ़ाइल में लॉग करता है। टाइप की गई कीज़ कभी लॉग नहीं होतीं। यह अनुभाग तब दिखता है जब आप सेटिंग्ज़ खोलते समय Option दबाए रखते हैं।"
           }
         },
         "hu" : {
@@ -16181,6 +16961,12 @@
             "value" : "אמה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मध्यमा"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16303,6 +17089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "החטאות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चूकें"
           }
         },
         "hu" : {
@@ -16429,6 +17221,12 @@
             "value" : "צליל טעות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गलती की ध्वनि"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16551,6 +17349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "טעויות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गलतियाँ"
           }
         },
         "hu" : {
@@ -16677,6 +17481,12 @@
             "value" : "רישיון MIT"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MIT लाइसेंस"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16799,6 +17609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קודם העבר את Ductus לתיקיית ״יישומים״, פתח אותו משם ונסה שוב. macOS לא מאפשר ליישומים לעדכן את עצמם כשהם פועלים מתוך ״הורדות״."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहले Ductus को अपने ऐप्लिकेशन फ़ोल्डर में ले जाएँ, फिर उसे वहीं से खोलें और दोबारा कोशिश करें। जब ऐप्स डाउनलोड फ़ोल्डर से चल रही हों, तब macOS उन्हें खुद को अपडेट करने नहीं देता।"
           }
         },
         "hu" : {
@@ -16925,6 +17741,12 @@
             "value" : "דורש את ההרשאה ״ניטור קלט״. Ductus משתמש רק במידע אילו מקשים לחוצים כדי להדליק אותם. שום דבר לא נשמר או נשלח לשום מקום, ו-macOS חוסם זאת בשדות סיסמה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके लिए इनपुट मॉनिटरिंग अनुमति चाहिए। Ductus केवल यह देखता है कि कौन सी कीज़ दबी हैं, ताकि उन्हें रोशन कर सके। कुछ भी सहेजा या कहीं भेजा नहीं जाता, और macOS पासवर्ड फ़ील्ड में इसे रोक देता है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17047,6 +17869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "דורש עבודה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सुधार चाहिए"
           }
         },
         "hu" : {
@@ -17173,6 +18001,12 @@
             "value" : "שיא חדש!"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया सर्वश्रेष्ठ!"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17295,6 +18129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מקש חדש נפתח: %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई की अनलॉक हुई: %@"
           }
         },
         "hu" : {
@@ -17421,6 +18261,12 @@
             "value" : "מרוץ חדש"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई रेस"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17545,6 +18391,12 @@
             "value" : "טקסט חדש"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया पाठ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17667,6 +18519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "טקסט חדש…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया पाठ…"
           }
         },
         "hu" : {
@@ -17794,6 +18652,12 @@
             "value" : "הבא %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगला %@"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17916,6 +18780,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "התרגיל, המרוץ או החלק הבא"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगला अभ्यास, रेस या भाग"
           }
         },
         "hu" : {
@@ -18042,6 +18912,12 @@
             "value" : "אין עדיין היסטוריה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी कोई इतिहास नहीं"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18164,6 +19040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אין עדיין מספיק תרגול."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी पर्याप्त अभ्यास नहीं हुआ है।"
           }
         },
         "hu" : {
@@ -18290,6 +19172,12 @@
             "value" : "אין עדיין מספיק משפטים שמשתמשים רק באותיות הפתוחות שלך (%1$lld מתוך %2$lld נדרשים). עד אז התרגול נשאר על מילים."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी पर्याप्त वाक्य केवल आपके अनलॉक किए गए अक्षरों का उपयोग नहीं करते (%2$lld की ज़रूरत है, %1$lld हैं)। तब तक अभ्यास शब्दों पर ही रहेगा।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18412,6 +19300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא עכשיו"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी नहीं"
           }
         },
         "hu" : {
@@ -18538,6 +19432,12 @@
             "value" : "לא ניתן להקליד שום דבר מהטקסט הזה בפריסה זו."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उस पाठ में से कुछ भी इस लेआउट पर टाइप नहीं किया जा सकता।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18660,6 +19560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא ניתן היה לקרוא שום דבר מהטקסט הזה להקלדה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उस पाठ में से टाइपिंग के लिए कुछ भी नहीं पढ़ा जा सका।"
           }
         },
         "hu" : {
@@ -18786,6 +19692,12 @@
             "value" : "שום דבר לא בלט. מרוץ נקי."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुछ खास नहीं दिखा। साफ़ रेस।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18908,6 +19820,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "עכשיו"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी"
           }
         },
         "hu" : {
@@ -19034,6 +19952,12 @@
             "value" : "כבוי"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19156,6 +20080,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אישור"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
           }
         },
         "hu" : {
@@ -19282,6 +20212,12 @@
             "value" : "פועל כי DUCTUS_DEBUG=1 מוגדר."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चालू है, क्योंकि DUCTUS_DEBUG=1 सेट है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19404,6 +20340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מקש אחד לאורך זמן"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय के साथ एक की"
           }
         },
         "hu" : {
@@ -19530,6 +20472,12 @@
             "value" : "פתח את הגדרות ״ניטור קלט״"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनपुट मॉनिटरिंग सेटिंग्ज़ खोलें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19652,6 +20600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "חלק"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भाग"
           }
         },
         "hu" : {
@@ -19778,6 +20732,12 @@
             "value" : "חלק %lld"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भाग %lld"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19900,6 +20860,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "חלק %1$lld מתוך %2$lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भाग %1$lld / %2$lld"
           }
         },
         "hu" : {
@@ -20026,6 +20992,12 @@
             "value" : "חלקים שהוקלדו"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टाइप किए गए भाग"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20148,6 +21120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הדבק מאמר, פרק מספר או קוד. תקליד אותו חלק אחר חלק, וההקשות שלך נספרות בתרגול."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई लेख, किताब का अध्याय या कुछ कोड चिपकाएँ। आप उसे भाग दर भाग टाइप करते हैं, और आपकी कीज़ अभ्यास में गिनी जाती हैं।"
           }
         },
         "hu" : {
@@ -20274,6 +21252,12 @@
             "value" : "הדבק מהלוח"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्लिपबोर्ड से चिपकाएँ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20396,6 +21380,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "טקסט מודבק"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चिपकाया गया पाठ"
           }
         },
         "hu" : {
@@ -20522,6 +21512,12 @@
             "value" : "ההרשאה עדיין לא ניתנה. הפעל את Ductus ב״ניטור קלט״, ואז צא מ-Ductus ופתח אותו מחדש."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुमति अभी नहीं दी गई है। इनपुट मॉनिटरिंग में Ductus चालू करें, फिर Ductus को बंद करके दोबारा खोलें।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20644,6 +21640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "זרת"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कनिष्ठा"
           }
         },
         "hu" : {
@@ -20770,6 +21772,12 @@
             "value" : "הוצא לחלון"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अलग करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20892,6 +21900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הוצא לחלון צף"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग विंडो में अलग करें"
           }
         },
         "hu" : {
@@ -21018,6 +22032,12 @@
             "value" : "הוצא את המקלדת לחלון"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड अलग करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21140,6 +22160,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תרגול"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास"
           }
         },
         "hu" : {
@@ -21266,6 +22292,12 @@
             "value" : "שפת התרגול"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास की भाषा"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21388,6 +22420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תרגל בכמה ימים שונים כדי לראות את המגמה של מקש זה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस की का रुझान देखने के लिए कुछ अलग-अलग दिनों पर अभ्यास करें।"
           }
         },
         "hu" : {
@@ -21514,6 +22552,12 @@
             "value" : "תרגל על טקסט משלך"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपने खुद के पाठ पर अभ्यास करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21636,6 +22680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תרגל מקשים אלה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इन कीज़ का अभ्यास करें"
           }
         },
         "hu" : {
@@ -21762,6 +22812,12 @@
             "value" : "זמן תרגול"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभ्यास का समय"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21884,6 +22940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תרגל עם משפטים אמיתיים מספרים, רק עם האותיות הפתוחות שלך, ובדגש על המקשים החלשים שלך."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "किताबों के असली वाक्यों से अभ्यास करें, केवल आपके अनलॉक किए गए अक्षरों के साथ और आपकी कमज़ोर कीज़ पर ज़्यादा ज़ोर देते हुए।"
           }
         },
         "hu" : {
@@ -22010,6 +23072,12 @@
             "value" : "הקש Return בכל ↵. הזחה מדולגת."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हर ↵ पर Return दबाएँ। इंडेंटेशन छोड़ दिया जाता है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22132,6 +23200,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "החלק הקודם"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछला भाग"
           }
         },
         "hu" : {
@@ -22258,6 +23332,12 @@
             "value" : "התקדמות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रगति"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22380,6 +23460,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא ניתן היה לשמור את ההתקדמות בסשן הזה. בדוק את היומן לפרטים."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस सत्र में प्रगति सहेजी नहीं जा सकी। विवरण के लिए लॉग देखें।"
           }
         },
         "hu" : {
@@ -22506,6 +23592,12 @@
             "value" : "ההתקדמות נשמרת ב-Mac הזה, בנפרד לכל פריסת מקלדת."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रगति इसी Mac पर सहेजी जाती है, हर कीबोर्ड लेआउट के लिए अलग से।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22628,6 +23720,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "סימני פיסוק"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विराम चिह्न"
           }
         },
         "hu" : {
@@ -22754,6 +23852,12 @@
             "value" : "מרוץ"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेस"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22876,6 +23980,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מרוץ %lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेस %lld"
           }
         },
         "hu" : {
@@ -23002,6 +24112,12 @@
             "value" : "מרוץ נוסף"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर से रेस करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23124,6 +24240,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הקשות במרוצים נספרות בנתוני המקשים שלך, כך שתרגילי התרגול יתמקדו במקשים אלה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेस की कीस्ट्रोक आपके की आँकड़ों में गिनी जाती हैं, इसलिए अभ्यास इन्हीं कीज़ पर ध्यान देंगे।"
           }
         },
         "hu" : {
@@ -23250,6 +24372,12 @@
             "value" : "מהירות במרוץ"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेस की गति"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23372,6 +24500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מרוצים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेस"
           }
         },
         "hu" : {
@@ -23498,6 +24632,12 @@
             "value" : "טווח"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अवधि"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23620,6 +24760,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "פורסם ב-%@."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ को जारी किया गया।"
           }
         },
         "hu" : {
@@ -23746,6 +24892,12 @@
             "value" : "שנה שם"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम बदलें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23868,6 +25020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שנה את שם הטקסט"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ का नाम बदलें"
           }
         },
         "hu" : {
@@ -23994,6 +25152,12 @@
             "value" : "שנה שם…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम बदलें…"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24116,6 +25280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אפס"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीसेट करें"
           }
         },
         "hu" : {
@@ -24242,6 +25412,12 @@
             "value" : "לאפס את כל ההתקדמות עבור %@?"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ की सारी प्रगति रीसेट करें?"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24364,6 +25540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אפס התקדמות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रगति रीसेट करें"
           }
         },
         "hu" : {
@@ -24490,6 +25672,12 @@
             "value" : "אפס התקדמות…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रगति रीसेट करें…"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24612,6 +25800,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קמיצה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनामिका"
           }
         },
         "hu" : {
@@ -24738,6 +25932,12 @@
             "value" : "מקטע"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुभाग"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24860,6 +26060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כותבי המשפטים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वाक्यों के लेखक"
           }
         },
         "hu" : {
@@ -24986,6 +26192,12 @@
             "value" : "כותבי המשפטים…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वाक्यों के लेखक…"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25108,6 +26320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תרגילי משפטים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वाक्य अभ्यास"
           }
         },
         "hu" : {
@@ -25234,6 +26452,12 @@
             "value" : "משפטים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वाक्य"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25356,6 +26580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "משפטים מ-Tatoeba"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tatoeba से वाक्य"
           }
         },
         "hu" : {
@@ -25482,6 +26712,12 @@
             "value" : "משפטים מ-Tatoeba (tatoeba.org) לפי CC BY 2.0 FR, מאת התורמים האלה. המזהה והכותב של כל משפט מופיעים בקובצי הקרדיטים בקוד המקור."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tatoeba (tatoeba.org) से CC BY 2.0 FR के तहत वाक्य, इन योगदानकर्ताओं द्वारा। हर वाक्य की ID और लेखक सोर्स कोड की आभार फ़ाइलों में दिए गए हैं।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25604,6 +26840,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הגדרות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्ज़"
           }
         },
         "hu" : {
@@ -25730,6 +26972,12 @@
             "value" : "הגדרות (⌘,)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्ज़ (⌘,)"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25852,6 +27100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הגדרות…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्ज़…"
           }
         },
         "hu" : {
@@ -25978,6 +27232,12 @@
             "value" : "הדגשת קיצורים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शॉर्टकट चमक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26100,6 +27360,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג את טקסט התרגיל מעל המקלדת הצפה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग कीबोर्ड के ऊपर अभ्यास का पाठ दिखाएँ"
           }
         },
         "hu" : {
@@ -26226,6 +27492,12 @@
             "value" : "הצג היסטוריה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इतिहास दिखाएँ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26348,6 +27620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג מקלדת"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड दिखाएँ"
           }
         },
         "hu" : {
@@ -26474,6 +27752,12 @@
             "value" : "הצג מקלדת"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड दिखाएँ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26596,6 +27880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג את קובץ היומן"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉग फ़ाइल दिखाएँ"
           }
         },
         "hu" : {
@@ -26722,6 +28012,12 @@
             "value" : "הצג או הסתר את המקלדת (⌘K)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीबोर्ड दिखाएँ या छिपाएँ (⌘K)"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26844,6 +28140,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג תוויות של מקשים פיזיים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भौतिक की लेबल दिखाएँ"
           }
         },
         "hu" : {
@@ -26970,6 +28272,12 @@
             "value" : "הצג תוויות של מקשים פיזיים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भौतिक की लेबल दिखाएँ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27092,6 +28400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג נתונים מעל המקלדת הצפה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग कीबोर्ड के ऊपर आँकड़े दिखाएँ"
           }
         },
         "hu" : {
@@ -27218,6 +28532,12 @@
             "value" : "הצג נתונים על המקלדת הצפה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग कीबोर्ड पर आँकड़े दिखाएँ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27340,6 +28660,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצג מילים על המקלדת הצפה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़्लोटिंग कीबोर्ड पर शब्द दिखाएँ"
           }
         },
         "hu" : {
@@ -27466,6 +28792,12 @@
             "value" : "דלג על החלק"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भाग छोड़ें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27588,6 +28920,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צמדי האותיות האיטיים ביותר"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबसे धीमे अक्षर जोड़े"
           }
         },
         "hu" : {
@@ -27714,6 +29052,12 @@
             "value" : "עדכון תוכנה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सॉफ़्टवेयर अपडेट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27838,6 +29182,12 @@
             "value" : "צליל"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ध्वनि"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27960,6 +29310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קוד מקור"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सोर्स कोड"
           }
         },
         "hu" : {
@@ -28087,6 +29443,12 @@
             "value" : "רווח"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्पेस"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28209,6 +29571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מהירות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गति"
           }
         },
         "hu" : {
@@ -28335,6 +29703,12 @@
             "value" : "מהירות ודיוק"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गति और सटीकता"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28459,6 +29833,12 @@
             "value" : "מהירות של %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ की गति"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28581,6 +29961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מהירות בטקסטים שלך"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके पाठों पर गति"
           }
         },
         "hu" : {
@@ -28708,6 +30094,12 @@
             "value" : "מההתחלה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शुरू से"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28830,6 +30222,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "התחל מחדש"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर से शुरू करें"
           }
         },
         "hu" : {
@@ -28956,6 +30354,12 @@
             "value" : "עצור עד לתיקון"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सुधारने तक रुकें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29078,6 +30482,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "רצף"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लगातार दिन"
           }
         },
         "hu" : {
@@ -29204,6 +30614,12 @@
             "value" : "חזק"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मज़बूत"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29326,6 +30742,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "המקשים החזקים ביותר"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबसे मज़बूत कीज़"
           }
         },
         "hu" : {
@@ -29452,6 +30874,12 @@
             "value" : "קללות ועלבונות מושמטים מרשימות המילים בעזרת List of Dirty, Naughty, Obscene, and Otherwise Bad Words (CC BY 4.0). הרשימה משמשת רק בבניית הרשימות ואינה כלולה ביישום."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List of Dirty, Naughty, Obscene, and Otherwise Bad Words (CC BY 4.0) की मदद से गालियाँ और अपमानजनक शब्द शब्द सूचियों से हटा दिए गए हैं। इसका उपयोग केवल सूचियाँ बनाते समय होता है और यह ऐप के साथ नहीं आती।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29574,6 +31002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מסנן קללות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गाली फ़िल्टर"
           }
         },
         "hu" : {
@@ -29700,6 +31134,12 @@
             "value" : "החלף עם ⌘1 עד ⌘4"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘1 से ⌘4 से बदलें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29822,6 +31262,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מערכת"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिस्टम"
           }
         },
         "hu" : {
@@ -29948,6 +31394,12 @@
             "value" : "״מערכת״ עוקב אחר הגדרת macOS שלך. חל גם על המקלדת הצפה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिस्टम आपकी macOS सेटिंग का पालन करता है। यह फ़्लोटिंग कीबोर्ड पर भी लागू होता है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30070,6 +31522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "דיוק יעד"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लक्ष्य सटीकता"
           }
         },
         "hu" : {
@@ -30196,6 +31654,12 @@
             "value" : "מהירות יעד"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लक्ष्य गति"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30318,6 +31782,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "טקסט"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ"
           }
         },
         "hu" : {
@@ -30444,6 +31914,12 @@
             "value" : "גודל טקסט"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट का आकार"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30566,6 +32042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "מקורות הטקסט"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ के स्रोत"
           }
         },
         "hu" : {
@@ -30692,6 +32174,12 @@
             "value" : "תודות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "धन्यवाद"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30814,6 +32302,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הגישה המסתגלת קיבלה השראה מ-keybr.com. לא נעשה שימוש בקוד ממנו."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुकूली तरीका keybr.com से प्रेरित है। इसका कोई कोड उपयोग नहीं किया गया है।"
           }
         },
         "hu" : {
@@ -30940,6 +32434,12 @@
             "value" : "השעון מתחיל בהקשה הראשונה שלך."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "घड़ी आपकी पहली की से शुरू होती है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31062,6 +32562,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ההורדה לא תאמה את סכום הביקורת שלה, ולכן נמחקה. נסה שוב."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डाउनलोड उसके चेकसम से मेल नहीं खाया, इसलिए उसे डिलीट कर दिया गया। फिर से कोशिश करें।"
           }
         },
         "hu" : {
@@ -31188,6 +32694,12 @@
             "value" : "לא ניתן היה לקרוא את הגרסה האחרונה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नवीनतम रिलीज़ पढ़ी नहीं जा सकी।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31310,6 +32822,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שורת התפריטים תשתנה בפעם הבאה ש-Ductus ייפתח."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेनू बार अगली बार Ductus खुलने पर बदलेगा।"
           }
         },
         "hu" : {
@@ -31436,6 +32954,12 @@
             "value" : "לגרסה אין סכום ביקורת עבור ההורדה, ולכן היא לא נשמרה."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिलीज़ में डाउनलोड के लिए कोई चेकसम नहीं है, इसलिए उसे सहेजा नहीं गया।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31558,6 +33082,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הצורה של המקלדת הפיזית שלך. ״אוטומטי״ משתמש במקלדת שהקלדת בה לאחרונה. ב-ISO יש מקש Return גבוה ומקש נוסף ליד Shift השמאלי."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके भौतिक कीबोर्ड का आकार। स्वचालित उस कीबोर्ड का उपयोग करता है जिस पर आपने पिछली बार टाइप किया था। ISO में लंबी Return की और बाईं Shift के पास एक अतिरिक्त की होती है।"
           }
         },
         "hu" : {
@@ -31684,6 +33214,12 @@
             "value" : "לא ניתן היה להתקין את העדכון, ולכן הגרסה הנוכחית שלך נשמרה. הפרטים נמצאים ב-~/Library/Logs/DuctusUpdater.log."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट इंस्टॉल नहीं हो सका, इसलिए आपका मौजूदा संस्करण रखा गया। विवरण ~/Library/Logs/DuctusUpdater.log में है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31806,6 +33342,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תוכנית העדכון לא הופעלה, ולכן שום דבר לא שונה. נסה שוב, או הורד את הגרסה החדשה מ-GitHub."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेटर शुरू नहीं हुआ, इसलिए कुछ भी नहीं बदला गया। फिर से कोशिश करें, या नया संस्करण GitHub से डाउनलोड करें।"
           }
         },
         "hu" : {
@@ -31932,6 +33474,12 @@
             "value" : "תוכנית העדכון חסרה בעותק הזה של Ductus. הורד במקום זאת את הגרסה החדשה מ-GitHub."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus की इस कॉपी में अपडेटर नहीं है। इसके बजाय नया संस्करण GitHub से डाउनलोड करें।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32054,6 +33602,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "המילים והמשפטים שאתה מתרגל. ״אוטומטי״ עוקב אחר פריסת המקלדת או שיטת הקלט שלך, כך שפריסה צרפתית מתרגלת צרפתית ושיטת הקלט היפנית מתרגלת יפנית. יפנית מוקלדת ב-romaji, סינית ב-pinyin (בלי טונים, v במקום ü) וקוריאנית בפריסת 2-Set, והטקסט מוצג מעל. ההתקדמות נשמרת בנפרד לכל פריסה ושפה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वे शब्द और वाक्य जिनका आप अभ्यास करते हैं। स्वचालित आपके कीबोर्ड लेआउट या इनपुट विधि का पालन करता है, इसलिए फ़्रेंच लेआउट पर फ़्रेंच का और जापानी इनपुट विधि पर जापानी का अभ्यास होता है। जापानी romaji में, चीनी pinyin में (बिना टोन के, ü के लिए v) और कोरियाई 2-Set लेआउट पर टाइप की जाती है, और पाठ ऊपर दिखाया जाता है। प्रगति हर लेआउट और भाषा के लिए अलग से रखी जाती है।"
           }
         },
         "hu" : {
@@ -32180,6 +33734,12 @@
             "value" : "אין עדיין גרסאות ב-GitHub."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub पर अभी कोई रिलीज़ नहीं है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32302,6 +33862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "פעולה זו מוחקת את נתוני המקשים, האותיות הפתוחות וההיסטוריה שלך עבור פריסה זו. לא ניתן לבטל אותה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे इस लेआउट के लिए आपके की आँकड़े, अनलॉक किए गए अक्षर और इतिहास डिलीट हो जाते हैं। इसे पहले जैसा नहीं किया जा सकता।"
           }
         },
         "hu" : {
@@ -32428,6 +33994,12 @@
             "value" : "אגודל"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंगूठा"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32550,6 +34122,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "זמן"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय"
           }
         },
         "hu" : {
@@ -32676,6 +34254,12 @@
             "value" : "זמן שנותר"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बचा हुआ समय"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32798,6 +34382,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צובע כל מקש לפי האצבע שלוחצת עליו בהקלדה עיוורת: זרת, קמיצה, אמה, אצבע, ואגודלים למקש הרווח. שימושי בימים הראשונים עם פריסה חדשה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टच टाइपिंग में हर की को उस उंगली के रंग से रंगता है जो उसे दबाती है: कनिष्ठा, अनामिका, मध्यमा, तर्जनी, और स्पेस बार के लिए अंगूठे। नए लेआउट के शुरुआती दिनों में काम का है।"
           }
         },
         "hu" : {
@@ -32924,6 +34514,12 @@
             "value" : "כותרת"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शीर्षक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33046,6 +34642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כותרת (אופציונלי)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शीर्षक (वैकल्पिक)"
           }
         },
         "hu" : {
@@ -33172,6 +34774,12 @@
             "value" : "היום"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आज"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33294,6 +34902,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כלים ששימשו לבניית רשימות המילים"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द सूचियाँ बनाने में उपयोग किए गए टूल"
           }
         },
         "hu" : {
@@ -33420,6 +35034,12 @@
             "value" : "המקש הקשה ביותר"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबसे कठिन की"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33542,6 +35162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תורגם בעזרת AI, ולכן חלק מהניסוחים עשויים להיות לא מדויקים לגמרי."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI से अनुवाद किया गया है, इसलिए कुछ शब्द पूरी तरह सटीक नहीं हो सकते।"
           }
         },
         "hu" : {
@@ -33668,6 +35294,12 @@
             "value" : "ניסיונות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रयास"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33790,6 +35422,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "נסה שוב"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर से कोशिश करें"
           }
         },
         "hu" : {
@@ -33916,6 +35554,12 @@
             "value" : "הקלד בפריסה הקוריאנית 2-Set. כל בלוק מתמלא כשאתה מקליד את המקשים שלו."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2-Set कोरियाई लेआउट पर टाइप करें। हर ब्लॉक उसकी कीज़ टाइप करते ही भरता जाता है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34038,6 +35682,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הקלד את ה-pinyin של המילים שמוצגות מעל, בלי טונים (v במקום ü)."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऊपर दिखाए गए शब्दों का pinyin बिना टोन के टाइप करें (ü के लिए v)।"
           }
         },
         "hu" : {
@@ -34164,6 +35814,12 @@
             "value" : "הקלד את ה-romaji של המילים שמוצגות מעל, כמו שהיית מקליד בשיטת הקלט היפנית."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऊपर दिखाए गए शब्दों का romaji टाइप करें, जैसे आप जापानी इनपुट विधि से करते।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34286,6 +35942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הקלדה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टाइपिंग"
           }
         },
         "hu" : {
@@ -34412,6 +36074,12 @@
             "value" : "הקלדה ביישומים אחרים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दूसरी ऐप्स में टाइपिंग"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34534,6 +36202,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הקלדה ביישומים אחרים: macOS מבקש שוב את ההרשאה ״ניטור קלט״ אחרי כל עדכון, כי גרסה זו של Ductus עדיין לא אושרה (notarized) על ידי Apple. הפעל שוב את Ductus ב״הגדרות המערכת״ › ״פרטיות ואבטחה״ › ״ניטור קלט״."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दूसरी ऐप्स में टाइपिंग: हर अपडेट के बाद macOS फिर से इनपुट मॉनिटरिंग अनुमति माँगता है, क्योंकि Ductus का यह संस्करण अभी Apple द्वारा नोटराइज़ नहीं किया गया है। सिस्टम सेटिंग्ज़ › गोपनीयता और सुरक्षा › इनपुट मॉनिटरिंग में Ductus को फिर से चालू करें।"
           }
         },
         "hu" : {
@@ -34660,6 +36334,12 @@
             "value" : "פריסה לא ידועה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज्ञात लेआउट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34782,6 +36462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "פתוח"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनलॉक"
           }
         },
         "hu" : {
@@ -34908,6 +36594,12 @@
             "value" : "נפתחו %1$lld מתוך %2$lld"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$lld में से %1$lld अनलॉक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35030,6 +36722,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אותיות פתוחות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनलॉक किए गए अक्षर"
           }
         },
         "hu" : {
@@ -35156,6 +36854,12 @@
             "value" : "פתוחות בלבד"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल अनलॉक"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35278,6 +36982,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "פתוחות בלבד: האותיות הפתוחות שלך, בדגש על המקשים החלשים שלך כמו בתרגול. משפטים: משפטים אמיתיים מספרים."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल अनलॉक: आपके अनलॉक किए गए अक्षर, अभ्यास की तरह आपकी कमज़ोर कीज़ पर ज़्यादा ज़ोर के साथ। वाक्य: किताबों के असली वाक्य।"
           }
         },
         "hu" : {
@@ -35404,6 +37114,12 @@
             "value" : "פתיחת אותיות"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनलॉकिंग"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35526,6 +37242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "עודכן ל-Ductus %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus %@ में अपडेट हो गया"
           }
         },
         "hu" : {
@@ -35652,6 +37374,12 @@
             "value" : "עדכונים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35774,6 +37502,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "גרסה"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संस्करण"
           }
         },
         "hu" : {
@@ -35900,6 +37634,12 @@
             "value" : "גרסה %@ (%@)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संस्करण %@ (%@)"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36022,6 +37762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "גרסה %@ היא הגרסה החדשה ביותר."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संस्करण %@ सबसे नया संस्करण है।"
           }
         },
         "hu" : {
@@ -36148,6 +37894,12 @@
             "value" : "הצג ב-GitHub"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub पर देखें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36270,6 +38022,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "עוצמת קול"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वॉल्यूम"
           }
         },
         "hu" : {
@@ -36396,6 +38154,12 @@
             "value" : "חימום קודם"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहले वार्म-अप करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36518,6 +38282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "חימום"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वार्म-अप"
           }
         },
         "hu" : {
@@ -36644,6 +38414,12 @@
             "value" : "כשמחזיקים את Command, המקשים האלה זוהרים כדי שתמצא קיצורים כמו ⌘C. עובד עם פריסות שעוברות ל-QWERTY בזמן לחיצה על Command."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जब आप Command दबाए रखते हैं, तो ये कीज़ चमकती हैं ताकि आप ⌘C जैसे शॉर्टकट ढूँढ सकें। यह उन लेआउट के साथ काम करता है जो Command दबाने पर QWERTY में बदल जाते हैं।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36766,6 +38542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "עם מחיקה, טעויות נשארות מסומנות באדום. Option-מחיקה מוחק מילה. רק הניסיון הראשון בכל אות נספר בנתונים. חל מהתרגיל או המרוץ הבא."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backspace के साथ, गलतियाँ लाल रंग में चिह्नित रहती हैं। Option-Backspace एक शब्द डिलीट करता है। आँकड़ों में हर अक्षर पर केवल आपका पहला प्रयास गिना जाता है। अगले अभ्यास या रेस से लागू होता है।"
           }
         },
         "hu" : {
@@ -36892,6 +38674,12 @@
             "value" : "מילים ומשפטים"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द और वाक्य"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37014,6 +38802,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "המילים והמשפטים לקוחים מספרים בנחלת הכלל ב-Project Gutenberg ומתורמי Tatoeba (CC BY 2.0 FR)."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द और वाक्य Project Gutenberg की पब्लिक डोमेन किताबों और Tatoeba के योगदानकर्ताओं (CC BY 2.0 FR) से लिए गए हैं।"
           }
         },
         "hu" : {
@@ -37140,6 +38934,12 @@
             "value" : "המילים מקובצות למשפטים קצרים עם אותיות רישיות, פסיקים, נקודות וסימני שאלה. כשתו דורש Shift, מקשי ה-Shift מסומנים במסגרת."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्दों को बड़े अक्षरों, अल्पविराम, पूर्ण विराम और प्रश्नचिह्न के साथ छोटे वाक्यों में रखा जाता है। जब किसी अक्षर के लिए Shift चाहिए, तो Shift कीज़ की रूपरेखा दिखाई जाती है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37264,6 +39064,12 @@
             "value" : "עבוד על אלה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इन पर काम करें"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37383,6 +39189,12 @@
           }
         },
         "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WPM"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "WPM"
@@ -37512,6 +39324,12 @@
             "value" : "אתה"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37634,6 +39452,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אינך מחובר לאינטרנט."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप इंटरनेट से कनेक्टेड नहीं हैं।"
           }
         },
         "hu" : {
@@ -37760,6 +39584,12 @@
             "value" : "יש לך %@."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके पास %@ है।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37882,6 +39712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הקלדת את כל הטקסט 🎉"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपने पूरा पाठ टाइप कर लिया 🎉"
           }
         },
         "hu" : {
@@ -38008,6 +39844,12 @@
             "value" : "לפני כן השתמשת ב-%@. ההתקדמות וההגדרות שלך בדיוק כפי שהשארת אותן."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहले आपके पास %@ था। आपकी प्रगति और सेटिंग्ज़ वैसी ही हैं जैसी आपने छोड़ी थीं।"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38132,6 +39974,12 @@
             "value" : "השיא שלך"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपका सर्वश्रेष्ठ"
+          }
+        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38254,6 +40102,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "הטקסטים שלך"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके पाठ"
           }
         },
         "hu" : {

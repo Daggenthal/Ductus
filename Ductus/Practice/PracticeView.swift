@@ -155,6 +155,9 @@ private struct LetterProgress: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text("Unlocked \(curriculum.unlockedCount) of \(curriculum.order.count)")
                     .font(.caption).foregroundStyle(.secondary)
+                // Hindi has 63 letters: the row scrolls and keeps the next one in view.
+                ScrollViewReader { scroller in
+                ScrollView(.horizontal) {
                 HStack(spacing: 4) {
                     ForEach(Array(curriculum.order.enumerated()), id: \.offset) { index, letter in
                         let unlocked = index < curriculum.unlockedCount
@@ -171,7 +174,15 @@ private struct LetterProgress: View {
                                 RoundedRectangle(cornerRadius: 4)
                                     .strokeBorder(isNext ? Color.secondary : .clear, style: StrokeStyle(lineWidth: 1, dash: [3]))
                             )
+                            .id(index)
                     }
+                }
+                }
+                .scrollIndicators(.hidden)
+                .onAppear { scroller.scrollTo(curriculum.unlockedCount, anchor: .center) }
+                .onChange(of: curriculum.unlockedCount) { _, next in
+                    withAnimation { scroller.scrollTo(next, anchor: .center) }
+                }
                 }
             }
         }

@@ -3,7 +3,7 @@ import Foundation
 /// Languages with a bundled word list and sentence sample (see CORPUS.md).
 public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifiable {
     case english, french, spanish, german, italian, portuguese, dutch, turkish, polish, czech, hungarian, greek
-    case russian, ukrainian, hebrew, arabic, persian, japanese, chinese, korean
+    case russian, ukrainian, hebrew, arabic, persian, hindi, japanese, chinese, korean
 
     public var id: String { rawValue }
 
@@ -24,6 +24,7 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .greek: "el"
         case .hebrew: "he"
         case .persian: "fa"
+        case .hindi: "hi"
         case .russian: "ru"
         case .ukrainian: "uk"
         case .arabic: "ar"
@@ -50,6 +51,7 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .greek: "Ελληνικά"
         case .hebrew: "עברית"
         case .persian: "فارسی"
+        case .hindi: "हिन्दी"
         case .russian: "Русский"
         case .ukrainian: "Українська"
         case .arabic: "العربية"
@@ -93,6 +95,8 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
     private var arabicScript: Bool { self == .arabic || self == .persian }
     public var comma: String { arabicScript ? "،" : "," }
     public var semicolon: String { arabicScript ? "؛" : self == .greek ? "," : ";" }
+    /// Hindi ends sentences with the danda (।).
+    public var fullStop: String { self == .hindi ? "।" : "." }
     public var questionMark: String { arabicScript ? "؟" : self == .greek ? ";" : "?" }
 
     /// For capitals: Turkish capitalizes i as İ.

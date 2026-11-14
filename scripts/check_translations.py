@@ -21,7 +21,7 @@ import sys
 import tempfile
 import xml.etree.ElementTree as ET
 
-LANGUAGES = ["en", "fr", "es", "de", "it", "pt-BR", "nl", "ja", "zh-Hans", "ko", "ru", "uk", "ar", "tr", "pl", "cs", "hu", "el", "he", "fa"]
+LANGUAGES = ["en", "fr", "es", "de", "it", "pt-BR", "nl", "ja", "zh-Hans", "ko", "ru", "uk", "ar", "tr", "pl", "cs", "hu", "el", "he", "fa", "hi"]
 NS = {"x": "urn:oasis:names:tc:xliff:document:1.2"}
 
 root = pathlib.Path(__file__).resolve().parent.parent

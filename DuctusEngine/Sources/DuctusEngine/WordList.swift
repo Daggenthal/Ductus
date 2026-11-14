@@ -19,7 +19,7 @@ public struct WordList: Sendable {
         init(word: String, count: Int, native: String? = nil) {
             self.word = word
             self.count = count
-            self.letters = Set(word.lowercased())
+            self.letters = Set(word.lowercased().typingUnits)
             self.native = native
         }
     }
@@ -37,7 +37,7 @@ public struct WordList: Sendable {
         var kept: [Entry] = []
         for (word, count, native) in words {
             let word = keepCase ? word : word.lowercased()
-            guard !word.isEmpty, count > 0, word.allSatisfy(\.isLetter) else { continue }
+            guard !word.isEmpty, count > 0, word.typingUnits.allSatisfy(\.isTypingLetter) else { continue }
             kept.append(Entry(word: word, count: count, native: native))
         }
         kept.sort { a, b in a.count != b.count ? a.count > b.count : a.word < b.word }
@@ -80,7 +80,7 @@ public struct WordList: Sendable {
     public func letterFrequencyOrder() -> [Character] {
         var counts: [Character: Int] = [:]
         for entry in entries {
-            for letter in entry.word.lowercased() { counts[letter, default: 0] += entry.count }
+            for letter in entry.word.lowercased().typingUnits { counts[letter, default: 0] += entry.count }
         }
         return counts.sorted { $0.value != $1.value ? $0.value > $1.value : $0.key < $1.key }.map(\.key)
     }

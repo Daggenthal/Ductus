@@ -22,7 +22,7 @@ public struct SentenceList: Sendable {
             let columns = line.split(separator: "\t", maxSplits: 1)
             let sentence = columns[0].trimmingCharacters(in: .whitespaces)
             guard !sentence.isEmpty else { return nil }
-            let letters = Set(sentence.lowercased().filter(\.isLetter))
+            let letters = Set(sentence.lowercased().typingUnits.filter(\.isTypingLetter))
             var native: [String]?
             if columns.count == 2 {
                 let chunks = columns[1].split(separator: "|").map(String.init)
@@ -71,7 +71,7 @@ public struct SentenceList: Sendable {
         var length = 0
         while length < minCharacters {
             let entry = pool.weightedRandomElement(using: &rng) { entry in
-                let letters = entry.text.lowercased().filter(\.isLetter)
+                let letters = entry.text.lowercased().typingUnits.filter(\.isTypingLetter)
                 guard !letters.isEmpty else { return 1 }
                 let total = letters.reduce(0) { $0 + (weakness[$1] ?? 0) }
                 return 1 + total / Double(letters.count) * 3

@@ -90,8 +90,11 @@ enum PracticeSettings {
 
     static func detectedLanguage(for layout: KeyboardLayout?) -> PracticeLanguage {
         guard let layout else { return .english }
-        // An active input method (Japanese, Chinese) wins over its layout's language.
-        return layout.inputMethodLanguages.lazy.compactMap(PracticeLanguage.init(code:)).first
+        // An active input method (Japanese, Chinese, Korean) wins over its layout's language.
+        // Only for languages typed through one: Hindi Transliteration types Latin
+        // letters, which Hindi practice (on a Devanagari layout) cannot use.
+        return layout.inputMethodLanguages.lazy.compactMap(PracticeLanguage.init(code:))
+            .first(where: \.hasTypedForm)
             ?? layout.languages.lazy.compactMap(PracticeLanguage.init(code:)).first
             ?? .english
     }

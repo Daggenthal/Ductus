@@ -39,7 +39,7 @@ public enum TextDecorator {
         while index < words.count {
             let length = min(Int.random(in: 4...10, using: &rng), words.count - index)
             let ending = style.punctuation
-                ? [".", ".", ".", ".", language.questionMark, "!"].randomElement(using: &rng)! : ""
+                ? [language.fullStop, language.fullStop, language.fullStop, language.fullStop, language.questionMark, "!"].randomElement(using: &rng)! : ""
             for offset in 0..<length {
                 var word = words[index + offset]
                 let isFirst = offset == 0

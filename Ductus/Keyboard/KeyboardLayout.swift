@@ -1,3 +1,4 @@
+import DuctusEngine
 import Carbon.HIToolbox
 import DuctusLog
 import Foundation
@@ -106,7 +107,7 @@ struct KeyboardLayout: Equatable, Sendable {
 
     /// Lowercase letters this layout can type, directly or with a dead key.
     var typeableLetters: Set<Character> {
-        Set(strokes.keys.filter { $0.isLetter && ($0.isLowercase || !$0.isCased) })
+        Set(strokes.keys.filter { $0.isTypingLetter && ($0.isLowercase || !$0.isCased) })
     }
 
     /// Translates one key press, carrying dead-key state between presses.
@@ -193,7 +194,7 @@ struct KeyboardLayout: Equatable, Sendable {
     var homeRowLetters: [Character] {
         KeyboardGeometry.homeRowCodes.compactMap { code in
             plain[code].flatMap { $0.count == 1 ? Character($0.lowercased()) : nil }
-        }.filter(\.isLetter)
+        }.filter(\.isTypingLetter)
     }
 
     private static func translate(_ data: Data, _ code: UInt16, modifiers: Int, keyboardType: UInt32) -> String? {

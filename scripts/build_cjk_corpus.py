@@ -41,6 +41,7 @@ import collections
 import pathlib
 import random
 import os
+import unicodedata
 import re
 import sys
 
@@ -311,6 +312,8 @@ def build_korean(rows, rng):
 # Typed exactly as written, so words and sentences need no reading.
 ARABIC_LETTERS = "\u0621-\u063A\u0641-\u064A"
 ARABIC_MARKS = re.compile("[\u064B-\u0652\u0670\u0640]")  # short vowels, shadda, sukun, tatweel
+# Devanagari letters and signs, without its digits (०-९) and the danda (। ॥).
+DEVANAGARI = "\u0900-\u0963\u0970-\u097F"
 SPACED = {
     "arabic": dict(letters=ARABIC_LETTERS, punctuation="،؟؛.!:", cased=False,
                    # Tatoeba's stock example names; Arabic has no capitals to spot names by.
@@ -326,6 +329,10 @@ SPACED = {
     "greek": dict(letters="α-ωάέήίόύώϊϋΐΰς", punctuation=".,;!:-", cased=True, names=(), endings=".;!"),
     "hebrew": dict(letters="\u05D0-\u05EA", punctuation=".,?!:-", cased=False,
                    names=("טום", "תום", "מרי", "ג'ון", "ג׳ון", "מרים", "ג'ון")),
+    # Hindi ends sentences with the danda (।). Typed one code point per key on the
+    # Devanagari layouts, so कि is क then ि.
+    "hindi": dict(letters=DEVANAGARI, punctuation="।,?!:-", cased=False, endings="।?!",
+                  names=("टॉम", "मैरी", "मेरी", "जॉन")),
     "persian": dict(letters=ARABIC_LETTERS + "پچژگکی", punctuation="،؟؛.!:", cased=False,
                     names=("تام", "مری", "ماری", "جان")),
 }
@@ -339,6 +346,9 @@ def normalize(language, text):
     if language == "persian":
         # Arabic yeh and kaf are typed as the Persian letters.
         text = text.replace("\u064A", "\u06CC").replace("\u0643", "\u06A9").replace("\u0649", "\u06CC")
+    elif language == "hindi":
+        # Nukta letters (क़) as two keys, क then ़, the way the layouts type them.
+        text = unicodedata.normalize("NFC", text).replace("\u0964\u0964", "\u0965")
     elif language == "hebrew":
         text = HEBREW_MARKS.sub("", text)
     elif language == "greek":
@@ -356,7 +366,7 @@ MIN_LOWERCASE_SHARE = 0.3
 ONE_LETTER_WORDS = {
     "russian": set("вуискаоя"), "ukrainian": set("узвєіайоя"),
     "arabic": {"و"}, "persian": {"و"}, "hebrew": set(), "greek": set("ηήοω"),
-    "turkish": {"o"}, "polish": set("wzioau"), "czech": set("vsazokiu"), "hungarian": set("as"),
+    "turkish": {"o"}, "hindi": set(), "polish": set("wzioau"), "czech": set("vsazokiu"), "hungarian": set("as"),
 }
 
 
@@ -415,6 +425,7 @@ SOURCES = {
     "greek": (["ell"], build_spaced("greek")),
     "hebrew": (["heb"], build_spaced("hebrew")),
     "persian": (["pes"], build_spaced("persian")),
+    "hindi": (["hin"], build_spaced("hindi")),
 }
 
 
@@ -426,6 +437,11 @@ def read_tatoeba(path: pathlib.Path):
             continue
         author = parts[3] if parts[3] not in ("\\N", "") else None
         yield parts[0], parts[2], author
+
+
+def is_word(typed: str) -> bool:
+    """Letters only. Devanagari vowel signs and the virama are marks, not letters, to isalpha."""
+    return all(c.isalpha() or unicodedata.category(c) in ("Mn", "Mc") for c in typed)
 
 
 def build(language: str, tatoeba: pathlib.Path) -> None:
@@ -452,10 +468,10 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
           file=sys.stderr)
 
     spaced = language in SPACED
-    kept = [(typed, n) for typed, n in counts.items() if n >= MIN_COUNT and typed.isalpha()]
-    # Korean has fewer sentences on Tatoeba, so single uses are kept too.
-    if language == "korean":
-        kept = [(typed, n) for typed, n in counts.items() if typed.isalpha()]
+    kept = [(typed, n) for typed, n in counts.items() if n >= MIN_COUNT and is_word(typed)]
+    # Korean and Hindi have fewer sentences on Tatoeba, so single uses are kept too.
+    if language in ("korean", "hindi"):
+        kept = [(typed, n) for typed, n in counts.items() if is_word(typed)]
     kept.sort(key=lambda item: (-item[1], item[0]))
     kept = kept[:MAX_WORDS]
     with (RESOURCES / f"{language}-words.tsv").open("w", encoding="utf-8") as f:
@@ -484,7 +500,7 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
                   "ukrainian": "Used as written.",
                   "turkish": "Used as written.", "polish": "Used as written.", "czech": "Used as written.",
                   "hungarian": "Used as written.", "greek": "Used as written.",
-                  "hebrew": "Vowel points (niqqud) removed.",
+                  "hebrew": "Vowel points (niqqud) removed.", "hindi": "Used as written.",
                   "persian": "Short vowel marks removed; Arabic yeh and kaf written as the Persian letters."}[language]
         f.write(f"# {change}\n")
         f.write("# tatoeba_sentence_id\tauthor\n")

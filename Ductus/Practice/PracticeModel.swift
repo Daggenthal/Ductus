@@ -471,7 +471,7 @@ final class PracticeModel {
     var masteredLetters: Set<Character> {
         guard let trainer else { return [] }
         return Set(trainer.stats.keys.compactMap { key, stats in
-            key.isLetter && trainer.scorer.meetsTarget(stats) ? key : nil
+            key.isTypingLetter && trainer.scorer.meetsTarget(stats) ? key : nil
         })
     }
 
