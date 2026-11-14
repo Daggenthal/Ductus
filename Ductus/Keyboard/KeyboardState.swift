@@ -18,6 +18,12 @@ final class KeyboardState {
     /// key types each of these with Command, so positions are never hardcoded.
     var shortcutLetters: [Character] = ["z", "x", "c", "v"]
 
+    /// Physical keyboard shape chosen in Settings. `nil` = detect automatically.
+    var shapeOverride: KeyboardGeometry.Shape?
+    /// What macOS reports for the keyboard last typed on.
+    private(set) var detectedShape = KeyboardGeometry.Shape.detected
+    var shape: KeyboardGeometry.Shape { shapeOverride ?? detectedShape }
+
     @ObservationIgnored private var monitor: Any?
     @ObservationIgnored private var layoutObserver: NSObjectProtocol?
     @ObservationIgnored private var resignObserver: NSObjectProtocol?
@@ -79,11 +85,11 @@ final class KeyboardState {
 
     var shortcutKeyCodes: Set<UInt16> {
         guard let layout else { return [] }
-        return Set(shortcutLetters.compactMap(layout.commandKeyCode(for:)))
+        return Set(shortcutLetters.compactMap { layout.commandKeyCode(for: $0, on: shape) })
     }
 
     func keyCode(for character: Character) -> UInt16? {
-        character == " " ? 49 : layout?.keyCode(for: character)
+        character == " " ? 49 : layout?.keyCode(for: character, on: shape)
     }
 
     /// `true` if typing `character` needs Shift on the active layout.
@@ -95,12 +101,23 @@ final class KeyboardState {
 
     // MARK: - Events
 
+    /// Switching between, say, a built-in ANSI and an external ISO keyboard
+    /// changes the shape, and some layouts translate the ISO keys differently.
+    private func refreshDetectedShape() {
+        let shape = KeyboardGeometry.Shape.detected
+        guard shape != detectedShape else { return }
+        Log.info("Keyboard shape now \(shape.title)")
+        detectedShape = shape
+        reloadLayout()
+    }
+
     /// Key events from other apps (system-wide highlighting). Only lights keys
     /// up; never types into practice.
     func handleExternal(_ event: NSEvent) {
         switch event.type {
         case .keyDown:
             syncModifiers(event.modifierFlags)
+            refreshDetectedShape()
             pressed.insert(event.keyCode)
         case .keyUp:
             syncModifiers(event.modifierFlags)
@@ -117,6 +134,7 @@ final class KeyboardState {
         switch event.type {
         case .keyDown:
             syncModifiers(event.modifierFlags)
+            refreshDetectedShape()
             pressed.insert(event.keyCode)
             let modifiers = event.modifierFlags.intersection([.command, .control, .option])
             // Backspace (51), plain or with Option. Repeats are fine here.

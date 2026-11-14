@@ -153,7 +153,9 @@ private let smallList = WordList([
     }
 
     @Test func focusKeyShowsUpOften() throws {
-        let generator = DrillGenerator(wordList: smallList, config: DrillConfig(wordCount: 200, focusShare: 0.6))
+        let generator = DrillGenerator(wordList: smallList, config: DrillConfig(
+            wordCount: 200, focusShare: 0.6, maxRepeats: 200, fullFocusPoolSize: 1
+        ))
         var rng = SeededGenerator(seed: 7)
         let request = DrillRequest(unlocked: Set("thesandn"), focus: "n")
         let words = try #require(generator.generate(request, using: &rng)).split(separator: " ")
@@ -169,6 +171,31 @@ private let smallList = WordList([
             .split(separator: " ")
         let repeats = zip(words, words.dropFirst()).filter { $0 == $1 }.count
         #expect(repeats == 0)
+    }
+
+    @Test func capsRepeatsOfOneWord() throws {
+        // A rare focus key with a single word ("jazz") must not fill the drill.
+        let list = WordList([("jazz", 1), ("the", 100), ("tea", 30), ("ate", 20), ("eat", 20),
+                             ("set", 15), ("sea", 40), ("seat", 9), ("east", 8), ("hat", 7)])
+        let generator = DrillGenerator(wordList: list)
+        let request = DrillRequest(unlocked: Set("jazthesa"), focus: "j", keyWeakness: ["j": 5])
+        for seed in 0..<20 {
+            var rng = SeededGenerator(seed: UInt64(seed))
+            let words = try #require(generator.generate(request, using: &rng)).split(separator: " ")
+            #expect(words.count == 15)
+            let counts = Dictionary(words.map { ($0, 1) }, uniquingKeysWith: +)
+            #expect(counts.values.allSatisfy { $0 <= 2 })
+        }
+    }
+
+    @Test func smallFocusPoolLowersFocusShare() throws {
+        let generator = DrillGenerator(wordList: smallList, config: DrillConfig(wordCount: 400, maxRepeats: 400))
+        var rng = SeededGenerator(seed: 5)
+        // Only "jazz" has a j, so it gets 1/8 of the usual share.
+        let request = DrillRequest(unlocked: Set("jazthesandn"), focus: "j")
+        let words = try #require(generator.generate(request, using: &rng)).split(separator: " ")
+        let share = Double(words.filter { $0 == "jazz" }.count) / Double(words.count)
+        #expect(share > 0.03 && share < 0.15)
     }
 
     @Test func weakWordsScoreHigher() {
@@ -218,5 +245,30 @@ private let smallList = WordList([
         }
         #expect(unlocked != nil)
         #expect(trainer.curriculum.unlockedCount == 4)
+    }
+}
+
+@Suite struct WarmUpTests {
+    @Test func noWarmUpWithoutMasteredKeys() throws {
+        let trainer = Trainer(wordList: try WordList.bundledEnglish(), startingKeys: Array("aoeuidhtns"))
+        var rng = SeededGenerator(seed: 1)
+        #expect(trainer.masteredKeys.isEmpty)
+        #expect(trainer.warmUpDrill(using: &rng) == nil)
+    }
+
+    @Test func warmUpUsesOnlyMasteredKeys() throws {
+        var trainer = Trainer(wordList: try WordList.bundledEnglish(), startingKeys: Array("aoeuidhtns"))
+        // Master "aeths" by typing them fast and right; leave the rest untouched.
+        var time = 0.0
+        for _ in 0..<40 {
+            for key in "aeths" {
+                time += 0.1
+                trainer.record(Keystroke(expected: key, typed: key, keyCode: 0, timestamp: time, latency: 0.1))
+            }
+        }
+        #expect(trainer.masteredKeys == Set("aeths"))
+        var rng = SeededGenerator(seed: 2)
+        let text = try #require(trainer.warmUpDrill(using: &rng))
+        #expect(Set(text.filter { $0 != " " }).isSubset(of: Set("aeths")))
     }
 }

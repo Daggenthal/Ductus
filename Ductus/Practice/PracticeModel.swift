@@ -65,6 +65,7 @@ final class PracticeModel {
 
     private func load(layout: KeyboardLayout?, forceFresh: Bool = false) {
         self.layout = layout
+        lastPracticeKeystroke = nil
         layoutID = layout?.id ?? "unknown"
         layoutName = layout?.name ?? "Unknown layout"
         lastSummary = nil
@@ -146,8 +147,40 @@ final class PracticeModel {
 
     var sentenceDrillsAvailable: Bool { sentencePool.count >= Self.minSentencePool }
 
+    /// Whether the current drill is a warm-up (mastered keys only).
+    private(set) var isWarmUp = false
+    /// After this long without practice, the next drill is a warm-up again.
+    static let warmUpBreak: TimeInterval = 10 * 60
+    @ObservationIgnored private var lastPracticeKeystroke: Date?
+
+    /// Warm up on the first drill of a session: after launch, a layout switch,
+    /// or a break of 10 minutes or more.
+    private var wantsWarmUp: Bool {
+        guard PracticeSettings.warmUp else { return false }
+        guard let last = lastPracticeKeystroke else { return true }
+        return Date().timeIntervalSince(last) >= Self.warmUpBreak
+    }
+
+    /// Called when Ductus comes back to the front. After a break, swaps an
+    /// untouched drill for a warm-up.
+    func warmUpIfReturning() {
+        guard !isWarmUp, wantsWarmUp, lastPracticeKeystroke != nil,
+              let session, session.keystrokes.isEmpty else { return }
+        nextDrill()
+    }
+
     func nextDrill() {
         guard let trainer else { return }
+        if wantsWarmUp, let words = trainer.warmUpDrill(using: &rng) {
+            let text = TextDecorator.decorate(words, style: PracticeSettings.textStyle, using: &rng)
+            session = TypingSession(text: text, mistakeMode: PracticeSettings.mistakeMode)
+            isWarmUp = true
+            drillID += 1
+            lastKeyWrong = false
+            Log.debug("Warm-up drill: \(text)")
+            return
+        }
+        isWarmUp = false
         guard let text = makeDrillText(trainer) else {
             Log.error("No words can be typed with the unlocked letters")
             return
@@ -176,6 +209,7 @@ final class PracticeModel {
     func type(_ character: Character, keyCode: UInt16, at time: TimeInterval) -> Bool {
         guard trainer != nil, session != nil else { return false }
         guard let keystroke = session?.type(character, keyCode: keyCode, at: time) else { return true }
+        lastPracticeKeystroke = Date()
 
         lastKeyWrong = !keystroke.isCorrect && session?.mistakeMode == .stop
         onKeystroke?(keystroke.isCorrect)
@@ -224,6 +258,7 @@ final class PracticeModel {
     /// Records a keystroke typed outside practice (in a race) into the same key
     /// stats, so practice targets what races expose. Unlocks can happen here too.
     func recordExternal(_ keystroke: Keystroke) {
+        lastPracticeKeystroke = Date()  // a race counts as warmed up
         guard let unlocked = trainer?.record(keystroke) else { return }
         noteUnlock(unlocked)
     }

@@ -225,6 +225,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Log.success("Ductus ready")
     }
 
+    func applicationDidBecomeActive(_ notification: Notification) {
+        practice.warmUpIfReturning()
+    }
+
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -272,6 +276,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let defaults = UserDefaults.standard
 
         practice.applySettings()
+        let glow = Array(defaults.string(forKey: SettingsKey.shortcutKeys) ?? SettingsKey.defaultShortcutKeys)
+        if keyboard.shortcutLetters != glow { keyboard.shortcutLetters = glow }
+        let shape = KeyboardGeometry.Shape(rawValue: defaults.string(forKey: SettingsKey.keyboardShape) ?? "")
+        if keyboard.shapeOverride != shape { keyboard.shapeOverride = shape }
         sounds.configure(
             clicks: defaults.bool(forKey: SettingsKey.keySounds),
             mistakes: defaults.bool(forKey: SettingsKey.mistakeSound),

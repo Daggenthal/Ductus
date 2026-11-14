@@ -7,11 +7,21 @@ public struct DrillConfig: Sendable, Equatable {
     /// The curriculum unlocks extra letters at the start until at least this many
     /// real words can be typed, so drills are not the same few words on repeat.
     public var minPoolSize: Int
+    /// Most times one word may appear in a drill (when there are other words to use).
+    public var maxRepeats: Int
+    /// With fewer focus words than this, the focus share is scaled down so a
+    /// rare key does not fill the drill with the same two or three words.
+    public var fullFocusPoolSize: Int
 
-    public init(wordCount: Int = 15, focusShare: Double = 0.6, minPoolSize: Int = 50) {
+    public init(
+        wordCount: Int = 15, focusShare: Double = 0.6, minPoolSize: Int = 50,
+        maxRepeats: Int = 2, fullFocusPoolSize: Int = 8
+    ) {
         self.wordCount = wordCount
         self.focusShare = focusShare
         self.minPoolSize = minPoolSize
+        self.maxRepeats = maxRepeats
+        self.fullFocusPoolSize = fullFocusPoolSize
     }
 }
 
@@ -53,11 +63,25 @@ public struct DrillGenerator: Sendable {
         guard !pool.isEmpty else { return nil }
         let focusPool = request.focus.map { focus in pool.filter { $0.letters.contains(focus) } } ?? []
 
+        let focusShare = config.focusShare
+            * min(1, Double(focusPool.count) / Double(max(1, config.fullFocusPoolSize)))
+
         var words: [String] = []
+        var uses: [String: Int] = [:]
         for _ in 0..<config.wordCount {
-            let wantFocus = !focusPool.isEmpty && Double.random(in: 0..<1, using: &rng) < config.focusShare
-            let source = wantFocus ? focusPool : pool
-            words.append(pick(from: source, request: request, avoiding: words.last, using: &rng))
+            let wantFocus = !focusPool.isEmpty && Double.random(in: 0..<1, using: &rng) < focusShare
+            // Skip words already used up. Focus words fall back to the whole pool,
+            // and a tiny pool falls back to anything so the drill still fills.
+            let previous = words.last
+            let fresh = { (entries: [WordList.Entry]) in
+                entries.filter { $0.word != previous && uses[$0.word, default: 0] < config.maxRepeats }
+            }
+            var source = wantFocus ? fresh(focusPool) : []
+            if source.isEmpty { source = fresh(pool) }
+            if source.isEmpty { source = pool }
+            let word = pick(from: source, request: request, avoiding: previous, using: &rng)
+            words.append(word)
+            uses[word, default: 0] += 1
         }
         return words.joined(separator: " ")
     }
@@ -77,20 +101,16 @@ public struct DrillGenerator: Sendable {
         return log(Double(entry.count) + 1) * (1 + keyWeakness + bigramWeakness)
     }
 
-    /// Weighted pick that avoids repeating the previous word when there is a choice.
+    /// Weighted pick that never repeats the previous word when there is a choice.
     private func pick<G: RandomNumberGenerator>(
         from source: [WordList.Entry],
         request: DrillRequest,
         avoiding previous: String?,
         using rng: inout G
     ) -> String {
-        var choice = source[0].word
-        for _ in 0..<5 {
-            if let pick = source.weightedRandomElement(using: &rng, weight: { score($0, request: request) })?.word {
-                choice = pick
-                if pick != previous { break }
-            }
-        }
-        return choice
+        let others = source.filter { $0.word != previous }
+        let choices = others.isEmpty ? source : others
+        return choices.weightedRandomElement(using: &rng, weight: { score($0, request: request) })?.word
+            ?? choices[0].word
     }
 }

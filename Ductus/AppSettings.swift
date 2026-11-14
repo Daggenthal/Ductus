@@ -17,6 +17,12 @@ extension SettingsKey {
     static let keySounds = "keySounds"
     static let mistakeSound = "mistakeSound"
     static let soundVolume = "soundVolume"
+    static let warmUp = "warmUpDrill"
+    /// Letters whose Command shortcuts glow, e.g. "zxcv".
+    static let shortcutKeys = "shortcutGlowKeys"
+    static let defaultShortcutKeys = "zxcv"
+    /// "auto", or a `KeyboardGeometry.Shape` raw value.
+    static let keyboardShape = "keyboardShape"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -33,6 +39,9 @@ extension SettingsKey {
             keySounds: false,
             mistakeSound: false,
             soundVolume: 0.5,
+            warmUp: true,
+            shortcutKeys: defaultShortcutKeys,
+            keyboardShape: "auto",
         ])
     }
 }
@@ -58,6 +67,8 @@ enum PracticeSettings {
             punctuation: defaults.bool(forKey: SettingsKey.punctuation)
         )
     }
+
+    static var warmUp: Bool { defaults.bool(forKey: SettingsKey.warmUp) }
 
     static var sentenceDrills: Bool { defaults.bool(forKey: SettingsKey.sentenceDrills) }
 

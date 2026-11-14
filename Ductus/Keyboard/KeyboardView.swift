@@ -31,22 +31,28 @@ struct KeyboardView: View {
         let nextNeedsShift = nextCharacter.map { keyboard.needsShift(for: $0) } ?? false
 
         VStack(alignment: .leading, spacing: spacing) {
-            ForEach(Array(KeyboardGeometry.ansi.enumerated()), id: \.offset) { _, row in
+            ForEach(Array(KeyboardGeometry.rows(for: keyboard.shape).enumerated()), id: \.offset) { _, row in
                 HStack(spacing: spacing) {
                     ForEach(row) { key in
-                        KeyCap(
-                            label: label(for: key),
-                            physicalLabel: physicalLabel(for: key),
-                            width: unit * key.width + spacing * (key.width - 1),
-                            height: unit,
-                            isPressed: keyboard.pressed.contains(key.code),
-                            isNext: key.code == nextCode || (nextNeedsShift && (key.code == 56 || key.code == 60)),
-                            isShortcut: shortcutCodes.contains(key.code),
-                            isDimmed: isLocked(key),
-                            isFaded: isMastered(key),
-                            heat: heatValue(for: key),
-                            scalesOnPress: animatesPresses
-                        )
+                        if key.kind == .returnGap {
+                            Color.clear.frame(width: width(key.width), height: unit)
+                        } else {
+                            KeyCap(
+                                label: label(for: key),
+                                physicalLabel: physicalLabel(for: key),
+                                width: width(key.width),
+                                height: unit,
+                                tallBottomWidth: tallBottomWidth(key),
+                                rowSpacing: spacing,
+                                isPressed: keyboard.pressed.contains(key.code),
+                                isNext: key.code == nextCode || (nextNeedsShift && (key.code == 56 || key.code == 60)),
+                                isShortcut: shortcutCodes.contains(key.code),
+                                isDimmed: isLocked(key),
+                                isFaded: isMastered(key),
+                                heat: heatValue(for: key),
+                                scalesOnPress: animatesPresses
+                            )
+                        }
                     }
                 }
             }
@@ -54,6 +60,15 @@ struct KeyboardView: View {
         .padding(spacing * 3)
         .animation(animatesPresses ? .easeOut(duration: 0.08) : nil, value: keyboard.pressed)
         .animation(.easeInOut(duration: 0.15), value: keyboard.commandHeld)
+    }
+
+    private func width(_ units: Double) -> CGFloat {
+        unit * units + spacing * (units - 1)
+    }
+
+    private func tallBottomWidth(_ key: KeyboardGeometry.Key) -> CGFloat? {
+        if case .tallReturn(let bottom) = key.kind { return width(bottom) }
+        return nil
     }
 
     private func label(for key: KeyboardGeometry.Key) -> String {
@@ -98,6 +113,10 @@ private struct KeyCap: View {
     let physicalLabel: String?
     let width: CGFloat
     let height: CGFloat
+    /// For the L-shaped ISO/JIS Return: width of the lower part, which reaches
+    /// down one row (plus `rowSpacing`), aligned right.
+    var tallBottomWidth: CGFloat?
+    var rowSpacing: CGFloat = 4
     let isPressed: Bool
     let isNext: Bool
     let isShortcut: Bool
@@ -110,7 +129,8 @@ private struct KeyCap: View {
 
     var body: some View {
         let palette = KeyboardPalette(colorScheme)
-        let shape = RoundedRectangle(cornerRadius: 6, style: .continuous)
+        let shape = KeyShape(bottomWidth: tallBottomWidth, rowHeight: height)
+        let fullHeight = tallBottomWidth == nil ? height : height * 2 + rowSpacing
         Text(label)
             .font(.system(size: label.count > 1 ? 11 : 16, weight: .medium, design: .rounded))
             .foregroundStyle(isPressed ? palette.pressedLabel : isDimmed ? palette.dimmedLabel : palette.label)
@@ -125,10 +145,15 @@ private struct KeyCap: View {
                         .padding(.bottom, 2)
                 }
             }
-            .background(shape.fill(fill(palette)))
-            .overlay(shape.strokeBorder(stroke(palette), lineWidth: isNext ? 2 : 1))
-            .shadow(color: isShortcut ? palette.shortcutGlow : .clear, radius: 8)
-            .scaleEffect(isPressed && scalesOnPress ? 0.94 : 1)
+            .background(alignment: .top) {
+                ZStack {
+                    shape.fill(fill(palette))
+                    shape.strokeBorder(stroke(palette), lineWidth: isNext ? 2 : 1)
+                }
+                .frame(width: width, height: fullHeight)
+                .shadow(color: isShortcut ? palette.shortcutGlow : .clear, radius: 8)
+            }
+            .scaleEffect(isPressed && scalesOnPress ? 0.94 : 1, anchor: tallBottomWidth == nil ? .center : .top)
     }
 
     private func fill(_ palette: KeyboardPalette) -> Color {
@@ -142,5 +167,47 @@ private struct KeyCap: View {
         if isNext { return Color.accentColor }
         if isShortcut { return palette.shortcutStroke }
         return palette.keyStroke
+    }
+}
+
+/// A rounded key, or the L-shaped ISO/JIS Return when `bottomWidth` is set:
+/// full width for the top row, narrower and right-aligned below.
+private struct KeyShape: InsettableShape {
+    var bottomWidth: CGFloat?
+    var rowHeight: CGFloat
+    var inset: CGFloat = 0
+    var radius: CGFloat = 6
+
+    func path(in rect: CGRect) -> Path {
+        let r = rect.insetBy(dx: inset, dy: inset)
+        guard let bottomWidth else {
+            return RoundedRectangle(cornerRadius: radius, style: .continuous).path(in: r)
+        }
+        let neckX = r.maxX - bottomWidth + inset * 2
+        let neckY = r.minY + rowHeight - inset * 2
+        let c = radius
+        var path = Path()
+        path.move(to: CGPoint(x: r.minX + c, y: r.minY))
+        path.addLine(to: CGPoint(x: r.maxX - c, y: r.minY))
+        path.addQuadCurve(to: CGPoint(x: r.maxX, y: r.minY + c), control: CGPoint(x: r.maxX, y: r.minY))
+        path.addLine(to: CGPoint(x: r.maxX, y: r.maxY - c))
+        path.addQuadCurve(to: CGPoint(x: r.maxX - c, y: r.maxY), control: CGPoint(x: r.maxX, y: r.maxY))
+        path.addLine(to: CGPoint(x: neckX + c, y: r.maxY))
+        path.addQuadCurve(to: CGPoint(x: neckX, y: r.maxY - c), control: CGPoint(x: neckX, y: r.maxY))
+        path.addLine(to: CGPoint(x: neckX, y: neckY + c))
+        // Inner corner curves outward.
+        path.addQuadCurve(to: CGPoint(x: neckX - c, y: neckY), control: CGPoint(x: neckX, y: neckY))
+        path.addLine(to: CGPoint(x: r.minX + c, y: neckY))
+        path.addQuadCurve(to: CGPoint(x: r.minX, y: neckY - c), control: CGPoint(x: r.minX, y: neckY))
+        path.addLine(to: CGPoint(x: r.minX, y: r.minY + c))
+        path.addQuadCurve(to: CGPoint(x: r.minX + c, y: r.minY), control: CGPoint(x: r.minX, y: r.minY))
+        path.closeSubpath()
+        return path
+    }
+
+    func inset(by amount: CGFloat) -> KeyShape {
+        var copy = self
+        copy.inset += amount
+        return copy
     }
 }

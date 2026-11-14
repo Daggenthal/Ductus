@@ -98,6 +98,20 @@ public struct Trainer: Sendable {
         generator.generate(drillRequest(), using: &rng)
     }
 
+    /// Unlocked letters that meet both targets.
+    public var masteredKeys: Set<Character> {
+        Set(curriculum.unlocked.filter { scorer.meetsTarget(stats.stats(for: $0)) })
+    }
+
+    /// An easy drill from mastered letters only: no focus key, no weak-spot
+    /// weighting, so common words win. `nil` if the mastered letters spell
+    /// fewer than `minWords` real words.
+    public func warmUpDrill<G: RandomNumberGenerator>(minWords: Int = 30, using rng: inout G) -> String? {
+        let mastered = masteredKeys
+        guard generator.wordList.words(using: mastered).count >= minWords else { return nil }
+        return generator.generate(DrillRequest(unlocked: mastered), using: &rng)
+    }
+
     public func nextDrill() -> String? {
         var rng = SystemRandomNumberGenerator()
         return nextDrill(using: &rng)

@@ -54,10 +54,10 @@ struct KeyboardLayout: Equatable, Sendable {
         name = Self.stringProperty(source, kTISPropertyLocalizedName) ?? id
 
         let keyboardType = UInt32(LMGetKbdType())
-        for key in KeyboardGeometry.ansi.flatMap({ $0 }) where key.isCharacterKey {
-            plain[key.code] = Self.translate(data, key.code, modifiers: 0, keyboardType: keyboardType)
-            shifted[key.code] = Self.translate(data, key.code, modifiers: shiftKey, keyboardType: keyboardType)
-            command[key.code] = Self.translate(data, key.code, modifiers: cmdKey, keyboardType: keyboardType)
+        for code in KeyboardGeometry.allCharacterCodes {
+            plain[code] = Self.translate(data, code, modifiers: 0, keyboardType: keyboardType)
+            shifted[code] = Self.translate(data, code, modifiers: shiftKey, keyboardType: keyboardType)
+            command[code] = Self.translate(data, code, modifiers: cmdKey, keyboardType: keyboardType)
         }
     }
 
@@ -67,15 +67,21 @@ struct KeyboardLayout: Equatable, Sendable {
     }
 
     /// The physical key that types `character` without Command (checks unshifted first).
-    func keyCode(for character: Character) -> UInt16? {
+    /// Only keys on `shape` count: on ANSI, keycode 10 (ISO §) is not on the keyboard.
+    func keyCode(for character: Character, on shape: KeyboardGeometry.Shape) -> UInt16? {
         let target = String(character)
-        return plain.first { $0.value == target }?.key ?? shifted.first { $0.value == target }?.key
+        let codes = KeyboardGeometry.characterCodes(for: shape)
+        let matches = { (map: [UInt16: String]) in
+            map.filter { codes.contains($0.key) && $0.value == target }.keys.min()
+        }
+        return matches(plain) ?? matches(shifted)
     }
 
     /// The physical key that types `character` while Command is held.
-    func commandKeyCode(for character: Character) -> UInt16? {
+    func commandKeyCode(for character: Character, on shape: KeyboardGeometry.Shape) -> UInt16? {
         let target = String(character)
-        return command.first { $0.value == target }?.key
+        let codes = KeyboardGeometry.characterCodes(for: shape)
+        return command.filter { codes.contains($0.key) && $0.value == target }.keys.min()
     }
 
     /// Letters on the home-row keys, in physical order. For Dvorak: a o e u i d h t n s.

@@ -26,6 +26,10 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.mistakeSound) private var mistakeSound = false
     @AppStorage(SettingsKey.soundVolume) private var soundVolume = 0.5
     @AppStorage(SettingsKey.systemWideHighlighting) private var systemWide = false
+    @AppStorage(SettingsKey.warmUp) private var warmUp = true
+    @AppStorage(SettingsKey.shortcutKeys) private var shortcutKeys = SettingsKey.defaultShortcutKeys
+    @AppStorage(SettingsKey.keyboardShape) private var keyboardShape = "auto"
+    @Environment(KeyboardState.self) private var keyboard
 
     @Environment(PracticeModel.self) private var practice
     @State private var confirmingReset = false
@@ -55,6 +59,8 @@ struct SettingsView: View {
             }
 
             Section("Typing") {
+                Toggle("Warm up first", isOn: $warmUp)
+                note("Each session starts with one easy drill using only keys you have mastered. A session starts at launch or after a 10 minute break.")
                 Picker("Mistakes", selection: $mistakeMode) {
                     Text("Stop until corrected").tag(MistakeMode.stop.rawValue)
                     Text("Keep going, fix with Backspace").tag(MistakeMode.backspace.rawValue)
@@ -86,6 +92,13 @@ struct SettingsView: View {
 
             Section("Keyboard") {
                 Toggle("Show keyboard", isOn: $showKeyboard)
+                Picker("Keyboard type", selection: $keyboardShape) {
+                    Text("Automatic (\(keyboard.detectedShape.title))").tag("auto")
+                    Text("ANSI (U.S.)").tag(KeyboardGeometry.Shape.ansi.rawValue)
+                    Text("ISO (Europe)").tag(KeyboardGeometry.Shape.iso.rawValue)
+                    Text("JIS (Japan)").tag(KeyboardGeometry.Shape.jis.rawValue)
+                }
+                note("The shape of your physical keyboard. Automatic uses the keyboard you last typed on. ISO has a tall Return and an extra key next to left Shift.")
                 Toggle("Pop out into a floating window", isOn: $poppedOut)
                 Toggle("Show drill text above the floating keyboard", isOn: $showDrillInFloating)
                 note("Keeps the words and the keys close together so your eyes do not have to travel.")
@@ -97,6 +110,16 @@ struct SettingsView: View {
                 }
                 Toggle("Show physical key labels", isOn: $showPhysicalLabels)
                 note("A faint QWERTY letter in the corner of each key, showing what is printed on your real keyboard.")
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Text("Shortcut glow")
+                        Spacer()
+                        Button("Reset") { shortcutKeys = SettingsKey.defaultShortcutKeys }
+                            .disabled(shortcutKeys == SettingsKey.defaultShortcutKeys)
+                    }
+                    ShortcutKeyPicker(selection: $shortcutKeys)
+                }
+                note("While you hold Command, these keys glow so you can find shortcuts like ⌘C. Works with layouts that switch to QWERTY under Command.")
                 Toggle("Floating click-through", isOn: $clickThrough)
                 note("Clicks pass through the floating keyboard to whatever is underneath. You cannot drag it or type into it while this is on.")
             }
@@ -164,6 +187,36 @@ struct SettingsView: View {
         Text(text)
             .font(.caption)
             .foregroundStyle(color)
+    }
+}
+
+/// Grid of A to Z toggles. The selection is stored as a sorted string, e.g. "cvxz".
+private struct ShortcutKeyPicker: View {
+    @Binding var selection: String
+    private let letters = Array("abcdefghijklmnopqrstuvwxyz")
+
+    var body: some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 9), spacing: 4) {
+            ForEach(letters, id: \.self) { letter in
+                let on = selection.contains(letter)
+                Button {
+                    var set = Set(selection)
+                    if on { set.remove(letter) } else { set.insert(letter) }
+                    selection = String(set.sorted())
+                } label: {
+                    Text(letter.uppercased())
+                        .font(.system(.callout, design: .rounded).weight(on ? .semibold : .regular))
+                        .frame(maxWidth: .infinity, minHeight: 24)
+                        .background(on ? Color.yellow.opacity(0.35) : Color.secondary.opacity(0.12),
+                                    in: RoundedRectangle(cornerRadius: 5))
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                            .strokeBorder(on ? Color.yellow.opacity(0.8) : .clear))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("\(letter.uppercased()) shortcut glow")
+                .accessibilityAddTraits(on ? .isSelected : [])
+            }
+        }
     }
 }
 
