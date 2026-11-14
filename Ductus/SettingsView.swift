@@ -29,6 +29,8 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.warmUp) private var warmUp = true
     @AppStorage(SettingsKey.shortcutKeys) private var shortcutKeys = SettingsKey.defaultShortcutKeys
     @AppStorage(SettingsKey.keyboardShape) private var keyboardShape = "auto"
+    @AppStorage(SettingsKey.practiceLayout) private var practiceLayout = ""
+    @AppStorage(SettingsKey.practiceLayoutAuto) private var practiceLayoutAuto = false
     @AppStorage(SettingsKey.practiceLanguage) private var practiceLanguage = "auto"
     @Environment(KeyboardState.self) private var keyboard
 
@@ -73,6 +75,7 @@ struct SettingsView: View {
                     }
                 }
                 note("The words and sentences you practice. Automatic follows your keyboard layout or input method, so a French layout practices French and the Japanese input method practices Japanese. Japanese is typed in romaji, Chinese in pinyin (no tones, v for ü) and Korean on the 2-Set layout, with the text shown above. Progress is kept separately for each layout and language.")
+                layoutPicker
             }
 
             Section("Unlocking") {
@@ -264,6 +267,35 @@ struct SettingsView: View {
         Text(text)
             .font(.caption)
             .foregroundStyle(color)
+    }
+}
+
+extension SettingsView {
+    /// The layout Ductus types and shows, which can differ from the Mac's.
+    @ViewBuilder
+    var layoutPicker: some View {
+        let language = PracticeLanguage(rawValue: practiceLanguage)
+        let suggested = language.map(LayoutCatalog.layouts(for:)) ?? []
+        let suggestedIDs = Set(suggested.map(\.id))
+        Picker("Keyboard in Ductus", selection: Binding(
+            get: { practiceLayout },
+            set: { practiceLayout = $0; practiceLayoutAuto = false }
+        )) {
+            Text("Same as macOS (\(keyboard.systemLayout?.name ?? "-"))").tag("")
+            if let language, !suggested.isEmpty {
+                Section("For \(language.nativeName)") {
+                    ForEach(suggested) { Text(verbatim: $0.name).tag($0.id) }
+                }
+            }
+            Section("All layouts") {
+                ForEach(LayoutCatalog.all.filter { !suggestedIDs.contains($0.id) }) { Text(verbatim: $0.name).tag($0.id) }
+            }
+        }
+        if practiceLayoutAuto, let language, let layout = keyboard.layout, let system = keyboard.systemLayout {
+            note("Your Mac's layout cannot type \(language.nativeName), so Ductus uses \(layout.name) in its windows. Other apps keep \(system.name).")
+        } else {
+            note("Types and shows another layout inside Ductus only. Your Mac keeps its own layout in other apps, and nothing needs to be installed.")
+        }
     }
 }
 

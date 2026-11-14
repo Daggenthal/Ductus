@@ -9,6 +9,13 @@ import Observation
 @Observable
 final class KeyboardState {
     private(set) var layout: KeyboardLayout?
+    /// The layout macOS has selected, which other apps type with. `layout` is
+    /// the same unless Ductus uses another one inside its windows.
+    private(set) var systemLayout: KeyboardLayout?
+    /// A layout Ductus types and shows instead of the Mac's (Settings › Keyboard in Ductus).
+    var layoutOverrideID: String? {
+        didSet { if oldValue != layoutOverrideID { reloadLayout() } }
+    }
     /// What is printed on the physical keycaps (U.S. QWERTY), for the faint secondary labels.
     let physicalLayout = KeyboardLayout.installed(id: KeyboardLayout.physicalKeycapsID)
     private(set) var pressed: Set<UInt16> = []
@@ -85,7 +92,12 @@ final class KeyboardState {
     }
 
     func reloadLayout() {
-        var new = KeyboardLayout.current()
+        let system = KeyboardLayout.current()
+        systemLayout = system
+        var new = system
+        if let id = layoutOverrideID, let chosen = KeyboardLayout.installed(id: id) {
+            new = chosen
+        }
         #if DEBUG
         // Test hook: show and type with another layout without switching input sources.
         if let id = ProcessInfo.processInfo.environment["DUCTUS_DEBUG_LAYOUT"] {

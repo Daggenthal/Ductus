@@ -29,7 +29,7 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 
 ### An on-screen keyboard that follows your layout
 
-- Reads your active layout from macOS, so every key shows what it really types. No layouts are built in, except Korean 2-Set, which macOS does not describe.
+- Reads your active layout from macOS, so every key shows what it really types. Or pick any macOS layout under Keyboard in Ductus (Dvorak, Colemak, Devanagari, Arabic...) to type it inside Ductus only, without changing your Mac's input sources. Choosing a practice language your layout can't type picks a matching layout automatically. No layouts are built in, except Korean 2-Set, which macOS does not describe.
 - Outlines the next key to press, plus Shift, Option or the accent key when a character needs them.
 - Shows ANSI, ISO and JIS keyboards, detected from the keyboard you type on.
 - Handles "Dvorak - QWERTY ⌘": While you hold Command, keys show their QWERTY shortcuts, and the shortcut keys (Z X C V by default, your choice) glow soft yellow.

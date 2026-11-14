@@ -3512,6 +3512,136 @@
         }
       }
     },
+    "All layouts" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كل التخطيطات"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Všechna rozložení"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Belegungen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όλες οι διατάξεις"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All layouts"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas las distribuciones"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "همهٔ چیدمان‌ها"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes les dispositions"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כל הפריסות"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी लेआउट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minden kiosztás"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutti i layout"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての配列"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 배열"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle indelingen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wszystkie układy"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos os layouts"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все раскладки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm düzenler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усі розкладки"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有布局"
+          }
+        }
+      }
+    },
     "All letters" : {
       "localizations" : {
         "ar" : {
@@ -12094,6 +12224,136 @@
         }
       }
     },
+    "For %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "للغة %@"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro jazyk %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Για τη γλώσσα %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para %@"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "برای %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour %@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עבור %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ के लिए"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ nyelvhez"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@用"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@용"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voor %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dla języka %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для языка %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ için"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для мови %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "适用于%@"
+          }
+        }
+      }
+    },
     "For every other language, by the contributors of Tatoeba, used under CC BY 2.0 FR. Vowel marks are removed from Arabic, Persian and Hebrew, and Arabic includes Egyptian Arabic. Japanese and Chinese are romanized and split into chunks (Chinese converted to Simplified), and Korean is paired with the 2-Set keys." : {
       "localizations" : {
         "ar" : {
@@ -14820,6 +15080,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "键盘"
+          }
+        }
+      }
+    },
+    "Keyboard in Ductus" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لوحة المفاتيح في Ductus"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klávesnice v aplikaci Ductus"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastatur in Ductus"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πληκτρολόγιο στο Ductus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard in Ductus"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teclado en Ductus"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صفحه‌کلید در Ductus"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clavier dans Ductus"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מקלדת ב-Ductus"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus में कीबोर्ड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billentyűzet a Ductusban"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastiera in Ductus"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus内のキーボード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus 내 키보드"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toetsenbord in Ductus"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klawiatura w Ductus"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teclado no Ductus"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавиатура в Ductus"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus'taki klavye"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавіатура в Ductus"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus 中的键盘"
           }
         }
       }
@@ -25876,6 +26266,136 @@
         }
       }
     },
+    "Same as macOS (%@)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مثل macOS (%@)"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stejné jako macOS (%@)"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie macOS (%@)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όπως στο macOS (%@)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Same as macOS (%@)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igual que macOS (%@)"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مانند macOS (%@)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comme macOS (%@)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כמו ב-macOS (%@)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS जैसा (%@)"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugyanaz, mint a macOS-ben (%@)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Come macOS (%@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOSと同じ（%@）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS와 동일(%@)"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zelfde als macOS (%@)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tak jak w macOS (%@)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igual ao macOS (%@)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как в macOS (%@)"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS ile aynı (%@)"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Як у macOS (%@)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "与 macOS 相同（%@）"
+          }
+        }
+      }
+    },
     "Section" : {
       "localizations" : {
         "ar" : {
@@ -35888,6 +36408,136 @@
         }
       }
     },
+    "Types and shows another layout inside Ductus only. Your Mac keeps its own layout in other apps, and nothing needs to be installed." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يكتب ويعرض تخطيطًا آخر داخل Ductus فقط. يحتفظ الـ Mac بتخطيطه الخاص في التطبيقات الأخرى، ولا حاجة إلى تثبيت أي شيء."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Píše a zobrazuje jiné rozložení jen v aplikaci Ductus. Váš Mac si v ostatních aplikacích ponechá vlastní rozložení a nic není třeba instalovat."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippt und zeigt eine andere Belegung nur in Ductus. Dein Mac behält in anderen Apps seine eigene Belegung, und es muss nichts installiert werden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πληκτρολογεί και εμφανίζει άλλη διάταξη μόνο μέσα στο Ductus. Το Mac σας κρατά τη δική του διάταξη στις άλλες εφαρμογές, και δεν χρειάζεται να εγκαταστήσετε τίποτα."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Types and shows another layout inside Ductus only. Your Mac keeps its own layout in other apps, and nothing needs to be installed."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe y muestra otra distribución solo dentro de Ductus. Tu Mac mantiene su propia distribución en otras apps y no hay que instalar nada."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فقط درون Ductus با چیدمانی دیگر تایپ می‌کند و آن را نشان می‌دهد. Mac شما در برنامه‌های دیگر چیدمان خودش را نگه می‌دارد و نیازی به نصب چیزی نیست."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tape et affiche une autre disposition dans Ductus uniquement. Votre Mac garde sa propre disposition dans les autres apps, et rien n’est à installer."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מקליד ומציג פריסה אחרת רק בתוך Ductus. ה-Mac שלך שומר על הפריסה שלו ביישומים אחרים, ואין צורך להתקין דבר."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल Ductus के अंदर किसी दूसरे लेआउट से टाइप करता है और उसे दिखाता है। आपका Mac दूसरी ऐप्स में अपना लेआउट रखता है, और कुछ भी इंस्टॉल नहीं करना पड़ता।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csak a Ductusban gépel és jelenít meg egy másik kiosztást. A Maced a többi alkalmazásban megtartja a saját kiosztását, és semmit sem kell telepíteni."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digita e mostra un altro layout solo dentro Ductus. Il Mac mantiene il proprio layout nelle altre app e non serve installare nulla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus内でのみ別の配列で入力し、表示します。ほかのアプリではMacの配列がそのまま使われ、インストールは不要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ductus 안에서만 다른 배열로 입력하고 표시합니다. 다른 앱에서는 Mac의 배열이 그대로 유지되며, 설치할 것은 없습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typt en toont alleen in Ductus een andere indeling. Je Mac houdt in andere apps zijn eigen indeling en er hoeft niets geïnstalleerd te worden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pisze i pokazuje inny układ tylko w Ductus. Twój Mac zachowuje własny układ w innych aplikacjach i nic nie trzeba instalować."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digita e mostra outro layout apenas dentro do Ductus. Seu Mac mantém o próprio layout nos outros apps, e não é preciso instalar nada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набирает и показывает другую раскладку только в Ductus. В других программах Mac сохраняет свою раскладку, и ничего устанавливать не нужно."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yalnızca Ductus içinde başka bir düzenle yazar ve onu gösterir. Mac'iniz diğer uygulamalarda kendi düzenini korur ve hiçbir şey yüklemeniz gerekmez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друкує та показує іншу розкладку лише в Ductus. В інших програмах Mac зберігає власну розкладку, і нічого не потрібно встановлювати."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅在 Ductus 中使用并显示另一种布局。你的 Mac 在其他 App 中保留自己的布局，无需安装任何内容。"
+          }
+        }
+      }
+    },
     "Typing" : {
       "localizations" : {
         "ar" : {
@@ -40044,6 +40694,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你的最佳"
+          }
+        }
+      }
+    },
+    "Your Mac's layout cannot type %@, so Ductus uses %@ in its windows. Other apps keep %@." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يمكن لتخطيط الـ Mac الكتابة بـ %1$@، لذا يستخدم Ductus التخطيط %2$@ في نوافذه. تحتفظ التطبيقات الأخرى بـ %3$@."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozložení vašeho Macu neumožňuje psát v jazyce %1$@, a tak Ductus ve svých oknech používá %2$@. Ostatní aplikace si ponechají %3$@."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit der Belegung deines Mac lässt sich %1$@ nicht tippen, daher nutzt Ductus in seinen Fenstern %2$@. Andere Apps behalten %3$@."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η διάταξη του Mac σας δεν μπορεί να πληκτρολογήσει %1$@, οπότε το Ductus χρησιμοποιεί τη διάταξη %2$@ στα παράθυρά του. Οι άλλες εφαρμογές κρατούν τη διάταξη %3$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Mac's layout cannot type %@, so Ductus uses %@ in its windows. Other apps keep %@."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La distribución de tu Mac no permite escribir en %1$@, así que Ductus usa %2$@ en sus ventanas. Las demás apps mantienen %3$@."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "با چیدمان Mac شما نمی‌توان %1$@ تایپ کرد، بنابراین Ductus در پنجره‌های خودش از %2$@ استفاده می‌کند. برنامه‌های دیگر %3$@ را نگه می‌دارند."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La disposition de votre Mac ne permet pas de taper en %1$@, donc Ductus utilise %2$@ dans ses fenêtres. Les autres apps gardent %3$@."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הפריסה של ה-Mac שלך לא יכולה להקליד %1$@, לכן Ductus משתמש ב-%2$@ בחלונות שלו. יישומים אחרים שומרים על %3$@."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके Mac का लेआउट %1$@ टाइप नहीं कर सकता, इसलिए Ductus अपनी विंडो में %2$@ का उपयोग करता है। दूसरी ऐप्स %3$@ रखती हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Maced kiosztásával nem lehet %1$@ nyelven gépelni, ezért a Ductus a saját ablakaiban a(z) %2$@ kiosztást használja. A többi alkalmazás megtartja a(z) %3$@ kiosztást."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con il layout del Mac non si può digitare in %1$@, quindi Ductus usa %2$@ nelle sue finestre. Le altre app mantengono %3$@."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macの配列では%1$@を入力できないため、Ductusのウインドウでは%2$@を使います。ほかのアプリでは%3$@のままです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac의 배열로는 %1$@을(를) 입력할 수 없어 Ductus 윈도우에서는 %2$@을(를) 사용합니다. 다른 앱은 %3$@을(를) 유지합니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Met de indeling van je Mac kun je geen %1$@ typen, dus gebruikt Ductus %2$@ in zijn vensters. Andere apps houden %3$@."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Układ Twojego Maca nie pozwala pisać w języku %1$@, więc Ductus używa w swoich oknach układu %2$@. Inne aplikacje zachowują %3$@."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O layout do seu Mac não digita %1$@, então o Ductus usa %2$@ nas janelas dele. Os outros apps mantêm %3$@."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На раскладке вашего Mac нельзя набирать текст на языке %1$@, поэтому Ductus использует в своих окнах %2$@. Другие программы сохраняют %3$@."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac'inizin düzeniyle %1$@ yazılamıyor, bu yüzden Ductus kendi pencerelerinde %2$@ kullanıyor. Diğer uygulamalar %3$@ düzenini korur."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розкладка вашого Mac не дає друкувати мовою %1$@, тому Ductus використовує у своїх вікнах %2$@. Інші програми зберігають %3$@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的 Mac 的布局无法输入%1$@，因此 Ductus 在其窗口中使用%2$@。其他 App 仍使用%3$@。"
           }
         }
       }

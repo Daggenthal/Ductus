@@ -1,3 +1,4 @@
+import DuctusEngine
 import AppKit
 import DuctusLog
 import SwiftUI
@@ -318,6 +319,32 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.makeKeyAndOrderFront(nil)
     }
 
+    /// Picks the layout Ductus types with. A practice language the Mac's own
+    /// layout cannot type (Hindi on U.S.) gets a matching layout inside Ductus,
+    /// so nothing has to be installed or switched in macOS.
+    private func applyLayoutChoice() {
+        let defaults = UserDefaults.standard
+        var id = defaults.string(forKey: SettingsKey.practiceLayout) ?? ""
+        var auto = defaults.bool(forKey: SettingsKey.practiceLayoutAuto)
+        let chosen = PracticeLanguage(rawValue: defaults.string(forKey: SettingsKey.practiceLanguage) ?? "")
+        if let language = chosen, id.isEmpty || auto {
+            if LayoutCatalog.canType(language, on: keyboard.systemLayout) {
+                if auto { id = ""; auto = false }
+            } else if let pick = LayoutCatalog.preferred(for: language), pick.id != id {
+                Log.info("\(language.nativeName) needs another layout: using \(pick.name) inside Ductus")
+                id = pick.id
+                auto = true
+            }
+        } else if chosen == nil, auto {
+            id = ""  // Automatic language follows the Mac's layout again
+            auto = false
+        }
+        if id != defaults.string(forKey: SettingsKey.practiceLayout) { defaults.set(id, forKey: SettingsKey.practiceLayout) }
+        if auto != defaults.bool(forKey: SettingsKey.practiceLayoutAuto) { defaults.set(auto, forKey: SettingsKey.practiceLayoutAuto) }
+        let override = id.isEmpty ? nil : id
+        if keyboard.layoutOverrideID != override { keyboard.layoutOverrideID = override }
+    }
+
     private func applySettings() {
         guard !isApplyingSettings else { return }
         isApplyingSettings = true
@@ -325,6 +352,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let defaults = UserDefaults.standard
 
         DebugMode.apply()
+        applyLayoutChoice()
         practice.applySettings()
         // Korean typing follows the practice language (a setting can change it)
         // or, on the Text tab, the open text.

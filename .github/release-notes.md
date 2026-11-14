@@ -1,10 +1,9 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.6.0
+## What's new in 0.6.1
 
-- **Hindi:** Practice Hindi on the Devanagari layouts (InScript and Devanagari QWERTY), with real words and sentences. Each key counts on its own, so कि is practiced as क then ि, and vowel signs and the virama unlock like letters.
-- **The app in Hindi.**
-- **Letter row:** The row of letters in Practice now scrolls to keep the next letter in view, for languages with many letters.
+- **Practice any language without switching your Mac's layout:** Pick a practice language your layout can't type (Hindi on U.S., say) and Ductus uses a matching layout inside its own windows, like Devanagari QWERTY for Hindi or Arabic PC for Arabic. Your Mac keeps its own layout in every other app, and nothing needs to be installed.
+- **Keyboard in Ductus:** A new setting to type and see any macOS layout inside Ductus, such as Dvorak or Colemak, without enabling it in System Settings.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

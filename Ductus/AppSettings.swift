@@ -30,6 +30,12 @@ extension SettingsKey {
     static let debugMode = "debugMode"
     /// Tint on-screen keys by the finger that presses them.
     static let fingerZones = "fingerZones"
+    /// "" (the layout macOS has selected), or the input source ID of a layout
+    /// Ductus types and shows inside its own windows instead.
+    static let practiceLayout = "practiceLayout"
+    /// True when Ductus chose `practiceLayout` itself, because the Mac's layout
+    /// cannot type the practice language. Such a choice is undone when it is no longer needed.
+    static let practiceLayoutAuto = "practiceLayoutAuto"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -52,6 +58,8 @@ extension SettingsKey {
             practiceLanguage: "auto",
             debugMode: false,
             fingerZones: false,
+            practiceLayout: "",
+            practiceLayoutAuto: false,
         ])
     }
 }
