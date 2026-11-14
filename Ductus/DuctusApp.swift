@@ -254,6 +254,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             MainActor.assumeIsolated { self?.applySettings() }
         }
         Log.success("Ductus ready")
+        updater.reportLastUpdate()
         updater.checkAutomaticallyIfDue()
     }
 

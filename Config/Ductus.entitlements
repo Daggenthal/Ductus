@@ -10,8 +10,5 @@
 	<!-- Update checks and downloads (GitHub only, only when checking or when the person clicks Download). -->
 	<key>com.apple.security.network.client</key>
 	<true/>
-	<!-- Saves a downloaded update to the Downloads folder. -->
-	<key>com.apple.security.files.downloads.read-write</key>
-	<true/>
 </dict>
 </plist>

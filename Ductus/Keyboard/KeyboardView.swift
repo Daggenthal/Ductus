@@ -24,6 +24,8 @@ struct KeyboardView: View {
     var unit: CGFloat = 40
 
     private let spacing: CGFloat = 4
+    /// Tints keys by the finger that presses them (Settings, Keyboard). Not used with a heatmap.
+    @AppStorage(SettingsKey.fingerZones) private var fingerZones = false
 
     var body: some View {
         let shortcutCodes = keyboard.commandHeld ? keyboard.shortcutKeyCodes : []
@@ -49,6 +51,7 @@ struct KeyboardView: View {
                                 isDimmed: isLocked(key),
                                 isFaded: isMastered(key),
                                 heat: heatValue(for: key),
+                                finger: heat == nil && fingerZones ? KeyboardGeometry.finger(for: key.code) : nil,
                                 scalesOnPress: animatesPresses
                             )
                         }
@@ -131,6 +134,7 @@ private struct KeyCap: View {
     let isDimmed: Bool
     var isFaded = false
     var heat: Double?
+    var finger: KeyboardGeometry.Finger?
     var scalesOnPress = true
 
     @Environment(\.colorScheme) private var colorScheme
@@ -168,6 +172,7 @@ private struct KeyCap: View {
         if isPressed { return Color.accentColor.opacity(0.85) }
         if isShortcut { return palette.shortcutFill }
         if let heat { return KeyboardPalette.heat.opacity(0.12 + 0.68 * min(1, max(0, heat))) }
+        if let finger { return finger.color.opacity(colorScheme == .dark ? 0.42 : 0.32) }
         return palette.keyFill
     }
 

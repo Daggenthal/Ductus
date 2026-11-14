@@ -36,6 +36,7 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 - Faint QWERTY letters in the corner of each key show what is printed on your real keyboard.
 - Docked in the window, or popped out as a floating keyboard with the drill text and live stats above it. Adjustable opacity, optional click-through, light and dark appearance.
 - Fades keys you have mastered, so you look down less.
+- Optionally colors each key by the finger that presses it (pinky, ring, middle, index, thumb), like a typing chart.
 - Optionally lights up while you type in other apps (opt-in, needs the Input Monitoring permission).
 
 ### Options
@@ -43,13 +44,16 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 - Stop on a mistake, or keep going and fix it with Backspace.
 - Capitals and punctuation in drills.
 - Text size, a daily practice goal, and key click and mistake sounds.
+- The app itself in English, French, Spanish, German, Italian, Portuguese, Dutch, Japanese, Chinese or Korean. It follows your macOS language, or pick one in Settings. These translations were made with AI and may not be completely accurate; corrections are welcome.
 - A hidden debug mode (hold Option while opening Settings).
 
 ### Updates
 
 - Ductus › Check for Updates… (or Settings › Updates) checks GitHub for a newer version and shows what changed.
-- You decide: Download saves the disk image to your Downloads folder, checks it against the release's checksums, and opens it. You drag the new Ductus into Applications yourself. Nothing is installed automatically.
+- You decide: Download and Install fetches the update, checks it against the release's checksums, then Ductus closes and opens again as the new version. Your progress and settings are kept. Nothing is downloaded or installed until you click.
 - Optional automatic checks, at most once a day, only tell you an update exists.
+- Keep Ductus in your Applications folder for updates to work (macOS does not let apps update themselves while they run from Downloads).
+- If you use typing in other apps, macOS asks for the Input Monitoring permission again after each update until Ductus is notarized by Apple.
 
 ### Progress
 
@@ -72,7 +76,7 @@ Every language comes with up to 20,000 real sentences and 10,000 common words. O
 ## Privacy
 
 - Nothing about you leaves your Mac. There are no accounts and no analytics.
-- The only time Ductus goes online is to check GitHub for a newer version: when you choose Check for Updates, or once a day if you turn on automatic checks (off by default). Updates are never downloaded or installed without you.
+- The only time Ductus goes online is to check GitHub for a newer version: when you choose Check for Updates, or once a day if you turn on automatic checks (off by default). Updates are only downloaded and installed when you click Download and Install.
 - Your keystrokes are never written to disk. Only the stats built from them (speed and accuracy per key) are saved.
 - Highlighting keys in other apps is off by default, needs your permission, and keeps nothing.
 - Texts you paste into the Text tab are saved only on your Mac.
@@ -141,6 +145,7 @@ Ductus/                  The Mac app (SwiftUI)
   Practice/ Race/ Text/  The tabs
   History/ Progress/     Charts and saved progress (SwiftData)
   Assets.xcassets        App icon
+DuctusUpdater/           Small helper that swaps in an update and reopens Ductus
 DuctusEngine/            Swift package, no UI imports
   Sources/DuctusEngine   Stats, unlocking, drills, languages, word lists and sentences
   Sources/DuctusLog      Colored terminal logger

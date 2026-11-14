@@ -9,17 +9,48 @@
 /* Begin PBXBuildFile section */
 		D0C705000000000000000101 /* DuctusEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D0C705000000000000000201 /* DuctusEngine */; };
 		D0C705000000000000000102 /* DuctusLog in Frameworks */ = {isa = PBXBuildFile; productRef = D0C705000000000000000202 /* DuctusLog */; };
+		D0C705000000000000000103 /* DuctusUpdater.app in Embed Updater */ = {isa = PBXBuildFile; fileRef = D0C705000000000000000303 /* DuctusUpdater.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0C705000000000000000B02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0C705000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0C705000000000000000702;
+			remoteInfo = DuctusUpdater;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0C705000000000000000805 /* Embed Updater */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Helpers;
+			dstSubfolderSpec = 1;
+			files = (
+				D0C705000000000000000103 /* DuctusUpdater.app in Embed Updater */,
+			);
+			name = "Embed Updater";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D0C705000000000000000301 /* Ductus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ductus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C705000000000000000302 /* Ductus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ductus.entitlements; sourceTree = "<group>"; };
+		D0C705000000000000000303 /* DuctusUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuctusUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D0C705000000000000000401 /* Ductus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Ductus;
+			sourceTree = "<group>";
+		};
+		D0C705000000000000000402 /* DuctusUpdater */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DuctusUpdater;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +65,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0C705000000000000000502 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -41,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				D0C705000000000000000401 /* Ductus */,
+				D0C705000000000000000402 /* DuctusUpdater */,
 				D0C705000000000000000603 /* Config */,
 				D0C705000000000000000602 /* Products */,
 			);
@@ -50,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				D0C705000000000000000301 /* Ductus.app */,
+				D0C705000000000000000303 /* DuctusUpdater.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,10 +112,12 @@
 				D0C705000000000000000801 /* Sources */,
 				D0C705000000000000000501 /* Frameworks */,
 				D0C705000000000000000802 /* Resources */,
+				D0C705000000000000000805 /* Embed Updater */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D0C705000000000000000B01 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D0C705000000000000000401 /* Ductus */,
@@ -87,6 +129,26 @@
 			);
 			productName = Ductus;
 			productReference = D0C705000000000000000301 /* Ductus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D0C705000000000000000702 /* DuctusUpdater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0C705000000000000000907 /* Build configuration list for PBXNativeTarget "DuctusUpdater" */;
+			buildPhases = (
+				D0C705000000000000000803 /* Sources */,
+				D0C705000000000000000502 /* Frameworks */,
+				D0C705000000000000000804 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D0C705000000000000000402 /* DuctusUpdater */,
+			);
+			name = DuctusUpdater;
+			productName = DuctusUpdater;
+			productReference = D0C705000000000000000303 /* DuctusUpdater.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -105,6 +167,15 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				es,
+				de,
+				it,
+				"pt-BR",
+				nl,
+				ja,
+				"zh-Hans",
+				ko,
 			);
 			mainGroup = D0C705000000000000000601;
 			minimizedProjectReferenceProxies = 1;
@@ -117,12 +188,20 @@
 			projectRoot = "";
 			targets = (
 				D0C705000000000000000701 /* Ductus */,
+				D0C705000000000000000702 /* DuctusUpdater */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D0C705000000000000000802 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0C705000000000000000804 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -139,7 +218,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0C705000000000000000803 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0C705000000000000000B01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0C705000000000000000702 /* DuctusUpdater */;
+			targetProxy = D0C705000000000000000B02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D0C705000000000000000902 /* Debug */ = {
@@ -235,6 +329,44 @@
 			};
 			name = Release;
 		};
+		D0C705000000000000000908 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ductus Updater";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "MIT License";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.daggenthal.ductus.updater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		D0C705000000000000000909 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ductus Updater";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "MIT License";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.daggenthal.ductus.updater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -252,6 +384,15 @@
 			buildConfigurations = (
 				D0C705000000000000000905 /* Debug */,
 				D0C705000000000000000906 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0C705000000000000000907 /* Build configuration list for PBXNativeTarget "DuctusUpdater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0C705000000000000000908 /* Debug */,
+				D0C705000000000000000909 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

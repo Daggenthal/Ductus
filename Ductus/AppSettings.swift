@@ -28,6 +28,8 @@ extension SettingsKey {
     static let practiceLanguage = "practiceLanguage"
     /// Hidden debug mode (Settings, hold Option): full logging plus a log file.
     static let debugMode = "debugMode"
+    /// Tint on-screen keys by the finger that presses them.
+    static let fingerZones = "fingerZones"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -49,6 +51,7 @@ extension SettingsKey {
             keyboardShape: "auto",
             practiceLanguage: "auto",
             debugMode: false,
+            fingerZones: false,
         ])
     }
 }

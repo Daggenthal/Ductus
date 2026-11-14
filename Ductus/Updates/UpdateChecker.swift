@@ -5,11 +5,12 @@ import DuctusLog
 import Foundation
 import Observation
 
-/// Checks GitHub for a newer release and, only when asked, downloads it.
+/// Checks GitHub for a newer release and, only when the person clicks
+/// Download and Install, updates Ductus.
 ///
-/// The person stays in control: Ductus never installs anything. It saves the
-/// disk image to Downloads, checks it against the release's SHA256SUMS.txt and
-/// opens it, and the person drags the new Ductus into Applications.
+/// Ductus is sandboxed and cannot replace itself, so it downloads the release
+/// zip, checks it against SHA256SUMS.txt, starts the bundled DuctusUpdater
+/// helper and quits. The helper swaps the new version in and reopens Ductus.
 /// Network use: only GitHub, only when checking or downloading. Nothing about
 /// the person is sent.
 @MainActor
@@ -23,6 +24,8 @@ final class UpdateChecker {
         let pageURL: URL
         let published: Date?
         let diskImage: Asset?
+        /// The zip the updater installs from.
+        let archive: Asset?
         let checksums: Asset?
 
         struct Asset: Equatable {
@@ -38,7 +41,10 @@ final class UpdateChecker {
         case upToDate
         case available(Release)
         case downloading(Release, Progress)
-        case downloaded(Release, file: URL)
+        /// Downloaded and checked; Ductus is quitting so the helper can install it.
+        case installing(Release)
+        /// Shown once after an update: the version it came from.
+        case updated(from: String)
         case failed(String)
 
         struct Progress: Equatable {
@@ -61,6 +67,24 @@ final class UpdateChecker {
     enum Keys {
         static let automatic = "checkForUpdatesAutomatically"
         static let lastChecked = "lastUpdateCheck"
+        /// Set just before handing over to the helper: the version being replaced.
+        static let updatingFrom = "updatingFromVersion"
+    }
+
+    /// At launch: says how the last update went, if there was one.
+    func reportLastUpdate() {
+        let defaults = UserDefaults.standard
+        guard let from = defaults.string(forKey: Keys.updatingFrom) else { return }
+        defaults.removeObject(forKey: Keys.updatingFrom)
+        if CommandLine.arguments.contains("--update-failed") {
+            state = .failed(String(localized: "The update could not be installed, so your current version was kept. Details are in ~/Library/Logs/DuctusUpdater.log."))
+        } else if let old = AppVersion(from), currentVersion > old {
+            state = .updated(from: from)
+            Log.success("Updated from \(from) to \(currentVersion)")
+        } else {
+            return
+        }
+        showWindow = true
     }
 
     /// The running version. `DUCTUS_PRETEND_VERSION` (debug) lets you test the update flow.
@@ -129,21 +153,40 @@ final class UpdateChecker {
         return Release(
             version: version, tag: json.tag_name, name: json.name ?? json.tag_name, notes: json.body ?? "",
             pageURL: page, published: json.published_at.flatMap { ISO8601DateFormatter().date(from: $0) },
-            diskImage: asset { $0.hasSuffix(".dmg") }, checksums: asset { $0 == "SHA256SUMS.txt" }
+            diskImage: asset { $0.hasSuffix(".dmg") }, archive: asset { $0.hasSuffix(".zip") },
+            checksums: asset { $0 == "SHA256SUMS.txt" }
         )
     }
 
     // MARK: - Downloading
 
-    func startDownload() {
-        guard case .available(let release) = state, let image = release.diskImage else { return }
-        state = .downloading(release, .init(received: 0, total: image.size, speed: 0))
+    /// Where Ductus runs from. When macOS runs an app straight from Downloads it
+    /// uses a temporary read-only copy ("App Translocation"), which cannot be updated.
+    var cannotUpdateInPlace: Bool {
+        Bundle.main.bundlePath.contains("/AppTranslocation/")
+    }
+
+    private var helperURL: URL {
+        Bundle.main.bundleURL.appendingPathComponent("Contents/Helpers/DuctusUpdater.app")
+    }
+
+    func downloadAndInstall() {
+        guard case .available(let release) = state, let archive = release.archive else { return }
+        guard !cannotUpdateInPlace else {
+            state = .failed(String(localized: "Move Ductus into your Applications folder first, then open it from there and try again. macOS does not let apps update themselves while they run from Downloads."))
+            return
+        }
+        guard FileManager.default.fileExists(atPath: helperURL.path) else {
+            state = .failed(String(localized: "The updater is missing from this copy of Ductus. Download the new version from GitHub instead."))
+            return
+        }
+        state = .downloading(release, .init(received: 0, total: archive.size, speed: 0))
         download = Task {
             do {
-                let file = try await fetch(image, release: release)
-                state = .downloaded(release, file: file)
-                Log.success("Downloaded \(image.name)")
-                NSWorkspace.shared.open(file)
+                let file = try await fetch(archive, release: release)
+                Log.success("Downloaded and checked \(archive.name)")
+                state = .installing(release)
+                try await install(file)
             } catch is CancellationError {
                 state = .available(release)
             } catch {
@@ -151,6 +194,45 @@ final class UpdateChecker {
                 Log.error("Update download failed: \(error)")
             }
         }
+    }
+
+    /// Hands over to the helper, which waits for Ductus to quit, swaps in the
+    /// new version and opens it again.
+    private func install(_ archive: URL) async throws {
+        UserDefaults.standard.set(currentVersion.description, forKey: Keys.updatingFrom)
+        // macOS does not pass launch arguments from a sandboxed app, so the
+        // details go in a request file the helper reads (and deletes).
+        let folder = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("DuctusUpdate")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let request: [String: Any] = [
+            "pid": Int(ProcessInfo.processInfo.processIdentifier),
+            "archive": archive.path,
+            "target": Bundle.main.bundlePath,
+        ]
+        try JSONSerialization.data(withJSONObject: request).write(to: folder.appendingPathComponent("request.json"))
+        let requestFile = folder.appendingPathComponent("request.json")
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = false
+        configuration.createsNewApplicationInstance = true
+        // Not awaited: the helper has no window and never reports "finished
+        // launching", so waiting would stall for half a minute. Instead, the helper
+        // deletes the request file as soon as it has read it, which means it is running.
+        NSWorkspace.shared.openApplication(at: helperURL, configuration: configuration) { _, error in
+            if let error { Log.error("Could not start the updater: \(error)") }
+        }
+        for _ in 0..<100 {
+            if !FileManager.default.fileExists(atPath: requestFile.path) {
+                Log.info("Updater started, quitting so it can install")
+                try? await Task.sleep(for: .milliseconds(300))  // let the window show "Installing"
+                NSApp.terminate(nil)
+                return
+            }
+            try? await Task.sleep(for: .milliseconds(100))
+        }
+        try? FileManager.default.removeItem(at: requestFile)
+        UserDefaults.standard.removeObject(forKey: Keys.updatingFrom)
+        throw UpdateError.helperDidNotStart
     }
 
     func cancelDownload() {
@@ -188,7 +270,7 @@ final class UpdateChecker {
             watcher.task?.cancel()
         }
         guard let http = response as? HTTPURLResponse, http.statusCode == 200 else { throw UpdateError.server }
-        let temporary = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".dmg")
+        let temporary = FileManager.default.temporaryDirectory.appendingPathComponent("Ductus-update-\(UUID().uuidString).zip")
         try FileManager.default.moveItem(at: downloaded, to: temporary)
 
         let actual = try await Self.sha256(of: temporary)
@@ -197,17 +279,7 @@ final class UpdateChecker {
             throw UpdateError.checksumMismatch
         }
 
-        // Into Downloads, without overwriting anything already there.
-        let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0]
-        var destination = downloads.appendingPathComponent(image.name)
-        var copy = 2
-        while FileManager.default.fileExists(atPath: destination.path) {
-            let base = (image.name as NSString).deletingPathExtension
-            destination = downloads.appendingPathComponent("\(base) \(copy).dmg")
-            copy += 1
-        }
-        try FileManager.default.moveItem(at: temporary, to: destination)
-        return destination
+        return temporary
     }
 
     /// SHA-256 of a file, read in chunks off the main thread.
@@ -223,25 +295,22 @@ final class UpdateChecker {
         }.value
     }
 
-    func showInFinder(_ file: URL) {
-        NSWorkspace.shared.activateFileViewerSelecting([file])
-    }
-
     // MARK: - Errors
 
     enum UpdateError: Error {
-        case noRelease, server, unreadable, noChecksums, checksumMismatch
+        case noRelease, server, unreadable, noChecksums, checksumMismatch, helperDidNotStart
     }
 
     private static func describe(_ error: Error) -> String {
         switch error {
-        case UpdateError.noRelease: "There are no releases on GitHub yet."
-        case UpdateError.server: "GitHub did not answer as expected. Try again in a little while."
-        case UpdateError.unreadable: "The latest release could not be read."
-        case UpdateError.noChecksums: "The release has no checksum for the download, so it was not saved."
-        case UpdateError.checksumMismatch: "The download did not match its checksum, so it was deleted. Try again."
-        case let error as URLError where error.code == .notConnectedToInternet: "You are not connected to the internet."
-        default: "Could not check for updates: \(error.localizedDescription)"
+        case UpdateError.noRelease: String(localized: "There are no releases on GitHub yet.")
+        case UpdateError.server: String(localized: "GitHub did not answer as expected. Try again in a little while.")
+        case UpdateError.unreadable: String(localized: "The latest release could not be read.")
+        case UpdateError.noChecksums: String(localized: "The release has no checksum for the download, so it was not saved.")
+        case UpdateError.checksumMismatch: String(localized: "The download did not match its checksum, so it was deleted. Try again.")
+        case UpdateError.helperDidNotStart: String(localized: "The updater did not start, so nothing was changed. Try again, or download the new version from GitHub.")
+        case let error as URLError where error.code == .notConnectedToInternet: String(localized: "You are not connected to the internet.")
+        default: String(localized: "Could not check for updates: \(error.localizedDescription)")
         }
     }
 }

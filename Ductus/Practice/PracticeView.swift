@@ -49,7 +49,7 @@ struct PracticeView: View {
             Stat(title: "Last drill", value: practice.lastSummary?.wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
             Stat(title: "Accuracy", value: practice.lastSummary.map { String(format: "%.0f%%", $0.accuracy * 100) } ?? "-")
             if practice.isWarmUp {
-                Stat(title: "Focus key", value: "Warm-up")
+                Stat(title: "Focus key", value: String(localized: "Warm-up"))
                     .help("An easy drill with only the keys you have mastered, to start a session")
             } else if let focus = practice.focusKey {
                 Stat(title: "Focus key", value: focus.uppercased())
@@ -85,7 +85,7 @@ struct PracticeView: View {
 }
 
 struct Stat: View {
-    let title: String
+    let title: LocalizedStringKey
     let value: String
 
     var body: some View {

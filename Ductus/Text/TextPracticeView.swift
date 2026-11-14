@@ -152,7 +152,7 @@ struct TextPracticeView: View {
         }
     }
 
-    private func hint(for text: SavedText) -> String {
+    private func hint(for text: SavedText) -> LocalizedStringKey {
         switch text.practiceLanguage {
         case .japanese: "Type the romaji for the words shown above, the way you would with the Japanese input method."
         case .chinese: "Type the pinyin for the words shown above, without tones (v for ü)."

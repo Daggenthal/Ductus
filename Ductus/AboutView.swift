@@ -14,7 +14,7 @@ struct AboutView: View {
         let info = Bundle.main.infoDictionary
         let short = info?["CFBundleShortVersionString"] as? String ?? "?"
         let build = info?["CFBundleVersion"] as? String ?? "?"
-        return "Version \(short) (\(build))"
+        return String(localized: "Version \(short) (\(build))")
     }
 
     var body: some View {
@@ -93,7 +93,7 @@ struct AboutView: View {
         }
     }
 
-    private func credit(_ title: String, _ text: String, link: (String, String)? = nil) -> some View {
+    private func credit(_ title: LocalizedStringKey, _ text: LocalizedStringKey, link: (String, String)? = nil) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title).font(.subheadline.weight(.semibold))
             Text(text)

@@ -2,13 +2,14 @@ import AppKit
 import DuctusEngine
 import SwiftUI
 
-/// The Software Update window. Nothing happens without a click: Download saves
-/// the disk image, and the person installs it themselves.
+/// The Software Update window. Nothing happens without a click: Download and
+/// Install fetches and checks the update, then Ductus restarts into it.
 struct UpdateView: View {
     static let windowID = "updates"
 
     @Environment(UpdateChecker.self) private var updater
     @Environment(\.dismiss) private var dismiss
+    @AppStorage(SettingsKey.systemWideHighlighting) private var systemWide = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -51,21 +52,26 @@ struct UpdateView: View {
                     .foregroundStyle(.secondary)
                 buttons { Button("Cancel") { updater.cancelDownload() }.keyboardShortcut(.cancelAction) }
             }
-        case .downloaded(let release, let file):
+        case .installing(let release):
             VStack(alignment: .leading, spacing: 10) {
-                Text("Ductus \(release.version.description) is downloaded").font(.headline)
-                Text("The download was checked and opened. To finish updating:")
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("1. Quit Ductus.")
-                    Text("2. In the disk image, drag Ductus into Applications and choose Replace.")
-                    Text("3. Open Ductus again. If macOS asks, approve it in System Settings › Privacy & Security.")
+                Text("Installing Ductus \(release.version.description)…").font(.headline)
+                ProgressView().progressViewStyle(.linear)
+                Text("Ductus will close and open again in a moment. Your progress and settings are kept.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+        case .updated(let from):
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Updated to Ductus \(updater.currentVersion.description)").font(.headline)
+                Text("You were on \(from) before. Your progress and settings are just as you left them.")
+                    .foregroundStyle(.secondary)
+                if systemWide {
+                    Text("Typing in other apps: macOS asks for the Input Monitoring permission again after each update, because this version of Ductus is not notarized by Apple yet. Turn Ductus back on in System Settings › Privacy & Security › Input Monitoring.")
+                        .font(.callout)
+                        .foregroundStyle(.orange)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .font(.callout)
-                Text("Your progress and settings are kept.").font(.callout).foregroundStyle(.secondary)
-                buttons {
-                    Button("Show in Finder") { updater.showInFinder(file) }
-                    Button("Quit Ductus") { NSApp.terminate(nil) }.keyboardShortcut(.defaultAction)
-                }
+                buttons { Button("OK") { dismiss() }.keyboardShortcut(.defaultAction) }
             }
         case .failed(let message):
             VStack(alignment: .leading, spacing: 8) {
@@ -96,15 +102,15 @@ struct UpdateView: View {
                 .frame(height: 180)
                 .background(Color.primary.opacity(0.05), in: RoundedRectangle(cornerRadius: 8))
             }
-            Text("Ductus will save the disk image to Downloads and open it. You then drag the new Ductus into Applications yourself.")
+            Text("Ductus downloads the update, checks it, then closes and opens again as the new version. Your progress and settings are kept.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
             buttons {
                 Button("View on GitHub") { NSWorkspace.shared.open(release.pageURL) }
                 Button("Not Now") { dismiss() }.keyboardShortcut(.cancelAction)
-                Button("Download") { updater.startDownload() }
+                Button("Download and Install") { updater.downloadAndInstall() }
                     .keyboardShortcut(.defaultAction)
-                    .disabled(release.diskImage == nil)
+                    .disabled(release.archive == nil)
             }
         }
     }
@@ -124,19 +130,22 @@ struct UpdateView: View {
     }
 
     static func versionLine(_ release: UpdateChecker.Release, current: AppVersion) -> String {
-        var parts = ["You have \(current.description)."]
-        if let image = release.diskImage { parts.append("Download size: \(megabytes(image.size)).") }
+        var parts = [String(localized: "You have \(current.description).")]
+        if let archive = release.archive { parts.append(String(localized: "Download size: \(megabytes(archive.size)).")) }
         if let date = release.published {
-            parts.append("Released \(date.formatted(date: .abbreviated, time: .omitted)).")
+            parts.append(String(localized: "Released \(date.formatted(date: .abbreviated, time: .omitted))."))
         }
         return parts.joined(separator: " ")
     }
 
     static func progressLine(_ progress: UpdateChecker.State.Progress) -> String {
-        var line = "\(Int(progress.fraction * 100))% · \(megabytes(progress.received)) of \(megabytes(progress.total))"
+        var line = "\(Int(progress.fraction * 100))% · "
+            + String(localized: "\(megabytes(progress.received)) of \(megabytes(progress.total))")
         if progress.speed > 0 { line += " · \(megabytes(Int64(progress.speed)))/s" }
         if let left = progress.secondsLeft {
-            line += left < 60 ? " · about \(max(1, Int(left.rounded()))) s left" : " · about \(Int((left / 60).rounded())) min left"
+            line += " · " + (left < 60
+                ? String(localized: "about \(max(1, Int(left.rounded()))) s left")
+                : String(localized: "about \(Int((left / 60).rounded())) min left"))
         }
         return line
     }

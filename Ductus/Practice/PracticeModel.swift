@@ -140,7 +140,7 @@ final class PracticeModel {
             Log.success("Loaded \(words.entries.count) \(language.nativeName) words")
             return words
         } catch {
-            loadError = "Could not load the word list: \(error)"
+            loadError = String(localized: "Could not load the word list: \(error.localizedDescription)")
             Log.error(loadError!)
             return nil
         }
@@ -299,7 +299,7 @@ final class PracticeModel {
     }
 
     private func noteUnlock(_ letter: Character) {
-        unlockMessage = "New key unlocked: \(letter.uppercased())"
+        unlockMessage = String(localized: "New key unlocked: \(letter.uppercased())")
         Log.success("Unlocked \(letter)")
         ensureProfile()?.unlocks.append(UnlockEntry(letter: String(letter), date: Date()))
     }
@@ -431,7 +431,7 @@ final class PracticeModel {
     private func checkDailyGoal(before: TimeInterval) {
         let goal = TimeInterval(PracticeSettings.dailyGoalMinutes * 60)
         guard goal > 0, before < goal, todayPracticeTime >= goal else { return }
-        unlockMessage = "Daily goal reached 🎉"
+        unlockMessage = String(localized: "Daily goal reached 🎉")
         Log.success("Daily goal reached")
     }
 

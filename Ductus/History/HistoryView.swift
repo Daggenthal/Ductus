@@ -68,7 +68,7 @@ struct HistoryView: View {
         case .drills:
             let recent = drills.suffix(50)
             let offset = drills.count - recent.count
-            points = recent.enumerated().map { ("Drill \(offset + $0.offset + 1)", $0.element.wpm, $0.element.accuracy) }
+            points = recent.enumerated().map { (String(localized: "Drill \(offset + $0.offset + 1)"), $0.element.wpm, $0.element.accuracy) }
         }
         let wpmPoints = points.enumerated().compactMap { i, p in p.wpm.map { MetricPoint(index: i, label: p.label, value: $0) } }
         let accuracyPoints = points.enumerated().map { i, p in MetricPoint(index: i, label: p.label, value: p.accuracy * 100) }
@@ -183,7 +183,7 @@ struct HistoryView: View {
             let points = recent.enumerated().map {
                 MetricPoint(
                     index: $0.offset,
-                    label: "Race \(offset + $0.offset + 1)" + ($0.element.timeLimit > 0 ? " (\(RaceModel.lengthLabel($0.element.timeLimit)))" : ""),
+                    label: String(localized: "Race \(offset + $0.offset + 1)") + ($0.element.timeLimit > 0 ? " (\(RaceModel.lengthLabel($0.element.timeLimit)))" : ""),
                     value: $0.element.wpm
                 )
             }
@@ -195,7 +195,7 @@ struct HistoryView: View {
                     miniStat("Last 10 average", String(format: "%.0f WPM", lastTen.map(\.wpm).reduce(0, +) / Double(lastTen.count)))
                     miniStat("Races", "\(races.count)")
                     if let common = mostCommonWorstKey(races) {
-                        miniStat("Most often costly", common.uppercased())
+                        miniStat("Toughest key", common.uppercased())
                     }
                 }
                 if points.count >= 2 {
@@ -216,7 +216,7 @@ struct HistoryView: View {
             let recent = parts.suffix(50)
             let offset = parts.count - recent.count
             let points = recent.enumerated().compactMap { item in
-                item.element.wpm.map { MetricPoint(index: item.offset, label: "Part \(offset + item.offset + 1)", value: $0) }
+                item.element.wpm.map { MetricPoint(index: item.offset, label: String(localized: "Part \(offset + item.offset + 1)"), value: $0) }
             }
             Card {
                 Text("Your texts").font(.headline)
@@ -240,7 +240,7 @@ struct HistoryView: View {
         return minutes < 60 ? "\(minutes) min" : "\(minutes / 60) h \(minutes % 60) min"
     }
 
-    private func miniStat(_ title: String, _ value: String) -> some View {
+    private func miniStat(_ title: LocalizedStringKey, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(title).font(.caption).foregroundStyle(.secondary)
             Text(value).font(.title3.weight(.semibold).monospacedDigit())
@@ -308,12 +308,12 @@ private struct TotalsRow: View {
             tile("Drills", "\(totals.drills)")
             tile("Characters", totals.characters.formatted())
             tile("Days practiced", "\(totals.daysPracticed)")
-            tile("Streak", totals.currentStreak == 1 ? "1 day" : "\(totals.currentStreak) days")
+            tile("Streak", totals.currentStreak == 1 ? String(localized: "1 day") : String(localized: "\(totals.currentStreak) days"))
             tile("Best drill", totals.bestWPM.map { String(format: "%.0f WPM", $0) } ?? "-")
         }
     }
 
-    private func tile(_ title: String, _ value: String) -> some View {
+    private func tile(_ title: LocalizedStringKey, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title).font(.caption).foregroundStyle(.secondary)
             Text(value).font(.title2.weight(.semibold).monospacedDigit())
@@ -341,7 +341,7 @@ private struct MetricPoint: Identifiable {
 
 /// Single-series line chart with a hover readout.
 private struct MetricChart: View {
-    let title: String
+    let title: LocalizedStringKey
     let unit: String
     let points: [MetricPoint]
     let format: String

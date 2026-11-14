@@ -5,7 +5,7 @@ enum MainTab: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .practice: "Practice"
         case .race: "Race"

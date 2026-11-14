@@ -40,6 +40,9 @@ struct SettingsView: View {
     @Environment(UpdateChecker.self) private var updater
     @AppStorage(UpdateChecker.Keys.automatic) private var checkAutomatically = false
     @AppStorage(SettingsKey.debugMode) private var debugMode = false
+    @AppStorage(SettingsKey.fingerZones) private var fingerZones = false
+    @State private var appLanguage = AppLanguage.current
+    @State private var languageChanged = false
     /// The Debug section is hidden unless Option is held when Settings opens, or debug is on.
     @State private var showDebug = false
 
@@ -53,6 +56,20 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
                 note("System follows your macOS setting. Applies to the floating keyboard too.")
+                Picker("App language", selection: Binding(
+                    get: { appLanguage },
+                    set: { appLanguage = $0; AppLanguage.set($0); languageChanged = true }
+                )) {
+                    ForEach(AppLanguage.allCases) { Text(verbatim: $0.nativeName).tag($0) }
+                }
+                note("Translated with AI, so some wording may not be completely accurate.", color: Color.secondary.opacity(0.7))
+                if languageChanged {
+                    HStack {
+                        note("Ductus shows the new language after it reopens.")
+                        Spacer()
+                        Button("Relaunch Ductus") { AppLanguage.relaunch() }
+                    }
+                }
                 Picker("Practice language", selection: $practiceLanguage) {
                     Text("Automatic (\(PracticeSettings.detectedLanguage(for: keyboard.layout).nativeName))").tag("auto")
                     ForEach(PracticeLanguage.allCases) { language in
@@ -122,6 +139,9 @@ struct SettingsView: View {
                     Slider(value: $opacity, in: 0.2...1)
                         .frame(width: 180)
                 }
+                Toggle("Color keys by finger", isOn: $fingerZones)
+                FingerLegend()
+                note("Tints each key by the finger that presses it in touch typing: pinky, ring, middle, index, and thumbs for the space bar. Handy in the first days of a new layout.")
                 Toggle("Show physical key labels", isOn: $showPhysicalLabels)
                 note("A faint QWERTY letter in the corner of each key, showing what is printed on your real keyboard.")
                 VStack(alignment: .leading, spacing: 8) {
@@ -164,7 +184,7 @@ struct SettingsView: View {
             Section("Updates") {
                 LabeledContent("Version", value: updater.currentVersion.description)
                 Toggle("Check for updates automatically", isOn: $checkAutomatically)
-                note("At most once a day, Ductus asks GitHub whether there is a newer version and tells you. It never downloads or installs anything by itself. Nothing about you is sent.")
+                note("At most once a day, Ductus asks GitHub whether there is a newer version and tells you. Updates are only downloaded and installed when you click Download and Install. Nothing about you is sent.")
                 HStack {
                     Button("Check Now") {
                         updater.check(userInitiated: true)
@@ -242,7 +262,7 @@ struct SettingsView: View {
         }
     }
 
-    private func note(_ text: String, color: Color = .secondary) -> some View {
+    private func note(_ text: LocalizedStringKey, color: Color = .secondary) -> some View {
         Text(text)
             .font(.caption)
             .foregroundStyle(color)
@@ -278,6 +298,21 @@ struct SentenceAuthorsSheet: View {
         }
         .padding(20)
         .frame(width: 440, height: 520)
+    }
+}
+
+/// The finger colors, as a small key.
+private struct FingerLegend: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            ForEach([(KeyboardGeometry.Finger.pinky, "Pinky"), (.ring, "Ring"), (.middle, "Middle"),
+                     (.index, "Index"), (.thumb, "Thumb")], id: \.1) { finger, name in
+                HStack(spacing: 4) {
+                    RoundedRectangle(cornerRadius: 3).fill(finger.color.opacity(0.6)).frame(width: 12, height: 12)
+                    Text(name).font(.caption)
+                }
+            }
+        }
     }
 }
 

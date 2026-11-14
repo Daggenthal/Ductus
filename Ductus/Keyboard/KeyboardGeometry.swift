@@ -70,6 +70,32 @@ enum KeyboardGeometry {
     static let commandCodes: Set<UInt16> = [55, 54]
     static let modifierCodes: Set<UInt16> = [55, 54, 56, 60, 58, 61, 59, 62, 63, 57]
 
+    /// Which finger presses a key in touch typing. Set by physical position, so
+    /// it is the same for every layout (Dvorak, AZERTY, Korean 2-Set, ...).
+    enum Finger: Sendable {
+        case pinky, ring, middle, index, thumb
+    }
+
+    static func finger(for code: UInt16) -> Finger? {
+        fingers[code]
+    }
+
+    private static let fingers: [UInt16: Finger] = {
+        var map: [UInt16: Finger] = [:]
+        func set(_ finger: Finger, _ codes: [UInt16]) { for code in codes { map[code] = finger } }
+        // Left hand, then right hand, number row down to bottom row.
+        set(.pinky, [50, 10, 18, 12, 0, 6, 48, 57, 56, 59])          // ` § 1 Q A Z, tab, caps, shift, control
+        set(.ring, [19, 13, 1, 7])                                   // 2 W S X
+        set(.middle, [20, 14, 2, 8])                                 // 3 E D C
+        set(.index, [21, 23, 15, 17, 3, 5, 9, 11])                   // 4 5 R T F G V B
+        set(.index, [22, 26, 16, 32, 4, 38, 45, 46])                 // 6 7 Y U H J N M
+        set(.middle, [28, 34, 40, 43])                               // 8 I K ,
+        set(.ring, [25, 31, 37, 47])                                 // 9 O L .
+        set(.pinky, [29, 27, 24, 35, 33, 30, 42, 41, 39, 44, 93, 94, 51, 36, 60, 62])  // 0 - = P [ ] \ ; ' / ¥ _, delete, return, shift, control
+        set(.thumb, [49, 55, 54, 58, 61, 102, 104])                  // space, command, option, 英数, かな
+        return map
+    }()
+
     /// QWERTY A S D F G H J K L ; positions (the same on all three shapes).
     static let homeRowCodes: [UInt16] = [0, 1, 2, 3, 5, 4, 38, 40, 37, 41]
 

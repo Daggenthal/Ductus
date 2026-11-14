@@ -63,11 +63,24 @@ enum AppearanceChoice: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .system: "System"
         case .light: "Light"
         case .dark: "Dark"
+        }
+    }
+}
+
+extension KeyboardGeometry.Finger {
+    /// Finger-zone tint, the same on both hands, like a typing chart.
+    var color: Color {
+        switch self {
+        case .pinky: Color(red: 0.62, green: 0.42, blue: 0.95)
+        case .ring: Color(red: 0.25, green: 0.55, blue: 0.98)
+        case .middle: Color(red: 0.22, green: 0.75, blue: 0.45)
+        case .index: Color(red: 0.98, green: 0.58, blue: 0.20)
+        case .thumb: Color(red: 0.55, green: 0.55, blue: 0.60)
         }
     }
 }
