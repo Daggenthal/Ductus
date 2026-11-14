@@ -13,12 +13,7 @@ struct FloatingStatsBar: View {
             Item(title: "Now", value: wpm(practice.session?.liveWPM), detail: percent(practice.session?.liveAccuracy))
             Item(title: "Last drill", value: wpm(practice.lastSummary?.wpm), detail: percent(practice.lastSummary?.accuracy))
             if let focus = practice.focusKey {
-                let stats = practice.stats(for: focus)
-                Item(
-                    title: "Focus",
-                    value: focus.uppercased(),
-                    detail: [wpm(stats?.wpm), percent(stats?.accuracy.value)].filter { $0 != "-" }.joined(separator: " ")
-                )
+                Item(title: "Focus", value: focus.uppercased(), detail: "")
             }
             Spacer(minLength: 0)
             if let curriculum = practice.trainer?.curriculum {

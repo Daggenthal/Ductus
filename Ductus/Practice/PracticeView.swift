@@ -40,13 +40,7 @@ struct PracticeView: View {
             Stat(title: "Last drill", value: practice.lastSummary?.wpm.map { String(format: "%.0f WPM", $0) } ?? "-")
             Stat(title: "Accuracy", value: practice.lastSummary.map { String(format: "%.0f%%", $0.accuracy * 100) } ?? "-")
             if let focus = practice.focusKey {
-                let stats = practice.stats(for: focus)
-                Stat(
-                    title: "Focus key",
-                    value: focus.uppercased()
-                        + (stats?.wpm.map { String(format: "  %.0f WPM", $0) } ?? "")
-                        + (stats?.accuracy.value.map { String(format: "  %.0f%%", $0 * 100) } ?? "")
-                )
+                Stat(title: "Focus key", value: focus.uppercased())
             }
             if dailyGoal > 0 {
                 DailyGoalRing(practiced: practice.todayPracticeTime, goalMinutes: dailyGoal)
