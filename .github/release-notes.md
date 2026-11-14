@@ -1,10 +1,10 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.4.0
+## What's new in 0.5.0
 
-- **Russian, Ukrainian and Arabic:** Practice words and sentences in all three, picked automatically from your keyboard layout. Arabic covers Modern Standard and Egyptian Arabic, works on the Arabic, Arabic PC and Arabic QWERTY layouts, and runs right to left.
-- **The app in Russian, Ukrainian and Arabic:** In Arabic the whole window is mirrored, as in other Mac apps.
-- **Credits:** The About window now credits the swear-word filter list.
+- **Seven more languages:** Turkish, Polish, Czech, Hungarian, Greek, Hebrew and Persian, with real words and sentences, picked automatically from your keyboard layout. Hebrew and Persian run right to left.
+- **The app in all seven:** Ductus itself is now available in 20 languages.
+- **Fix:** Russian, Ukrainian and Arabic drills no longer show stray single letters as words.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

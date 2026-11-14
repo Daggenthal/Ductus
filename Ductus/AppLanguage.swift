@@ -12,7 +12,8 @@ import SwiftUI
 enum AppLanguage: String, CaseIterable, Identifiable {
     case system = ""
     case english = "en", french = "fr", spanish = "es", german = "de", italian = "it"
-    case portuguese = "pt-BR", dutch = "nl", russian = "ru", ukrainian = "uk", arabic = "ar"
+    case portuguese = "pt-BR", dutch = "nl", turkish = "tr", polish = "pl", czech = "cs", hungarian = "hu"
+    case greek = "el", russian = "ru", ukrainian = "uk", hebrew = "he", arabic = "ar", persian = "fa"
     case japanese = "ja", chinese = "zh-Hans", korean = "ko"
 
     var id: String { rawValue }
@@ -28,9 +29,16 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         case .italian: "Italiano"
         case .portuguese: "Português (Brasil)"
         case .dutch: "Nederlands"
+        case .turkish: "Türkçe"
+        case .polish: "Polski"
+        case .czech: "Čeština"
+        case .hungarian: "Magyar"
+        case .greek: "Ελληνικά"
         case .russian: "Русский"
         case .ukrainian: "Українська"
+        case .hebrew: "עברית"
         case .arabic: "العربية"
+        case .persian: "فارسی"
         case .japanese: "日本語"
         case .chinese: "简体中文"
         case .korean: "한국어"

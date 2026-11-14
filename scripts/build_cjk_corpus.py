@@ -17,6 +17,7 @@ per-language "detailed" exports (they include each sentence's author):
     https://downloads.tatoeba.org/exports/per_language/ukr/ukr_sentences_detailed.tsv.bz2
     https://downloads.tatoeba.org/exports/per_language/ara/ara_sentences_detailed.tsv.bz2
     https://downloads.tatoeba.org/exports/per_language/arz/arz_sentences_detailed.tsv.bz2
+    (and the same for tur, pol, ces, hun, ell, heb, pes)
 and unpack them into one folder.
 
 Build-time tools (not shipped with Ductus):
@@ -39,6 +40,7 @@ import argparse
 import collections
 import pathlib
 import random
+import os
 import re
 import sys
 
@@ -315,15 +317,55 @@ SPACED = {
                    names=("توم", "ماري", "ميري", "سامي", "ليلى", "زيري", "ياني", "سكورا", "ريما", "ريمة", "فاضل", "مناد", "بايا", "دانية", "تاتوبا", "الجزائر")),
     "russian": dict(letters="а-яё", punctuation=".,?!:;-", cased=True, names=()),
     "ukrainian": dict(letters="а-щьюяєіїґ'", punctuation=".,?!:;-", cased=True, names=()),
+    # Turkish joins endings to names with an apostrophe (Tom'un): kept whole, so no "un" fragments.
+    "turkish": dict(letters="a-zçğıöşüâîûİ'", punctuation=".,?!:;-", cased=True, names=()),
+    "polish": dict(letters="a-ząćęłńóśźż", punctuation=".,?!:;-", cased=True, names=()),
+    "czech": dict(letters="a-záčďéěíňóřšťúůýž", punctuation=".,?!:;-", cased=True, names=()),
+    "hungarian": dict(letters="a-záéíóöőúüű", punctuation=".,?!:;-", cased=True, names=()),
+    # Greek asks questions with ";".
+    "greek": dict(letters="α-ωάέήίόύώϊϋΐΰς", punctuation=".,;!:-", cased=True, names=(), endings=".;!"),
+    "hebrew": dict(letters="\u05D0-\u05EA", punctuation=".,?!:-", cased=False,
+                   names=("טום", "תום", "מרי", "ג'ון", "ג׳ון", "מרים", "ג'ון")),
+    "persian": dict(letters=ARABIC_LETTERS + "پچژگکی", punctuation="،؟؛.!:", cased=False,
+                    names=("تام", "مری", "ماری", "جان")),
 }
+HEBREW_MARKS = re.compile("[\u0591-\u05BD\u05BF-\u05C7]")  # niqqud and cantillation (not the maqaf)
+
+
+def normalize(language, text):
+    """Text as people type it on that language's keyboard."""
+    if language in ("arabic", "persian"):
+        text = ARABIC_MARKS.sub("", text)
+    if language == "persian":
+        # Arabic yeh and kaf are typed as the Persian letters.
+        text = text.replace("\u064A", "\u06CC").replace("\u0643", "\u06A9").replace("\u0649", "\u06CC")
+    elif language == "hebrew":
+        text = HEBREW_MARKS.sub("", text)
+    elif language == "greek":
+        text = text.replace("\u037E", ";").replace("\u0387", "·")  # Greek question mark is typed as ;
+    return text.replace("\u2019", "'").replace("\u02bc", "'")
+
+
+def lower(language, word):
+    if language == "turkish":
+        word = word.replace("I", "ı").replace("İ", "i")
+    return word.lower()
 MIN_LOWERCASE_SHARE = 0.3
+# The only one-letter words: other single letters in Tatoeba are initials,
+# abbreviations or cut-off words. Hebrew has none (its one-letter words attach).
+ONE_LETTER_WORDS = {
+    "russian": set("вуискаоя"), "ukrainian": set("узвєіайоя"),
+    "arabic": {"و"}, "persian": {"و"}, "hebrew": set(), "greek": set("ηήοω"),
+    "turkish": {"o"}, "polish": set("wzioau"), "czech": set("vsazokiu"), "hungarian": set("as"),
+}
 
 
 def build_spaced(language):
     rules = SPACED[language]
     letters = rules["letters"]
     word_re = re.compile(f"[{letters}]+", re.I)
-    sentence_ok = re.compile(f"^[{letters} {re.escape(rules['punctuation'])}]+[.?!؟]$", re.I)
+    endings = re.escape(rules.get("endings", ".?!؟"))
+    sentence_ok = re.compile(f"^[{letters} {re.escape(rules['punctuation'])}]+[{endings}]$", re.I)
 
     def build(rows, rng):
         counts = collections.Counter()
@@ -331,14 +373,11 @@ def build_spaced(language):
         sentences = []
         for sentence_id, text, author in rows:
             text = " ".join(text.split())
-            if language == "arabic":
-                text = ARABIC_MARKS.sub("", text)
-            else:
-                text = text.replace("\u2019", "'").replace("\u02bc", "'")
+            text = normalize(language, text)
             for token in word_re.findall(text):
                 if "'" in token:
-                    continue  # Ukrainian words with an apostrophe stay in sentences only
-                word = token.lower()
+                    continue  # words with an apostrophe (Ukrainian, Turkish names) stay in sentences only
+                word = lower(language, token)
                 if any(name in word for name in rules["names"]):
                     continue
                 counts[word] += 1
@@ -354,6 +393,8 @@ def build_spaced(language):
             for word in list(counts):
                 if lowercase[word] / counts[word] < MIN_LOWERCASE_SHARE:
                     del counts[word]
+        for word in [w for w in counts if len(w) == 1 and w not in ONE_LETTER_WORDS[language]]:
+            del counts[word]
         natives = {word: collections.Counter({word: 1}) for word in counts}
         return counts, natives, sentences
     return build
@@ -367,6 +408,13 @@ SOURCES = {
     "arabic": (["ara", "arz"], build_spaced("arabic")),
     "russian": (["rus"], build_spaced("russian")),
     "ukrainian": (["ukr"], build_spaced("ukrainian")),
+    "turkish": (["tur"], build_spaced("turkish")),
+    "polish": (["pol"], build_spaced("polish")),
+    "czech": (["ces"], build_spaced("czech")),
+    "hungarian": (["hun"], build_spaced("hungarian")),
+    "greek": (["ell"], build_spaced("greek")),
+    "hebrew": (["heb"], build_spaced("hebrew")),
+    "persian": (["pes"], build_spaced("persian")),
 }
 
 
@@ -393,6 +441,8 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
         # Several words can share a typed form ("bi"): drop only the blocked ones,
         # and the typed form only if nothing clean is left to show for it.
         for native in [n for n in natives[typed] if blocklist.blocks_word(n)]:
+            if os.environ.get("SHOW_BLOCKED"):  # for checking the filter by hand
+                print(f"{language}: blocked {native} ({counts[typed]})", file=sys.stderr)
             del natives[typed][native]
         if not natives[typed]:
             del counts[typed]
@@ -431,7 +481,11 @@ def build(language: str, tatoeba: pathlib.Path) -> None:
                   "korean": "Shown with the 2-Set keys used to type each word.",
                   "arabic": "Modern Standard Arabic and Egyptian Arabic, short vowel marks removed.",
                   "russian": "Used as written.",
-                  "ukrainian": "Used as written."}[language]
+                  "ukrainian": "Used as written.",
+                  "turkish": "Used as written.", "polish": "Used as written.", "czech": "Used as written.",
+                  "hungarian": "Used as written.", "greek": "Used as written.",
+                  "hebrew": "Vowel points (niqqud) removed.",
+                  "persian": "Short vowel marks removed; Arabic yeh and kaf written as the Persian letters."}[language]
         f.write(f"# {change}\n")
         f.write("# tatoeba_sentence_id\tauthor\n")
         for sentence_id, author, _, _ in sample:

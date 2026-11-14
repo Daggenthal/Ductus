@@ -87,8 +87,7 @@ public struct StatsTracker: Sendable, Equatable {
 
     func normalize(_ character: Character) -> Character {
         guard config.foldCase else { return character }
-        let lower = String(character).lowercased()
-        return lower.count == 1 ? Character(lower) : character
+        return character.keyLetter
     }
 }
 

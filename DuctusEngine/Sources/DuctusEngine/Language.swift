@@ -2,7 +2,8 @@ import Foundation
 
 /// Languages with a bundled word list and sentence sample (see CORPUS.md).
 public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifiable {
-    case english, french, spanish, german, italian, portuguese, dutch, russian, ukrainian, arabic, japanese, chinese, korean
+    case english, french, spanish, german, italian, portuguese, dutch, turkish, polish, czech, hungarian, greek
+    case russian, ukrainian, hebrew, arabic, persian, japanese, chinese, korean
 
     public var id: String { rawValue }
 
@@ -16,6 +17,13 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .italian: "it"
         case .portuguese: "pt"
         case .dutch: "nl"
+        case .turkish: "tr"
+        case .polish: "pl"
+        case .czech: "cs"
+        case .hungarian: "hu"
+        case .greek: "el"
+        case .hebrew: "he"
+        case .persian: "fa"
         case .russian: "ru"
         case .ukrainian: "uk"
         case .arabic: "ar"
@@ -35,6 +43,13 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
         case .italian: "Italiano"
         case .portuguese: "Português"
         case .dutch: "Nederlands"
+        case .turkish: "Türkçe"
+        case .polish: "Polski"
+        case .czech: "Čeština"
+        case .hungarian: "Magyar"
+        case .greek: "Ελληνικά"
+        case .hebrew: "עברית"
+        case .persian: "فارسی"
         case .russian: "Русский"
         case .ukrainian: "Українська"
         case .arabic: "العربية"
@@ -61,7 +76,8 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
 
     /// From a language code like "fr" or "pt-BR". `nil` if not bundled.
     public init?(code: String) {
-        let base = code.lowercased().split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init)
+        var base = code.lowercased().split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init)
+        if base == "iw" { base = "he" }  // the old code for Hebrew
         guard let match = Self.allCases.first(where: { $0.code == base }) else { return nil }
         self = match
     }
@@ -70,12 +86,17 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
     public var keepsCase: Bool { self == .german }
 
     /// Written and typed right to left.
-    public var isRightToLeft: Bool { self == .arabic }
+    public var isRightToLeft: Bool { self == .arabic || self == .persian || self == .hebrew }
 
-    /// Punctuation drills add: Arabic has its own comma, semicolon and question mark.
-    public var comma: String { self == .arabic ? "،" : "," }
-    public var semicolon: String { self == .arabic ? "؛" : ";" }
-    public var questionMark: String { self == .arabic ? "؟" : "?" }
+    /// Punctuation drills add: Arabic and Persian have their own comma, semicolon
+    /// and question mark; Greek asks questions with ";" (and so skips semicolons).
+    private var arabicScript: Bool { self == .arabic || self == .persian }
+    public var comma: String { arabicScript ? "،" : "," }
+    public var semicolon: String { arabicScript ? "؛" : self == .greek ? "," : ";" }
+    public var questionMark: String { arabicScript ? "؟" : self == .greek ? ";" : "?" }
+
+    /// For capitals: Turkish capitalizes i as İ.
+    public var locale: Locale { Locale(identifier: code) }
 
     /// Spanish opens questions and exclamations with ¿ and ¡.
     public var usesInvertedMarks: Bool { self == .spanish }
@@ -96,4 +117,13 @@ public enum PracticeLanguage: String, CaseIterable, Sendable, Codable, Identifia
 
     var wordsResource: String { "\(rawValue)-words" }
     var sentencesResource: String { "\(rawValue)-sentences" }
+}
+
+extension Character {
+    /// The letter's key for stats: lowercase, with Turkish İ counted as i.
+    var keyLetter: Character {
+        if self == "İ" { return "i" }
+        let lower = String(self).lowercased()
+        return lower.count == 1 ? Character(lower) : self
+    }
 }

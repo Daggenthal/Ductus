@@ -47,7 +47,7 @@ public enum TextDecorator {
 
                 if style.capitals,
                    isFirst || (randomCapitals && Double.random(in: 0..<1, using: &rng) < 0.08) {
-                    word = word.prefix(1).uppercased() + word.dropFirst()
+                    word = word.prefix(1).uppercased(with: language.locale) + word.dropFirst()
                 }
                 if style.punctuation {
                     if isFirst, language.usesInvertedMarks {

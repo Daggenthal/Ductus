@@ -195,7 +195,7 @@ struct SettingsView: View {
             }
 
             Section("Text Sources") {
-                note("Words and sentences come from public-domain books on Project Gutenberg, and Russian, Ukrainian, Arabic, Japanese, Chinese and Korean sentences from Tatoeba contributors (CC BY 2.0 FR).")
+                note("Words and sentences come from public-domain books on Project Gutenberg and from Tatoeba contributors (CC BY 2.0 FR).")
                 Button("About and Credits…") { openWindow(id: AboutView.windowID) }
             }
 

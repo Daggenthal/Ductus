@@ -6,7 +6,7 @@
 
 <p align="center">A free, open source typing tutor for macOS, built for learning a new keyboard layout.</p>
 
-Ductus adapts every drill to your weak keys as you type, unlocks new letters when you are ready for them, and shows an on-screen keyboard that follows your layout and lights up as you press keys. It works for Dvorak, Colemak, AZERTY, QWERTZ and any other layout installed on your Mac, in thirteen languages. Everything runs on your Mac: No accounts, no telemetry, no internet needed.
+Ductus adapts every drill to your weak keys as you type, unlocks new letters when you are ready for them, and shows an on-screen keyboard that follows your layout and lights up as you press keys. It works for Dvorak, Colemak, AZERTY, QWERTZ and any other layout installed on your Mac, in twenty languages. Everything runs on your Mac: No accounts, no telemetry, no internet needed.
 
 The name comes from calligraphy: The ductus is the order, direction and rhythm of the strokes that form a letter. That is muscle memory, which is what Ductus trains.
 
@@ -24,7 +24,7 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 
 - **Practice:** Adaptive word drills, or real sentences once you have unlocked enough letters.
 - **Race:** Timed races of 30 seconds to 5 minutes against your own best, with all letters, unlocked letters only, or real sentences. Afterward you see the keys that cost you the most.
-- **Text:** Paste your own text (an article, a book chapter, some code) and type through it part by part. Ductus remembers where you left off. Code and poems can keep their line breaks. Russian, Ukrainian, Arabic, Japanese, Chinese and Korean text works too.
+- **Text:** Paste your own text (an article, a book chapter, some code) and type through it part by part. Ductus remembers where you left off. Code and poems can keep their line breaks. Text in any of the twenty languages works too.
 - **History:** Speed and accuracy over time, a heatmap of your weak keys, trends for each key, your unlock timeline, race records and your own texts.
 
 ### An on-screen keyboard that follows your layout
@@ -44,7 +44,7 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 - Stop on a mistake, or keep going and fix it with Backspace.
 - Capitals and punctuation in drills.
 - Text size, a daily practice goal, and key click and mistake sounds.
-- The app itself in English, French, Spanish, German, Italian, Portuguese, Dutch, Russian, Ukrainian, Arabic, Japanese, Chinese or Korean. It follows your macOS language, or pick one in Settings. These translations were made with AI and may not be completely accurate; corrections are welcome.
+- The app itself in English, French, Spanish, German, Italian, Portuguese, Dutch, Turkish, Polish, Czech, Hungarian, Greek, Russian, Ukrainian, Hebrew, Arabic, Persian, Japanese, Chinese or Korean. It follows your macOS language, or pick one in Settings. These translations were made with AI and may not be completely accurate; corrections are welcome.
 - A hidden debug mode (hold Option while opening Settings).
 
 ### Updates
@@ -65,7 +65,8 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 | Language | What you type | Where the text comes from |
 |---|---|---|
 | English, French, Spanish, German, Italian, Portuguese, Dutch | The words as written, including accents. Dead keys work (´ then e makes é). | Public-domain books on Project Gutenberg |
-| Russian Русский, Ukrainian Українська | The words as written, in Cyrillic. | Tatoeba |
+| Turkish, Polish, Czech, Hungarian, Greek Ελληνικά, Russian Русский, Ukrainian Українська | The words as written, including accents and special letters. | Tatoeba |
+| Hebrew עברית, Persian فارسی | The words as written, without vowel marks. Text runs right to left. | Tatoeba |
 | Arabic العربية | The words as written, without short vowel marks, on any Arabic layout (Arabic, Arabic PC, Arabic QWERTY). Modern Standard and Egyptian Arabic. Text runs right to left. | Tatoeba |
 | Japanese 日本語 | Romaji, the way you would type into the Japanese input method (`nihongo`), with the Japanese shown above | Tatoeba |
 | Chinese 中文 | Pinyin without tones, v for ü (`zhongwen`), with the Chinese shown above | Tatoeba |
@@ -107,7 +108,7 @@ The app itself has no AI in it. We tested small on-device models for writing dri
 ## Credits
 
 - Words and sentences in English, French, Spanish, German, Italian, Portuguese and Dutch: public-domain books from [Project Gutenberg](https://www.gutenberg.org).
-- Russian, Ukrainian, Arabic, Japanese, Chinese and Korean sentences: the contributors of [Tatoeba](https://tatoeba.org), under [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Every sentence's author is listed in the app (About Ductus, Sentence Authors) and in the `*-credits.tsv` files.
+- Sentences in every other language: the contributors of [Tatoeba](https://tatoeba.org), under [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Every sentence's author is listed in the app (About Ductus, Sentence Authors) and in the `*-credits.tsv` files.
 - Tools used only to build the word lists: fugashi and unidic-lite, jieba, pypinyin and OpenCC.
 - Swear words are left out using the [List of Dirty, Naughty, Obscene, and Otherwise Bad Words](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words) (CC BY 4.0), used only when building the word lists.
 - The adaptive approach was inspired by [keybr.com](https://www.keybr.com). No code from it is used.
@@ -156,7 +157,7 @@ DuctusEngine/            Swift package, no UI imports
   Tests/                 Swift Testing suites
 scripts/
   build_corpus.py        Word lists and sentences from Gutenberg books
-  build_cjk_corpus.py    Russian, Ukrainian, Arabic, Japanese, Chinese and Korean from Tatoeba
+  build_cjk_corpus.py    The Tatoeba languages
   spellcheck.swift       Spell-check filter used by build_corpus.py
   make_icon.swift        Draws the app icon in every size
   package.sh             Builds the universal app, zip and disk image

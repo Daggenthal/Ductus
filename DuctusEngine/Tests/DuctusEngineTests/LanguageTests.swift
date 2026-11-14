@@ -19,6 +19,13 @@ import Testing
         case .arabic: "ابتثجحخدذرزسشصضطظعغفقكلمنهوي"
         case .russian: "абвгдежзийклмнопрстуфхцчшщыьэюя"
         case .ukrainian: "абвгдежзийклмнопрстуфхцчшщьюяєії"
+        case .turkish: "abcçdefgğhıijklmnoöprsştuüvyz"
+        case .polish: "aąbcćdeęfghijklłmnńoóprsśtuwyzźż"
+        case .czech: "aábcčdďeéěfghiíjklmnňoóprřsštťuúůvyýzž"
+        case .hungarian: "aábcdeéfghiíjklmnoóöőprstuúüűvz"
+        case .greek: "αβγδεζηθικλμνξοπρσςτυφχψωάέήίόύώ"
+        case .hebrew: "אבגדהוזחטיכךלמםנןסעפףצץקרשת"
+        case .persian: "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی"
         case .japanese, .chinese: "abdeghikmnorstuyz"
         default: "abcdefghilmnopqrstuvz"
         }
@@ -162,6 +169,13 @@ import Testing
             .russian: ["c0cf250c87fec590111ee1c0f40f2e622350dbce032c280bf3f187eb0fe09d2d", "d05661c81df53f54e9973d8ccdbb0666cd91925d89b24abfad58a1073d3f0a2e", "e48cb456627e5f612b3ca655ad768546b71fc873292659d126a1d9856ce2e1a9"],
             .ukrainian: ["d05661c81df53f54e9973d8ccdbb0666cd91925d89b24abfad58a1073d3f0a2e", "33352eb03353376e9bdb10eebc1716d902ab189e2a83c056ae9db42e83d2922b", "5102c3df83bba2d2599091db9bf4b9eda3fffbc83f170c055c594b03ee5cb02f"],
             .arabic: ["c6e505c49d0e27a0ef286edd35fa69ac734320c821df54dd84b8e9d8294a952c", "dd4cf67af18cb093fcf2b094ac5f9ad28d7decd234af1f3dd21f6a6479e3920f", "250b82818401325fd51ea0685961f28e88aa83092c52164167937af434fc9949"],
+            .turkish: ["c88b0f083353d3c4890998f5673e3c47bac818473e7ba4c59aff55ab501c757f", "479f97cb1849f5ea6ab0d68014e79410c6bfdf4efd8ddd042c21f22e83177b00", "f5ff667742e17d7def7e7409deca05138eede30010c173e8e98b26863bc28365"],
+            .polish: ["bfadc39843ffaf07b62b26a3ce5cebba40c7d410ae368457122c89b5af15d23a", "f7d2cfe9ca172182634f40513df9916e707568106992d4bf7304e04e4cdd8aa5", "9a90952c2054bd85446aa88eb74c42420ab1d98c7d4ccc8871d732d2f1ba2ed1"],
+            .czech: ["a0037dc7d14347f0e2e60d153c33e8812c673b781e72ad3c68a5ea8b2b8d30f2", "48bf115f41709ed26a6c29817e1e6f7b098ae6fde20922272fd3bcd9bb3edd11", "2016e576b39189b83f19c744587490c5964feff222eab0824d4451f6d241b347"],
+            .hungarian: ["c15669d7810d9b2555fc6376557692db6c8baf82462c35bcbcbfcf053d59d0e9", "f76e5b875e053a415835d0d06d6be080601998fce946e0036a3ce87e90d4709e", "0131f813bddf1df6b7601abe7ca02bd3bb20890f3ac9eb74139ea7fcf2dfa7a8"],
+            .greek: ["48ec206e1619a4fdb5912230fc96504c6f5f1d27bcbc7cc7e4970a9cbcec521d", "6cf7ce7b8c1c9e9a3c4a13d0fd46bf4ab8db41e3606dd50adf89bdd489f3e0b2", "369c311a7de62f1898509314962c2ccabaf285198bdb33be342e196b61db3f00"],
+            .hebrew: ["44f5b83bb0cecee75d6b5f7ae1b20a6b655c0026e70c11d798160b1a908b85f5", "2c130c7cd105bf547e6cffe54259671e9090f9eaa4b1154f87125e7b16837be9", "be179b77dd7ea7e35877b9808cc4b90363c419df3199642c16435e52a7875fb9"],
+            .persian: ["9ba38f42ac90ca08a0cc316e5cd7028522febbec8980af4e97e3dc43a6fbb209", "c060b1520a946c5a6656c8da5e18a919d670fbae6cc80e812af62993194fa3ca", "51dc1772f691e20363f9b4ccbc5e595bac1491cd3071be534c496b885a9092e7"],
         ]
         for (language, fingerprints) in banned {
             let list = try WordList.bundled(language)
@@ -183,6 +197,16 @@ import Testing
         #expect(text.contains("؟") || text.contains("،"))
         #expect(!text.contains("?") && !text.contains(","))
         #expect(PracticeLanguage.arabic.isRightToLeft && !PracticeLanguage.russian.isRightToLeft)
+    }
+
+    @Test func turkishCapitalsAndKeys() {
+        var rng = SeededGenerator(seed: 1)
+        let words = Array(repeating: "iyi", count: 30).joined(separator: " ")
+        let text = TextDecorator.decorate(words, style: TextStyle(capitals: true), language: .turkish, using: &rng)
+        #expect(text.hasPrefix("İyi"))
+        #expect(Character("İ").keyLetter == "i")
+        #expect(PracticeLanguage(code: "iw") == .hebrew && PracticeLanguage.hebrew.isRightToLeft)
+        #expect(PracticeLanguage.greek.questionMark == ";")
     }
 
     @Test func newLanguageCodes() {

@@ -77,8 +77,8 @@ struct AboutView: View {
             )
             VStack(alignment: .leading, spacing: 6) {
                 credit(
-                    "Russian, Ukrainian, Arabic, Japanese, Chinese and Korean sentences",
-                    "By the contributors of Tatoeba, used under CC BY 2.0 FR. Arabic includes Modern Standard and Egyptian Arabic, with short vowel marks removed. Changed for typing: romanized and split into chunks for Japanese and Chinese (Chinese converted to Simplified), and paired with the 2-Set keys for Korean.",
+                    "Sentences from Tatoeba",
+                    "For every other language, by the contributors of Tatoeba, used under CC BY 2.0 FR. Vowel marks are removed from Arabic, Persian and Hebrew, and Arabic includes Egyptian Arabic. Japanese and Chinese are romanized and split into chunks (Chinese converted to Simplified), and Korean is paired with the 2-Set keys.",
                     link: ("tatoeba.org", "https://tatoeba.org")
                 )
                 Button("Sentence Authors…") { showingAuthors = true }

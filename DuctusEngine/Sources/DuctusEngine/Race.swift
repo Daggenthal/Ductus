@@ -47,7 +47,7 @@ public enum Race {
         var latencies: [Character: [TimeInterval]] = [:]
 
         for keystroke in keystrokes where keystroke.isFirstAttempt {
-            let key = Character(keystroke.expected.lowercased())
+            let key = keystroke.expected.keyLetter
             attempts[key, default: 0] += 1
             if keystroke.isCorrect {
                 if let latency = keystroke.latency, latency <= pauseThreshold {
