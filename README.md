@@ -45,6 +45,12 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 - Text size, a daily practice goal, and key click and mistake sounds.
 - A hidden debug mode (hold Option while opening Settings).
 
+### Updates
+
+- Ductus › Check for Updates… (or Settings › Updates) checks GitHub for a newer version and shows what changed.
+- You decide: Download saves the disk image to your Downloads folder, checks it against the release's checksums, and opens it. You drag the new Ductus into Applications yourself. Nothing is installed automatically.
+- Optional automatic checks, at most once a day, only tell you an update exists.
+
 ### Progress
 
 - Saved on your Mac, separately for each keyboard layout and language.
@@ -65,7 +71,8 @@ Every language comes with up to 20,000 real sentences and 10,000 common words. O
 
 ## Privacy
 
-- Nothing leaves your Mac. There are no accounts and no analytics.
+- Nothing about you leaves your Mac. There are no accounts and no analytics.
+- The only time Ductus goes online is to check GitHub for a newer version: when you choose Check for Updates, or once a day if you turn on automatic checks (off by default). Updates are never downloaded or installed without you.
 - Your keystrokes are never written to disk. Only the stats built from them (speed and accuracy per key) are saved.
 - Highlighting keys in other apps is off by default, needs your permission, and keeps nothing.
 - Texts you paste into the Text tab are saved only on your Mac.

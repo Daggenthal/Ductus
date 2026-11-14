@@ -19,6 +19,8 @@ enum MainTab: String, CaseIterable, Identifiable {
 /// panel that slides in from the right.
 struct MainView: View {
     @Environment(AppUIState.self) private var ui
+    @Environment(UpdateChecker.self) private var updater
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         @Bindable var ui = ui
@@ -51,6 +53,12 @@ struct MainView: View {
                 }
                 .help("Settings (⌘,)")
             }
+        }
+        // An automatic check that finds an update opens the Software Update window.
+        .onChange(of: updater.showWindow) { _, show in
+            guard show else { return }
+            openWindow(id: UpdateView.windowID)
+            updater.showWindow = false
         }
         .onChange(of: ui.showSettings) { _, showing in
             if !showing { ui.settingsDidClose() }

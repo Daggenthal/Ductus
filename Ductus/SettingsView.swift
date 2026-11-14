@@ -37,6 +37,8 @@ struct SettingsView: View {
     @State private var exporting = false
     @State private var hasInputMonitoring = GlobalKeyMonitor.hasPermission
     @Environment(\.openWindow) private var openWindow
+    @Environment(UpdateChecker.self) private var updater
+    @AppStorage(UpdateChecker.Keys.automatic) private var checkAutomatically = false
     @AppStorage(SettingsKey.debugMode) private var debugMode = false
     /// The Debug section is hidden unless Option is held when Settings opens, or debug is on.
     @State private var showDebug = false
@@ -157,6 +159,23 @@ struct SettingsView: View {
                         .frame(width: 180)
                 }
                 .disabled(!keySounds && !mistakeSound)
+            }
+
+            Section("Updates") {
+                LabeledContent("Version", value: updater.currentVersion.description)
+                Toggle("Check for updates automatically", isOn: $checkAutomatically)
+                note("At most once a day, Ductus asks GitHub whether there is a newer version and tells you. It never downloads or installs anything by itself. Nothing about you is sent.")
+                HStack {
+                    Button("Check Now") {
+                        updater.check(userInitiated: true)
+                        openWindow(id: UpdateView.windowID)
+                    }
+                    if let last = updater.lastChecked {
+                        Text("Last checked \(last.formatted(.relative(presentation: .named)))")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
             }
 
             Section("Text Sources") {

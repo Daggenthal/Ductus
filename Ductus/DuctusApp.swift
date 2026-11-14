@@ -19,9 +19,11 @@ struct DuctusApp: App {
                 .environment(app.textPractice)
                 .environment(app.keyboard)
                 .environment(app.ui)
+                .environment(app.updater)
         }
         .windowResizability(.contentMinSize)
         .commands { AboutCommands() }
+        .commands { UpdateCommands(updater: app.updater) }
         .commands {
             // ⌘, toggles the settings panel inside the practice window.
             CommandGroup(replacing: .appSettings) {
@@ -61,6 +63,13 @@ struct DuctusApp: App {
 
         Window("About Ductus", id: AboutView.windowID) {
             AboutView()
+        }
+        .windowResizability(.contentSize)
+        .defaultPosition(.center)
+
+        Window("Software Update", id: UpdateView.windowID) {
+            UpdateView()
+                .environment(app.updater)
         }
         .windowResizability(.contentSize)
         .defaultPosition(.center)
@@ -153,6 +162,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let ui = AppUIState()
     lazy var race = RaceModel(practice: practice)
     lazy var textPractice = TextPracticeModel(practice: practice, store: store)
+    let updater = UpdateChecker()
     private let sounds = KeySounds()
     private lazy var globalMonitor = GlobalKeyMonitor { [weak self] event in
         self?.keyboard.handleExternal(event)
@@ -244,6 +254,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             MainActor.assumeIsolated { self?.applySettings() }
         }
         Log.success("Ductus ready")
+        updater.checkAutomaticallyIfDue()
     }
 
     /// Keys type 2-Set jamo when practicing Korean, or on the Text tab with a Korean text open.
