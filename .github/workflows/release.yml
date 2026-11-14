@@ -26,6 +26,17 @@ jobs:
         with:
           xcode-version: latest-stable
 
+      - name: Tag matches the app version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          version=$(xcodebuild -project Ductus.xcodeproj -scheme Ductus -configuration Release -showBuildSettings 2>/dev/null \
+            | awk '/ MARKETING_VERSION = / { print $3; exit }')
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "The tag is $GITHUB_REF_NAME but the app says version $version."
+            echo "Set the version in Xcode (Ductus target, General, Version) to match, commit, and tag again."
+            exit 1
+          fi
+
       - name: Engine tests
         run: swift test --package-path DuctusEngine
 
