@@ -38,7 +38,7 @@ MAX_LENGTH = 12
 # A word must appear in lowercase at least this share of the time,
 # otherwise it is treated as a proper noun ("Holmes", "Elizabeth").
 MIN_LOWERCASE_SHARE = 0.3
-MAX_SENTENCES = 4000
+MAX_SENTENCES = 20_000
 
 # Project Gutenberg ebook IDs. All public domain in the US. Non-English books
 # are prose fiction by authors born 1830 or later (so spelling is close to

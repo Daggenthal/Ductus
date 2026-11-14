@@ -36,7 +36,7 @@ struct SettingsView: View {
     @State private var confirmingReset = false
     @State private var exporting = false
     @State private var hasInputMonitoring = GlobalKeyMonitor.hasPermission
-    @State private var showingCredits = false
+    @Environment(\.openWindow) private var openWindow
     @AppStorage(SettingsKey.debugMode) private var debugMode = false
     /// The Debug section is hidden unless Option is held when Settings opens, or debug is on.
     @State private var showDebug = false
@@ -160,14 +160,8 @@ struct SettingsView: View {
             }
 
             Section("Text Sources") {
-                note("Words and sentences come from public-domain books on Project Gutenberg. Japanese, Chinese and Korean sentences come from Tatoeba (CC BY 2.0 FR), changed for typing: romanized and split into chunks for Japanese and Chinese (Chinese converted to Simplified), and paired with the 2-Set keys for Korean.")
-                HStack {
-                    Link("Project Gutenberg", destination: URL(string: "https://www.gutenberg.org")!)
-                    Link("Tatoeba", destination: URL(string: "https://tatoeba.org")!)
-                    Spacer()
-                    Button("Sentence Authors…") { showingCredits = true }
-                }
-                note("Readings were made with UniDic, pypinyin and OpenCC when building the lists. See CORPUS.md in the source code for every book and tool.")
+                note("Words and sentences come from public-domain books on Project Gutenberg, and Japanese, Chinese and Korean sentences from Tatoeba contributors (CC BY 2.0 FR).")
+                Button("About and Credits…") { openWindow(id: AboutView.windowID) }
             }
 
             if showDebug {
@@ -208,7 +202,6 @@ struct SettingsView: View {
         .onAppear {
             if NSEvent.modifierFlags.contains(.option) || debugMode || Log.debugFromEnvironment { showDebug = true }
         }
-        .sheet(isPresented: $showingCredits) { SentenceAuthorsSheet() }
         .onAppear { hasInputMonitoring = GlobalKeyMonitor.hasPermission }
         .confirmationDialog(
             "Reset all progress for \(practice.layoutName)?",
@@ -238,7 +231,7 @@ struct SettingsView: View {
 }
 
 /// Every Tatoeba author whose sentences are bundled, as the license asks.
-private struct SentenceAuthorsSheet: View {
+struct SentenceAuthorsSheet: View {
     @Environment(\.dismiss) private var dismiss
     private let languages = PracticeLanguage.allCases
         .map { ($0, $0.sentenceAuthors()) }

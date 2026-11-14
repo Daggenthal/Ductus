@@ -21,6 +21,7 @@ struct DuctusApp: App {
                 .environment(app.ui)
         }
         .windowResizability(.contentMinSize)
+        .commands { AboutCommands() }
         .commands {
             // ⌘, toggles the settings panel inside the practice window.
             CommandGroup(replacing: .appSettings) {
@@ -58,6 +59,11 @@ struct DuctusApp: App {
             }
         }
 
+        Window("About Ductus", id: AboutView.windowID) {
+            AboutView()
+        }
+        .windowResizability(.contentSize)
+        .defaultPosition(.center)
     }
 }
 

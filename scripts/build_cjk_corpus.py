@@ -40,7 +40,7 @@ RESOURCES = pathlib.Path("DuctusEngine/Sources/DuctusEngine/Resources")
 MAX_WORDS = 10_000
 MIN_COUNT = 2
 MAX_TYPED_LENGTH = 14
-MAX_SENTENCES = 4000
+MAX_SENTENCES = 20_000
 SENTENCE_TYPED_LENGTH = (20, 120)
 
 # Full-width punctuation to what you type for it in an input method.

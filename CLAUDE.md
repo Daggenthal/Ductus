@@ -29,10 +29,14 @@ The engine is what actually makes the user faster. It is statistical, not a neur
 - Updates after every keystroke.
 - Reference: keybr.com uses a similar approach. keybr is AGPL-3.0, so learn from the idea but do NOT copy its code into this MIT project.
 
-### 2. Optional local LLM (toggle, off by default)
-- The engine decides what to practice ("weak on `ue`, `gh`, right pinky"). A small local model (1 to 3B via MLX or llama.cpp) turns that into natural sentences full of those patterns, plus a short coaching note after each session.
-- Generate the next drill in the background while the user types the current one, so the 1 to 2 second latency is hidden.
-- Must be fully optional. The app must work perfectly without it.
+### 2. Local LLM: tested and parked (November 2026)
+- The idea was a small local model writing drill sentences around weak keys and short coaching notes. We tested Qwen3 1.7B, Qwen3.5 2B (MLX, 4-bit) and Apple's built-in model (Foundation Models) on the same prompts and checks.
+- Why it is parked:
+  - No model can keep to the unlocked letters, so it never helps beginners.
+  - Free sentences pass the word check but read as generic "AI slop" next to the bundled human-written sentences (up to 20,000 per language).
+  - Coaching notes either invented facts (Qwen) or said nothing specific (Apple).
+  - The cost is a 1 to 2 GB download or a macOS/Apple Intelligence requirement, an extra framework and network access.
+- Written encouraging notes (our own phrasings filled with real facts) were also drafted and rejected: they did not feel right. Ductus shows plain stats, not coaching messages. Do not propose an LLM or coaching notes again unless asked; if a much better small model appears, the test harness approach (same prompts, Ductus word checks, side-by-side report) is the way to re-evaluate.
 
 ### 3. Keyboard HUD overlay
 - Can be docked in the practice window or popped out. Popped out: borderless, non-activating floating `NSPanel` (never activates the app), adjustable opacity, draggable by its background. Clicking it makes it the typing target (key window) so practice works with the main window hidden. Optional click-through mode, where it never takes focus.
@@ -71,5 +75,5 @@ The engine is what actually makes the user faster. It is statistical, not a neur
 3. Keyboard HUD overlay reading the active layout via TIS / UCKeyTranslate, with in-app highlighting.
 4. Stats view (WPM, accuracy, per-key heatmap, history).
 5. Opt-in system-wide highlighting.
-6. Optional local LLM drill generation and coaching.
-7. Website at the project domain with download (signed + notarized DMG, Sparkle updates later).
+6. ~~Optional local LLM drill generation and coaching.~~ Tested and parked, see Architecture section 2.
+7. Website at the project domain with download (signed + notarized DMG, Sparkle updates later). Signing and notarizing wait until a paid Apple Developer account makes sense; the About window with credits and the app icon come first.
