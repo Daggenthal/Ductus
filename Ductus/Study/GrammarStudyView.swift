@@ -61,7 +61,7 @@ struct GrammarStudyView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(verbatim: point.english.isEmpty ? point.title : point.english).font(.title2.weight(.semibold))
                 Text(verbatim: "\(point.section) \(point.title)").foregroundStyle(.secondary)
-                Text(verbatim: point.items).font(.title3)
+                Text(Self.highlighted(point.items, words: point.markers)).font(.title3)
             }
             HStack(spacing: 12) {
                 if !point.examples.isEmpty, study.grammarPoint == nil || study.grammarDone {
@@ -96,7 +96,10 @@ struct GrammarStudyView: View {
 
     private func exampleRow(_ example: GrammarSet.Example) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(verbatim: example.text).font(.system(size: 22 * textScale))
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text(Self.highlighted(example)).font(.system(size: 22 * textScale))
+                if example.isAIWritten { aiBadge }
+            }
             if showPinyin {
                 Text(verbatim: example.pinyin).foregroundStyle(.secondary)
             }
@@ -116,12 +119,16 @@ struct GrammarStudyView: View {
             VStack(spacing: 12) {
                 Text(verbatim: "\(study.exampleIndex + 1) / \(point.examples.count)")
                     .font(.caption).foregroundStyle(.secondary)
-                Text(verbatim: example.text).font(.system(size: 40 * textScale))
+                Text(Self.highlighted(example)).font(.system(size: 40 * textScale))
+                if example.isAIWritten { aiBadge }
                 Text(verbatim: showPinyin ? example.pinyin : " ").font(.system(size: 20 * textScale)).foregroundStyle(.secondary)
                 Text(verbatim: example.english).font(.title3).foregroundStyle(.secondary)
                 DrillText(session: typing, lastKeyWrong: study.lastKeyWrong, fontSize: 28 * textScale)
                     .fixedSize()
                     .id(study.cardID)
+                if study.awaitingNext {
+                    Text("Press Return for the next sentence").foregroundStyle(.secondary)
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
@@ -133,6 +140,43 @@ struct GrammarStudyView: View {
             return "No example sentences for this point yet. Every example in Ductus is checked by hand, and none of the available sentences showed this point clearly enough."
         }
         return "Example sentences for this level are still being checked by hand. The grammar points are listed so you can look them up."
+    }
+
+    /// Marks sentences written by AI where no human sentence fit.
+    private var aiBadge: some View {
+        Text("AI-written")
+            .font(.caption2.weight(.semibold))
+            .padding(.horizontal, 5).padding(.vertical, 1)
+            .foregroundStyle(.secondary)
+            .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(.secondary.opacity(0.5)))
+            .help("Written by AI because no human-written sentence showed this point. Checked by a second model (DeepSeek).")
+    }
+
+    /// The sentence with the grammar point's words in the accent color.
+    static func highlighted(_ example: GrammarSet.Example) -> AttributedString {
+        var result = AttributedString()
+        for (index, character) in example.text.enumerated() {
+            var piece = AttributedString(String(character))
+            if example.highlights.contains(where: { $0.contains(index) }) {
+                piece.foregroundColor = .accentColor
+                piece.inlinePresentationIntent = .stronglyEmphasized
+            }
+            result += piece
+        }
+        return result
+    }
+
+    /// The point's items with its key words in the accent color.
+    static func highlighted(_ text: String, words: [String]) -> AttributedString {
+        var result = AttributedString(text)
+        for word in words where !word.isEmpty {
+            var searchRange = result.startIndex..<result.endIndex
+            while let found = result[searchRange].range(of: word) {
+                result[found].foregroundColor = .accentColor
+                searchRange = found.upperBound..<result.endIndex
+            }
+        }
+        return result
     }
 
     /// The Chinese Grammar Wiki's search for the point's words (or its title).

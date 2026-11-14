@@ -30,6 +30,10 @@ final class StudyModel {
     /// Grades given this session, for the summary.
     private(set) var tally: [StudyGrade: Int] = [:]
     private(set) var isFinished = false
+    /// A card was just answered: it stays up, with its grade, until Return.
+    private(set) var awaitingNext = false
+    /// The grade of the card that was just answered (nil for a new word's first look).
+    private(set) var answeredGrade: StudyGrade?
     private(set) var practicingKnown = false
     private(set) var loadError: String?
 
@@ -43,6 +47,12 @@ final class StudyModel {
     private(set) var grammarPoint: GrammarSet.Point?
     private(set) var exampleIndex = 0
     private(set) var grammarDone = false
+
+    /// After the pinyin is typed: the numbered choices, like an input method's
+    /// candidate list. Nil while typing, or when the setting is off.
+    private(set) var candidates: [String]?
+    private var pinyinCandidates: PinyinCandidates?
+    private var typedKeys = 0
 
     private var cardStart: TimeInterval = 0
     private var misses = 0
@@ -127,6 +137,7 @@ final class StudyModel {
     }
 
     func endSession() {
+        awaitingNext = false
         session = nil
         typing = nil
         isFinished = false
@@ -155,6 +166,9 @@ final class StudyModel {
             return
         }
         typing = TypingSession(text: step.word.typed, mistakeMode: .stop)
+        candidates = nil
+        awaitingNext = false
+        answeredGrade = nil
         misses = 0
         revealed = false
         lastKeyWrong = false
@@ -166,6 +180,7 @@ final class StudyModel {
     /// months) and leaves this session. Undo it from History with Study Again.
     func markKnown() {
         guard let step = session?.current else { return }
+        awaitingNext = false
         progress.markKnown(step.word, now: .now)
         session?.skipCurrentWord()
         lastResult = (step.word, nil)
@@ -197,6 +212,7 @@ final class StudyModel {
     }
 
     func endGrammar() {
+        awaitingNext = false
         grammarPoint = nil
         grammarDone = false
         if session == nil { typing = nil }
@@ -208,6 +224,7 @@ final class StudyModel {
     }
 
     private func startExample() {
+        awaitingNext = false
         guard let example = currentExample else { return }
         typing = TypingSession(text: example.typed, mistakeMode: .stop)
         lastKeyWrong = false
@@ -217,14 +234,13 @@ final class StudyModel {
 
     private func finishExample() {
         guard let point = grammarPoint else { return }
-        exampleIndex += 1
-        if exampleIndex >= point.examples.count {
+        if exampleIndex + 1 >= point.examples.count {
             grammarDone = true
             typing = nil
             practicedPoints[point.id] = .now
             saveGrammar()
         } else {
-            startExample()
+            awaitingNext = true  // the typed example stays up until Return
         }
     }
 
@@ -242,6 +258,11 @@ final class StudyModel {
     }
 
     func type(_ character: Character, keyCode: UInt16, at time: TimeInterval) -> Bool {
+        // A finished card or example waits for Return.
+        if awaitingNext {
+            if character == "\n" { advance() }
+            return true
+        }
         guard let typing else { return false }
         if grammarPoint != nil, session == nil {
             if character == "\n" { return true }
@@ -256,6 +277,9 @@ final class StudyModel {
             reveal()
             return true
         }
+        if let candidates, let step = session?.current {
+            return choose(character, from: candidates, word: step.word, at: time)
+        }
         guard let keystroke = self.typing?.type(character, keyCode: keyCode, at: time) else { return true }
         lastKeyWrong = !keystroke.isCorrect
         if !keystroke.isCorrect { misses += 1 }
@@ -263,7 +287,35 @@ final class StudyModel {
         // Pinyin keys are the letters of Chinese practice.
         if practice.language == wordSet?.language { practice.recordExternal(keystroke) }
         if self.typing?.isComplete == true {
-            finishCard(keys: typing.text.count, finishedAt: time)
+            typedKeys = typing.text.count
+            if chooseCharacters, let step = session?.current {
+                // Like an input method: now pick the characters by number.
+                if pinyinCandidates == nil { pinyinCandidates = .bundled() }
+                candidates = pinyinCandidates?.candidates(for: step.word).shuffled()
+            } else {
+                finishCard(keys: typedKeys, finishedAt: time)
+            }
+        }
+        return true
+    }
+
+    var chooseCharacters: Bool {
+        UserDefaults.standard.bool(forKey: SettingsKey.studyChooseCharacters) && wordSet?.language == .chinese
+    }
+
+    /// 1 to 9 picks a candidate, space the first. A wrong pick counts as a miss.
+    private func choose(_ character: Character, from list: [String], word: StudyWord, at time: TimeInterval) -> Bool {
+        let index: Int? = character == " " ? 0 : character.wholeNumberValue.map { $0 - 1 }
+        guard let index, list.indices.contains(index) else { return true }
+        if list[index] == word.native {
+            lastKeyWrong = false
+            practice.onKeystroke?(true)
+            candidates = nil
+            finishCard(keys: typedKeys + 1, finishedAt: time)
+        } else {
+            lastKeyWrong = true
+            misses += 1
+            practice.onKeystroke?(false)
         }
         return true
     }
@@ -285,7 +337,20 @@ final class StudyModel {
             persist()
         }
         if case .recall = step { lastResult = (step.word, grade) } else { lastResult = (step.word, nil) }
-        nextCard()
+        answeredGrade = { if case .recall = step { return grade } else { return nil } }()
+        awaitingNext = true
+    }
+
+    /// Return after a card or example: on to the next one.
+    func advance() {
+        guard awaitingNext else { return }
+        awaitingNext = false
+        if grammarPoint != nil, session == nil {
+            exampleIndex += 1
+            startExample()
+        } else {
+            nextCard()
+        }
     }
 
     /// Your usual time per key from practice, so a fast answer is judged against your own speed.

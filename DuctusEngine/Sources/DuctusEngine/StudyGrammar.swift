@@ -11,8 +11,12 @@ public struct GrammarSet: Sendable {
         /// Pinyin with tone marks, one per chunk.
         public let tones: [String]
         public let english: String
-        /// Tatoeba sentence ID.
+        /// Tatoeba sentence ID, or "ai-..." for a sentence written by AI where no human one fit.
         public let id: String
+        /// Character ranges in `text` that show the grammar point, to highlight.
+        public let highlights: [Range<Int>]
+
+        public var isAIWritten: Bool { id.hasPrefix("ai-") }
 
         public var text: String { chunks.joined() }
         public var pinyin: String { tones.joined(separator: " ") }
@@ -27,6 +31,8 @@ public struct GrammarSet: Sendable {
         public let items: String
         /// A short English name ("Modal verbs").
         public let english: String
+        /// The words to highlight ("会", "能"), empty for points about sentence structure.
+        public let markers: [String]
         public var examples: [Example]
         public var id: String { "\(section)|\(items)" }
     }
@@ -44,15 +50,26 @@ public struct GrammarSet: Sendable {
             if columns.first == "@" {
                 guard columns.count >= 4 else { continue }
                 points.append(Point(section: columns[1], title: columns[2], items: columns[3],
-                                    english: columns.count > 4 ? columns[4] : "", examples: []))
+                                    english: columns.count > 4 ? columns[4] : "",
+                                    markers: columns.count > 5 ? columns[5].split(separator: "、").map(String.init) : [],
+                                    examples: []))
             } else if columns.count >= 5, !points.isEmpty {
                 let example = Example(typed: columns[0], chunks: columns[1].split(separator: "|").map(String.init),
                                       tones: columns[2].split(separator: "|").map(String.init),
-                                      english: columns[3], id: columns[4])
+                                      english: columns[3], id: columns[4],
+                                      highlights: columns.count > 6 ? Self.ranges(columns[6]) : [])
                 points[points.count - 1].examples.append(example)
             }
         }
         self.points = points
+    }
+
+    /// "3-4;7-9" -> [3..<4, 7..<9].
+    static func ranges(_ text: String) -> [Range<Int>] {
+        text.split(separator: ";").compactMap { pair in
+            let ends = pair.split(separator: "-").compactMap { Int($0) }
+            return ends.count == 2 && ends[0] < ends[1] ? ends[0]..<ends[1] : nil
+        }
     }
 
     /// Grammar for a word set ID ("hsk1"), if there is any.

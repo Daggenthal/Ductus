@@ -44,6 +44,8 @@ extension SettingsKey {
     static let studyShowMeaning = "studyShowMeaning"
     /// Study: "words" or "grammar".
     static let studyMode = "studyMode"
+    /// Study: after typing a word's pinyin, pick its characters by number, like an input method.
+    static let studyChooseCharacters = "studyChooseCharacters"
 
     static func registerPracticeDefaults() {
         UserDefaults.standard.register(defaults: [
@@ -74,6 +76,7 @@ extension SettingsKey {
             studyShowPinyin: false,
             studyShowMeaning: true,
             studyMode: "words",
+            studyChooseCharacters: true,
         ])
     }
 }

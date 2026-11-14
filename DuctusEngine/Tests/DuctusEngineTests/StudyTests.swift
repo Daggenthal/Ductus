@@ -159,6 +159,25 @@ import Testing
         let measure = grammar.points.flatMap(\.examples).first { $0.text == "我喜欢这只狗。" }
         #expect(measure?.pinyin.contains("zhī") == true)
         #expect(!GrammarSet.authors().isEmpty)
+        // The point's words are highlighted in its examples: 会 in 他会说中文。
+        let huiExample = try #require(modal.examples.first { $0.text == "他会说中文。" })
+        #expect(huiExample.highlights == [1..<2])
+        #expect(modal.markers == ["会", "能"])
+        let hsk2 = try #require(GrammarSet.bundled("hsk2"))
+        #expect(hsk2.points.allSatisfy { !$0.examples.isEmpty })
+        #expect(hsk2.points.flatMap(\.examples).contains { $0.isAIWritten })
         for (id, _) in StudySet.catalog { #expect(GrammarSet.bundled(id) != nil) }
+    }
+
+    @Test func inputMethodCandidates() throws {
+        let candidates = PinyinCandidates.bundled()
+        let hsk1 = try StudySet.bundled("hsk1")
+        let ni = try #require(hsk1.words.first { $0.native == "你" })
+        let list = candidates.candidates(for: ni)
+        #expect(list.contains("你") && list.count >= 2 && list.count <= 6)
+        #expect(Set(list).count == list.count)
+        #expect(PinyinCandidates.syllables("nǐ hǎo") == ["ni", "hao"])
+        #expect(PinyinCandidates.syllables("lǜ") == ["lv"])
+        for word in hsk1.words.prefix(100) { #expect(candidates.candidates(for: word).contains(word.native)) }
     }
 }

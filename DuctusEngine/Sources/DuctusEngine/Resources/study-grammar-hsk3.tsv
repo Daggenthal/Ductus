@@ -1,97 +1,97 @@
 # HSK 3 grammar points (revised HSK 3.0 syllabus, 2025; list from krmanik/HSK-3.0, CC BY-SA 4.0). Example sentences: Tatoeba, CC BY 2.0 FR (authors in study-grammar-credits.tsv).
-@	1.1	前缀	老—	Prefixes
-@	1.2	后缀	—家、—子、—员	Suffixes
-@	2.1.1	方位名词	东、南、西、北、北方、东方、南方、西方、中间	Nouns of locality
-@	2.2.1	能愿动词	需要、该、应该、愿意、得	Modal verbs
-@	2.2.2	离合词	动宾式离合词：放假、见面、结婚、洗澡	Separable verbs
-@	2.2.2	离合词	动补式离合词：离开、完成、分开	Separable verbs
-@	2.3.1	疑问代词	怎样	Question words
-@	2.3.1	疑问代词	疑问代词的非疑问用法：（1）任指用法：①疑问代词+都……②疑问代词+疑问代词	Question words
-@	2.3.1	疑问代词	（2）不定指用法	Question words
-@	2.3.2	人称代词	别人、咱们	Personal pronouns
-@	2.3.3	指示代词	别的、其他	Demonstrative pronouns
-@	2.4.1	名量词	（1）专用名量词：把、双、张、种、层、封、页、辆、节、所、班、段、头、句公斤、斤、角、毛、刻、米	Measure words for nouns
-@	2.4.1	名量词	（2）借用名量词：碗、盘	Measure words for nouns
-@	2.4.2	动量词	口、回、遍、声	Measure words for verbs
-@	2.4.3	量词重叠	个个、张张	Measure word reduplication
-@	2.5.1	程度副词	比较、还3、更、特别、挺、有些、越、极	Adverbs of degree
-@	2.5.2	范围副词	就3、一块儿、一共、只、到处、只是	Adverbs of scope
-@	2.5.3	时间副词	才1、马上、先、一会儿、刚、刚刚、一直	Adverbs of time
-@	2.5.4	频率副词	总、总是、又、常常	Adverbs of frequency
-@	2.5.5	关联副词	一边	Linking adverbs
-@	2.5.6	情态副词	大概、必须、差不多、一定、好像、几乎	Modal adverbs
-@	2.5.7	语气副词	当然、其实、终于、才2、才3、就4	Mood adverbs
-@	2.5.8	否定副词	不必、不用	Negation adverbs
-@	2.6.1	引出对象	为1、向1、关于	Prepositions for the object
-@	2.6.2	引出方向、路径	向2	Prepositions of direction
-@	2.6.3	引出目的、原因	为了、为2	Prepositions of purpose and cause
-@	2.6.4	引出施事、受事	把、被	Prepositions for agent and patient
-@	2.6.5	引出凭借、依据	根据	Prepositions of basis
-@	2.7.1	连接词或者短语	或、或者	Conjunctions for words or phrases
-@	2.7.2	连接分句或句子	只有、只要、不但、而且、如果、可1、可是、然后	Conjunctions for clauses
-@	2.8.1	其他助词	的话	Other particles
-@	3.1.1	其他结构类型	同位短语	Other phrase types
-@	3.1.1	其他结构类型	动补短语2	Other phrase types
-@	3.1.1	其他结构类型	数量重叠：数词+量词+数词+量词	Other phrase types
-@	3.2.1	四字格	不A 不 B	Four-character patterns
-@	3.2.2	其 他	不一会儿	Other
-@	3.2.2	其 他	看来	Other
-@	3.2.2	其 他	在……看来	Other
-@	3.2.2	其 他	越来越	Other
-@	3.2.2	其 他	看起来	Other
-@	3.2.2	其 他	看上去	Other
-@	3.2.2	其 他	一般来说	Other
-@	3.2.2	其 他	不怎么样	Other
-@	4.1	固定格式	除了 ……（以外），……还/也/都……	Fixed patterns
-@	4.1	固定格式	从……起	Fixed patterns
-@	4.1	固定格式	对……来说	Fixed patterns
-@	4.1	固定格式	一……也/都+不/没……	Fixed patterns
-@	4.1	固定格式	一点儿也不	Fixed patterns
-@	4.1	固定格式	越……越……	Fixed patterns
-@	4.1	固定格式	（在）……以前/以后/前/后	Fixed patterns
-@	4.1	固定格式	X什么（啊）	Fixed patterns
-@	4.1	固定格式	该……了	Fixed patterns
-@	4.1	固定格式	在……上/下/中	Fixed patterns
-@	5.1	主语	动词或动词性短语、形容词或形容词性短语作主语	Subjects
-@	5.1	主语	主谓短语作主语	Subjects
-@	5.2	定语	多项定语	Attributives
-@	5.3.1	结果补语2	动词+到/住/走/上	Resultative complements
-@	5.3.2	趋向补语2	趋向补语的引申用法：（1）表示结果意义：动词+出/起/下	Directional complements
-@	5.3.2	趋向补语2	（2）表示动作行为的开始：动词+上/起来	Directional complements
-@	5.3.2	趋向补语2	（3）表示动作行为的持续：动词+下去/下来	Directional complements
-@	5.3.3	可能补语1	动词+得/不+动词/形容词	Potential complements
-@	5.3.4	程度补语1	（1）形容词+得很	Complements of degree
-@	5.3.4	程度补语1	（2）形容词/动词+极了/坏了	Complements of degree
-@	5.3.5	数量补语3	表示动作结束到某个时间点的间隔时间	Quantity complements
-@	6.1.1	疑问句	“怎样+动词”的特指问句	Questions
-@	6.1.2	反问句1	用反问句表示强调：不是……吗？	Rhetorical questions
-@	6.2.1	“把”字句1	（1）主语+把+宾语+动词+在/到+处所	把 sentences
-@	6.2.1	“把”字句1	（2）主语+把+宾语1+动词（+给）+宾语2	把 sentences
-@	6.2.1	“把”字句1	（3）主语+把+宾语+动词+结果补语/趋向补语/状态补语	把 sentences
-@	6.2.2	被动句1	（1）主语+被+宾语+动词+其他成分	Passive sentences
-@	6.2.2	被动句1	（2）主语+被+动词+其他成分	Passive sentences
-@	6.2.3	连动句2	“着”表示动作的伴随：动词1+着+动词2	Serial verb sentences
-@	6.2.4	比较句2	（1）A比B+更/还+形容词	Comparative sentences
-@	6.2.4	比较句2	（2）A跟B一样	Comparative sentences
-@	6.2.4	比较句2	（3）A跟B一样+形容词	Comparative sentences
-@	6.2.4	比较句2	（4）A不比B+形容词	Comparative sentences
-@	6.2.4	比较句2	（5）A比B+多/少/早/晚+动词+数量短语	Comparative sentences
-@	6.2.5	存现句3	（1）表示出现：处所词+动词+趋向补语/结果补语+动态助词（了）+数量短语+人/物	Existential sentences
-@	6.2.5	存现句3	（2）表示消失：处所词+动词+结果补语+动态助词（了）+数量短语+人/物	Existential sentences
-@	6.2.6	“是……的”句2	强调说话人的看法或态度	是……的 sentences
-@	6.2.7	重动句	主语+动词+宾语+动词+补语	Verb-copying sentences
-@	6.3.1	承接复句	先……，再/然后……	Sequential complex sentences
-@	6.3.2	选择复句	或者……，或者……	Alternative complex sentences
-@	6.3.3	并列复句	一会儿……，一会儿……	Coordinate complex sentences
-@	6.3.3	并列复句	又……，又……	Coordinate complex sentences
-@	6.3.3	并列复句	一边……，一边……	Coordinate complex sentences
-@	6.3.4	递进复句	不但……，而且……	Progressive complex sentences
-@	6.3.5	转折复句	虽然……，可是……	Contrast complex sentences
-@	6.3.6	假设复句	如果……，就……	Hypothetical complex sentences
-@	6.3.6	假设复句	……的话，就……	Hypothetical complex sentences
-@	6.3.7	条件复句	只有……，才……	Conditional complex sentences
-@	6.3.7	条件复句	只要……，就……	Conditional complex sentences
-@	6.3.8	目的复句	为了……，……	Purpose complex sentences
-@	6.3.9	紧缩复句	……了……（就）……	Contracted complex sentences
-@	7.1	数的表达法	概数表达法2：（1）用“大概”表示概数	Expressing numbers
-@	7.1	数的表达法	（2）相邻数词连用表示概数	Expressing numbers
+@	1.1	前缀	老—	Prefixes	老
+@	1.2	后缀	—家、—子、—员	Suffixes	家、子、员
+@	2.1.1	方位名词	东、南、西、北、北方、东方、南方、西方、中间	Nouns of locality	东、南、西、北、北方、东方、南方、西方、中间
+@	2.2.1	能愿动词	需要、该、应该、愿意、得	Modal verbs	需要、该、应该、愿意、得
+@	2.2.2	离合词	动宾式离合词：放假、见面、结婚、洗澡	Separable verbs	放假、见面、结婚、洗澡
+@	2.2.2	离合词	动补式离合词：离开、完成、分开	Separable verbs	离开、完成、分开
+@	2.3.1	疑问代词	怎样	Question words	怎样
+@	2.3.1	疑问代词	疑问代词的非疑问用法：（1）任指用法：①疑问代词+都……②疑问代词+疑问代词	Question words	都
+@	2.3.1	疑问代词	（2）不定指用法	Question words	
+@	2.3.2	人称代词	别人、咱们	Personal pronouns	别人、咱们
+@	2.3.3	指示代词	别的、其他	Demonstrative pronouns	别的、其他
+@	2.4.1	名量词	（1）专用名量词：把、双、张、种、层、封、页、辆、节、所、班、段、头、句公斤、斤、角、毛、刻、米	Measure words for nouns	把、双、张、种、层、封、页、辆、节、所、班、段、头、斤、角、毛、刻、米
+@	2.4.1	名量词	（2）借用名量词：碗、盘	Measure words for nouns	碗、盘
+@	2.4.2	动量词	口、回、遍、声	Measure words for verbs	口、回、遍、声
+@	2.4.3	量词重叠	个个、张张	Measure word reduplication	个个、张张
+@	2.5.1	程度副词	比较、还3、更、特别、挺、有些、越、极	Adverbs of degree	比较、还、更、特别、挺、有些、越、极
+@	2.5.2	范围副词	就3、一块儿、一共、只、到处、只是	Adverbs of scope	就、一块儿、一共、只、到处、只是
+@	2.5.3	时间副词	才1、马上、先、一会儿、刚、刚刚、一直	Adverbs of time	才、马上、先、一会儿、刚、刚刚、一直
+@	2.5.4	频率副词	总、总是、又、常常	Adverbs of frequency	总、总是、又、常常
+@	2.5.5	关联副词	一边	Linking adverbs	一边
+@	2.5.6	情态副词	大概、必须、差不多、一定、好像、几乎	Modal adverbs	大概、必须、差不多、一定、好像、几乎
+@	2.5.7	语气副词	当然、其实、终于、才2、才3、就4	Mood adverbs	当然、其实、终于、才、才、就
+@	2.5.8	否定副词	不必、不用	Negation adverbs	不必、不用
+@	2.6.1	引出对象	为1、向1、关于	Prepositions for the object	为、向、关于
+@	2.6.2	引出方向、路径	向2	Prepositions of direction	向
+@	2.6.3	引出目的、原因	为了、为2	Prepositions of purpose and cause	为了、为
+@	2.6.4	引出施事、受事	把、被	Prepositions for agent and patient	把、被
+@	2.6.5	引出凭借、依据	根据	Prepositions of basis	根据
+@	2.7.1	连接词或者短语	或、或者	Conjunctions for words or phrases	或、或者
+@	2.7.2	连接分句或句子	只有、只要、不但、而且、如果、可1、可是、然后	Conjunctions for clauses	只有、只要、不但、而且、如果、可、可是、然后
+@	2.8.1	其他助词	的话	Other particles	的话
+@	3.1.1	其他结构类型	同位短语	Other phrase types	
+@	3.1.1	其他结构类型	动补短语2	Other phrase types	
+@	3.1.1	其他结构类型	数量重叠：数词+量词+数词+量词	Other phrase types	
+@	3.2.1	四字格	不A 不 B	Four-character patterns	不
+@	3.2.2	其 他	不一会儿	Other	
+@	3.2.2	其 他	看来	Other	看来
+@	3.2.2	其 他	在……看来	Other	在、看来
+@	3.2.2	其 他	越来越	Other	越来越
+@	3.2.2	其 他	看起来	Other	看起来
+@	3.2.2	其 他	看上去	Other	看上去
+@	3.2.2	其 他	一般来说	Other	
+@	3.2.2	其 他	不怎么样	Other	
+@	4.1	固定格式	除了 ……（以外），……还/也/都……	Fixed patterns	除了、还、也、都
+@	4.1	固定格式	从……起	Fixed patterns	从、起
+@	4.1	固定格式	对……来说	Fixed patterns	对、来说
+@	4.1	固定格式	一……也/都+不/没……	Fixed patterns	一、也、都、不、没
+@	4.1	固定格式	一点儿也不	Fixed patterns	
+@	4.1	固定格式	越……越……	Fixed patterns	越、越
+@	4.1	固定格式	（在）……以前/以后/前/后	Fixed patterns	以前、以后、前、后
+@	4.1	固定格式	X什么（啊）	Fixed patterns	
+@	4.1	固定格式	该……了	Fixed patterns	该、了
+@	4.1	固定格式	在……上/下/中	Fixed patterns	在、上、下、中
+@	5.1	主语	动词或动词性短语、形容词或形容词性短语作主语	Subjects	
+@	5.1	主语	主谓短语作主语	Subjects	
+@	5.2	定语	多项定语	Attributives	
+@	5.3.1	结果补语2	动词+到/住/走/上	Resultative complements	到、住、走、上
+@	5.3.2	趋向补语2	趋向补语的引申用法：（1）表示结果意义：动词+出/起/下	Directional complements	出、起、下
+@	5.3.2	趋向补语2	（2）表示动作行为的开始：动词+上/起来	Directional complements	上、起来
+@	5.3.2	趋向补语2	（3）表示动作行为的持续：动词+下去/下来	Directional complements	下去、下来
+@	5.3.3	可能补语1	动词+得/不+动词/形容词	Potential complements	得、不
+@	5.3.4	程度补语1	（1）形容词+得很	Complements of degree	得很
+@	5.3.4	程度补语1	（2）形容词/动词+极了/坏了	Complements of degree	极了、坏了
+@	5.3.5	数量补语3	表示动作结束到某个时间点的间隔时间	Quantity complements	
+@	6.1.1	疑问句	“怎样+动词”的特指问句	Questions	怎样+动词
+@	6.1.2	反问句1	用反问句表示强调：不是……吗？	Rhetorical questions	不是
+@	6.2.1	“把”字句1	（1）主语+把+宾语+动词+在/到+处所	把 sentences	把、在、到
+@	6.2.1	“把”字句1	（2）主语+把+宾语1+动词（+给）+宾语2	把 sentences	把
+@	6.2.1	“把”字句1	（3）主语+把+宾语+动词+结果补语/趋向补语/状态补语	把 sentences	把
+@	6.2.2	被动句1	（1）主语+被+宾语+动词+其他成分	Passive sentences	被
+@	6.2.2	被动句1	（2）主语+被+动词+其他成分	Passive sentences	被
+@	6.2.3	连动句2	“着”表示动作的伴随：动词1+着+动词2	Serial verb sentences	着
+@	6.2.4	比较句2	（1）A比B+更/还+形容词	Comparative sentences	更、还
+@	6.2.4	比较句2	（2）A跟B一样	Comparative sentences	
+@	6.2.4	比较句2	（3）A跟B一样+形容词	Comparative sentences	
+@	6.2.4	比较句2	（4）A不比B+形容词	Comparative sentences	
+@	6.2.4	比较句2	（5）A比B+多/少/早/晚+动词+数量短语	Comparative sentences	多、少、早、晚
+@	6.2.5	存现句3	（1）表示出现：处所词+动词+趋向补语/结果补语+动态助词（了）+数量短语+人/物	Existential sentences	人、物
+@	6.2.5	存现句3	（2）表示消失：处所词+动词+结果补语+动态助词（了）+数量短语+人/物	Existential sentences	人、物
+@	6.2.6	“是……的”句2	强调说话人的看法或态度	是……的 sentences	
+@	6.2.7	重动句	主语+动词+宾语+动词+补语	Verb-copying sentences	
+@	6.3.1	承接复句	先……，再/然后……	Sequential complex sentences	先、再、然后
+@	6.3.2	选择复句	或者……，或者……	Alternative complex sentences	或者、或者
+@	6.3.3	并列复句	一会儿……，一会儿……	Coordinate complex sentences	一会儿、一会儿
+@	6.3.3	并列复句	又……，又……	Coordinate complex sentences	又、又
+@	6.3.3	并列复句	一边……，一边……	Coordinate complex sentences	一边、一边
+@	6.3.4	递进复句	不但……，而且……	Progressive complex sentences	不但、而且
+@	6.3.5	转折复句	虽然……，可是……	Contrast complex sentences	虽然、可是
+@	6.3.6	假设复句	如果……，就……	Hypothetical complex sentences	如果、就
+@	6.3.6	假设复句	……的话，就……	Hypothetical complex sentences	的话、就
+@	6.3.7	条件复句	只有……，才……	Conditional complex sentences	只有、才
+@	6.3.7	条件复句	只要……，就……	Conditional complex sentences	只要、就
+@	6.3.8	目的复句	为了……，……	Purpose complex sentences	为了
+@	6.3.9	紧缩复句	……了……（就）……	Contracted complex sentences	了
+@	7.1	数的表达法	概数表达法2：（1）用“大概”表示概数	Expressing numbers	大概
+@	7.1	数的表达法	（2）相邻数词连用表示概数	Expressing numbers	

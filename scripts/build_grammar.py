@@ -19,7 +19,8 @@ type ("动词谓语句") cannot be searched for; they are listed without example
 
 Output: DuctusEngine/Sources/DuctusEngine/Resources/study-grammar-hsk<N>.tsv
     @ <tab> section <tab> title <tab> items <tab> English title
-    typed <tab> characters (chunks joined by |) <tab> pinyin with tones (|) <tab> English <tab> cmn id <tab> eng id
+    typed <tab> characters (chunks joined by |) <tab> pinyin with tones (|) <tab> English <tab> cmn id <tab> eng id <tab> highlights
+(the point line ends with the words to highlight; highlights are character ranges "start-end;...")
 and study-grammar-credits.tsv with each sentence's authors.
 
 Usage (with the build tools from build_cjk_corpus.py installed):
@@ -106,6 +107,37 @@ def patterns(items):
         else:
             found.append(("regex", regex))
     return found
+
+
+GRAMMAR_WORDS = re.compile(r"(动词|名词|代词|数词|量词|形容词|副词|宾语|主语|谓语|补语|定语|状语|短语|句|表示|词语|结构|用法|"
+                           r"数量|处所|所处|时间|地点|方式|动作者|对象|原因|状态|持续|专用|借用|用动态助词|序数|概数|连接|选择|问)")
+
+
+def markers(items):
+    """The words of a point to highlight in its examples: 会、能 -> 会, 能;
+    "（4）A比B+动词+得+形容词" -> 比, 得; 用“还是”连接的选择问句 -> 还是."""
+    quoted = re.findall(r"“([^”]+)”", items)
+    if quoted:
+        return [re.sub(r"\d", "", q) for q in quoted]
+    text = re.sub(r"（\d+）|\d+|\(.*?\)|（.*?）", "", items)
+    if "：" in text:
+        text = text.split("：", 1)[1]
+    found = []
+    for part in re.split(r"[、，,+/…—\s]+|……", text):
+        part = part.strip("“”（）()")
+        if part and re.fullmatch(r"[\u4e00-\u9fff]{1,3}", part) and not GRAMMAR_WORDS.search(part):
+            found.append(part)
+    return found
+
+
+def mark_ranges(text, words):
+    """Character ranges of the marker words in a sentence, as "start-end;start-end"."""
+    spans = []
+    for word in sorted(set(words), key=len, reverse=True):
+        for m in re.finditer(re.escape(word), text):
+            if not any(a < m.end() and m.start() < b for a, b in spans):
+                spans.append((m.start(), m.end()))
+    return ";".join(f"{a}-{b}" for a, b in sorted(spans))
 
 
 def alternative(text):
@@ -198,6 +230,13 @@ def main() -> int:
     def tone_pinyin(word, previous=""):
         if word == "只" and previous and previous[-1] in "这那哪每几一两三四五六七八九十":
             return "zhī"  # the measure word (这只狗), not zhǐ "only"
+        # Particles standing alone: 站着 is zhàn zhe, 高兴地 gāoxìng de, 跑得快 pǎo de kuài.
+        if word in ("着", "地", "得") and previous:
+            return {"着": "zhe", "地": "de", "得": "de"}[word]
+        # Verb + 着 is zhe (穿着 "wearing", not the noun chuānzhuó); 睡着 and 着急 keep their readings.
+        if len(word) == 2 and word.endswith("着") and word not in ("睡着", "着急", "找着", "着火"):
+            first = tone_pinyin(word[0], previous)
+            return f"{first} zhe"
         if word in readings:
             text = readings[word]
         else:
@@ -213,6 +252,28 @@ def main() -> int:
         text = re.sub("[ǖǘǚǜü]", "v", tones.lower())
         return "".join(c for c in unicodedata.normalize("NFD", text) if c.isascii() and c.isalpha())
 
+    import jieba
+    ai_count = [0]
+
+    def ai_sentence(entry, allowed):
+        """A sentence written by Claude where no human one fit: split into words like
+        the Tatoeba ones, with words above the level reported for review."""
+        ai_count[0] += 1
+        chunks = []
+        # "|" marks word breaks by hand where the word splitter gets them wrong.
+        words_in = entry["ai"].split("|") if "|" in entry["ai"] else jieba.cut(entry["ai"])
+        for word in [w for part in words_in for w in ([part] if "|" in entry["ai"] else [part])]:
+            if word in cjk.PUNCTUATION and chunks:
+                chunks[-1] += word
+            else:
+                chunks.append(word)
+        typed = " ".join(cjk.PUNCTUATION.get(c[-1], "") if c[-1] in cjk.PUNCTUATION else "" for c in chunks)
+        above = [c.strip(PUNCT) for c in chunks if c.strip(PUNCT) not in allowed and not re.fullmatch(r"[一二两三四五六七八九十百千万零]+", c.strip(PUNCT))]
+        if above:
+            print(f"  AI sentence {entry['ai']}: words outside the level: {' '.join(above)}", file=sys.stderr)
+        return dict(id=f"ai-{ai_count[0]}", typed=typed, chunks=chunks, english=entry["en"], eng_id="", eng_author="",
+                    author="", text="".join(chunks), words=[c.strip(PUNCT) for c in chunks])
+
     rng = random.Random(7)
     credits = {}
     for index, level in enumerate(LEVELS):
@@ -224,12 +285,17 @@ def main() -> int:
         with_examples = 0
         for number, top, title, items in points:
             english_title = labels.get(f"{title}|{items}") or labels.get(title, "")
-            out.append("\t".join(["@", number, title, items, english_title]))
+            point_markers = markers(items)
+            out.append("\t".join(["@", number, title, items, english_title, "、".join(point_markers)]))
             chosen = []
             if level in reviewed:
                 # Only examples checked by hand; a point without any gets none.
                 by_id = {p["id"]: p for p in pool}
-                chosen = [by_id[i] for i in reviewed[level].get(f"{number}|{items}", []) if i in by_id]
+                for entry in reviewed[level].get(f"{number}|{items}", []):
+                    if isinstance(entry, dict):
+                        chosen.append(ai_sentence(entry, vocab[0]))
+                    elif entry in by_id:
+                        chosen.append(by_id[entry])
             pats = [] if level in reviewed or not search_unreviewed else (
                 [tuple(p) for p in overrides.get(f"{level}|{number}|{items}", [])] or patterns(items))
             for words_allowed in vocab:
@@ -255,9 +321,11 @@ def main() -> int:
                 if choice and choice in english:
                     english_text, s["eng_id"], s["eng_author"] = english[choice][0], choice, english[choice][1]
                 english_text = translations.get("correct", {}).get(s["id"], english_text)
-                out.append("\t".join([typed, "|".join(s["chunks"]), tones, english_text, s["id"], s["eng_id"]]))
-                credits[s["id"]] = s["author"]
-                credits[s["eng_id"]] = s["eng_author"]
+                marks = mark_ranges("".join(s["chunks"]), point_markers)
+                out.append("\t".join([typed, "|".join(s["chunks"]), tones, english_text, s["id"], s["eng_id"], marks]))
+                if not s["id"].startswith("ai-"):
+                    credits[s["id"]] = s["author"]
+                    credits[s["eng_id"]] = s["eng_author"]
         (RESOURCES / f"study-grammar-hsk{level.split('-')[0]}.tsv").write_text("\n".join(out) + "\n", encoding="utf-8")
         print(f"HSK {level}: {len(points)} points, {with_examples} with example sentences", file=sys.stderr)
     with (RESOURCES / "study-grammar-credits.tsv").open("w", encoding="utf-8") as f:

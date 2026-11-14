@@ -1,5 +1,5 @@
 {
- "_about": "Example sentences approved by hand for each grammar point, by Tatoeba ID: each was read and checked to show that exact point, in natural, standard Mandarin. Levels not listed here ship their points without examples until reviewed.",
+ "_about": "Example sentences approved by hand for each grammar point, by Tatoeba ID: each was read and checked to show that exact point, in natural, standard Mandarin. Levels not listed here ship their points without examples until reviewed. Entries {\"ai\": ..., \"en\": ...} are sentences written by Claude where no human sentence fit: marked AI-written in the app, checked by a second model (DeepSeek), and replaced by a human sentence when one is found.",
  "1": {
   "1.1|小—、第—": [
    "13203871",
@@ -350,18 +350,616 @@
    "他们都很喜欢: incomplete without an object on its own",
    "我明天再做: 再 means 'then, later' here, not 'again'",
    "有的人是好的，有的人是坏的: stiff; replaced by 有些人喜欢运动，有些人不喜欢"
+  ],
+  "second review (DeepSeek), HSK 2": [
+   "走左边的道路 / 走右边的道路: 道路 is stiff written register; replaced with 走左边的路",
+   "她打开了一包饼干: 饼干 is above HSK 2",
+   "我们有时会做: incomplete without an object",
+   "您从哪儿来的: really the 是……的 pattern, not a clear 从 example",
+   "他虽然很累，但是也继续工作: 也 after 但是 is awkward",
+   "书看完了: bare on its own; replaced with 那本书我看完了",
+   "translations put into the past tense or overtranslated (每个人都高兴, 他工作很努力, 别再跟我说了 ...) were corrected for learners"
   ]
  },
  "_translations": {
   "_about": "English for an approved sentence: another human translation from Tatoeba (by its ID), or a corrected one where none fits. Corrections were checked by a second review (DeepSeek) and are marked as changed in CORPUS.md.",
   "choose": {
-   "801456": "14106309"
+   "801456": "14106309",
+   "390393": "1457056"
   },
   "correct": {
    "1068400": "There's nothing over here.",
    "433552": "I'll give you five yuan.",
    "343975": "I'd like to rest for a bit.",
-   "452577": "I want to have dinner at a restaurant."
+   "452577": "I want to have dinner at a restaurant.",
+   "825191": "Everyone is happy.",
+   "4768211": "He has long hair.",
+   "818171": "Nobody listens to me.",
+   "336920": "He works very hard.",
+   "5715137": "Stop talking to me!",
+   "813508": "She sings better than he does.",
+   "349263": "She is wearing a red skirt."
   }
+ },
+ "2": {
+  "1.1|面": [
+   "340151",
+   "9415185",
+   "9453413",
+   "10961066"
+  ],
+  "2.1.1|左、右": [
+   "657628",
+   {
+    "ai": "走左边的路。",
+    "en": "Take the road on the left."
+   },
+   {
+    "ai": "我的右手很累。",
+    "en": "My right hand is tired."
+   }
+  ],
+  "2.2.1|AA、A一A、A了A、ABAB": [
+   "13663190",
+   "780264",
+   "8756388",
+   {
+    "ai": "你试试这件衣服。",
+    "en": "Try this piece of clothing on."
+   },
+   {
+    "ai": "我们休息休息吧。",
+    "en": "Let's take a little rest."
+   }
+  ],
+  "2.2.2|可能": [
+   "465867",
+   "813627",
+   "862688",
+   "709492"
+  ],
+  "2.2.3|帮忙、游泳、跳舞、跑步": [
+   "686979",
+   "846089",
+   "881027",
+   "1455143",
+   {
+    "ai": "你能帮我一个忙吗？",
+    "en": "Can you do me a favor?"
+   }
+  ],
+  "2.3.1|为什么": [
+   "3742607",
+   "5581738",
+   "381945",
+   "5363954"
+  ],
+  "2.3.2|自己": [
+   "796132",
+   "832963",
+   "4517811"
+  ],
+  "2.3.3|那么、那样、这么、这样、每": [
+   "6678404",
+   "9467019",
+   "2309585",
+   "4885866",
+   "774132",
+   "825191"
+  ],
+  "2.4.1|AA、AABB": [
+   "4768211",
+   {
+    "ai": "请你慢慢说。",
+    "en": "Please speak slowly."
+   },
+   {
+    "ai": "孩子们高高兴兴地回家了。",
+    "en": "The children went home happily."
+   },
+   {
+    "ai": "你好好休息吧。",
+    "en": "Get a good rest."
+   }
+  ],
+  "2.5|万、好多、多": [
+   "382503",
+   "805658",
+   "336682",
+   {
+    "ai": "这个手机要一万块钱。",
+    "en": "This phone costs ten thousand yuan."
+   }
+  ],
+  "2.6.1|（1）专用名量词：条、位、间、名": [
+   "4504341",
+   "686926",
+   "661519",
+   {
+    "ai": "这位是王老师。",
+    "en": "This is Teacher Wang."
+   },
+   {
+    "ai": "他是一名医生。",
+    "en": "He is a doctor."
+   }
+  ],
+  "2.6.1|（2）借用名量词：包": [
+   {
+    "ai": "我买了两包茶。",
+    "en": "I bought two packs of tea."
+   }
+  ],
+  "2.6.2|次": [
+   "10783858",
+   "12080521",
+   "13109410"
+  ],
+  "2.7.1|多、好、最": [
+   "9955413",
+   "336927",
+   "332605",
+   "983618"
+  ],
+  "2.7.2|一起": [
+   "480305",
+   "345794",
+   "397152",
+   "635626"
+  ],
+  "2.7.3|还2、已经、有时（候）、快、快要、正": [
+   "366870",
+   "825155",
+   "335128",
+   "884638",
+   {
+    "ai": "我正要给你打电话。",
+    "en": "I was just about to call you."
+   },
+   {
+    "ai": "我们有时候在家吃饭。",
+    "en": "Sometimes we eat at home."
+   }
+  ],
+  "2.7.4|常、经常": [
+   "785919",
+   "848864",
+   "2364550",
+   "4879037"
+  ],
+  "2.7.5|别": [
+   "1411550",
+   "347083",
+   "5613642",
+   "339248"
+  ],
+  "2.7.6|再2、就1": [
+   "344705",
+   "6130934",
+   "892488"
+  ],
+  "2.7.7|都2、就2、还是1": [
+   "2367521",
+   "8860204",
+   "395058",
+   {
+    "ai": "都十点了，快睡觉吧。",
+    "en": "It's already ten o'clock. Go to bed."
+   }
+  ],
+  "2.8.1|从1": [
+   "343360",
+   "5903480"
+  ],
+  "2.8.2|往": [
+   "347108",
+   "348268",
+   {
+    "ai": "一直|往|前|走。",
+    "en": "Go straight ahead."
+   }
+  ],
+  "2.8.2|从2": [
+   {
+    "ai": "你可以从这儿走。",
+    "en": "You can go this way."
+   },
+   {
+    "ai": "我们从这个门进去吧。",
+    "en": "Let's go in through this door."
+   }
+  ],
+  "2.8.3|给": [
+   "4264973",
+   "10668649",
+   "13191967",
+   "10120910"
+  ],
+  "2.8.3|比": [
+   "672319",
+   "862688",
+   "1218190",
+   "743739"
+  ],
+  "2.8.3|跟1": [
+   "635626",
+   "6534034",
+   "478844",
+   "628538"
+  ],
+  "2.8.4|因为1": [
+   {
+    "ai": "他因为生病没来上课。",
+    "en": "He didn't come to class because he was sick."
+   }
+  ],
+  "2.9.1|跟2": [
+   {
+    "ai": "我跟他都是学生。",
+    "en": "He and I are both students."
+   },
+   {
+    "ai": "老师跟学生都来了。",
+    "en": "The teacher and the students have all come."
+   }
+  ],
+  "2.9.2|但、但是、那、虽然、还是2、因为2、所以": [
+   "340150",
+   "390393",
+   "1361995",
+   "684836",
+   "4264992"
+  ],
+  "2.10.1|得、地": [
+   "818163",
+   "833059",
+   "1140747",
+   "5780550",
+   {
+    "ai": "她高兴地笑了。",
+    "en": "She smiled happily."
+   }
+  ],
+  "2.10.2|过": [
+   "1415766",
+   "4444825",
+   {
+    "ai": "你去过中国吗？",
+    "en": "Have you been to China?"
+   },
+   {
+    "ai": "我|没|吃过|这个|菜。",
+    "en": "I've never eaten this dish."
+   }
+  ],
+  "2.10.2|着": [
+   "5767605",
+   "10062412",
+   "14023305",
+   "349263"
+  ],
+  "2.10.3|呢4、吧2、的2、啊1": [
+   "13199795",
+   "1667242",
+   "9987087",
+   "1670085"
+  ],
+  "3.1.1|动补短语1": [
+   "5663534",
+   "887698",
+   "6309837"
+  ],
+  "3.1.2|（1）“的”字短语": [
+   "686937",
+   "332734",
+   "5911765",
+   "818171"
+  ],
+  "3.1.2|（2）连谓短语": [
+   "452577",
+   "332839",
+   "894033"
+  ],
+  "3.1.2|（3）兼语短语": [
+   "846089",
+   "375286",
+   "534284"
+  ],
+  "3.3.1|什么的": [
+   {
+    "ai": "我买了苹果、牛奶什么的。",
+    "en": "I bought apples, milk and so on."
+   },
+   {
+    "ai": "他喜欢看书、看电影什么的。",
+    "en": "He likes reading, watching movies and so on."
+   }
+  ],
+  "4.1|还是……吧": [
+   "395058",
+   "457561",
+   "408443"
+  ],
+  "4.1|要/快要/就要……了": [
+   "335128",
+   "1223755",
+   "2738689",
+   {
+    "ai": "火车就要开了。",
+    "en": "The train is about to leave."
+   }
+  ],
+  "4.1|都……了": [
+   {
+    "ai": "都十二点了，你怎么还不睡觉？",
+    "en": "It's already twelve o'clock. Why aren't you asleep yet?"
+   },
+   {
+    "ai": "他都八十岁了。",
+    "en": "He is already eighty years old."
+   }
+  ],
+  "5.1|受事主语": [
+   "1020694",
+   {
+    "ai": "那本|书|我|看完|了。",
+    "en": "I've finished reading that book."
+   },
+   {
+    "ai": "饭已经做好了。",
+    "en": "The meal is ready."
+   }
+  ],
+  "5.2|名词性短语作谓语": [
+   "6486874",
+   {
+    "ai": "今天星期三。",
+    "en": "Today is Wednesday."
+   },
+   {
+    "ai": "他今年二十岁。",
+    "en": "He is twenty this year."
+   }
+  ],
+  "5.3|动词或动词性短语、主谓短语作定语": [
+   {
+    "ai": "这是我昨天买的书。",
+    "en": "This is the book I bought yesterday."
+   },
+   {
+    "ai": "你|说|的|话|我|听懂|了。",
+    "en": "I understood what you said."
+   }
+  ],
+  "5.4.1|动词+错/懂/好/会/完": [
+   "5663534",
+   "6309837",
+   {
+    "ai": "你听懂了吗？",
+    "en": "Did you understand?"
+   },
+   {
+    "ai": "我学会游泳了。",
+    "en": "I've learned to swim."
+   }
+  ],
+  "5.4.2|简单趋向补语的趋向意义用法：（1）动词+来/去": [
+   "335030",
+   "375286",
+   "799209",
+   "833133"
+  ],
+  "5.4.2|（2）动词+上/下/进/出/过/回": [
+   {
+    "ai": "他走进了教室。",
+    "en": "He walked into the classroom."
+   },
+   {
+    "ai": "请|坐下。",
+    "en": "Please sit down."
+   },
+   {
+    "ai": "她跑回家了。",
+    "en": "She ran back home."
+   }
+  ],
+  "5.4.2|复合趋向补语的趋向意义用法：动词+出来/出去/过来/过去/回来/回去/进来/进去/起来/上来/上去/下来/下去": [
+   "13158651",
+   "534284",
+   "3666937",
+   "1637826"
+  ],
+  "5.4.3|动词+得+形容词性短语": [
+   "818163",
+   "824500",
+   "833059"
+  ],
+  "5.4.4|（1）表示动作持续的时间": [
+   "407248",
+   "799216",
+   "6047457",
+   "349758"
+  ],
+  "5.4.4|（2）形容词+数量补语": [
+   "713216",
+   "864345",
+   "431826"
+  ],
+  "6.1.1|主谓句4：主谓谓语句": [
+   "336920",
+   "332949",
+   {
+    "ai": "他身体很好。",
+    "en": "He is in good health."
+   },
+   {
+    "ai": "我工作很忙。",
+    "en": "I'm very busy with work."
+   }
+  ],
+  "6.2.1|用“还是”连接的选择问句": [
+   "4264992",
+   "13514629",
+   "2192505",
+   "8924814"
+  ],
+  "6.2.2|用“别”的祈使句": [
+   "339248",
+   "5715137",
+   "636214"
+  ],
+  "6.3.1|表示说明或特征": [
+   "686937",
+   {
+    "ai": "他|是|北京人。",
+    "en": "He is from Beijing."
+   }
+  ],
+  "6.3.2|表示达到": [
+   "493929",
+   {
+    "ai": "这个|孩子|有|一米多|高|了。",
+    "en": "This child is over a meter tall now."
+   }
+  ],
+  "6.3.3|处所+动词+着(+数量短语)+名词": [
+   "9989899",
+   {
+    "ai": "桌子|上|放着|一本|书。",
+    "en": "There is a book on the table."
+   },
+   {
+    "ai": "门口站着一个人。",
+    "en": "Someone is standing at the door."
+   }
+  ],
+  "6.3.4|（1）A比B+形容词": [
+   "862688",
+   {
+    "ai": "今天比昨天冷。",
+    "en": "Today is colder than yesterday."
+   },
+   {
+    "ai": "我哥哥比我高。",
+    "en": "My older brother is taller than me."
+   }
+  ],
+  "6.3.4|（2）A比B+形容词+数量补语/程度补语": [
+   "1218190",
+   "833114",
+   "713216",
+   "431826"
+  ],
+  "6.3.4|（3）A有/没有B（+这么/那么）+形容词": [
+   "801555",
+   "9955479"
+  ],
+  "6.3.4|（4）A比B+动词+得+形容词/A+动词+得+比+B+形容词": [
+   "672319",
+   "813508",
+   "743739"
+  ],
+  "6.3.5|强调时间、地点、方式、动作者": [
+   "844449",
+   "422027",
+   "788579",
+   "470243"
+  ],
+  "6.3.6|表使令：主语+请/叫/让……+宾语1+动词+宾语2": [
+   "846089",
+   "534284",
+   "375286",
+   "349735"
+  ],
+  "6.3.7|主语+动词+给+宾语1+宾语2": [
+   {
+    "ai": "我|送给|她|一本|书。",
+    "en": "I gave her a book."
+   },
+   {
+    "ai": "他借给我一百块钱。",
+    "en": "He lent me a hundred yuan."
+   }
+  ],
+  "6.4.1|（是）……，还是……": [
+   "4264871",
+   "8249451"
+  ],
+  "6.4.2|虽然……，但是……": [
+   "684836",
+   "1946021"
+  ],
+  "6.4.3|因为……，所以……": [
+   {
+    "ai": "因为下雨，所以我们没出去。",
+    "en": "Because it rained, we didn't go out."
+   }
+  ],
+  "6.4.4|一……就……": [
+   "886531",
+   {
+    "ai": "他|一|到家|就|睡觉|了。",
+    "en": "He went to sleep as soon as he got home."
+   },
+   {
+    "ai": "我一看就懂了。",
+    "en": "I understood it at a glance."
+   }
+  ],
+  "7.1.1|动词+着：（1）表示状态的持续": [
+   "5767605",
+   "10062412",
+   "349263"
+  ],
+  "7.1.1|（2）表示动作的持续": [
+   "14023305",
+   {
+    "ai": "她看着我笑了。",
+    "en": "She looked at me and smiled."
+   }
+  ],
+  "7.1.2|用动态助词“过”表示": [
+   "1415766",
+   "4444825",
+   {
+    "ai": "你去过中国吗？",
+    "en": "Have you been to China?"
+   },
+   {
+    "ai": "我|没|吃过|这个|菜。",
+    "en": "I've never eaten this dish."
+   }
+  ],
+  "8.1|序数表示法2：数词+量词": [
+   {
+    "ai": "我家|住在|三楼。",
+    "en": "My home is on the third floor."
+   }
+  ],
+  "8.1|概数表达法1：（1）用“几”表示概数": [
+   "333397",
+   "638972",
+   "13117565"
+  ],
+  "8.1|（2）数词+多+量词": [
+   {
+    "ai": "我们|班|有|二十多个|学生。",
+    "en": "There are more than twenty students in our class."
+   },
+   {
+    "ai": "这本|书|一百多|块。",
+    "en": "This book costs over a hundred yuan."
+   }
+  ],
+  "8.1|（3）数词+量词+多": [
+   {
+    "ai": "我|学了|一个多月|汉语。",
+    "en": "I've studied Chinese for over a month."
+   },
+   {
+    "ai": "他等了一个多小时。",
+    "en": "He waited for more than an hour."
+   }
+  ]
  }
 }

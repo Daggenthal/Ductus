@@ -1,135 +1,135 @@
 # HSK 7-9 grammar points (revised HSK 3.0 syllabus, 2025; list from krmanik/HSK-3.0, CC BY-SA 4.0). Example sentences: Tatoeba, CC BY 2.0 FR (authors in study-grammar-credits.tsv).
-@	1.1	类前缀	后—、亲—	Prefix-like morphemes
-@	1.2	类后缀	—观、—鬼、—界、—然、—坛、—为、—制	Suffix-like morphemes
-@	2.1	动词	巴不得、并非、除外、犯不着、犯得着、恨不得、可否、可谓、免不了、所谓、有所、予以	Verbs
-@	2.2.1	人称代词	我	Personal pronouns
-@	2.2.2	指示代词	彼、这么着、兹	Demonstrative pronouns
-@	2.2.3	疑问代词	何、怎么着	Question words
-@	2.2.4	数量代词	若干	Quantity pronouns
-@	2.3.1	名量词	重、截、缕、码、枚、摊、丸、则、幢、宗	Measure words for nouns
-@	2.3.2	动量词	通	Measure words for verbs
-@	2.3.3	复合量词	人次	Compound measure words
-@	2.4.1	程度副词	大为、分外、何等、极度、极力、略、略微、颇、稍稍、万分、微、尤为、愈加、越发	Adverbs of degree
-@	2.4.2	范围副词	大体、概、皆、尽、均、通通、统统、唯、唯独、唯有、无非、一概	Adverbs of scope
-@	2.4.3	时间副词	姑且、即、即时、届时、尽早、就此、历来、尚、随即、向来、一经、暂且、早日	Adverbs of time
-@	2.4.4	频率副词	连连、屡次、屡屡、频、时而、时时、相继、一个劲（儿）、一连、再度	Adverbs of frequency
-@	2.4.5	方式副词	按理、按说、百般、不由得、趁机、趁早、大肆、断然、公然、火速、截然、竭力、尽情、就近、刻意、拼命、强行、任意、日趋、如期、擅自、私自、特此、瞎、一并、一举、一手、毅然、有意、照常、照例、照样、执意、骤然、逐一、专程	Adverbs of manner
-@	2.4.6	否定副词	不见得、绝不、无从、无须、无可、勿	Negation adverbs
-@	2.4.7	语气副词	必定、必将、不妨、不免、反倒、非得、分明、怪不得、果真、好在、何必、竟、愣、莫非、难怪、宁可、宁愿、碰巧、偏偏、恰巧、切、情愿、势必、索性、万万、未免、务必、幸好、幸亏、终究、何不、何尝、何苦	Mood adverbs
-@	2.4.8	判断副词	乃	Adverbs of judgment
-@	2.5.1	引出时间、处所	打	Prepositions of time and place
-@	2.5.2	引出对象	当着、就6	Prepositions for the object
-@	2.5.3	引出凭借、依据	本着、基于、鉴于1、经、依	Prepositions of basis
-@	2.6.1	连接分句或句子	鉴于2、况且、免得、若、倘若、以防	Conjunctions for clauses
-@	2.6.2	连接词或词组以及分句或句子	加之、乃至、且	Conjunctions
-@	2.7.1	语气助词	罢了、也罢、矣	Modal particles
-@	2.7.1	语气助词	爱A不A	Modal particles
-@	3.1.1	四字格	半A半B	Four-character patterns
-@	3.1.1	四字格	不A不B	Four-character patterns
-@	3.1.1	四字格	不A而B	Four-character patterns
-@	3.1.1	四字格	东A西B	Four-character patterns
-@	3.1.1	四字格	非A非B	Four-character patterns
-@	3.1.1	四字格	忽A忽B	Four-character patterns
-@	3.1.1	四字格	或A或B	Four-character patterns
-@	3.1.1	四字格	可A可B	Four-character patterns
-@	3.1.1	四字格	连A带B	Four-character patterns
-@	3.1.1	四字格	七A八B	Four-character patterns
-@	3.1.1	四字格	时A时B	Four-character patterns
-@	3.1.1	四字格	无A不B	Four-character patterns
-@	3.1.1	四字格	无A可B	Four-character patterns
-@	3.1.1	四字格	自A自B	Four-character patterns
-@	3.1.2	其他（话语标记）	不瞒你说	Discourse markers
-@	3.1.2	其他（话语标记）	不是	Discourse markers
-@	3.1.2	其他（话语标记）	不是我说你	Discourse markers
-@	3.1.2	其他（话语标记）	反过来（说）	Discourse markers
-@	3.1.2	其他（话语标记）	概括来说	Discourse markers
-@	3.1.2	其他（话语标记）	归根到底	Discourse markers
-@	3.1.2	其他（话语标记）	话是这么说	Discourse markers
-@	3.1.2	其他（话语标记）	话（又）说回来	Discourse markers
-@	3.1.2	其他（话语标记）	换句话说	Discourse markers
-@	3.1.2	其他（话语标记）	简（而）言之	Discourse markers
-@	3.1.2	其他（话语标记）	可不（是嘛）	Discourse markers
-@	3.1.2	其他（话语标记）	老实说	Discourse markers
-@	3.1.2	其他（话语标记）	（你）还别说	Discourse markers
-@	3.1.2	其他（话语标记）	你看你	Discourse markers
-@	3.1.2	其他（话语标记）	说到哪儿去了	Discourse markers
-@	3.1.2	其他（话语标记）	说真的	Discourse markers
-@	3.1.2	其他（话语标记）	退一步说	Discourse markers
-@	3.1.2	其他（话语标记）	无论如何	Discourse markers
-@	3.1.2	其他（话语标记）	要（让）我说	Discourse markers
-@	3.1.2	其他（话语标记）	这不	Discourse markers
-@	3.1.2	其他（话语标记）	这样一来	Discourse markers
-@	3.1.2	其他（话语标记）	真是的	Discourse markers
-@	3.1.2	其他（话语标记）	综上所述	Discourse markers
-@	3.1.2	其他（话语标记）	总的来说	Discourse markers
-@	3.1.2	其他（话语标记）	总而言之	Discourse markers
-@	4.1	固定格式	X到这个地步/份上	Fixed patterns
-@	4.1	固定格式	X得要命/要死	Fixed patterns
-@	4.1	固定格式	X都不/没X	Fixed patterns
-@	4.1	固定格式	X就X个Y	Fixed patterns
-@	4.1	固定格式	X了Y，Y了X	Fixed patterns
-@	4.1	固定格式	X也好，Y也罢	Fixed patterns
-@	4.1	固定格式	别提（有）多+形容词+了	Fixed patterns
-@	4.1	固定格式	不亚于……	Fixed patterns
-@	4.1	固定格式	不知X是/才好	Fixed patterns
-@	4.1	固定格式	动不动就……	Fixed patterns
-@	4.1	固定格式	动词+得个……	Fixed patterns
-@	4.1	固定格式	动词+个X	Fixed patterns
-@	4.1	固定格式	该X（就）X，该Y（就）Y	Fixed patterns
-@	4.1	固定格式	何至于……	Fixed patterns
-@	4.1	固定格式	仅次于X	Fixed patterns
-@	4.1	固定格式	看在X的面子上	Fixed patterns
-@	4.1	固定格式	没什么+动词+头儿	Fixed patterns
-@	4.1	固定格式	没什么好+动词+的	Fixed patterns
-@	4.1	固定格式	莫过于……	Fixed patterns
-@	4.1	固定格式	你说你一个X，……	Fixed patterns
-@	4.1	固定格式	什么A的B的	Fixed patterns
-@	4.1	固定格式	视……而定	Fixed patterns
-@	4.1	固定格式	谈何……	Fixed patterns
-@	4.1	固定格式	无非/不过/只是……罢了/而已	Fixed patterns
-@	4.1	固定格式	想X之所想，急X之所急	Fixed patterns
-@	4.1	固定格式	向……致以……	Fixed patterns
-@	4.1	固定格式	要X有/没X，要Y有/没Y	Fixed patterns
-@	4.1	固定格式	因……而……	Fixed patterns
-@	4.1	固定格式	有何X	Fixed patterns
-@	4.1	固定格式	有什么+动词+头儿	Fixed patterns
-@	4.1	固定格式	（在）……之余	Fixed patterns
-@	4.1	固定格式	值此……之际，……	Fixed patterns
-@	5.1.1	比较句5	A+形容词+于/过+B	Comparative sentences
-@	5.2.1	并列复句	一来……，二来……，三来……	Coordinate complex sentences
-@	5.2.1	并列复句	一则……，二则……，三则……	Coordinate complex sentences
-@	5.2.2	解说复句	所谓……，就是……	Explanatory complex sentences
-@	5.2.3	选择复句	或……，或……	Alternative complex sentences
-@	5.2.3	选择复句	宁可/宁愿……，也不……	Alternative complex sentences
-@	5.2.3	选择复句	与其……，宁愿/宁可……	Alternative complex sentences
-@	5.2.4	转折复句	X（倒）是X（了），……	Contrast complex sentences
-@	5.2.4	转折复句	别看……，……	Contrast complex sentences
-@	5.2.4	转折复句	虽说……，但/可……	Contrast complex sentences
-@	5.2.5	条件复句	无论……与否，都……	Conditional complex sentences
-@	5.2.5	条件复句	凡……（者），均（可）……	Conditional complex sentences
-@	5.2.6	假设复句	假若/假使……，……	Hypothetical complex sentences
-@	5.2.6	假设复句	幸亏/幸好……，不然/否则……	Hypothetical complex sentences
-@	5.2.6	假设复句	纵然/纵使……，也……	Hypothetical complex sentences
-@	5.2.7	因果复句	（因）……，故……	Cause and effect sentences
-@	5.2.7	因果复句	……，以至（于）……	Cause and effect sentences
-@	5.2.8	递进复句	别说……，都/也……	Progressive complex sentences
-@	5.2.8	递进复句	……不说，还……	Progressive complex sentences
-@	5.2.8	递进复句	连……都……，更不用说……了	Progressive complex sentences
-@	5.2.8	递进复句	……尚且……，（更）何况……	Progressive complex sentences
-@	5.2.8	递进复句	……，更不用说……了	Progressive complex sentences
-@	5.2.9	目的复句	为（了）……起见，……	Purpose complex sentences
-@	5.2.9	目的复句	……，以……	Purpose complex sentences
-@	5.2.10	紧缩复句	非得……才……	Contracted complex sentences
-@	5.2.10	紧缩复句	任……也……	Contracted complex sentences
-@	5.3	多重复句	多重并列复句	Multiple complex sentences
-@	5.3	多重复句	多重转折复句	Multiple complex sentences
-@	5.3	多重复句	多重假设复句	Multiple complex sentences
-@	5.3	多重复句	多重因果复句	Multiple complex sentences
-@	5.3	多重复句	多重递进复句	Multiple complex sentences
-@	6.1	语段（句群）	时间顺序	Paragraphs
-@	6.1	语段（句群）	空间顺序	Paragraphs
-@	6.1	语段（句群）	逻辑顺序	Paragraphs
-@	6.1	语段（句群）	话题延伸	Paragraphs
-@	6.1	语段（句群）	话题转换	Paragraphs
-@	6.1	语段（句群）	承前省略	Paragraphs
-@	6.1	语段（句群）	蒙后省略	Paragraphs
+@	1.1	类前缀	后—、亲—	Prefix-like morphemes	后、亲
+@	1.2	类后缀	—观、—鬼、—界、—然、—坛、—为、—制	Suffix-like morphemes	观、鬼、界、然、坛、为、制
+@	2.1	动词	巴不得、并非、除外、犯不着、犯得着、恨不得、可否、可谓、免不了、所谓、有所、予以	Verbs	巴不得、并非、除外、犯不着、犯得着、恨不得、可否、可谓、免不了、所谓、有所、予以
+@	2.2.1	人称代词	我	Personal pronouns	我
+@	2.2.2	指示代词	彼、这么着、兹	Demonstrative pronouns	彼、这么着、兹
+@	2.2.3	疑问代词	何、怎么着	Question words	何、怎么着
+@	2.2.4	数量代词	若干	Quantity pronouns	若干
+@	2.3.1	名量词	重、截、缕、码、枚、摊、丸、则、幢、宗	Measure words for nouns	重、截、缕、码、枚、摊、丸、则、幢、宗
+@	2.3.2	动量词	通	Measure words for verbs	通
+@	2.3.3	复合量词	人次	Compound measure words	人次
+@	2.4.1	程度副词	大为、分外、何等、极度、极力、略、略微、颇、稍稍、万分、微、尤为、愈加、越发	Adverbs of degree	大为、分外、何等、极度、极力、略、略微、颇、稍稍、万分、微、尤为、愈加、越发
+@	2.4.2	范围副词	大体、概、皆、尽、均、通通、统统、唯、唯独、唯有、无非、一概	Adverbs of scope	大体、概、皆、尽、均、通通、统统、唯、唯独、唯有、无非、一概
+@	2.4.3	时间副词	姑且、即、即时、届时、尽早、就此、历来、尚、随即、向来、一经、暂且、早日	Adverbs of time	姑且、即、即时、届时、尽早、就此、历来、尚、随即、向来、一经、暂且、早日
+@	2.4.4	频率副词	连连、屡次、屡屡、频、时而、时时、相继、一个劲（儿）、一连、再度	Adverbs of frequency	连连、屡次、屡屡、频、时而、时时、相继、一个劲、一连、再度
+@	2.4.5	方式副词	按理、按说、百般、不由得、趁机、趁早、大肆、断然、公然、火速、截然、竭力、尽情、就近、刻意、拼命、强行、任意、日趋、如期、擅自、私自、特此、瞎、一并、一举、一手、毅然、有意、照常、照例、照样、执意、骤然、逐一、专程	Adverbs of manner	按理、按说、百般、不由得、趁机、趁早、大肆、断然、公然、火速、截然、竭力、尽情、就近、刻意、拼命、强行、任意、日趋、如期、擅自、私自、特此、瞎、一并、一举、一手、毅然、有意、照常、照例、照样、执意、骤然、逐一、专程
+@	2.4.6	否定副词	不见得、绝不、无从、无须、无可、勿	Negation adverbs	不见得、绝不、无从、无须、无可、勿
+@	2.4.7	语气副词	必定、必将、不妨、不免、反倒、非得、分明、怪不得、果真、好在、何必、竟、愣、莫非、难怪、宁可、宁愿、碰巧、偏偏、恰巧、切、情愿、势必、索性、万万、未免、务必、幸好、幸亏、终究、何不、何尝、何苦	Mood adverbs	必定、必将、不妨、不免、反倒、非得、分明、怪不得、果真、好在、何必、竟、愣、莫非、难怪、宁可、宁愿、碰巧、偏偏、恰巧、切、情愿、势必、索性、万万、未免、务必、幸好、幸亏、终究、何不、何尝、何苦
+@	2.4.8	判断副词	乃	Adverbs of judgment	乃
+@	2.5.1	引出时间、处所	打	Prepositions of time and place	打
+@	2.5.2	引出对象	当着、就6	Prepositions for the object	当着、就
+@	2.5.3	引出凭借、依据	本着、基于、鉴于1、经、依	Prepositions of basis	本着、基于、鉴于、经、依
+@	2.6.1	连接分句或句子	鉴于2、况且、免得、若、倘若、以防	Conjunctions for clauses	鉴于、况且、免得、若、倘若、以防
+@	2.6.2	连接词或词组以及分句或句子	加之、乃至、且	Conjunctions	加之、乃至、且
+@	2.7.1	语气助词	罢了、也罢、矣	Modal particles	罢了、也罢、矣
+@	2.7.1	语气助词	爱A不A	Modal particles	
+@	3.1.1	四字格	半A半B	Four-character patterns	
+@	3.1.1	四字格	不A不B	Four-character patterns	
+@	3.1.1	四字格	不A而B	Four-character patterns	
+@	3.1.1	四字格	东A西B	Four-character patterns	
+@	3.1.1	四字格	非A非B	Four-character patterns	
+@	3.1.1	四字格	忽A忽B	Four-character patterns	
+@	3.1.1	四字格	或A或B	Four-character patterns	
+@	3.1.1	四字格	可A可B	Four-character patterns	
+@	3.1.1	四字格	连A带B	Four-character patterns	
+@	3.1.1	四字格	七A八B	Four-character patterns	
+@	3.1.1	四字格	时A时B	Four-character patterns	
+@	3.1.1	四字格	无A不B	Four-character patterns	
+@	3.1.1	四字格	无A可B	Four-character patterns	
+@	3.1.1	四字格	自A自B	Four-character patterns	
+@	3.1.2	其他（话语标记）	不瞒你说	Discourse markers	
+@	3.1.2	其他（话语标记）	不是	Discourse markers	不是
+@	3.1.2	其他（话语标记）	不是我说你	Discourse markers	
+@	3.1.2	其他（话语标记）	反过来（说）	Discourse markers	反过来
+@	3.1.2	其他（话语标记）	概括来说	Discourse markers	
+@	3.1.2	其他（话语标记）	归根到底	Discourse markers	
+@	3.1.2	其他（话语标记）	话是这么说	Discourse markers	
+@	3.1.2	其他（话语标记）	话（又）说回来	Discourse markers	
+@	3.1.2	其他（话语标记）	换句话说	Discourse markers	
+@	3.1.2	其他（话语标记）	简（而）言之	Discourse markers	简言之
+@	3.1.2	其他（话语标记）	可不（是嘛）	Discourse markers	可不
+@	3.1.2	其他（话语标记）	老实说	Discourse markers	老实说
+@	3.1.2	其他（话语标记）	（你）还别说	Discourse markers	还别说
+@	3.1.2	其他（话语标记）	你看你	Discourse markers	你看你
+@	3.1.2	其他（话语标记）	说到哪儿去了	Discourse markers	
+@	3.1.2	其他（话语标记）	说真的	Discourse markers	说真的
+@	3.1.2	其他（话语标记）	退一步说	Discourse markers	
+@	3.1.2	其他（话语标记）	无论如何	Discourse markers	
+@	3.1.2	其他（话语标记）	要（让）我说	Discourse markers	要我说
+@	3.1.2	其他（话语标记）	这不	Discourse markers	这不
+@	3.1.2	其他（话语标记）	这样一来	Discourse markers	
+@	3.1.2	其他（话语标记）	真是的	Discourse markers	真是的
+@	3.1.2	其他（话语标记）	综上所述	Discourse markers	
+@	3.1.2	其他（话语标记）	总的来说	Discourse markers	
+@	3.1.2	其他（话语标记）	总而言之	Discourse markers	
+@	4.1	固定格式	X到这个地步/份上	Fixed patterns	份上
+@	4.1	固定格式	X得要命/要死	Fixed patterns	要死
+@	4.1	固定格式	X都不/没X	Fixed patterns	
+@	4.1	固定格式	X就X个Y	Fixed patterns	
+@	4.1	固定格式	X了Y，Y了X	Fixed patterns	
+@	4.1	固定格式	X也好，Y也罢	Fixed patterns	
+@	4.1	固定格式	别提（有）多+形容词+了	Fixed patterns	别提多、了
+@	4.1	固定格式	不亚于……	Fixed patterns	不亚于
+@	4.1	固定格式	不知X是/才好	Fixed patterns	才好
+@	4.1	固定格式	动不动就……	Fixed patterns	
+@	4.1	固定格式	动词+得个……	Fixed patterns	得个
+@	4.1	固定格式	动词+个X	Fixed patterns	
+@	4.1	固定格式	该X（就）X，该Y（就）Y	Fixed patterns	
+@	4.1	固定格式	何至于……	Fixed patterns	何至于
+@	4.1	固定格式	仅次于X	Fixed patterns	
+@	4.1	固定格式	看在X的面子上	Fixed patterns	
+@	4.1	固定格式	没什么+动词+头儿	Fixed patterns	没什么、头儿
+@	4.1	固定格式	没什么好+动词+的	Fixed patterns	的
+@	4.1	固定格式	莫过于……	Fixed patterns	莫过于
+@	4.1	固定格式	你说你一个X，……	Fixed patterns	
+@	4.1	固定格式	什么A的B的	Fixed patterns	
+@	4.1	固定格式	视……而定	Fixed patterns	视、而定
+@	4.1	固定格式	谈何……	Fixed patterns	谈何
+@	4.1	固定格式	无非/不过/只是……罢了/而已	Fixed patterns	无非、不过、只是、罢了、而已
+@	4.1	固定格式	想X之所想，急X之所急	Fixed patterns	
+@	4.1	固定格式	向……致以……	Fixed patterns	向、致以
+@	4.1	固定格式	要X有/没X，要Y有/没Y	Fixed patterns	
+@	4.1	固定格式	因……而……	Fixed patterns	因、而
+@	4.1	固定格式	有何X	Fixed patterns	
+@	4.1	固定格式	有什么+动词+头儿	Fixed patterns	有什么、头儿
+@	4.1	固定格式	（在）……之余	Fixed patterns	之余
+@	4.1	固定格式	值此……之际，……	Fixed patterns	值此、之际
+@	5.1.1	比较句5	A+形容词+于/过+B	Comparative sentences	于、过
+@	5.2.1	并列复句	一来……，二来……，三来……	Coordinate complex sentences	一来、二来、三来
+@	5.2.1	并列复句	一则……，二则……，三则……	Coordinate complex sentences	一则、二则、三则
+@	5.2.2	解说复句	所谓……，就是……	Explanatory complex sentences	所谓、就是
+@	5.2.3	选择复句	或……，或……	Alternative complex sentences	或、或
+@	5.2.3	选择复句	宁可/宁愿……，也不……	Alternative complex sentences	宁可、宁愿、也不
+@	5.2.3	选择复句	与其……，宁愿/宁可……	Alternative complex sentences	与其、宁愿、宁可
+@	5.2.4	转折复句	X（倒）是X（了），……	Contrast complex sentences	
+@	5.2.4	转折复句	别看……，……	Contrast complex sentences	别看
+@	5.2.4	转折复句	虽说……，但/可……	Contrast complex sentences	虽说、但、可
+@	5.2.5	条件复句	无论……与否，都……	Conditional complex sentences	无论、与否、都
+@	5.2.5	条件复句	凡……（者），均（可）……	Conditional complex sentences	凡、均
+@	5.2.6	假设复句	假若/假使……，……	Hypothetical complex sentences	假若、假使
+@	5.2.6	假设复句	幸亏/幸好……，不然/否则……	Hypothetical complex sentences	幸亏、幸好、不然、否则
+@	5.2.6	假设复句	纵然/纵使……，也……	Hypothetical complex sentences	纵然、纵使、也
+@	5.2.7	因果复句	（因）……，故……	Cause and effect sentences	故
+@	5.2.7	因果复句	……，以至（于）……	Cause and effect sentences	以至
+@	5.2.8	递进复句	别说……，都/也……	Progressive complex sentences	别说、都、也
+@	5.2.8	递进复句	……不说，还……	Progressive complex sentences	不说、还
+@	5.2.8	递进复句	连……都……，更不用说……了	Progressive complex sentences	连、都、了
+@	5.2.8	递进复句	……尚且……，（更）何况……	Progressive complex sentences	尚且、何况
+@	5.2.8	递进复句	……，更不用说……了	Progressive complex sentences	了
+@	5.2.9	目的复句	为（了）……起见，……	Purpose complex sentences	为、起见
+@	5.2.9	目的复句	……，以……	Purpose complex sentences	以
+@	5.2.10	紧缩复句	非得……才……	Contracted complex sentences	非得、才
+@	5.2.10	紧缩复句	任……也……	Contracted complex sentences	任、也
+@	5.3	多重复句	多重并列复句	Multiple complex sentences	
+@	5.3	多重复句	多重转折复句	Multiple complex sentences	
+@	5.3	多重复句	多重假设复句	Multiple complex sentences	
+@	5.3	多重复句	多重因果复句	Multiple complex sentences	
+@	5.3	多重复句	多重递进复句	Multiple complex sentences	
+@	6.1	语段（句群）	时间顺序	Paragraphs	
+@	6.1	语段（句群）	空间顺序	Paragraphs	
+@	6.1	语段（句群）	逻辑顺序	Paragraphs	
+@	6.1	语段（句群）	话题延伸	Paragraphs	
+@	6.1	语段（句群）	话题转换	Paragraphs	
+@	6.1	语段（句群）	承前省略	Paragraphs	
+@	6.1	语段（句群）	蒙后省略	Paragraphs	

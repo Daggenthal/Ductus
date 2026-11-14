@@ -32,6 +32,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.practiceLayout) private var practiceLayout = ""
     @AppStorage(SettingsKey.practiceLayoutAuto) private var practiceLayoutAuto = false
     @AppStorage(SettingsKey.studyNewPerDay) private var studyNewPerDay = 10
+    @AppStorage(SettingsKey.studyChooseCharacters) private var studyChooseCharacters = true
     @AppStorage(SettingsKey.practiceLanguage) private var practiceLanguage = "auto"
     @Environment(KeyboardState.self) private var keyboard
 
@@ -84,6 +85,8 @@ struct SettingsView: View {
                     Stepper("\(studyNewPerDay)", value: $studyNewPerDay, in: 1...50)
                 }
                 note("Study shows this many new words a day, plus every word due for review. Keep Going adds more whenever you like.")
+                Toggle("Choose the characters after typing pinyin", isOn: $studyChooseCharacters)
+                note("Like a Chinese input method: after the pinyin, pick the right characters from a numbered list (1 to 9, or space for the first). The list is shuffled, so you have to recognize the characters.")
             }
 
             Section("Unlocking") {

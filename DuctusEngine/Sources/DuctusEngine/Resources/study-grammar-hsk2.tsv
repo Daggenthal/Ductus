@@ -1,76 +1,322 @@
 # HSK 2 grammar points (revised HSK 3.0 syllabus, 2025; list from krmanik/HSK-3.0, CC BY-SA 4.0). Example sentences: Tatoeba, CC BY 2.0 FR (authors in study-grammar-credits.tsv).
-@	1.1	后缀	面	Suffixes
-@	2.1.1	方位名词	左、右	Nouns of locality
-@	2.2.1	动词重叠	AA、A一A、A了A、ABAB	Verb reduplication
-@	2.2.2	能愿动词	可能	Modal verbs
-@	2.2.3	离合词	帮忙、游泳、跳舞、跑步	Separable verbs
-@	2.3.1	疑问代词	为什么	Question words
-@	2.3.2	人称代词	自己	Personal pronouns
-@	2.3.3	指示代词	那么、那样、这么、这样、每	Demonstrative pronouns
-@	2.4.1	形容词重叠	AA、AABB	Adjective reduplication
-@	2.5	数词	万、好多、多	Numerals
-@	2.6.1	名量词	（1）专用名量词：条、位、间、名	Measure words for nouns
-@	2.6.1	名量词	（2）借用名量词：包	Measure words for nouns
-@	2.6.2	动量词	次	Measure words for verbs
-@	2.7.1	程度副词	多、好、最	Adverbs of degree
-@	2.7.2	范围副词	一起	Adverbs of scope
-@	2.7.3	时间副词	还2、已经、有时（候）、快、快要、正	Adverbs of time
-@	2.7.4	频率副词	常、经常	Adverbs of frequency
-@	2.7.5	否定副词	别	Negation adverbs
-@	2.7.6	关联副词	再2、就1	Linking adverbs
-@	2.7.7	语气副词	都2、就2、还是1	Mood adverbs
-@	2.8.1	引出时间、处所	从1	Prepositions of time and place
-@	2.8.2	引出方向、路径	往	Prepositions of direction
-@	2.8.2	引出方向、路径	从2	Prepositions of direction
-@	2.8.3	引出对象	给	Prepositions for the object
-@	2.8.3	引出对象	比	Prepositions for the object
-@	2.8.3	引出对象	跟1	Prepositions for the object
-@	2.8.4	引出原因	因为1	Prepositions of cause
-@	2.9.1	连接词或短语	跟2	Conjunctions for words or phrases
-@	2.9.2	连接分句或者句子	但、但是、那、虽然、还是2、因为2、所以	Conjunctions for clauses
-@	2.10.1	结构助词	得、地	Structural particles
-@	2.10.2	动态助词	过	Aspect particles
-@	2.10.2	动态助词	着	Aspect particles
-@	2.10.3	语气助词	呢4、吧2、的2、啊1	Modal particles
-@	3.1.1	基本结构类型	动补短语1	Basic phrase types
-@	3.1.2	其他结构类型	（1）“的”字短语	Other phrase types
-@	3.1.2	其他结构类型	（2）连谓短语	Other phrase types
-@	3.1.2	其他结构类型	（3）兼语短语	Other phrase types
-@	3.3.1	其他	什么的	Other
-@	4.1	固定格式	还是……吧	Fixed patterns
-@	4.1	固定格式	要/快要/就要……了	Fixed patterns
-@	4.1	固定格式	都……了	Fixed patterns
-@	5.1	主语	受事主语	Subjects
-@	5.2	谓语	名词性短语作谓语	Predicates
-@	5.3	定语	动词或动词性短语、主谓短语作定语	Attributives
-@	5.4.1	结果补语1	动词+错/懂/好/会/完	Resultative complements
-@	5.4.2	趋向补语1	简单趋向补语的趋向意义用法：（1）动词+来/去	Directional complements
-@	5.4.2	趋向补语1	（2）动词+上/下/进/出/过/回	Directional complements
-@	5.4.2	趋向补语1	复合趋向补语的趋向意义用法：动词+出来/出去/过来/过去/回来/回去/进来/进去/起来/上来/上去/下来/下去	Directional complements
-@	5.4.3	状态补语1	动词+得+形容词性短语	Complements of state
-@	5.4.4	数量补语2	（1）表示动作持续的时间	Quantity complements
-@	5.4.4	数量补语2	（2）形容词+数量补语	Quantity complements
-@	6.1.1	单句	主谓句4：主谓谓语句	Simple sentences
-@	6.2.1	疑问句	用“还是”连接的选择问句	Questions
-@	6.2.2	祈使句	用“别”的祈使句	Imperative sentences
-@	6.3.1	“是”字句2	表示说明或特征	Sentences with 是
-@	6.3.2	“有”字句2	表示达到	Sentences with 有
-@	6.3.3	存现句2	处所+动词+着(+数量短语)+名词	Existential sentences
-@	6.3.4	比较句1	（1）A比B+形容词	Comparative sentences
-@	6.3.4	比较句1	（2）A比B+形容词+数量补语/程度补语	Comparative sentences
-@	6.3.4	比较句1	（3）A有/没有B（+这么/那么）+形容词	Comparative sentences
-@	6.3.4	比较句1	（4）A比B+动词+得+形容词/A+动词+得+比+B+形容词	Comparative sentences
-@	6.3.5	“是……的”句1	强调时间、地点、方式、动作者	是……的 sentences
-@	6.3.6	兼语句1	表使令：主语+请/叫/让……+宾语1+动词+宾语2	Pivot sentences
-@	6.3.7	双宾语句2	主语+动词+给+宾语1+宾语2	Double object sentences
-@	6.4.1	选择复句	（是）……，还是……	Alternative complex sentences
-@	6.4.2	转折复句	虽然……，但是……	Contrast complex sentences
-@	6.4.3	因果复句	因为……，所以……	Cause and effect sentences
-@	6.4.4	紧缩复句	一……就……	Contracted complex sentences
-@	7.1.1	持续态	动词+着：（1）表示状态的持续	Continuous aspect
-@	7.1.1	持续态	（2）表示动作的持续	Continuous aspect
-@	7.1.2	经历态	用动态助词“过”表示	Experiential aspect
-@	8.1	数的表达法	序数表示法2：数词+量词	Expressing numbers
-@	8.1	数的表达法	概数表达法1：（1）用“几”表示概数	Expressing numbers
-@	8.1	数的表达法	（2）数词+多+量词	Expressing numbers
-@	8.1	数的表达法	（3）数词+量词+多	Expressing numbers
+@	1.1	后缀	面	Suffixes	面
+qing dao qianmian lai.	请|到|前面|来。	qǐng|dào|qián miàn|lái	Move up to the front, please.	340151	273583	3-4
+wo zai waimian deng.	我|在|外面|等。	wǒ|zài|wài miàn|děng	I'm waiting outside.	9415185	7114023	3-4
+wo zai limian deng ni.	我|在|里面|等|你。	wǒ|zài|lǐ miàn|děng|nǐ	I'll wait for you in here.	9453413	2258846	3-4
+beizi limian you shui.	杯子|里面|有|水。	bēi zi|lǐ miàn|yǒu|shuǐ	There is water in the glass.	10961066	11252828	3-4
+@	2.1.1	方位名词	左、右	Nouns of locality	左、右
+ta yong zuoshou xiezi.	她|用|左手|写字。	tā|yòng|zuǒ shǒu|xiě zì	She writes with her left hand.	657628	313756	2-3
+zou zuobian de lu.	走|左边|的|路。	zǒu|zuǒ bian|de|lù	Take the road on the left.	ai-1		1-2
+wo de youshou henlei.	我|的|右手|很累。	wǒ|de|yòu shǒu|hěn lèi	My right hand is tired.	ai-2		2-3
+@	2.2.1	动词重叠	AA、A一A、A了A、ABAB	Verb reduplication	
+wo qu gen tamen shuo shuo.	我|去|跟|他们|说|说。	wǒ|qù|gēn|tā men|shuō|shuō	Let me go talk to them.	13663190	3906633	
+wo kan le kan zhouwei.	我|看|了|看|周围。	wǒ|kàn|le|kàn|zhōu wéi	I looked around me.	780264	321857	
+ta zuoyou kan le kan.	他|左右|看|了|看。	tā|zuǒ yòu|kàn|le|kàn	He looked left and right.	8756388	4351264	
+ni shishi zhejian yifu.	你|试试|这件|衣服。	nǐ|shì shì|zhè jiàn|yī fu	Try this piece of clothing on.	ai-3		
+women xiuxi xiuxi ba.	我们|休息|休息|吧。	wǒ men|xiū xi|xiū xi|ba	Let's take a little rest.	ai-4		
+@	2.2.2	能愿动词	可能	Modal verbs	可能
+ni keneng shi dui de.	你|可能|是|对|的。	nǐ|kě néng|shì|duì|de	You may be right.	465867	17224	1-3
+ta keneng bu gaoxing.	他|可能|不|高兴。	tā|kě néng|bù|gāo xìng	He may not be happy.	813627	296295	1-3
+ta keneng bi ni gao.	她|可能|比|你|高。	tā|kě néng|bǐ|nǐ|gāo	She might be taller than you.	862688	388295	1-3
+zhe shi bu keneng de.	这|是|不|可能|的。	zhè|shì|bù|kě néng|de	This is impossible.	709492	2233697	3-5
+@	2.2.3	离合词	帮忙、游泳、跳舞、跑步	Separable verbs	帮忙、游泳、跳舞、跑步
+wo neng bangmang ma?	我|能|帮忙|吗？	wǒ|néng|bāng máng|ma	Can I help?	686979	266051	2-4
+wo qing ta bangmang.	我|请|他|帮忙。	wǒ|qǐng|tā|bāng máng	I asked him for a favor.	846089	403375	3-5
+wo xiang qu youyong.	我|想|去|游泳。	wǒ|xiǎng|qù|yóu yǒng	I want to go for a swim.	881027	487887	3-5
+wo xiang xue tiaowu.	我|想|学|跳舞。	wǒ|xiǎng|xué|tiào wǔ	I would like to learn how to dance.	1455143	1479634	3-5
+ni neng bang wo yige mang ma?	你|能|帮|我|一个|忙|吗？	nǐ|néng|bāng|wǒ|yī gè|máng|ma	Can you do me a favor?	ai-5		
+@	2.3.1	疑问代词	为什么	Question words	为什么
+ni weishenme zai zhe?	你|为什么|在|这？	nǐ|wèi shén me|zài|zhè	Why are you here?	3742607	1481997	1-4
+ni weishenme bu zuo?	你|为什么|不|做？	nǐ|wèi shén me|bù|zuò	Why don't you do it?	5581738	2210606	1-4
+ta weishenme bu huilai?	他|为什么|不|回来？	tā|wèi shén me|bù|huí lai	Why doesn't he come back?	381945	381944	1-4
+ni weishenme wen wo?	你|为什么|问|我？	nǐ|wèi shén me|wèn|wǒ	Why are you asking me?	5363954	1495849	1-4
+@	2.3.2	人称代词	自己	Personal pronouns	自己
+wo dui ziji shuohua.	我|对|自己|说话。	wǒ|duì|zì jǐ|shuō huà	I talk to myself.	796132	280568	2-4
+ta kai ta ziji de che.	他|开|他|自己|的|车。	tā|kāi|tā|zì jǐ|de|chē	He drives his own car.	832963	298454	3-5
+ta you ziji de fangjian.	他|有|自己|的|房间。	tā|yǒu|zì jǐ|de|fáng jiān	He has his own room.	4517811	298838	2-4
+@	2.3.3	指示代词	那么、那样、这么、这样、每	Demonstrative pronouns	那么、那样、这么、这样、每
+bie chi de zheme kuai.	别|吃|得|这么|快。	bié|chī|de|zhè me|kuài	Don't eat so fast.	6678404	6678401	3-5
+ni weishenme name mang?	你|为什么|那么|忙？	nǐ|wèi shén me|nà me|máng	Why are you so busy?	9467019	2647268	4-6
+keyi zheyang xie ma?	可以|这样|写|吗？	kě yǐ|zhè yàng|xiě|ma	Can I write it that way?	2309585	2311278	2-4
+qing buyao zheyang shuo.	请|不要|这样|说。	qǐng|bù yào|zhè yàng|shuō	Please don't say that.	4885866	1163507	3-5
+wo meitian qu shangban.	我|每天|去|上班。	wǒ|měi tiān|qù|shàng bān	I go to work every day.	774132	261838	1-2
+meige ren dou gaoxing.	每个|人|都|高兴。	měi gè|rén|dōu|gāo xìng	Everyone is happy.	825191	441959	0-1
+@	2.4.1	形容词重叠	AA、AABB	Adjective reduplication	
+ta toufa changchangde.	他|头发|长长的。	tā|tóu fa|cháng cháng de	He has long hair.	4768211	1578556	
+qing ni manmanshuo.	请|你|慢慢说。	qǐng|nǐ|màn màn shuō	Please speak slowly.	ai-6		
+haizi men gaogaoxingxing de huijia le.	孩子|们|高高兴兴|地|回家|了。	hái zi|men|gāo gāo xìng xìng|de|huí jiā|le	The children went home happily.	ai-7		
+ni haohao xiuxi ba.	你|好好|休息|吧。	nǐ|hǎo hǎo|xiū xi|ba	Get a good rest.	ai-8		
+@	2.5	数词	万、好多、多	Numerals	万、好多、多
+wo you haoduo pengyou.	我|有|好多|朋友。	wǒ|yǒu|hǎo duō|péng you	I have many friends.	382503	341634	2-4
+gongyuan li you haoduo dongwu.	公园|里|有|好多|动物。	gōng yuán|lǐ|yǒu|hǎo duō|dòng wù	There are lots of animals in the park.	805658	240422	4-6
+qunian dongtian xia le haoduo xue.	去年|冬天|下|了|好多|雪。	qù nián|dōng tiān|xià|le|hǎo duō|xuě	There was a lot of snow last winter.	336682	19429	6-8
+zhege shouji yao yiwankuai qian.	这个|手机|要|一万块|钱。	zhè ge|shǒu jī|yào|yī wàn kuài|qián	This phone costs ten thousand yuan.	ai-9		6-7
+@	2.6.1	名量词	（1）专用名量词：条、位、间、名	Measure words for nouns	条、位、间、名
+zhe jian fangjian hen leng.	这|间|房间|很|冷。	zhè|jiān|fáng jiān|hěn|lěng	The room is cold.	4504341	4779064	1-2;3-4
+zhe jian fangjian shi shei de?	这|间|房间|是|谁|的？	zhè|jiān|fáng jiān|shì|shéi|de	Whose room is this?	686926	55514	1-2;3-4
+wo xiangyao yitiao yu.	我|想要|一条|鱼。	wǒ|xiǎng yào|yī tiáo|yú	I'd like a fish.	661519	661518	4-5
+zhewei shi wanglaoshi.	这位|是|王老师。	zhè wèi|shì|wáng lǎo shī	This is Teacher Wang.	ai-10		1-2
+ta shi yiming yisheng.	他|是|一名|医生。	tā|shì|yī míng|yī shēng	He is a doctor.	ai-11		3-4
+@	2.6.1	名量词	（2）借用名量词：包	Measure words for nouns	包
+wo mai le liangbao cha.	我|买|了|两包|茶。	wǒ|mǎi|le|liǎng bāo|chá	I bought two packs of tea.	ai-12		4-5
+@	2.6.2	动量词	次	Measure words for verbs	次
+wo xiang zai kan yici.	我|想|再|看|一次。	wǒ|xiǎng|zài|kàn|yī cì	I want to see it again.	10783858	2033110	5-6
+wo yao zai zuo yici.	我|要|再|做|一次。	wǒ|yào|zài|zuò|yī cì	I must do it again.	12080521	8110963	5-6
+zheci ni zhao shenme?	这次|你|找|什么？	zhè cì|nǐ|zhǎo|shén me	What are you looking for this time?	13109410	11943145	1-2
+@	2.7.1	程度副词	多、好、最	Adverbs of degree	多、好、最
+wo zui xihuan hongse.	我|最|喜欢|红色。	wǒ|zuì|xǐ huan|hóng sè	My favourite colour is red.	9955413	3508914	1-2
+ni zui xihuan shenme shuiguo?	你|最|喜欢|什么|水果？	nǐ|zuì|xǐ huan|shén me|shuǐ guǒ	What fruit do you like the best?	336927	37537	1-2
+zhe gou pao de duo kuai a!	这|狗|跑|得|多|快|啊！	zhè|gǒu|pǎo|de|duō|kuài|à	This dog runs very fast!	332605	4577217	4-5
+zhe fangzi hao leng.	这|房子|好|冷。	zhè|fáng zi|hǎo|lěng	The house is cold.	983618	587949	3-4
+@	2.7.2	范围副词	一起	Adverbs of scope	一起
+ni xiang yiqi qu ma?	你|想|一起|去|吗？	nǐ|xiǎng|yī qǐ|qù|ma	Do you want to come along?	480305	27693	2-4
+he women yi qilai ba.	和|我们|一|起来|吧。	hé|wǒ men|yī|qi lai|ba	Come along with us.	345794	433695	3-5
+wo xiang he ni yiqi qu.	我|想|和|你|一起|去。	wǒ|xiǎng|hé|nǐ|yī qǐ|qù	I want to go with you.	397152	28972	4-6
+shei gen wo yiqi qu?	谁|跟|我|一起|去？	shéi|gēn|wǒ|yī qǐ|qù	Who's going with me?	635626	997622	3-5
+@	2.7.3	时间副词	还2、已经、有时（候）、快、快要、正	Adverbs of time	还、已经、有时、快、快要、正
+ta yijing zou le ma?	他|已经|走|了|吗？	tā|yǐ jīng|zǒu|le|ma	Has he gone already?	366870	293085	1-3
+women yijing dao le.	我们|已经|到|了。	wǒ men|yǐ jīng|dào|le	We've arrived.	825155	410594	2-4
+tian kuaiyao xiayu le.	天|快要|下雨|了。	tiān|kuài yào|xià yǔ|le	It's going to rain.	335128	40588	1-3
+wo de shengri jiu kuai dao le.	我|的|生日|就|快|到|了。	wǒ|de|shēng rì|jiù|kuài|dào|le	It's my birthday soon.	884638	2128164	5-6
+wo zhengyao gei ni dadianhua.	我|正要|给|你|打电话。	wǒ|zhèng yào|gěi|nǐ|dǎ diàn huà	I was just about to call you.	ai-13		1-2
+women youshihou zaijia chifan.	我们|有时候|在家|吃饭。	wǒ men|yǒu shí hòu|zài jiā|chī fàn	Sometimes we eat at home.	ai-14		2-4
+@	2.7.4	频率副词	常、经常	Adverbs of frequency	常、经常
+nin jingchang qu ma?	您|经常|去|吗？	nín|jīng cháng|qù|ma	Do you go often?	785919	1043614	1-3
+ta wanfan jingchang chi yu.	他|晚饭|经常|吃|鱼。	tā|wǎn fàn|jīng cháng|chī|yú	He often eats fish for dinner.	848864	293319	3-5
+ta bu jingchang lai xuexiao.	他|不|经常|来|学校。	tā|bù|jīng cháng|lái|xué xiào	He doesn't come to school often.	2364550	2366787	2-4
+nin jingchang lai zher ma?	您|经常|来|这儿|吗？	nín|jīng cháng|lái|zhèr|ma	Do you come here often?	4879037	619636	1-3
+@	2.7.5	否定副词	别	Negation adverbs	别
+bie rang gou jinlai.	别|让|狗|进来。	bié|ràng|gǒu|jìn lái	Keep the dog out.	1411550	239245	0-1
+bie zai fangjian li pao.	别|在|房间|里|跑。	bié|zài|fáng jiān|lǐ|pǎo	Don't run in the room.	347083	13561175	0-1
+bie jin wo de fangjian.	别|进|我|的|房间。	bié|jìn|wǒ|de|fáng jiān	Stay out of my room.	5613642	3184916	0-1
+bie zheyang shuohua.	别|这样|说话。	bié|zhè yàng|shuō huà	Don't talk like that.	339248	41283	0-1
+@	2.7.6	关联副词	再2、就1	Linking adverbs	再、就
+you shijian wo jiu lai.	有|时间|我|就|来。	yǒu|shí jiān|wǒ|jiù|lái	I will come, time permitting.	344705	30773	4-5
+deng ta lai le wo jiu zou.	等|他|来|了|我|就|走。	děng|tā|lái|le|wǒ|jiù|zǒu	I will leave when he arrives.	6130934	6130932	5-6
+wo xiang chiwanfan zai hekafei.	我|想|吃完饭|再|喝咖啡。	wǒ|xiǎng|chī wán fàn|zài|hē kā fēi	I'd like my coffee after the meal.	892488	62188	5-6
+@	2.7.7	语气副词	都2、就2、还是1	Mood adverbs	都、就、还是
+wenti jiu zai zheli.	问题|就|在|这里。	wèn tí|jiù|zài|zhè lǐ	That's where the problem lies.	2367521	462548	2-3
+wo jiu zai ni houmian.	我|就|在|你|后面。	wǒ|jiù|zài|nǐ|hòu mian	I was right behind you.	8860204	3919474	1-2
+ni haishi qu kanbing ba.	你|还是|去|看病|吧。	nǐ|hái shi|qù|kàn bìng|ba	You'd better see a doctor.	395058	2659685	1-3
+dou shidian le, kuai shuijiao ba.	都|十点|了，|快|睡觉|吧。	dōu|shí diǎn|le|kuài|shuì jiào|ba	It's already ten o'clock. Go to bed.	ai-15		0-1
+@	2.8.1	引出时间、处所	从1	Prepositions of time and place	从
+ta cong zhongguo huilai le.	他|从|中国|回来|了。	tā|cóng|zhōng guó|huí lai|le	He came back from China.	343360	387585	1-2
+ni cong zuotian kaishi jiu mang ma?	你|从|昨天|开始|就|忙|吗？	nǐ|cóng|zuó tiān|kāi shǐ|jiù|máng|ma	Have you been busy since yesterday?	5903480	69397	1-2
+@	2.8.2	引出方向、路径	往	Prepositions of direction	往
+qing wang houtui yidian.	请|往|后退|一点。	qǐng|wǎng|hòu tuì|yī diǎn	Stand back, please.	347108	38482	1-2
+wo buneng zai wangqianzou le.	我|不能|再|往前走|了。	wǒ|bù néng|zài|wǎng qián zǒu|le	I can't go any farther.	348268	255743	4-5
+yizhi wang qian zou.	一直|往|前|走。	yī zhí|wǎng|qián|zǒu	Go straight ahead.	ai-16		2-3
+@	2.8.2	引出方向、路径	从2	Prepositions of direction	从
+ni keyi cong zher zou.	你|可以|从|这儿|走。	nǐ|kě yǐ|cóng|zhèr|zǒu	You can go this way.	ai-17		3-4
+women cong zhege men jinqu ba.	我们|从|这个|门|进去|吧。	wǒ men|cóng|zhè ge|mén|jìn qù|ba	Let's go in through this door.	ai-18		2-3
+@	2.8.3	引出对象	给	Prepositions for the object	给
+baba gei wo mai le shu.	爸爸|给|我|买|了|书。	bà ba|gěi|wǒ|mǎi|le|shū	Dad bought a book for me.	4264973	5313662	2-3
+zhe shi wo gei ni zuo de.	这|是|我|给|你|做|的。	zhè|shì|wǒ|gěi|nǐ|zuò|de	I made this for you.	10668649	2380432	3-4
+qing gei wo dadianhua.	请|给|我|打电话。	qǐng|gěi|wǒ|dǎ diàn huà	Please call me.	13191967	2249769	1-2
+wo mingtian gei ni mai.	我|明天|给|你|买。	wǒ|míng tiān|gěi|nǐ|mǎi	I'll buy it for you tomorrow.	10120910	10120906	3-4
+@	2.8.3	引出对象	比	Prepositions for the object	比
+ta pao de bi wo kuai.	他|跑|得|比|我|快。	tā|pǎo|de|bǐ|wǒ|kuài	He runs faster than I.	672319	1490305	3-4
+ta keneng bi ni gao.	她|可能|比|你|高。	tā|kě néng|bǐ|nǐ|gāo	She might be taller than you.	862688	388295	3-4
+ta bi wo gao de duo.	她|比|我|高|得|多。	tā|bǐ|wǒ|gāo|de|duō	She's way taller than me.	1218190	628287	1-2
+ta youyong bi wo hao.	他|游泳|比|我|好。	tā|yóu yǒng|bǐ|wǒ|hǎo	He swims better than I do.	743739	387429	3-4
+@	2.8.3	引出对象	跟1	Prepositions for the object	跟
+shei gen wo yiqi qu?	谁|跟|我|一起|去？	shéi|gēn|wǒ|yī qǐ|qù	Who's going with me?	635626	997622	1-2
+wo xiang gen ta shuohua.	我|想|跟|他|说话。	wǒ|xiǎng|gēn|tā|shuō huà	I want to talk to him.	6534034	1325014	2-3
+ni zai gen wo shuohua ma?	你|在|跟|我|说话|吗？	nǐ|zài|gēn|wǒ|shuō huà|ma	Are you talking to me?	478844	25538	2-3
+gen wo yi qilai chang ba.	跟|我|一|起来|唱|吧。	gēn|wǒ|yī|qi lai|chàng|ba	Come sing with me.	628538	563197	0-1
+@	2.8.4	引出原因	因为1	Prepositions of cause	因为
+ta yinwei shengbing mei lai shangke.	他|因为|生病|没|来|上课。	tā|yīn wèi|shēng bìng|méi|lái|shàng kè	He didn't come to class because he was sick.	ai-19		1-3
+@	2.9.1	连接词或短语	跟2	Conjunctions for words or phrases	跟
+wo gen ta dou shi xuesheng.	我|跟|他|都|是|学生。	wǒ|gēn|tā|dōu|shì|xué sheng	He and I are both students.	ai-20		1-2
+laoshi gen xuesheng dou lai le.	老师|跟|学生|都|来|了。	lǎo shī|gēn|xué sheng|dōu|lái|le	The teacher and the students have all come.	ai-21		2-3
+@	2.9.2	连接分句或者句子	但、但是、那、虽然、还是2、因为2、所以	Conjunctions for clauses	但、但是、那、虽然、还是、因为、所以
+danshi, wo meiyou qian.	但是，|我|没有|钱。	dàn shì|wǒ|méi yǒu|qián	However, I have no money.	340150	53632	0-2
+wo bing le, suoyi meiyou shangxue.	我|病|了，|所以|没有|上学。	wǒ|bìng|le|suǒ yǐ|méi yǒu|shàng xué	Since I was sick, I didn't go to school.	390393	1457056	4-6
+ta bu zai zher, yinwei ta bing le.	他|不|在|这儿，|因为|他|病|了。	tā|bù|zài|zhèr|yīn wèi|tā|bìng|le	He isn't here because he's ill.	1361995	434952	6-8
+suiran tianqi hen leng, dan wo haishi chuqu le.	虽然|天气|很|冷，|但|我|还是|出去|了。	suī rán|tiān qì|hěn|lěng|dàn|wǒ|hái shi|chū qù|le	Though it was very cold, I went out.	684836	37821	0-2;7-8;9-11
+zhe shi mao haishi gou?	这|是|猫|还是|狗？	zhè|shì|māo|hái shi|gǒu	Is this a cat or a dog?	4264992	7070695	3-5
+@	2.10.1	结构助词	得、地	Structural particles	得、地
+ta pao de feichang kuai.	他|跑|得|非常|快。	tā|pǎo|de|fēi cháng|kuài	He's running very quickly.	818163	817966	2-3
+ni kai de tai kuai le.	你|开|得|太|快|了。	nǐ|kāi|de|tài|kuài|le	You're driving too fast.	833059	51828	2-3
+wo chi de tai duo le.	我|吃|得|太|多|了。	wǒ|chī|de|tài|duō|le	I ate too much.	1140747	953366	2-3
+wo jueding geng nuli de xuexi.	我|决定|更|努力|地|学习。	wǒ|jué dìng|gèng|nǔ lì|de|xué xí	I made up my mind to study harder.	5780550	255810	6-7
+ta gaoxing dixiao le.	她|高兴|地笑|了。	tā|gāo xìng|dì xiào|le	She smiled happily.	ai-22		3-4
+@	2.10.2	动态助词	过	Aspect particles	过
+wo jide jian guo ta.	我|记得|见|过|他。	wǒ|jì de|jiàn|guò|tā	I remember seeing him.	1415766	285017	4-5
+wo zuotian jian guo tamen.	我|昨天|见|过|他们。	wǒ|zuó tiān|jiàn|guò|tā men	I saw them yesterday.	4444825	4171850	4-5
+ni quguo zhongguo ma?	你|去过|中国|吗？	nǐ|qù guò|zhōng guó|ma	Have you been to China?	ai-23		2-3
+wo mei chiguo zhege cai.	我|没|吃过|这个|菜。	wǒ|méi|chī guò|zhè ge|cài	I've never eaten this dish.	ai-24		3-4
+@	2.10.2	动态助词	着	Aspect particles	着
+jinlai, men kai zhe.	进来，|门|开|着。	jìn lái|mén|kāi|zhe	Come in, it's open.	5767605	3725464	5-6
+weishenme dianshi kai zhe?	为什么|电视|开|着？	wèi shén me|diàn shì|kāi|zhe	Why is the television on?	10062412	11602770	6-7
+ni weishenme zhan zhe?	你|为什么|站|着？	nǐ|wèi shén me|zhàn|zhe	Why are you standing?	14023305	2646708	5-6
+ta chuanzhe hong qunzi.	她|穿着|红|裙子。	tā|chuān zhe|hóng|qún zi	She is wearing a red skirt.	349263	315401	2-3
+@	2.10.3	语气助词	呢4、吧2、的2、啊1	Modal particles	呢、吧、的、啊
+ta hui shengbing de.	他|会|生病|的。	tā|huì|shēng bìng|de	He'll be ill.	13199795	12937606	4-5
+ni zai kan shenme a?	你|在|看|什么|啊？	nǐ|zài|kàn|shén me|à	What are you looking at?	1667242	16256	5-6
+shijian guo de zhen kuai a!	时间|过|得|真|快|啊！	shí jiān|guò|de|zhēn|kuài|à	How time flies!	9987087	240401	6-7
+ni yijing huilai le a?	你|已经|回来|了|啊？	nǐ|yǐ jīng|huí lai|le|à	Have you already come back?	1670085	7781134	6-7
+@	3.1.1	基本结构类型	动补短语1	Basic phrase types	
+wo zhidao wo zuo cuo le.	我|知道|我|做|错|了。	wǒ|zhī dào|wǒ|zuò|cuò|le	I know what I did was wrong.	5663534	2376270	
+ni xin xie wan le ma?	你|信|写|完|了|吗？	nǐ|xìn|xiě|wán|le|ma	Have you finished writing the letter yet?	887698	69742	
+ni de zuoye zuo wan le ma?	你|的|作业|做|完|了|吗？	nǐ|de|zuò yè|zuò|wán|le|ma	Is your homework finished?	6309837	4960774	
+@	3.1.2	其他结构类型	（1）“的”字短语	Other phrase types	的
+zhexie shu shi xin de.	这些|书|是|新|的。	zhè xiē|shū|shì|xīn|de	These books are new.	686937	55079	5-6
+zuo ni xiang zuo de.	做|你|想|做|的。	zuò|nǐ|xiǎng|zuò|de	Do whatever you want.	332734	70894	4-5
+chuan ni xiang chuan de.	穿|你|想|穿|的。	chuān|nǐ|xiǎng|chuān|de	Wear whatever you want to wear.	5911765	2852093	4-5
+meiyou ren ting wo de.	没有|人|听|我|的。	méi yǒu|rén|tīng|wǒ|de	Nobody listens to me.	818171	817944	5-6
+@	3.1.2	其他结构类型	（2）连谓短语	Other phrase types	
+wo xiang qu fandian chiwanfan.	我|想|去|饭店|吃晚饭。	wǒ|xiǎng|qù|fàn diàn|chī wǎn fàn	I want to have dinner at a restaurant.	452577	452580	
+ta meitian qu xuexiao xuexi.	他|每天|去|学校|学习。	tā|měi tiān|qù|xué xiào|xué xí	He goes to school to study every day.	332839	261856	
+women laoshi kaiche lai xuexiao.	我们|老师|开车|来|学校。	wǒ men|lǎo shī|kāi chē|lái|xué xiào	Our teacher comes to school by car.	894033	247610	
+@	3.1.2	其他结构类型	（3）兼语短语	Other phrase types	
+wo qing ta bangmang.	我|请|他|帮忙。	wǒ|qǐng|tā|bāng máng	I asked him for a favor.	846089	403375	
+rang ta zhongwu guolai.	让|她|中午|过来。	ràng|tā|zhōng wǔ|guò lái	Tell her to come at noon.	375286	308906	
+laoshi jiao wo zhan qilai.	老师|叫|我|站|起来。	lǎo shī|jiào|wǒ|zhàn|qi lai	The teacher told me to stand up.	534284	272966	
+@	3.3.1	其他	什么的	Other	什么的
+wo mai le pingguo, niunai shenme de.	我|买|了|苹果、|牛奶|什么|的。	wǒ|mǎi|le|píng guǒ|niú nǎi|shén me|de	I bought apples, milk and so on.	ai-25		8-11
+ta xihuan kanshu, kan dianying shenme de.	他|喜欢|看书、|看|电影|什么|的。	tā|xǐ huan|kàn shū|kàn|diàn yǐng|shén me|de	He likes reading, watching movies and so on.	ai-26		9-12
+@	4.1	固定格式	还是……吧	Fixed patterns	还是、吧
+ni haishi qu kanbing ba.	你|还是|去|看病|吧。	nǐ|hái shi|qù|kàn bìng|ba	You'd better see a doctor.	395058	2659685	1-3;6-7
+women haishi rang laoshi jueding ba.	我们|还是|让|老师|决定|吧。	wǒ men|hái shi|ràng|lǎo shī|jué dìng|ba	Let's leave the decision to our teacher.	457561	238571	2-4;9-10
+wo haishi kaiche song ni huijiaba.	我|还是|开车|送|你|回家吧。	wǒ|hái shi|kāi chē|sòng|nǐ|huí jiā ba	I'd better drive you home.	408443	257138	1-3;9-10
+@	4.1	固定格式	要/快要/就要……了	Fixed patterns	要、快要、就要、了
+tian kuaiyao xiayu le.	天|快要|下雨|了。	tiān|kuài yào|xià yǔ|le	It's going to rain.	335128	40588	1-3;5-6
+keneng yao xiayu le.	可能|要|下雨|了。	kě néng|yào|xià yǔ|le	It might rain.	1223755	1230486	2-3;5-6
+wo yao huiqu gongzuo le.	我|要|回去|工作|了。	wǒ|yào|huí qu|gōng zuò|le	I have to go back to work.	2738689	2360506	1-2;6-7
+huoche jiuyao kai le.	火车|就要|开|了。	huǒ chē|jiù yào|kāi|le	The train is about to leave.	ai-27		2-4;5-6
+@	4.1	固定格式	都……了	Fixed patterns	都、了
+dou shierdian le, ni zenme hai bu shuijiao?	都|十二点|了，|你|怎么|还|不|睡觉？	dōu|shí èr diǎn|le|nǐ|zěn me|hái|bù|shuì jiào	It's already twelve o'clock. Why aren't you asleep yet?	ai-28		0-1;4-5
+ta dou bashisui le.	他|都|八十岁|了。	tā|dōu|bā shí suì|le	He is already eighty years old.	ai-29		1-2;5-6
+@	5.1	主语	受事主语	Subjects	
+ni de gongzuo dou wancheng le.	你|的|工作|都|完成|了。	nǐ|de|gōng zuò|dōu|wán chéng|le	You've finished your work.	1020694	70632	
+naben shu wo kanwan le.	那本|书|我|看完|了。	nà běn|shū|wǒ|kàn wán|le	I've finished reading that book.	ai-30		
+fan yijing zuohao le.	饭|已经|做好|了。	fàn|yǐ jīng|zuò hǎo|le	The meal is ready.	ai-31		
+@	5.2	谓语	名词性短语作谓语	Predicates	
+mingtian siyue wuhao.	明天|四月|五号。	míng tiān|sì yuè|wǔ hào	Tomorrow is April 5th.	6486874	7775099	
+jintian xingqisan.	今天|星期三。	jīn tiān|xīng qī sān	Today is Wednesday.	ai-32		
+ta jinnian ershisui.	他|今年|二十岁。	tā|jīn nián|èr shí suì	He is twenty this year.	ai-33		
+@	5.3	定语	动词或动词性短语、主谓短语作定语	Attributives	
+zhe shi wo zuotian mai de shu.	这|是|我|昨天|买|的|书。	zhè|shì|wǒ|zuó tiān|mǎi|de|shū	This is the book I bought yesterday.	ai-34		
+ni shuo de hua wo tingdong le.	你|说|的|话|我|听懂|了。	nǐ|shuō|de|huà|wǒ|tīng dǒng|le	I understood what you said.	ai-35		
+@	5.4.1	结果补语1	动词+错/懂/好/会/完	Resultative complements	错、懂、好、会、完
+wo zhidao wo zuo cuo le.	我|知道|我|做|错|了。	wǒ|zhī dào|wǒ|zuò|cuò|le	I know what I did was wrong.	5663534	2376270	5-6
+ni de zuoye zuo wan le ma?	你|的|作业|做|完|了|吗？	nǐ|de|zuò yè|zuò|wán|le|ma	Is your homework finished?	6309837	4960774	5-6
+ni tingdong le ma?	你|听懂|了|吗？	nǐ|tīng dǒng|le|ma	Did you understand?	ai-36		2-3
+wo xuehui youyong le.	我|学会|游泳|了。	wǒ|xué huì|yóu yǒng|le	I've learned to swim.	ai-37		2-3
+@	5.4.2	趋向补语1	简单趋向补语的趋向意义用法：（1）动词+来/去	Directional complements	来、去
+ta xianzai chuqu le.	他|现在|出去|了。	tā|xiàn zài|chū qù|le	He is out now.	335030	289262	4-5
+rang ta zhongwu guolai.	让|她|中午|过来。	ràng|tā|zhōng wǔ|guò lái	Tell her to come at noon.	375286	308906	5-6
+xuesheng men huilai le.	学生|们|回来|了。	xué sheng|men|huí lai|le	The students have returned.	799209	1165016	4-5
+mingtian ta hui huilai.	明天|他|会|回来。	míng tiān|tā|huì|huí lai	He will be back tomorrow.	833133	304103	5-6
+@	5.4.2	趋向补语1	（2）动词+上/下/进/出/过/回	Directional complements	上、下、进、出、过、回
+ta zoujin le jiaoshi.	他|走进|了|教室。	tā|zǒu jìn|le|jiào shì	He walked into the classroom.	ai-38		2-3
+qing zuoxia.	请|坐下。	qǐng|zuò xià	Please sit down.	ai-39		2-3
+ta pao huijia le.	她|跑|回家|了。	tā|pǎo|huí jiā|le	She ran back home.	ai-40		2-3
+@	5.4.2	趋向补语1	复合趋向补语的趋向意义用法：动词+出来/出去/过来/过去/回来/回去/进来/进去/起来/上来/上去/下来/下去	Directional complements	出来、出去、过来、过去、回来、回去、进来、进去、起来、上来、上去、下来、下去
+ni neng zhan qilai ma?	你|能|站|起来|吗？	nǐ|néng|zhàn|qi lai|ma	Can you stand up?	13158651	1543665	3-5
+laoshi jiao wo zhan qilai.	老师|叫|我|站|起来。	lǎo shī|jiào|wǒ|zhàn|qi lai	The teacher told me to stand up.	534284	272966	5-7
+wo xiang zuoxia lai.	我|想|坐下|来。	wǒ|xiǎng|zuò xià|lái	I want to sit down.	3666937	2548851	3-5
+ni cong nali pao jinlai de?	你|从|哪里|跑|进来|的？	nǐ|cóng|nǎ lǐ|pǎo|jìn lái|de	Where did you come in from?	1637826	11294105	5-7
+@	5.4.3	状态补语1	动词+得+形容词性短语	Complements of state	得
+ta pao de feichang kuai.	他|跑|得|非常|快。	tā|pǎo|de|fēi cháng|kuài	He's running very quickly.	818163	817966	2-3
+ta neng du de hen hao.	他|能|读|得|很|好。	tā|néng|dú|de|hěn|hǎo	He can read well.	824500	388978	3-4
+ni kai de tai kuai le.	你|开|得|太|快|了。	nǐ|kāi|de|tài|kuài|le	You're driving too fast.	833059	51828	2-3
+@	5.4.4	数量补语2	（1）表示动作持续的时间	Quantity complements	
+ta bing le yi xingqi.	他|病|了|一|星期。	tā|bìng|le|yī|xīng qī	He has been sick for a week.	407248	293693	
+ta jiang le yi xiaoshi.	他|讲|了|一|小时。	tā|jiǎng|le|yī|xiǎo shí	He spoke for one hour.	799216	1893286	
+wo zhi shui le liang xiaoshi.	我|只|睡|了|两|小时。	wǒ|zhǐ|shuì|le|liǎng|xiǎo shí	I slept just two hours.	6047457	2234203	
+qu nali yao hua yi xiaoshi.	去|那里|要|花|一|小时。	qù|nà li|yào|huā|yī|xiǎo shí	It'll take an hour to get there.	349758	50875	
+@	5.4.4	数量补语2	（2）形容词+数量补语	Quantity complements	
+ta bi wo da liangsui.	他|比|我|大|两岁。	tā|bǐ|wǒ|dà|liǎng suì	He's two years older than me.	713216	713261	
+wo bi ni xiao sansui.	我|比|你|小|三岁。	wǒ|bǐ|nǐ|xiǎo|sān suì	I'm three years younger than you.	864345	252889	
+wo bi ni gao yidian.	我|比|你|高|一点。	wǒ|bǐ|nǐ|gāo|yī diǎn	I'm a little taller than you.	431826	431822	
+@	6.1.1	单句	主谓句4：主谓谓语句	Simple sentences	
+ta gongzuo hen nuli.	他|工作|很|努力。	tā|gōng zuò|hěn|nǔ lì	He works very hard.	336920	291584	
+ni gongzuo tai nuli le.	你|工作|太|努力|了。	nǐ|gōng zuò|tài|nǔ lì|le	You work too hard.	332949	15877	
+ta shenti hen hao.	他|身体|很|好。	tā|shēn tǐ|hěn|hǎo	He is in good health.	ai-41		
+wo gongzuo hen mang.	我|工作|很|忙。	wǒ|gōng zuò|hěn|máng	I'm very busy with work.	ai-42		
+@	6.2.1	疑问句	用“还是”连接的选择问句	Questions	还是
+zhe shi mao haishi gou?	这|是|猫|还是|狗？	zhè|shì|māo|hái shi|gǒu	Is this a cat or a dog?	4264992	7070695	3-5
+yao kafei haishi cha?	要|咖啡|还是|茶？	yào|kā fēi|hái shi|chá	Do you want coffee or tea?	13514629	6787811	3-5
+ni shi xuesheng haishi laoshi?	你|是|学生|还是|老师？	nǐ|shì|xué sheng|hái shi|lǎo shī	Are you a teacher or a student?	2192505	370763	4-6
+shi erzi haishi nvr?	是|儿子|还是|女儿？	shì|ér zi|hái shi|nǚr	Is it a son or a daughter?	8924814	4573417	3-5
+@	6.2.2	祈使句	用“别”的祈使句	Imperative sentences	别
+bie zheyang shuohua.	别|这样|说话。	bié|zhè yàng|shuō huà	Don't talk like that.	339248	41283	0-1
+bie zai gen wo shuo le!	别|再|跟|我|说|了！	bié|zài|gēn|wǒ|shuō|le	Stop talking to me!	5715137	2897919	0-1
+bie kan zheyang de shu.	别|看|这样|的|书。	bié|kàn|zhè yàng|de|shū	Don't read that kind of book.	636214	1450714	0-1
+@	6.3.1	“是”字句2	表示说明或特征	Sentences with 是	
+zhexie shu shi xin de.	这些|书|是|新|的。	zhè xiē|shū|shì|xīn|de	These books are new.	686937	55079	
+ta shi beijingren.	他|是|北京人。	tā|shì|běi jīng rén	He is from Beijing.	ai-43		
+@	6.3.2	“有”字句2	表示达到	Sentences with 有	
+wo you yimi jiu gao.	我|有|一米|九|高。	wǒ|yǒu|yī mǐ|jiǔ|gāo	I'm 1.9 meters tall.	493929	493927	
+zhege haizi you yimiduo gao le.	这个|孩子|有|一米多|高|了。	zhè ge|hái zi|yǒu|yī mǐ duō|gāo|le	This child is over a meter tall now.	ai-44		
+@	6.3.3	存现句2	处所+动词+着(+数量短语)+名词	Existential sentences	着
+shujiashang fang zhe henduo zidian.	书架上|放|着|很多|字典。	shū jià shàng|fàng|zhe|hěn duō|zì diǎn	There are a lot of dictionaries in the bookcase.	9989899	10551512	4-5
+zhuozi shang fangzhe yiben shu.	桌子|上|放着|一本|书。	zhuō zi|shàng|fàng zhe|yī běn|shū	There is a book on the table.	ai-45		4-5
+menkou zhan zhe yige ren.	门口|站|着|一个|人。	mén kǒu|zhàn|zhe|yī gè|rén	Someone is standing at the door.	ai-46		3-4
+@	6.3.4	比较句1	（1）A比B+形容词	Comparative sentences	
+ta keneng bi ni gao.	她|可能|比|你|高。	tā|kě néng|bǐ|nǐ|gāo	She might be taller than you.	862688	388295	
+jintian bi zuotian leng.	今天|比|昨天|冷。	jīn tiān|bǐ|zuó tiān|lěng	Today is colder than yesterday.	ai-47		
+wo gege bi wo gao.	我|哥哥|比|我|高。	wǒ|gē ge|bǐ|wǒ|gāo	My older brother is taller than me.	ai-48		
+@	6.3.4	比较句1	（2）A比B+形容词+数量补语/程度补语	Comparative sentences	
+ta bi wo gao de duo.	她|比|我|高|得|多。	tā|bǐ|wǒ|gāo|de|duō	She's way taller than me.	1218190	628287	
+ta bi ni gao de duo.	他|比|你|高|得|多。	tā|bǐ|nǐ|gāo|de|duō	He's much taller than you.	833114	295647	
+ta bi wo da liangsui.	他|比|我|大|两岁。	tā|bǐ|wǒ|dà|liǎng suì	He's two years older than me.	713216	713261	
+wo bi ni gao yidian.	我|比|你|高|一点。	wǒ|bǐ|nǐ|gāo|yī diǎn	I'm a little taller than you.	431826	431822	
+@	6.3.4	比较句1	（3）A有/没有B（+这么/那么）+形容词	Comparative sentences	
+jintian meiyou zuotian name re.	今天|没有|昨天|那么|热。	jīn tiān|méi yǒu|zuó tiān|nà me|rè	It is not so hot today as yesterday.	801555	242849	
+wo meiyou ni name congming.	我|没有|你|那么|聪明。	wǒ|méi yǒu|nǐ|nà me|cōng ming	I'm not as smart as you.	9955479	3500611	
+@	6.3.4	比较句1	（4）A比B+动词+得+形容词/A+动词+得+比+B+形容词	Comparative sentences	得、得、比
+ta pao de bi wo kuai.	他|跑|得|比|我|快。	tā|pǎo|de|bǐ|wǒ|kuài	He runs faster than I.	672319	1490305	2-3;3-4
+ta chang de bi ta hao.	她|唱|得|比|他|好。	tā|chàng|de|bǐ|tā|hǎo	She sings better than he does.	813508	580432	2-3;3-4
+ta youyong bi wo hao.	他|游泳|比|我|好。	tā|yóu yǒng|bǐ|wǒ|hǎo	He swims better than I do.	743739	387429	3-4
+@	6.3.5	“是……的”句1	强调时间、地点、方式、动作者	是……的 sentences	
+ta shi zuotian qu de.	她|是|昨天|去|的。	tā|shì|zuó tiān|qù|de	It was yesterday that she went.	844449	844451	
+ni shi zenme zhidao de?	你|是|怎么|知道|的？	nǐ|shì|zěn me|zhī dào|de	How did you come to know it?	422027	38682	
+wo shi qunian renshi ta de.	我|是|去年|认识|他|的。	wǒ|shì|qù nián|rèn shi|tā|de	I got acquainted with him last year.	788579	256889	
+ni shi zenme renshi ta de?	你|是|怎么|认识|她|的？	nǐ|shì|zěn me|rèn shi|tā|de	How did you come to know her?	470243	16493	
+@	6.3.6	兼语句1	表使令：主语+请/叫/让……+宾语1+动词+宾语2	Pivot sentences	请、叫、让
+wo qing ta bangmang.	我|请|他|帮忙。	wǒ|qǐng|tā|bāng máng	I asked him for a favor.	846089	403375	1-2
+laoshi jiao wo zhan qilai.	老师|叫|我|站|起来。	lǎo shī|jiào|wǒ|zhàn|qi lai	The teacher told me to stand up.	534284	272966	2-3
+rang ta zhongwu guolai.	让|她|中午|过来。	ràng|tā|zhōng wǔ|guò lái	Tell her to come at noon.	375286	308906	0-1
+rang wo lai bang ni ba.	让|我|来|帮|你|吧。	ràng|wǒ|lái|bāng|nǐ|ba	Let me help you.	349735	64396	0-1
+@	6.3.7	双宾语句2	主语+动词+给+宾语1+宾语2	Double object sentences	给
+wo songgei ta yiben shu.	我|送给|她|一本|书。	wǒ|sòng gěi|tā|yī běn|shū	I gave her a book.	ai-49		2-3
+ta jiegei wo yibaikuai qian.	他|借给|我|一百块|钱。	tā|jiè gěi|wǒ|yī bǎi kuài|qián	He lent me a hundred yuan.	ai-50		2-3
+@	6.4.1	选择复句	（是）……，还是……	Alternative complex sentences	还是
+nin shi laoshi, haishi xuesheng?	您|是|老师，|还是|学生？	nín|shì|lǎo shī|hái shi|xué sheng	Are you a teacher or a student?	4264871	370763	5-7
+na shi zhi mao haishi zhi gou?	那|是|只|猫|还是|只|狗？	nà|shì|zhǐ|māo|hái shi|zhǐ|gǒu	Is it a cat or a dog?	8249451	1636185	4-6
+@	6.4.2	转折复句	虽然……，但是……	Contrast complex sentences	虽然、但是
+suiran tianqi hen leng, dan wo haishi chuqu le.	虽然|天气|很|冷，|但|我|还是|出去|了。	suī rán|tiān qì|hěn|lěng|dàn|wǒ|hái shi|chū qù|le	Though it was very cold, I went out.	684836	37821	0-2
+ta suiran keai, danshi wo bu xihuan ta.	她|虽然|可爱，|但是|我|不|喜欢|她。	tā|suī rán|kě ài|dàn shì|wǒ|bù|xǐ huan|tā	She may be cute, but I don't like her.	1946021	312991	1-3;6-8
+@	6.4.3	因果复句	因为……，所以……	Cause and effect sentences	因为、所以
+yinwei xiayu, suoyi women mei chuqu.	因为|下雨，|所以|我们|没|出去。	yīn wèi|xià yǔ|suǒ yǐ|wǒ men|méi|chū qù	Because it rained, we didn't go out.	ai-51		0-2;5-7
+@	6.4.4	紧缩复句	一……就……	Contracted complex sentences	一、就
+wo yi likai jia jiu yujian le ta.	我|一|离开|家|就|遇见|了|她。	wǒ|yī|lí kāi|jiā|jiù|yù jiàn|le|tā	As soon as I left home, I ran into her.	886531	24125	1-2;5-6
+ta yi daojia jiu shuijiao le.	他|一|到家|就|睡觉|了。	tā|yī|dào jiā|jiù|shuì jiào|le	He went to sleep as soon as he got home.	ai-52		1-2;4-5
+wo yi kan jiu dong le.	我|一|看|就|懂|了。	wǒ|yī|kàn|jiù|dǒng|le	I understood it at a glance.	ai-53		1-2;3-4
+@	7.1.1	持续态	动词+着：（1）表示状态的持续	Continuous aspect	
+jinlai, men kai zhe.	进来，|门|开|着。	jìn lái|mén|kāi|zhe	Come in, it's open.	5767605	3725464	
+weishenme dianshi kai zhe?	为什么|电视|开|着？	wèi shén me|diàn shì|kāi|zhe	Why is the television on?	10062412	11602770	
+ta chuanzhe hong qunzi.	她|穿着|红|裙子。	tā|chuān zhe|hóng|qún zi	She is wearing a red skirt.	349263	315401	
+@	7.1.1	持续态	（2）表示动作的持续	Continuous aspect	
+ni weishenme zhan zhe?	你|为什么|站|着？	nǐ|wèi shén me|zhàn|zhe	Why are you standing?	14023305	2646708	
+ta kanzhe wo xiao le.	她|看着|我|笑|了。	tā|kàn zhe|wǒ|xiào|le	She looked at me and smiled.	ai-54		
+@	7.1.2	经历态	用动态助词“过”表示	Experiential aspect	过
+wo jide jian guo ta.	我|记得|见|过|他。	wǒ|jì de|jiàn|guò|tā	I remember seeing him.	1415766	285017	4-5
+wo zuotian jian guo tamen.	我|昨天|见|过|他们。	wǒ|zuó tiān|jiàn|guò|tā men	I saw them yesterday.	4444825	4171850	4-5
+ni quguo zhongguo ma?	你|去过|中国|吗？	nǐ|qù guò|zhōng guó|ma	Have you been to China?	ai-55		2-3
+wo mei chiguo zhege cai.	我|没|吃过|这个|菜。	wǒ|méi|chī guò|zhè ge|cài	I've never eaten this dish.	ai-56		3-4
+@	8.1	数的表达法	序数表示法2：数词+量词	Expressing numbers	
+wojia zhuzai sanlou.	我家|住在|三楼。	wǒ jiā|zhù zài|sān lóu	My home is on the third floor.	ai-57		
+@	8.1	数的表达法	概数表达法1：（1）用“几”表示概数	Expressing numbers	几
+shuzhuoshang you jibenshu.	书桌上|有|几本书。	shū zhuō shàng|yǒu|jǐ běn shū	There are some books on the desk.	333397	20557	4-5
+wo you jige hao pengyou.	我|有|几个|好|朋友。	wǒ|yǒu|jǐ gè|hǎo|péng you	I have several good friends.	638972	249862	2-3
+jifenzhong hou jian.	几分钟|后|见。	jǐ fēn zhōng|hòu|jiàn	See you in a couple of minutes.	13117565	6384124	0-1
+@	8.1	数的表达法	（2）数词+多+量词	Expressing numbers	多
+women ban you ershiduoge xuesheng.	我们|班|有|二十多个|学生。	wǒ men|bān|yǒu|èr shí duō gè|xué sheng	There are more than twenty students in our class.	ai-58		6-7
+zheben shu yibaiduo kuai.	这本|书|一百多|块。	zhè běn|shū|yī bǎi duō|kuài	This book costs over a hundred yuan.	ai-59		5-6
+@	8.1	数的表达法	（3）数词+量词+多	Expressing numbers	多
+wo xuele yigeduoyue hanyu.	我|学了|一个多月|汉语。	wǒ|xué le|yī gè duō yuè|hàn yǔ	I've studied Chinese for over a month.	ai-60		5-6
+ta deng le yigeduo xiaoshi.	他|等|了|一个多|小时。	tā|děng|le|yī gè duō|xiǎo shí	He waited for more than an hour.	ai-61		5-6

@@ -41,7 +41,8 @@ struct StudyView: View {
             if showKeyboard, let typing = study.typing {
                 KeyboardView(
                     keyboard: keyboard,
-                    nextCharacter: typing.currentExpected,
+                    // No key hints when recalling: they would give the answer away.
+                    nextCharacter: study.step.map(hidesAnswer) == true || study.candidates != nil ? nil : typing.currentExpected,
                     mastered: fadeMastered ? practice.masteredLetters : [],
                     animatesPresses: false
                 )
@@ -152,9 +153,10 @@ struct StudyView: View {
         let word = step.word
         let learning: Bool = if case .learn = step { true } else { false }
         // From memory needs something to recall from.
-        let characters = learning || showCharacters || !showMeaning
-        let pinyin = learning || showPinyin || study.revealed
-        let meaning = learning || showMeaning
+        let characters = learning || showCharacters || !showMeaning || study.awaitingNext
+        // Once answered, the whole card shows until Return.
+        let pinyin = learning || showPinyin || study.revealed || study.awaitingNext
+        let meaning = learning || showMeaning || study.awaitingNext
         return VStack(spacing: 14) {
             Text(cardLabel(learning: learning))
                 .font(.caption.weight(.semibold))
@@ -177,10 +179,31 @@ struct StudyView: View {
                     .frame(maxWidth: 640)
             }
             if let typing = study.typing {
-                DrillText(session: typing, lastKeyWrong: study.lastKeyWrong, fontSize: 34 * textScale)
-                    .fixedSize()
-                    .padding(.top, 8)
-                    .id(study.cardID)
+                if hidesAnswer(step) {
+                    // From memory: the letters still to type stay hidden.
+                    MaskedAnswer(session: typing, lastKeyWrong: study.lastKeyWrong, fontSize: 34 * textScale)
+                        .padding(.top, 8)
+                        .id(study.cardID)
+                } else {
+                    DrillText(session: typing, lastKeyWrong: study.lastKeyWrong, fontSize: 34 * textScale)
+                        .fixedSize()
+                        .padding(.top, 8)
+                        .id(study.cardID)
+                }
+            }
+            if let candidates = study.candidates {
+                CandidateBar(candidates: candidates, wrong: study.lastKeyWrong, fontSize: 30 * textScale,
+                             answer: study.revealed ? candidates.firstIndex(of: word.native) : nil)
+                Text("Press the number of the right characters (space for 1)")
+                    .font(.callout).foregroundStyle(.secondary)
+            }
+            if study.awaitingNext {
+                HStack(spacing: 10) {
+                    if let grade = study.answeredGrade {
+                        Text(grade.title).font(.title3.weight(.semibold)).foregroundStyle(grade.color)
+                    }
+                    Text("Press Return for the next card").foregroundStyle(.secondary)
+                }
             }
             Button("I Know This Word") { study.markKnown() }
                 .help("Skip this word. It comes back for review in about six months. Undo it in History with Study Again.")
@@ -190,7 +213,7 @@ struct StudyView: View {
                     .frame(maxWidth: 360)
                     .padding(.top, 8)
             }
-            if let last = study.lastResult {
+            if let last = study.lastResult, !study.awaitingNext {
                 lastLine(last.word, last.grade)
             }
         }
@@ -201,6 +224,12 @@ struct StudyView: View {
         if learning { return "New word" }
         if study.revealed { return "Answer shown" }
         return "From memory"
+    }
+
+    /// Recall cards hide the pinyin to type until it is typed, shown (Return) or finished.
+    private func hidesAnswer(_ step: StudySession.Step) -> Bool {
+        guard case .recall = step else { return false }
+        return !study.revealed && !study.awaitingNext && !showPinyin
     }
 
     private func lastLine(_ word: StudyWord, _ grade: StudyGrade?) -> some View {
@@ -322,5 +351,46 @@ struct StudyHistoryCard: View {
     private static func lastDays(_ count: Int) -> [Date] {
         let today = Calendar.current.startOfDay(for: .now)
         return (0..<count).reversed().compactMap { Calendar.current.date(byAdding: .day, value: -$0, to: today) }
+    }
+}
+
+
+/// The answer while recalling: typed letters shown, the rest as dots.
+struct MaskedAnswer: View {
+    let session: TypingSession
+    let lastKeyWrong: Bool
+    var fontSize: CGFloat = 34
+
+    var body: some View {
+        let typed = String(session.text[..<session.position])
+        let rest = String(session.text[session.position...].map { $0 == " " ? Character(" ") : Character("·") })
+        (Text(verbatim: typed).foregroundStyle(.secondary)
+            + Text(verbatim: rest).foregroundStyle(lastKeyWrong ? Color.red : .primary))
+            .font(.system(size: fontSize, weight: .regular, design: .monospaced))
+    }
+}
+
+/// The numbered choices after the pinyin, like an input method's candidate bar.
+struct CandidateBar: View {
+    let candidates: [String]
+    let wrong: Bool
+    var fontSize: CGFloat = 30
+    /// The right choice, shown after Return.
+    var answer: Int?
+
+    var body: some View {
+        HStack(spacing: 18) {
+            ForEach(Array(candidates.enumerated()), id: \.offset) { index, word in
+                HStack(alignment: .firstTextBaseline, spacing: 3) {
+                    Text(verbatim: "\(index + 1)").font(.callout.monospacedDigit()).foregroundStyle(.secondary)
+                    Text(verbatim: word).font(.system(size: fontSize))
+                }
+                .padding(.horizontal, 4)
+                .background(index == answer ? Color.orange.opacity(0.3) : .clear, in: RoundedRectangle(cornerRadius: 4))
+            }
+        }
+        .padding(.horizontal, 16).padding(.vertical, 8)
+        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 8))
+        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(wrong ? Color.red.opacity(0.6) : .clear))
     }
 }

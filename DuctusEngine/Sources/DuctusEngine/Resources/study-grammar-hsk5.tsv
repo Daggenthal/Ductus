@@ -1,71 +1,71 @@
 # HSK 5 grammar points (revised HSK 3.0 syllabus, 2025; list from krmanik/HSK-3.0, CC BY-SA 4.0). Example sentences: Tatoeba, CC BY 2.0 FR (authors in study-grammar-credits.tsv).
-@	1.1	后缀	—头	Suffixes
-@	2.1.1	指示代词	彼此、如此、本	Demonstrative pronouns
-@	2.2.1	名量词	册、朵、届、颗、匹、行、架、群、支、根、批、束、副、集、周	Measure words for nouns
-@	2.2.2	动量词	眼	Measure words for verbs
-@	2.3.1	程度副词	过于、相当、较1、可2、格外、极其	Adverbs of degree
-@	2.3.2	时间副词	时刻、曾经、立刻、连忙、始终、早已、即将、急忙、渐渐、尽快、早晚	Adverbs of time
-@	2.3.3	频率副词	老是、通常、时常	Adverbs of frequency
-@	2.3.4	方式副词	尽量、亲自	Adverbs of manner
-@	2.3.5	关联副词	便、一旦	Linking adverbs
-@	2.3.6	情态副词	似乎、仿佛	Modal adverbs
-@	2.3.7	语气副词	毕竟、居然、反正、根本、果然、简直、绝对、的确、反而、白、刚好、可3	Mood adverbs
-@	2.4.1	引出时间、处所	自从	Prepositions of time and place
-@	2.4.2	引出方向、路径	朝、沿（着）	Prepositions of direction
-@	2.4.3	引出对象	替、同1、较2	Prepositions for the object
-@	2.4.4	引出凭借、依据	凭	Prepositions of basis
-@	2.4.4	引出凭借、依据	据	Prepositions of basis
-@	2.4.4	引出凭借、依据	依据	Prepositions of basis
-@	2.5.1	连接词或词组	以及、同2	Conjunctions for words or phrases
-@	2.5.2	连接分句或句子	从而、可见、假如、总之	Conjunctions for clauses
-@	2.6.1	其他助词	似的	Other particles
-@	3.1.1	四字格	A来A去	Four-character patterns
-@	3.1.1	四字格	A着A着	Four-character patterns
-@	3.1.1	四字格	没A没B	Four-character patterns
-@	3.1.1	四字格	说A就A	Four-character patterns
-@	3.1.2	其他	不得了	Other
-@	3.1.2	其他	用不着	Other
-@	3.1.2	其他	从……来看	Other
-@	3.1.2	其他	A的A，B的B	Other
-@	3.1.2	其他	（自）……以来	Other
-@	3.1.2	其他	由……组成	Other
-@	3.1.2	其他	X也不是，Y也不是	Other
-@	3.1.2	其他	X也X不得，Y也Y不得	Other
-@	4.1	固定格式	X是它，Y也是它	Fixed patterns
-@	4.1	固定格式	X着也是X着	Fixed patterns
-@	4.1	固定格式	不管怎样说	Fixed patterns
-@	4.1	固定格式	真有你/他/她的	Fixed patterns
-@	4.1	固定格式	X什么X	Fixed patterns
-@	4.1	固定格式	什么X不X（的）	Fixed patterns
-@	4.1	固定格式	不X白不X	Fixed patterns
-@	4.1	固定格式	X来X去，都是/就是……	Fixed patterns
-@	4.1	固定格式	动词+什么（就）是什么	Fixed patterns
-@	5.1	状语	多项状语	Adverbials
-@	5.2.1	可能补语2	动词+得/不得	Potential complements
-@	5.2.2	程度补语2	形容词/心理动词+得+不得了	Complements of degree
-@	5.2.3	趋向补语3	趋向补语的引申用法：表示状态意义：动词/形容词+下来/下去/起来/过来/过去	Directional complements
-@	5.2.4	状态补语2	（1）动词/形容词+得+动词短语	Complements of state
-@	5.2.4	状态补语2	（2）动词/形容词+得+主谓短语	Complements of state
-@	5.2.4	状态补语2	（3）动词/形容词+得+固定短语	Complements of state
-@	6.1.1	“有”字句3	（1）表示存在、具有：主语+有+着+宾语	Sentences with 有
-@	6.1.1	“有”字句3	（2）表示附着：主语+动词+有+宾语	Sentences with 有
-@	6.1.2	“把”字句3	（1）主语+把+宾语+一+动词	把 sentences
-@	6.1.2	“把”字句3	（2）主语+把+宾语1+动词+宾语2	把 sentences
-@	6.1.3	连动句3	前后两个动词性词语具有因果、转折、条件关系	Serial verb sentences
-@	6.1.4	比较句4	A+形容词+B+数量补语	Comparative sentences
-@	6.1.5	被动句3	主语+被/叫/让+宾语+给+动词+其他成分	Passive sentences
-@	6.2.1	承接复句	……，便……	Sequential complex sentences
-@	6.2.2	选择复句	或是……，或是……	Alternative complex sentences
-@	6.2.3	假设复句	一旦……，就……	Hypothetical complex sentences
-@	6.2.3	假设复句	假如……，（就）……	Hypothetical complex sentences
-@	6.2.3	假设复句	万一……，（就）……	Hypothetical complex sentences
-@	6.2.3	假设复句	……，要不然/不然……	Hypothetical complex sentences
-@	6.2.4	因果复句	……，因而……	Cause and effect sentences
-@	6.2.4	因果复句	……，可见……	Cause and effect sentences
-@	6.2.5	让步复句	哪怕……，也……	Concessive complex sentences
-@	6.2.6	递进复句	不但不/不但没有……，反而……	Progressive complex sentences
-@	6.2.6	递进复句	不是……，还/还是……	Progressive complex sentences
-@	6.2.7	目的复句	……，为的是……	Purpose complex sentences
-@	6.2.8	紧缩复句	没有……就没有……	Contracted complex sentences
-@	6.2.8	紧缩复句	不……不……	Contracted complex sentences
-@	6.2.8	紧缩复句	再……也……	Contracted complex sentences
+@	1.1	后缀	—头	Suffixes	头
+@	2.1.1	指示代词	彼此、如此、本	Demonstrative pronouns	彼此、如此、本
+@	2.2.1	名量词	册、朵、届、颗、匹、行、架、群、支、根、批、束、副、集、周	Measure words for nouns	册、朵、届、颗、匹、行、架、群、支、根、批、束、副、集、周
+@	2.2.2	动量词	眼	Measure words for verbs	眼
+@	2.3.1	程度副词	过于、相当、较1、可2、格外、极其	Adverbs of degree	过于、相当、较、可、格外、极其
+@	2.3.2	时间副词	时刻、曾经、立刻、连忙、始终、早已、即将、急忙、渐渐、尽快、早晚	Adverbs of time	时刻、曾经、立刻、连忙、始终、早已、即将、急忙、渐渐、尽快、早晚
+@	2.3.3	频率副词	老是、通常、时常	Adverbs of frequency	老是、通常、时常
+@	2.3.4	方式副词	尽量、亲自	Adverbs of manner	尽量、亲自
+@	2.3.5	关联副词	便、一旦	Linking adverbs	便、一旦
+@	2.3.6	情态副词	似乎、仿佛	Modal adverbs	似乎、仿佛
+@	2.3.7	语气副词	毕竟、居然、反正、根本、果然、简直、绝对、的确、反而、白、刚好、可3	Mood adverbs	毕竟、居然、反正、根本、果然、简直、绝对、的确、反而、白、刚好、可
+@	2.4.1	引出时间、处所	自从	Prepositions of time and place	自从
+@	2.4.2	引出方向、路径	朝、沿（着）	Prepositions of direction	朝、沿
+@	2.4.3	引出对象	替、同1、较2	Prepositions for the object	替、同、较
+@	2.4.4	引出凭借、依据	凭	Prepositions of basis	凭
+@	2.4.4	引出凭借、依据	据	Prepositions of basis	据
+@	2.4.4	引出凭借、依据	依据	Prepositions of basis	依据
+@	2.5.1	连接词或词组	以及、同2	Conjunctions for words or phrases	以及、同
+@	2.5.2	连接分句或句子	从而、可见、假如、总之	Conjunctions for clauses	从而、可见、假如、总之
+@	2.6.1	其他助词	似的	Other particles	似的
+@	3.1.1	四字格	A来A去	Four-character patterns	
+@	3.1.1	四字格	A着A着	Four-character patterns	
+@	3.1.1	四字格	没A没B	Four-character patterns	
+@	3.1.1	四字格	说A就A	Four-character patterns	
+@	3.1.2	其他	不得了	Other	不得了
+@	3.1.2	其他	用不着	Other	用不着
+@	3.1.2	其他	从……来看	Other	从、来看
+@	3.1.2	其他	A的A，B的B	Other	
+@	3.1.2	其他	（自）……以来	Other	以来
+@	3.1.2	其他	由……组成	Other	由、组成
+@	3.1.2	其他	X也不是，Y也不是	Other	
+@	3.1.2	其他	X也X不得，Y也Y不得	Other	
+@	4.1	固定格式	X是它，Y也是它	Fixed patterns	
+@	4.1	固定格式	X着也是X着	Fixed patterns	
+@	4.1	固定格式	不管怎样说	Fixed patterns	
+@	4.1	固定格式	真有你/他/她的	Fixed patterns	真有你、他、她的
+@	4.1	固定格式	X什么X	Fixed patterns	
+@	4.1	固定格式	什么X不X（的）	Fixed patterns	
+@	4.1	固定格式	不X白不X	Fixed patterns	
+@	4.1	固定格式	X来X去，都是/就是……	Fixed patterns	都是、就是
+@	4.1	固定格式	动词+什么（就）是什么	Fixed patterns	
+@	5.1	状语	多项状语	Adverbials	
+@	5.2.1	可能补语2	动词+得/不得	Potential complements	得、不得
+@	5.2.2	程度补语2	形容词/心理动词+得+不得了	Complements of degree	得、不得了
+@	5.2.3	趋向补语3	趋向补语的引申用法：表示状态意义：动词/形容词+下来/下去/起来/过来/过去	Directional complements	下来、下去、起来、过来、过去
+@	5.2.4	状态补语2	（1）动词/形容词+得+动词短语	Complements of state	得
+@	5.2.4	状态补语2	（2）动词/形容词+得+主谓短语	Complements of state	得
+@	5.2.4	状态补语2	（3）动词/形容词+得+固定短语	Complements of state	得
+@	6.1.1	“有”字句3	（1）表示存在、具有：主语+有+着+宾语	Sentences with 有	有、着
+@	6.1.1	“有”字句3	（2）表示附着：主语+动词+有+宾语	Sentences with 有	有
+@	6.1.2	“把”字句3	（1）主语+把+宾语+一+动词	把 sentences	把、一
+@	6.1.2	“把”字句3	（2）主语+把+宾语1+动词+宾语2	把 sentences	把
+@	6.1.3	连动句3	前后两个动词性词语具有因果、转折、条件关系	Serial verb sentences	转折
+@	6.1.4	比较句4	A+形容词+B+数量补语	Comparative sentences	
+@	6.1.5	被动句3	主语+被/叫/让+宾语+给+动词+其他成分	Passive sentences	被、叫、让、给
+@	6.2.1	承接复句	……，便……	Sequential complex sentences	便
+@	6.2.2	选择复句	或是……，或是……	Alternative complex sentences	或是、或是
+@	6.2.3	假设复句	一旦……，就……	Hypothetical complex sentences	一旦、就
+@	6.2.3	假设复句	假如……，（就）……	Hypothetical complex sentences	假如
+@	6.2.3	假设复句	万一……，（就）……	Hypothetical complex sentences	万一
+@	6.2.3	假设复句	……，要不然/不然……	Hypothetical complex sentences	要不然、不然
+@	6.2.4	因果复句	……，因而……	Cause and effect sentences	因而
+@	6.2.4	因果复句	……，可见……	Cause and effect sentences	可见
+@	6.2.5	让步复句	哪怕……，也……	Concessive complex sentences	哪怕、也
+@	6.2.6	递进复句	不但不/不但没有……，反而……	Progressive complex sentences	不但不、反而
+@	6.2.6	递进复句	不是……，还/还是……	Progressive complex sentences	不是、还、还是
+@	6.2.7	目的复句	……，为的是……	Purpose complex sentences	为的是
+@	6.2.8	紧缩复句	没有……就没有……	Contracted complex sentences	没有、就没有
+@	6.2.8	紧缩复句	不……不……	Contracted complex sentences	不、不
+@	6.2.8	紧缩复句	再……也……	Contracted complex sentences	再、也

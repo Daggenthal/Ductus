@@ -3642,6 +3642,136 @@
         }
       }
     },
+    "AI-written" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مكتوبة بالذكاء الاصطناعي"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napsala AI"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von KI geschrieben"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γραμμένο από ΤΝ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI-written"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escrito por IA"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوشتهٔ هوش مصنوعی"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écrit par l’IA"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נכתב על ידי AI"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI द्वारा लिखित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MI írta"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scritto dall’IA"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AIが作成"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 작성"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Door AI geschreven"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napisane przez AI"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escrito por IA"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Написано ИИ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yapay zekâ yazdı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Написано ШІ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 撰写"
+          }
+        }
+      }
+    },
     "All done for today" : {
       "localizations" : {
         "ar" : {
@@ -7278,6 +7408,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "汉字"
+          }
+        }
+      }
+    },
+    "Choose the characters after typing pinyin" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختيار الحروف بعد كتابة البينيين"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybírat znaky po napsání pinyinu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeichen nach dem Pinyin auswählen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλογή χαρακτήρων μετά το pinyin"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the characters after typing pinyin"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elegir los caracteres después del pinyin"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انتخاب نویسه‌ها پس از تایپ پین‌یین"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisir les caractères après le pinyin"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחירת התווים אחרי הקלדת pinyin"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinyin टाइप करने के बाद अक्षर चुनें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Írásjegyek kiválasztása a pinyin után"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scegli i caratteri dopo il pinyin"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ピンインの入力後に漢字を選ぶ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "병음 입력 후 한자 선택"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kies de tekens na het typen van pinyin"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybieraj znaki po wpisaniu pinyin"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escolher os caracteres depois do pinyin"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбирать иероглифы после пиньиня"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinyin yazdıktan sonra karakterleri seç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибирати ієрогліфи після піньїню"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入拼音后选择汉字"
           }
         }
       }
@@ -20024,6 +20284,136 @@
         }
       }
     },
+    "Like a Chinese input method: after the pinyin, pick the right characters from a numbered list (1 to 9, or space for the first). The list is shuffled, so you have to recognize the characters." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مثل طريقة الإدخال الصينية: بعد البينيين، اختر الحروف الصحيحة من قائمة مرقّمة (من 1 إلى 9، أو المسافة للأول). القائمة مخلوطة، لذا عليك التعرّف على الحروف."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jako čínská metoda zadávání: po pinyinu vyberte správné znaky z očíslovaného seznamu (1 až 9, nebo mezerník pro první). Seznam je zamíchaný, takže znaky musíte poznat."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie eine chinesische Eingabemethode: Nach dem Pinyin wählst du die richtigen Zeichen aus einer nummerierten Liste (1 bis 9 oder Leertaste für das erste). Die Liste ist gemischt, du musst die Zeichen also erkennen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όπως μια κινεζική μέθοδος εισόδου: μετά το pinyin, επιλέξτε τους σωστούς χαρακτήρες από μια αριθμημένη λίστα (1 έως 9, ή διάστημα για τον πρώτο). Η λίστα ανακατεύεται, οπότε πρέπει να αναγνωρίσετε τους χαρακτήρες."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Like a Chinese input method: after the pinyin, pick the right characters from a numbered list (1 to 9, or space for the first). The list is shuffled, so you have to recognize the characters."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Como un método de entrada chino: después del pinyin, elige los caracteres correctos de una lista numerada (del 1 al 9, o espacio para el primero). La lista está mezclada, así que tienes que reconocer los caracteres."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مانند روش ورودی چینی: پس از پین‌یین، نویسه‌های درست را از یک فهرست شماره‌دار انتخاب کنید (۱ تا ۹، یا فاصله برای اولی). فهرست به‌هم‌ریخته است، پس باید نویسه‌ها را بشناسید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comme une méthode de saisie chinoise : après le pinyin, choisissez les bons caractères dans une liste numérotée (1 à 9, ou espace pour le premier). La liste est mélangée, il faut donc reconnaître les caractères."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כמו שיטת קלט סינית: אחרי ה-pinyin, בחר את התווים הנכונים מתוך רשימה ממוספרת (1 עד 9, או רווח לראשון). הרשימה מעורבבת, לכן צריך לזהות את התווים."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चीनी इनपुट विधि की तरह: pinyin के बाद एक क्रमांकित सूची से सही अक्षर चुनें (1 से 9, या पहले के लिए स्पेस)। सूची का क्रम बदला जाता है, इसलिए आपको अक्षर पहचानने होंगे।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mint egy kínai beviteli mód: a pinyin után válaszd ki a helyes írásjegyeket egy számozott listából (1–9, vagy szóköz az elsőhöz). A lista keverve jelenik meg, ezért fel kell ismerned az írásjegyeket."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Come un metodo di input cinese: dopo il pinyin, scegli i caratteri giusti da un elenco numerato (da 1 a 9, o spazio per il primo). L’elenco è mescolato, quindi devi riconoscere i caratteri."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中国語の入力方式のように、ピンインを入力したあと番号付きのリストから正しい漢字を選びます（1〜9、または最初の候補はスペース）。リストは毎回並べ替えられるので、漢字を見分ける必要があります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중국어 입력기처럼 병음을 입력한 뒤 번호가 매겨진 목록에서 올바른 한자를 고릅니다(1~9, 첫 번째는 스페이스). 목록 순서가 섞이므로 한자를 알아봐야 합니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoals een Chinese invoermethode: kies na de pinyin de juiste tekens uit een genummerde lijst (1 tot 9, of spatie voor de eerste). De lijst wordt geschud, dus je moet de tekens herkennen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jak w chińskiej metodzie wprowadzania: po pinyin wybierasz właściwe znaki z numerowanej listy (od 1 do 9 lub spacja dla pierwszego). Lista jest pomieszana, więc musisz rozpoznać znaki."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Como um método de entrada chinês: depois do pinyin, escolha os caracteres certos em uma lista numerada (1 a 9, ou espaço para o primeiro). A lista é embaralhada, então você precisa reconhecer os caracteres."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как в китайском методе ввода: после пиньиня выберите нужные иероглифы из нумерованного списка (от 1 до 9 или пробел для первого). Список перемешан, поэтому иероглифы нужно узнавать."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çince girdi yöntemi gibi: Pinyin'den sonra numaralı bir listeden doğru karakterleri seçin (1 ile 9 arası veya ilki için boşluk). Liste karıştırılır, bu yüzden karakterleri tanımanız gerekir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Як у китайському методі введення: після піньїню виберіть потрібні ієрогліфи з нумерованого списку (від 1 до 9 або пробіл для першого). Список перемішано, тому ієрогліфи треба впізнавати."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "像中文输入法一样：输入拼音后，从编号列表中选出正确的汉字（1 到 9，或按空格选第一个）。列表顺序是打乱的，所以你需要认出这些汉字。"
+          }
+        }
+      }
+    },
     "Live speed and accuracy, the last drill, your focus key and unlock progress." : {
       "localizations" : {
         "ar" : {
@@ -28472,6 +28862,396 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在每个 ↵ 处按 Return 键。缩进会被跳过。"
+          }
+        }
+      }
+    },
+    "Press Return for the next card" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط على مفتاح Return للانتقال إلى البطاقة التالية"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stiskněte Return pro další kartu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück den Zeilenschalter für die nächste Karte"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πατήστε Return για την επόμενη κάρτα"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press Return for the next card"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulsa Retorno para la siguiente tarjeta"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "برای کارت بعدی Return را فشار دهید"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez sur Retour pour la carte suivante"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקש Return לכרטיס הבא"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगले कार्ड के लिए Return दबाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyomd le a Return billentyűt a következő kártyához"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premi A capo per la scheda successiva"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Returnキーで次のカードへ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return 키를 눌러 다음 카드로 이동"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk op Return voor de volgende kaart"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naciśnij Return, aby przejść do następnej karty"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressione Return para o próximo cartão"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите Return для следующей карточки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraki kart için Return'e basın"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Натисніть Return для наступної картки"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按 Return 键进入下一张卡片"
+          }
+        }
+      }
+    },
+    "Press Return for the next sentence" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط على مفتاح Return للانتقال إلى الجملة التالية"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stiskněte Return pro další větu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück den Zeilenschalter für den nächsten Satz"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πατήστε Return για την επόμενη πρόταση"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press Return for the next sentence"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulsa Retorno para la siguiente frase"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "برای جملهٔ بعدی Return را فشار دهید"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez sur Retour pour la phrase suivante"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקש Return למשפט הבא"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगले वाक्य के लिए Return दबाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyomd le a Return billentyűt a következő mondathoz"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premi A capo per la frase successiva"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Returnキーで次の文へ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return 키를 눌러 다음 문장으로 이동"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk op Return voor de volgende zin"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naciśnij Return, aby przejść do następnego zdania"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressione Return para a próxima frase"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите Return для следующего предложения"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraki cümle için Return'e basın"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Натисніть Return для наступного речення"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按 Return 键进入下一句"
+          }
+        }
+      }
+    },
+    "Press the number of the right characters (space for 1)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط على رقم الحروف الصحيحة (المسافة للرقم 1)"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stiskněte číslo správných znaků (mezerník pro 1)"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück die Nummer der richtigen Zeichen (Leertaste für 1)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πατήστε τον αριθμό των σωστών χαρακτήρων (διάστημα για το 1)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the number of the right characters (space for 1)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulsa el número de los caracteres correctos (espacio para el 1)"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شمارهٔ نویسه‌های درست را فشار دهید (فاصله برای ۱)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapez le numéro des bons caractères (espace pour 1)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקש את המספר של התווים הנכונים (רווח עבור 1)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सही अक्षरों का नंबर दबाएँ (1 के लिए स्पेस)"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyomd le a helyes írásjegyek számát (szóköz az 1-hez)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premi il numero dei caratteri giusti (spazio per 1)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正しい漢字の番号を押してください（1はスペースでも可）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "올바른 한자의 번호를 누르십시오(1은 스페이스)"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk op het nummer van de juiste tekens (spatie voor 1)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naciśnij numer właściwych znaków (spacja dla 1)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressione o número dos caracteres certos (espaço para 1)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите номер нужных иероглифов (пробел для 1)"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doğru karakterlerin numarasına basın (1 için boşluk)"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Натисніть номер потрібних ієрогліфів (пробіл для 1)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按正确汉字的编号（空格代表 1）"
           }
         }
       }
@@ -47324,6 +48104,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WPM"
+          }
+        }
+      }
+    },
+    "Written by AI because no human-written sentence showed this point. Checked by a second model (DeepSeek)." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كتبها الذكاء الاصطناعي لأنه لا توجد جملة كتبها إنسان توضّح هذه النقطة. راجعها نموذج ثانٍ (DeepSeek)."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napsala AI, protože žádná věta napsaná člověkem tento jev neukazovala. Zkontroloval druhý model (DeepSeek)."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von KI geschrieben, weil kein von Menschen geschriebener Satz diesen Punkt zeigte. Von einem zweiten Modell (DeepSeek) geprüft."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γράφτηκε από ΤΝ επειδή καμία πρόταση γραμμένη από άνθρωπο δεν έδειχνε αυτό το σημείο. Ελέγχθηκε από δεύτερο μοντέλο (DeepSeek)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Written by AI because no human-written sentence showed this point. Checked by a second model (DeepSeek)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escrito por IA porque ninguna frase escrita por una persona mostraba este punto. Revisado por un segundo modelo (DeepSeek)."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "به دست هوش مصنوعی نوشته شده، چون هیچ جملهٔ نوشته‌شده به دست انسان این نکته را نشان نمی‌داد. با یک مدل دوم (DeepSeek) بررسی شده است."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écrit par l’IA, car aucune phrase écrite par un humain ne montrait ce point. Vérifié par un second modèle (DeepSeek)."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נכתב על ידי AI כי אף משפט שנכתב על ידי אדם לא הדגים את הנקודה הזו. נבדק על ידי מודל שני (DeepSeek)."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI द्वारा लिखा गया, क्योंकि किसी भी मनुष्य द्वारा लिखे वाक्य में यह बिंदु नहीं दिखता था। एक दूसरे मॉडल (DeepSeek) ने जाँचा है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MI írta, mert egyetlen ember által írt mondat sem mutatta be ezt a pontot. Egy második modell (DeepSeek) ellenőrizte."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scritto dall’IA perché nessuna frase scritta da una persona mostrava questo punto. Controllato da un secondo modello (DeepSeek)."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "人が書いた文でこの文法項目を示すものがなかったため、AIが作成しました。別のモデル（DeepSeek）で確認済みです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 문법을 보여 주는 사람이 쓴 문장이 없어서 AI가 작성했습니다. 두 번째 모델(DeepSeek)이 검토했습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Door AI geschreven omdat geen door mensen geschreven zin dit punt liet zien. Gecontroleerd door een tweede model (DeepSeek)."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napisane przez AI, bo żadne zdanie napisane przez człowieka nie pokazywało tego zagadnienia. Sprawdzone przez drugi model (DeepSeek)."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escrito por IA porque nenhuma frase escrita por uma pessoa mostrava este ponto. Verificado por um segundo modelo (DeepSeek)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Написано ИИ, потому что ни одно предложение, написанное человеком, не показывало этот пункт. Проверено второй моделью (DeepSeek)."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İnsan yazımı hiçbir cümle bu noktayı göstermediği için yapay zekâ tarafından yazıldı. İkinci bir model (DeepSeek) tarafından kontrol edildi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Написано ШІ, бо жодне речення, написане людиною, не показувало цей пункт. Перевірено другою моделлю (DeepSeek)."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由 AI 撰写，因为没有人工撰写的句子体现这个语法点。已由另一个模型（DeepSeek）检查。"
           }
         }
       }
