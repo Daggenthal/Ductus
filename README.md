@@ -72,7 +72,18 @@ Every language comes with up to 20,000 real sentences and 10,000 common words. O
 
 ## Getting Ductus
 
-There is no signed download yet: Signing and notarizing need a paid Apple Developer account. For now, build it from source (see below).
+Download the latest version from [Releases](https://github.com/daggenthal/ductus/releases). It runs on Apple Silicon and Intel Macs with macOS 14 or newer.
+
+- **Ductus-x.y.z.dmg:** Open it and drag Ductus into Applications.
+- **Ductus-x.y.z.zip:** Unzip it and move Ductus into Applications.
+
+Ductus is not notarized by Apple yet (that needs a paid developer account), so macOS blocks it the first time you open it:
+
+1. Open Ductus. macOS says it cannot verify the developer. Click **Done**.
+2. Open **System Settings › Privacy & Security**, scroll down, and click **Open Anyway** next to the message about Ductus.
+3. Confirm with **Open**. From then on Ductus opens normally.
+
+You can also build it yourself from the source (see below).
 
 ## Made with AI
 
@@ -98,6 +109,14 @@ Open `Ductus.xcodeproj` and run the Ductus scheme, or from the terminal:
 ```sh
 xcodebuild -project Ductus.xcodeproj -scheme Ductus build
 ```
+
+To make the downloadable universal app (zip and disk image) on your Mac:
+
+```sh
+scripts/package.sh          # writes build/Ductus-<version>.zip, .dmg and SHA256SUMS.txt
+```
+
+Pushing a version tag (`git tag v0.1.0 && git push origin v0.1.0`) makes GitHub build the same files and attach them to a draft release.
 
 The engine has its own tests and demo:
 
@@ -125,6 +144,8 @@ scripts/
   build_cjk_corpus.py    Japanese, Chinese and Korean from Tatoeba
   spellcheck.swift       Spell-check filter used by build_corpus.py
   make_icon.swift        Draws the app icon in every size
+  package.sh             Builds the universal app, zip and disk image
+.github/workflows/       Builds releases on GitHub when a version tag is pushed
 ```
 
 ## Debugging

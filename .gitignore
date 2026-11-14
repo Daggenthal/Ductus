@@ -14,3 +14,6 @@ Package.resolved
 
 # Logs
 *.log
+
+# Release packages (scripts/package.sh)
+/build/
