@@ -208,22 +208,6 @@ These are typed as written, so the words and sentences are used as they are.
 
 Japanese public-domain books from [Aozora Bunko](https://www.aozora.gr.jp) could be added later; their out-of-copyright texts may be freely copied and redistributed.
 
-## Study word sets (HSK)
-
-- **Source:** [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) by Yanis Zafirópulos (MIT), levels from the revised HSK 3.0 syllabus (November 2025; HSK 1 is about 300 words). Its English meanings come from [CC-CEDICT](https://cc-cedict.org/wiki/) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), so the meanings in `study-hsk1.tsv` to `study-hsk7.tsv` stay under that license (the rest of Ductus is MIT).
-- **Changes made:** One reading per word. Words with several readings get the everyday one: surnames, old variants and "used in" entries are skipped, and a few are set by hand (吗 ma, 喝 hē, 雨 yǔ). At most three meanings are kept. The typed form is toneless pinyin with v for ü.
-- **Rebuilding:** `python3 scripts/build_study.py --source /path/to/complete.json`
-
-## Study grammar (HSK)
-
-- **Grammar points:** the revised HSK 3.0 syllabus (CLEC, 2025), as text from [krmanik/HSK-3.0](https://github.com/krmanik/HSK-3.0) (CC BY-SA 4.0). English names in `scripts/grammar_labels.json`, written for Ductus.
-- **Example sentences:** Tatoeba Mandarin sentences with their English translations (CC BY 2.0 FR); both authors of every sentence are in `study-grammar-credits.tsv` and in the app (Sentence Authors).
-- **Checked by hand:** a sentence only ships when it was read and approved for its point (`scripts/grammar_reviewed.json`, by Tatoeba ID): natural standard Mandarin, the point used in that exact sense (想 as "want to", not "miss"; 只 as a measure word, not "only"), within the level's vocabulary where possible. Points without a good sentence get none. All levels (HSK 1 to 7-9) are reviewed. HSK 3 to 7-9 were picked by five parallel agents following the same written rules, then checked by Claude (readings, word breaks, vocabulary) and by DeepSeek. HSK 1 also had a second review (DeepSeek), which removed four sentences and fixed four English translations: where Tatoeba has another human translation it is used, otherwise the English was corrected (both listed under `_translations` in `scripts/grammar_reviewed.json`, so these few translations are changed from the Tatoeba originals). HSK 2 went through the same second review.
-- **AI-written sentences:** where no human sentence showed an HSK 2 point clearly, Claude wrote a short one within HSK 1-2 vocabulary (word breaks set by hand where needed). These are marked AI-written in the app, were checked by DeepSeek with the human ones, and are not credited to Tatoeba. A human sentence replaces them when one is found.
-- **Highlights:** each point's key words (会, 比, 虽然……但是, ...) are highlighted in its examples; the words come from the syllabus items (`markers` in `build_grammar.py`).
-- **Pinyin:** each word's reading comes from the HSK lists (CC-CEDICT, with neutral tones like péng you). Other words are read by pypinyin in the whole sentence's context, then corrected by rules for characters with several readings (得 de/děi/dé, 着 zhe/zháo, 长, 为, 倒, 重, 种, 中, 地, 只, 处, 觉, 趟, 吓 ..., see `char_reading` in `build_grammar.py`); dictionary tones for 一 and 不; erhua joined (zhèr). The typed form is the same pinyin without marks.
-- **Rebuilding:** `python3 scripts/build_grammar.py --grammar /path/to/grammar/txt --tatoeba /path/to/tatoeba` (set `GRAMMAR_SEARCH=1` to list search results for levels not yet reviewed).
-
 ## Rebuilding
 
 ```sh

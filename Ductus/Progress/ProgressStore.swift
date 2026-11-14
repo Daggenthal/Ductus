@@ -39,22 +39,6 @@ final class ProgressStore {
         }
     }
 
-    func studyRecord(for setID: String) -> StudyRecord? {
-        let id = setID
-        var descriptor = FetchDescriptor<StudyRecord>(predicate: #Predicate { $0.setID == id })
-        descriptor.fetchLimit = 1
-        do {
-            return try context.fetch(descriptor).first
-        } catch {
-            Log.error("Could not load study progress for \(setID): \(error)")
-            return nil
-        }
-    }
-
-    func insert(_ record: StudyRecord) {
-        context.insert(record)
-    }
-
     func insert(_ profile: LayoutProfile) {
         context.insert(profile)
     }

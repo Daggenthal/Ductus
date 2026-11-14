@@ -25,7 +25,6 @@ The name comes from calligraphy: The ductus is the order, direction and rhythm o
 - **Practice:** Adaptive word drills, or real sentences once you have unlocked enough letters.
 - **Race:** Timed races of 30 seconds to 5 minutes against your own best, with all letters, unlocked letters only, or real sentences. Afterward you see the keys that cost you the most.
 - **Text:** Paste your own text (an article, a book chapter, some code) and type through it part by part. Ductus remembers where you left off. Code and poems can keep their line breaks. Text in any of the twenty-one languages works too.
-- **Study:** Learn Chinese vocabulary from the HSK 3.0 word lists (HSK 1 to 7-9) with spaced repetition. You type the pinyin for each word, and how you type it is the grade: words you know come back less often, words you miss come back sooner. Show or hide the characters, pinyin and meaning, set new words per day, practice the words you know, or skip one with I Know This Word. Grammar covers every HSK grammar point (HSK 1 to 7-9) with highlighted example sentences, checked by hand and by a second review; AI-written ones are labeled. Words and sentences can be read aloud with your Mac's own voices, each word highlighted as it is spoken.
 - **History:** Speed and accuracy over time, a heatmap of your weak keys, trends for each key, your unlock timeline, race records and your own texts.
 
 ### An on-screen keyboard that follows your layout
@@ -112,7 +111,6 @@ The app itself has no AI in it. We tested small on-device models for writing dri
 - Words and sentences in English, French, Spanish, German, Italian, Portuguese and Dutch: public-domain books from [Project Gutenberg](https://www.gutenberg.org).
 - Sentences in every other language: the contributors of [Tatoeba](https://tatoeba.org), under [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Every sentence's author is listed in the app (About Ductus, Sentence Authors) and in the `*-credits.tsv` files.
 - Tools used only to build the word lists: fugashi and unidic-lite, jieba, pypinyin and OpenCC.
-- Study word lists: the revised HSK 3.0 lists (2025) from [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) by Yanis Zafirópulos (MIT), with English meanings from [CC-CEDICT](https://cc-cedict.org/wiki/) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)). The meanings in `study-hsk*.tsv` stay under CC BY-SA 4.0.
 - Swear words are left out using the [List of Dirty, Naughty, Obscene, and Otherwise Bad Words](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words) (CC BY 4.0), used only when building the word lists.
 - The adaptive approach was inspired by [keybr.com](https://www.keybr.com). No code from it is used.
 

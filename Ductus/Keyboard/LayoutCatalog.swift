@@ -12,6 +12,14 @@ enum LayoutCatalog {
         let name: String
         /// The layout's language, if Ductus has it.
         let language: PracticeLanguage?
+        /// The language code macOS gives the layout ("fr", "ru"), for grouping.
+        let languageCode: String?
+
+        /// Dvorak, Colemak, Workman and their variants: layouts people learn to type faster.
+        var isAlternative: Bool {
+            let lower = name.lowercased() + " " + id.lowercased()
+            return ["dvorak", "colemak", "workman"].contains { lower.contains($0) }
+        }
     }
 
     static let all: [Entry] = {
@@ -25,10 +33,39 @@ enum LayoutCatalog {
                   let name = string(source, kTISPropertyLocalizedName) else { return nil }
             let languages = TISGetInputSourceProperty(source, kTISPropertyInputSourceLanguages)
                 .map { Unmanaged<CFArray>.fromOpaque($0).takeUnretainedValue() as? [String] ?? [] } ?? []
-            return Entry(id: id, name: name, language: languages.first.flatMap(PracticeLanguage.init(code:)))
+            return Entry(id: id, name: name, language: languages.first.flatMap(PracticeLanguage.init(code:)),
+                         languageCode: languages.first)
         }
         .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }()
+
+    /// Layouts the user added in System Settings › Keyboard › Input Sources
+    /// (read each time, since they can change while Ductus runs).
+    static var enabled: [Entry] {
+        let filter = [kTISPropertyInputSourceType as String: kTISTypeKeyboardLayout as String] as CFDictionary
+        guard let sources = TISCreateInputSourceList(filter, false)?.takeRetainedValue() as? [TISInputSource] else {
+            return []
+        }
+        let ids = Set(sources.compactMap { string($0, kTISPropertyInputSourceID) })
+        return all.filter { ids.contains($0.id) }
+    }
+
+    /// Dvorak, Colemak and Workman layouts installed with macOS.
+    static var alternatives: [Entry] { all.filter(\.isAlternative) }
+
+    /// Every layout grouped by its language's name in `locale`, groups sorted by
+    /// name; layouts without a language go last under "Other".
+    static func groupedByLanguage(locale: Locale) -> [(name: String, layouts: [Entry])] {
+        let other = String(localized: "Other", bundle: .ui)
+        let groups = Dictionary(grouping: all) { entry -> String in
+            guard let code = entry.languageCode, let name = locale.localizedString(forLanguageCode: code) else { return other }
+            return name.prefix(1).uppercased() + name.dropFirst()
+        }
+        return groups.map { ($0.key, $0.value) }.sorted { a, b in
+            if (a.name == other) != (b.name == other) { return b.name == other }
+            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+        }
+    }
 
     /// Layouts written for `language`.
     static func layouts(for language: PracticeLanguage) -> [Entry] {
@@ -54,16 +91,6 @@ enum LayoutCatalog {
         ]
         if let id = ids[language], let entry = all.first(where: { $0.id == id }) { return entry }
         return layouts(for: language).first
-    }
-
-    private static var loaded: [String: KeyboardLayout] = [:]
-
-    /// An installed layout by ID, cached.
-    static func layout(id: String) -> KeyboardLayout? {
-        if let layout = loaded[id] { return layout }
-        let layout = KeyboardLayout.installed(id: id)
-        loaded[id] = layout
-        return layout
     }
 
     private static var commonLetters: [PracticeLanguage: [Character]] = [:]

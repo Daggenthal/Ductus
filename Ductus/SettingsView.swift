@@ -1,4 +1,3 @@
-import AVFoundation
 import DuctusEngine
 import DuctusLog
 import SwiftUI
@@ -32,11 +31,6 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.keyboardShape) private var keyboardShape = "auto"
     @AppStorage(SettingsKey.practiceLayout) private var practiceLayout = ""
     @AppStorage(SettingsKey.practiceLayoutAuto) private var practiceLayoutAuto = false
-    @AppStorage(SettingsKey.studyNewPerDay) private var studyNewPerDay = 10
-    @AppStorage(SettingsKey.studyChooseCharacters) private var studyChooseCharacters = true
-    @AppStorage(SettingsKey.studyVoice) private var studyVoice = ""
-    @AppStorage(SettingsKey.studySpeechSpeed) private var studySpeechSpeed = 0.8
-    @State private var voiceTester = StudySpeaker()
     @AppStorage(SettingsKey.practiceLanguage) private var practiceLanguage = "auto"
     @Environment(KeyboardState.self) private var keyboard
 
@@ -52,6 +46,7 @@ struct SettingsView: View {
 
     /// The Debug section is hidden unless Option is held when Settings opens, or debug is on.
     @State private var showDebug = false
+    @State private var browsingLayouts = false
 
     var body: some View {
         let _ = LanguageState.shared.locale  // redraw when the app language changes
@@ -82,28 +77,6 @@ struct SettingsView: View {
                 }
                 note("The words and sentences you practice. Automatic follows your keyboard layout or input method, so a French layout practices French and the Japanese input method practices Japanese. Japanese is typed in romaji, Chinese in pinyin (no tones, v for ü) and Korean on the 2-Set layout, with the text shown above. Progress is kept separately for each layout and language.")
                 layoutPicker
-            }
-
-            Section("Study") {
-                LabeledContent("New words per day") {
-                    Stepper("\(studyNewPerDay)", value: $studyNewPerDay, in: 1...50)
-                }
-                note("Study shows this many new words a day, plus every word due for review. Keep Going adds more whenever you like.")
-                Toggle("Choose the characters after typing pinyin", isOn: $studyChooseCharacters)
-                note("Like a Chinese input method: after the pinyin, pick the right characters from a numbered list (1 to 9, or space for the first). The list is shuffled, so you have to recognize the characters.")
-                Picker("Voice", selection: $studyVoice) {
-                    Text("Best installed voice").tag("")
-                    ForEach(StudySpeaker.voices, id: \.identifier) { voice in
-                        Text(verbatim: "\(voice.name) (\(voice.language))\(Self.qualityLabel(voice.quality))").tag(voice.identifier)
-                    }
-                }
-                LabeledContent("Speed") {
-                    HStack {
-                        Slider(value: $studySpeechSpeed, in: 0.4...1.2, step: 0.1)
-                        Button("Test") { voiceTester.speak("你好，我们一起学习中文吧。") }
-                    }
-                }
-                note("Words and sentences are read aloud with the Mac's own voices, on this Mac. For more natural voices, download an Enhanced or Premium Chinese voice in System Settings › Accessibility › Spoken Content › System Voice › Manage Voices.")
             }
 
             Section("Unlocking") {
@@ -299,33 +272,51 @@ struct SettingsView: View {
 }
 
 extension SettingsView {
-    /// " · Enhanced" / " · Premium" for the better voices.
-    static func qualityLabel(_ quality: AVSpeechSynthesisVoiceQuality) -> String {
-        switch quality {
-        case .premium: " · Premium"  // not UI
-        case .enhanced: " · Enhanced"  // not UI
-        default: ""
-        }
-    }
-
     /// The layout Ductus types and shows, which can differ from the Mac's.
     @ViewBuilder
     var layoutPicker: some View {
         let language = PracticeLanguage(rawValue: practiceLanguage)
         let suggested = language.map(LayoutCatalog.layouts(for:)) ?? []
-        let suggestedIDs = Set(suggested.map(\.id))
-        Picker("Keyboard in Ductus", selection: Binding(
-            get: { practiceLayout },
-            set: { practiceLayout = $0; practiceLayoutAuto = false }
-        )) {
-            Text("Same as macOS (\(keyboard.systemLayout?.name ?? "-"))").tag("")
-            if let language, !suggested.isEmpty {
-                Section("For \(language.nativeName)") {
-                    ForEach(suggested) { Text(verbatim: $0.name).tag($0.id) }
+        let onMac = LayoutCatalog.enabled
+        let alternatives = LayoutCatalog.alternatives.filter { entry in !onMac.contains(entry) }
+        let shown = Set((onMac + alternatives + suggested).map(\.id))
+        // A layout picked from the full list still needs a row so the menu can show it.
+        let picked = LayoutCatalog.all.first { $0.id == practiceLayout && !shown.contains($0.id) }
+        LabeledContent("Keyboard in Ductus") {
+            HStack {
+                Picker("Keyboard in Ductus", selection: Binding(
+                    get: { practiceLayout },
+                    set: { practiceLayout = $0; practiceLayoutAuto = false }
+                )) {
+                    Text("Same as macOS (\(keyboard.systemLayout?.name ?? "-"))").tag("")
+                    if let picked {
+                        Text(verbatim: picked.name).tag(picked.id)
+                    }
+                    if !onMac.isEmpty {
+                        Section("On this Mac") {
+                            ForEach(onMac) { Text(verbatim: $0.name).tag($0.id) }
+                        }
+                    }
+                    if !alternatives.isEmpty {
+                        Section("Alternative layouts") {
+                            ForEach(alternatives) { Text(verbatim: $0.name).tag($0.id) }
+                        }
+                    }
+                    if let language, !suggested.isEmpty {
+                        Section("For \(language.nativeName)") {
+                            ForEach(suggested) { Text(verbatim: $0.name).tag($0.id) }
+                        }
+                    }
                 }
+                .labelsHidden()
+                .fixedSize()
+                Button("Browse All Layouts…") { browsingLayouts = true }
             }
-            Section("All layouts") {
-                ForEach(LayoutCatalog.all.filter { !suggestedIDs.contains($0.id) }) { Text(verbatim: $0.name).tag($0.id) }
+        }
+        .sheet(isPresented: $browsingLayouts) {
+            LayoutBrowser(selection: practiceLayout) { id in
+                practiceLayout = id
+                practiceLayoutAuto = false
             }
         }
         if practiceLayoutAuto, let language, let layout = keyboard.layout, let system = keyboard.systemLayout {
@@ -340,11 +331,9 @@ extension SettingsView {
 struct SentenceAuthorsSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var expanded: Set<PracticeLanguage> = []
-    @State private var grammarExpanded = false
     private let languages = PracticeLanguage.allCases
         .map { ($0, $0.sentenceAuthors()) }
         .filter { !$0.1.isEmpty }
-    private let grammarAuthors = GrammarSet.authors()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -367,21 +356,6 @@ struct SentenceAuthorsSheet: View {
                             if expanded.contains(language) { expanded.remove(language) } else { expanded.insert(language) }
                         } label: {
                             Text("\(language.nativeName): \(authors.count) authors")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-                if !grammarAuthors.isEmpty {
-                    DisclosureGroup(isExpanded: $grammarExpanded) {
-                        ForEach(grammarAuthors, id: \.author) { entry in
-                            LabeledContent(entry.author, value: "\(entry.sentences)")
-                        }
-                    } label: {
-                        Button { grammarExpanded.toggle() } label: {
-                            Text("Study grammar examples: \(grammarAuthors.count) authors")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .contentShape(Rectangle())
@@ -445,5 +419,61 @@ struct CSVDocument: FileDocument {
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         FileWrapper(regularFileWithContents: Data(text.utf8))
+    }
+}
+
+/// Every installed layout, grouped by language and searchable, for
+/// Settings › Keyboard in Ductus › Browse All Layouts.
+struct LayoutBrowser: View {
+    let selection: String
+    let choose: (String) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var query = ""
+
+    var body: some View {
+        let locale = LanguageState.shared.locale
+        let groups = LayoutCatalog.groupedByLanguage(locale: locale).compactMap { group -> (name: String, layouts: [LayoutCatalog.Entry])? in
+            guard !query.isEmpty, !group.name.localizedCaseInsensitiveContains(query) else { return group }
+            let matches = group.layouts.filter { $0.name.localizedCaseInsensitiveContains(query) }
+            return matches.isEmpty ? nil : (group.name, matches)
+        }
+        VStack(spacing: 0) {
+            TextField("Search", text: $query)
+                .textFieldStyle(.roundedBorder)
+                .padding(12)
+            if groups.isEmpty {
+                Text("No layouts match").foregroundStyle(.secondary).frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                List {
+                    ForEach(groups, id: \.name) { group in
+                        Section(group.name) {
+                            ForEach(group.layouts) { entry in
+                                Button {
+                                    choose(entry.id)
+                                    dismiss()
+                                } label: {
+                                    HStack {
+                                        Text(verbatim: entry.name)
+                                        Spacer()
+                                        if entry.id == selection {
+                                            Image(systemName: "checkmark").foregroundStyle(.tint)
+                                        }
+                                    }
+                                    .contentShape(Rectangle())
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+                }
+            }
+            Divider()
+            HStack {
+                Spacer()
+                Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction)
+            }
+            .padding(12)
+        }
+        .frame(width: 380, height: 480)
     }
 }

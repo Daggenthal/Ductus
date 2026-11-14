@@ -177,7 +177,10 @@ final class SavedText {
     }
 }
 
-/// Study progress for one word set (HSK 1, ...): the engine's `StudyProgress` as JSON.
+/// Study progress from 0.7.0 to 0.9.0, when Ductus had a Study tab (removed in
+/// 0.10.0). Nothing reads or writes it any more, but it stays in the schema so
+/// progress stores saved by those versions open without a migration: if a store
+/// failed to open, Ductus would fall back to memory and stop saving progress.
 @Model
 final class StudyRecord {
     @Attribute(.unique) var setID: String

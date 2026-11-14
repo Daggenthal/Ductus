@@ -44,7 +44,6 @@ struct HistoryView: View {
                     textParts
                     unlockTimeline
                 }
-                StudyHistoryCard()
             }
             .padding(28)
             .frame(maxWidth: .infinity, alignment: .leading)

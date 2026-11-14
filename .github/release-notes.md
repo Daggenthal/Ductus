@@ -1,10 +1,10 @@
 A free, open source typing tutor for macOS, for learning a new keyboard layout. Works on Apple Silicon and Intel Macs with macOS 14 or newer.
 
-## What's new in 0.9.0
+## What's new in 0.10.0
 
-- **Grammar for every HSK level:** HSK 3, 4, 5, 6 and 7-9 now have example sentences for every grammar point, with the grammar highlighted. Human-written sentences from Tatoeba where one fit, short AI-written ones (labeled) where none did, all checked by hand and by a second review.
-- **Read aloud:** Listen to words and grammar sentences in Mandarin, with each word highlighted as it is spoken. It uses your Mac's own voices, on your Mac. Pick the voice and speed in Settings › Study, and download nicer Enhanced or Premium voices in System Settings. Recall cards only read the word once you have answered, so it doesn't give the answer away.
-- **More accurate pinyin:** Readings of characters with several pronunciations (得, 着, 长, 为, 倒, 重, 地 and more) are now chosen from the sentence around them.
+- **Back to typing:** The Study tab (HSK vocabulary and grammar) is gone. Ductus is a typing tutor first: learning a new layout or a new alphabet, and practicing it until it is muscle memory. Study pulled it toward being a language course, which apps like Anki and Pleco already do well. Your typing progress, races and texts are untouched.
+- The tabs are Practice, Race, Text and History again (⌘1 to ⌘4).
+- **A shorter layout menu:** Settings › Keyboard in Ductus now lists only your Mac's layouts, Dvorak and Colemak, and the layouts for your practice language. Browse All Layouts shows every other layout grouped by language, with search.
 
 **Updating:** From 0.3.0 or later, use Ductus › Check for Updates… and click Download and Install. From 0.1.0, download this version by hand once (below). Keep Ductus in your Applications folder for updates to work.
 

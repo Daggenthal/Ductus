@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum MainTab: String, CaseIterable, Identifiable {
-    case practice, race, text, study, history
+    case practice, race, text, history
 
     var id: String { rawValue }
 
@@ -10,7 +10,6 @@ enum MainTab: String, CaseIterable, Identifiable {
         case .practice: "Practice"
         case .race: "Race"
         case .text: "Text"
-        case .study: "Study"
         case .history: "History"
         }
     }
@@ -30,7 +29,6 @@ struct MainView: View {
             case .practice: PracticeView()
             case .race: RaceView()
             case .text: TextPracticeView()
-            case .study: StudyView()
             case .history: HistoryView()
             }
         }
@@ -45,7 +43,7 @@ struct MainView: View {
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
-                .help("Switch with ⌘1 to ⌘5")
+                .help("Switch with ⌘1 to ⌘4")
             }
             ToolbarItem(placement: .primaryAction) {
                 Button {
